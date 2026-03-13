@@ -1,0 +1,87 @@
+0x0000:                      | 	.pos 0
+0x0000: 30f40002000000000000 | 	irmovq	stack,%rsp
+0x000a: 80ea00000000000000   | 	call main
+0x0013: 00                   | 	halt
+                             | 
+0x0018:                      | 	.align 8
+0x0018:                      | array:
+0x0018: ca0b000000000000     | 	.quad 0xbca
+0x0020: ba0c000000000000     | 	.quad 0xcba
+0x0028: cb0a000000000000     | 	.quad 0xacb
+0x0030: ab0c000000000000     | 	.quad 0xcab
+0x0038: bc0a000000000000     | 	.quad 0xabc
+0x0040: ac0b000000000000     | 	.quad 0xbac
+                             | 	
+                             | ################################################################################
+                             | # You may want to modify this portion
+                             | # %rdi=*data %rsi=count %rdx=*i %rcx=*last %rax=t
+                             | # %r10=*data %r11=*last compare with last and i
+                             | # last每次比较要复制,--的时候用rdi
+                             | # %rbp=i, %r12=*i, %rbp++, %r13=*i
+                             | 
+0x0048:                      | bubble_a:
+0x0048: 30f80800000000000000 | 	irmovq $8,%r8  # %r8 = 8
+0x0052: 30f90100000000000000 | 	irmovq $1,%r9  # %r9 = 1
+0x005c: 2071                 | 	rrmovq %rdi,%rcx
+0x005e: 6196                 | 	subq %r9,%rsi
+0x0060: 6266                 | 	andq %rsi,%rsi # Set CC
+0x0062: 706f00000000000000   | 	jmp test_loop_last_init  # get %rcx = *last
+                             | 
+0x006b:                      | 	loop_last_init:
+0x006b: 6081                 | 		addq %r8,%rcx  # last += 8
+0x006d: 6196                 | 		subq %r9,%rsi  # %rsi = count -= 1, Set CC
+                             | 
+0x006f:                      | 	test_loop_last_init:
+0x006f: 746b00000000000000   | 		jne loop_last_init
+                             | 		# 循环结束后继续
+                             | 
+0x0078: 201b                 | 	rrmovq %rcx,%r11  # %r11 = last
+0x007a: 617b                 | 	subq %rdi,%r11  # cmp: last > data?
+0x007c: 70e000000000000000   | 	jmp test_loop_outer  # jump to test_loop_outer
+                             | 
+0x0085:                      | 	loop_outer:
+0x0085: 2072                 | 		rrmovq %rdi,%rdx  # i = %rdx = data
+0x0087: 201b                 | 		rrmovq %rcx,%r11  # recopy last to r11
+0x0089: 612b                 | 		subq %rdx,%r11    # cmp: last > i?
+0x008b: 70d100000000000000   | 		jmp test_loop_inner
+                             | 
+                             | 
+0x0094:                      | 		loop_inner:
+0x0094: 2025                 | 			rrmovq %rdx,%rbp
+0x0096: 50c50000000000000000 | 			mrmovq (%rbp),%r12
+0x00a0: 50d50800000000000000 | 			mrmovq 8(%rbp),%r13
+0x00aa: 20ce                 | 			rrmovq %r12,%r14
+0x00ac: 61de                 | 			subq %r13,%r14 # if r12<=r13
+0x00ae: 71cb00000000000000   | 			jle do_not_swap     # 不进行互换
+0x00b7: 40c50800000000000000 | 			rmmovq %r12,8(%rbp)
+0x00c1: 40d50000000000000000 | 			rmmovq %r13,(%rbp)
+0x00cb:                      | 		do_not_swap:
+0x00cb: 6082                 | 			addq %r8,%rdx    # i++
+0x00cd: 201b                 | 			rrmovq %rcx,%r11
+0x00cf: 612b                 | 			subq %rdx,%r11
+                             | 
+0x00d1:                      | 		test_loop_inner:
+0x00d1: 769400000000000000   | 			jg loop_inner
+                             | 			# 内层循环结束回到外层
+                             | 
+                             | 
+0x00da: 6181                 | 		subq %r8,%rcx     # minus True last
+0x00dc: 201b                 | 		rrmovq %rcx,%r11  # recopy last to copy_last
+0x00de: 617b                 | 		subq %rdi,%r11    # last>data? Set CC
+                             | 
+0x00e0:                      | test_loop_outer:
+0x00e0: 768500000000000000   | 	jg loop_outer # if >, jump to loop_outer and do loop_inner and last--
+0x00e9: 90                   | 	ret
+                             | 
+                             | 
+                             | 
+0x00ea:                      | main:
+0x00ea: 30f71800000000000000 | 	irmovq array,%rdi
+0x00f4: 30f60600000000000000 | 	irmovq $6,%rsi
+0x00fe: 804800000000000000   | 	call bubble_a
+0x0107: 90                   | 	ret
+                             | 
+0x0200:                      | 	.pos 0x200
+0x0200:                      | stack:
+                             | 
+                             | 

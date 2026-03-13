@@ -1,0 +1,11 @@
+/home/ubuntu/04-archlab/archlab-handout/archlab-project/target/debug/deps/bitflags-972638a61e531146.d: /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/lib.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/iter.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/parser.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/traits.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/public.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/internal.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/external.rs
+
+/home/ubuntu/04-archlab/archlab-handout/archlab-project/target/debug/deps/libbitflags-972638a61e531146.rmeta: /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/lib.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/iter.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/parser.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/traits.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/public.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/internal.rs /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/external.rs
+
+/home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/lib.rs:
+/home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/iter.rs:
+/home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/parser.rs:
+/home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/traits.rs:
+/home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/public.rs:
+/home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/internal.rs:
+/home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.6.0/src/external.rs:

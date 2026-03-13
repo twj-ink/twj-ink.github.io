@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ICS on GaleInk&#39;s blog</title>
+    <link>http://localhost:1313/ics-copy/</link>
+    <description>Recent content in ICS on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <atom:link href="http://localhost:1313/ics-copy/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>CSAPP阅读笔记</title>
+      <link>http://localhost:1313/ics-copy/readnotes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>http://localhost:1313/ics-copy/readnotes/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/ics-copy/readnotes/feature_vm.png" />
+    </item>
+    
+  </channel>
+</rss>

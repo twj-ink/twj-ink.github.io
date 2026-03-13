@@ -1,0 +1,123 @@
+                             | ################################################################################
+                             | # ncopy.ys - Copy a src block of len words to dst.
+                             | # Return the number of positive words (>0) contained in src.
+                             | #
+                             | # Include your name and ID here.
+                             | 
+                             | #
+                             | # Describe how and why you modified the baseline code.
+                             | #
+                             | ################################################################################
+                             | # Do not modify this portion
+                             | # Function prologue.
+                             | # %rdi = src, %rsi = dst, %rdx = len
+0x0000:                      | ncopy:
+                             | 
+                             | 
+                             | # You can modify this portion
+                             |     # 初始化
+0x0000: 6300                 |     xorq %rax, %rax        # count = 0
+0x0002: 6222                 |     andq %rdx, %rdx        # len <= 0?
+0x0004: 71b501000000000000   |     jle Done
+                             |     
+                             |     # === 特别优化小数组情况 ===
+0x000d: 30fa0800000000000000 |     irmovq $8, %r10
+0x0017: 202b                 |     rrmovq %rdx, %r11
+0x0019: 61ab                 |     subq %r10, %r11        # len - 8
+0x001b: 727101000000000000   |     jl SmallArray          # 如果len<8，使用小数组优化路径
+                             | 
+                             |     # === 大数组路径：8×1 展开 ===
+                             |     # 设置常量寄存器
+0x0024: 30f80100000000000000 |     irmovq $1, %r8         # 常量1
+0x002e: 30f90800000000000000 |     irmovq $8, %r9         # 地址增量
+                             |     
+0x0038:                      | MainLoop:
+                             |     # 前4个元素
+0x0038: 50c70000000000000000 |     mrmovq (%rdi), %r12
+0x0042: 50d70800000000000000 |     mrmovq 8(%rdi), %r13
+0x004c: 50e71000000000000000 |     mrmovq 16(%rdi), %r14
+0x0056: 50b71800000000000000 |     mrmovq 24(%rdi), %r11
+                             |     
+0x0060: 40c60000000000000000 |     rmmovq %r12, (%rsi)
+0x006a: 62cc                 |     andq %r12, %r12
+0x006c: 717700000000000000   |     jle Check2
+0x0075: 6080                 |     addq %r8, %rax
+0x0077:                      | Check2:
+0x0077: 40d60800000000000000 |     rmmovq %r13, 8(%rsi)
+0x0081: 62dd                 |     andq %r13, %r13
+0x0083: 718e00000000000000   |     jle Check3
+0x008c: 6080                 |     addq %r8, %rax
+0x008e:                      | Check3:
+0x008e: 40e61000000000000000 |     rmmovq %r14, 16(%rsi)
+0x0098: 62ee                 |     andq %r14, %r14
+0x009a: 71a500000000000000   |     jle Check4
+0x00a3: 6080                 |     addq %r8, %rax
+0x00a5:                      | Check4:
+0x00a5: 40b61800000000000000 |     rmmovq %r11, 24(%rsi)
+0x00af: 62bb                 |     andq %r11, %r11
+0x00b1: 71bc00000000000000   |     jle ReadSecondHalf
+0x00ba: 6080                 |     addq %r8, %rax
+                             | 
+0x00bc:                      | ReadSecondHalf:
+                             |     # 后4个元素
+0x00bc: 50c72000000000000000 |     mrmovq 32(%rdi), %r12
+0x00c6: 50d72800000000000000 |     mrmovq 40(%rdi), %r13
+0x00d0: 50e73000000000000000 |     mrmovq 48(%rdi), %r14
+0x00da: 50b73800000000000000 |     mrmovq 56(%rdi), %r11
+                             |     
+0x00e4: 40c62000000000000000 |     rmmovq %r12, 32(%rsi)
+0x00ee: 62cc                 |     andq %r12, %r12
+0x00f0: 71fb00000000000000   |     jle Check6
+0x00f9: 6080                 |     addq %r8, %rax
+0x00fb:                      | Check6:
+0x00fb: 40d62800000000000000 |     rmmovq %r13, 40(%rsi)
+0x0105: 62dd                 |     andq %r13, %r13
+0x0107: 711201000000000000   |     jle Check7
+0x0110: 6080                 |     addq %r8, %rax
+0x0112:                      | Check7:
+0x0112: 40e63000000000000000 |     rmmovq %r14, 48(%rsi)
+0x011c: 62ee                 |     andq %r14, %r14
+0x011e: 712901000000000000   |     jle Check8
+0x0127: 6080                 |     addq %r8, %rax
+0x0129:                      | Check8:
+0x0129: 40b63800000000000000 |     rmmovq %r11, 56(%rsi)
+0x0133: 62bb                 |     andq %r11, %r11
+0x0135: 714001000000000000   |     jle UpdatePointers
+0x013e: 6080                 |     addq %r8, %rax
+                             | 
+0x0140:                      | UpdatePointers:
+0x0140: 30fc4000000000000000 |     irmovq $64, %r12
+0x014a: 60c7                 |     addq %r12, %rdi
+0x014c: 60c6                 |     addq %r12, %rsi
+0x014e: 61a2                 |     subq %r10, %rdx
+                             |     
+0x0150: 202b                 |     rrmovq %rdx, %r11
+0x0152: 61ab                 |     subq %r10, %r11
+0x0154: 753800000000000000   |     jge MainLoop
+                             | 
+                             |     # 处理大数组的剩余元素（0-7个）
+0x015d: 6222                 |     andq %rdx, %rdx
+0x015f: 71b501000000000000   |     jle Done
+0x0168: 708501000000000000   |     jmp SmallArrayRemaining
+                             | 
+0x0171:                      | SmallArray:
+                             |     # === 小数组优化路径（len=1-7）===
+0x0171: 30f80100000000000000 |     irmovq $1, %r8
+0x017b: 30f90800000000000000 |     irmovq $8, %r9
+                             |     
+0x0185:                      | SmallArrayRemaining:
+                             |     # 特别优化的小循环（减少初始化开销）
+0x0185: 50c70000000000000000 |     mrmovq (%rdi), %r12
+0x018f: 40c60000000000000000 |     rmmovq %r12, (%rsi)
+0x0199: 62cc                 |     andq %r12, %r12
+0x019b: 71a601000000000000   |     jle SmallSkip
+0x01a4: 6080                 |     addq %r8, %rax
+0x01a6:                      | SmallSkip:
+0x01a6: 6097                 |     addq %r9, %rdi
+0x01a8: 6096                 |     addq %r9, %rsi
+0x01aa: 6182                 |     subq %r8, %rdx
+0x01ac: 768501000000000000   |     jg SmallArrayRemaining
+                             | 
+0x01b5:                      | Done:
+0x01b5: 90                   |     ret
+                             | 

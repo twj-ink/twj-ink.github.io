@@ -11,5 +11,15 @@
     <copyright>Copy, _right?_ :thinking_face:</copyright>
     <atom:link href="https://twj-ink.github.io/series/index.xml" rel="self" type="application/rss+xml" />
     
+    <item>
+      <title>ICS-Labs-2025</title>
+      <link>https://twj-ink.github.io/series/ics-labs-2025/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/series/ics-labs-2025/</guid>
+      <description></description>
+      
+    </item>
+    
   </channel>
 </rss>

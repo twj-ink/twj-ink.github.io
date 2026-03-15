@@ -12,73 +12,13 @@
     <atom:link href="https://twj-ink.github.io/series/ics-labs-2025/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>08-ProxyLab</title>
-      <link>https://twj-ink.github.io/ics/08-proxylab/</link>
+      <title>CSAPP阅读笔记</title>
+      <link>https://twj-ink.github.io/ics/readnotes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/08-proxylab/</guid>
-      <description>代理服务器的简单原理与实现</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/08-proxylab/feature.png" />
-    </item>
-    
-    <item>
-      <title>07-MallocLab</title>
-      <link>https://twj-ink.github.io/ics/07-malloclab/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/07-malloclab/</guid>
-      <description>动态内存分配的设计与实现</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/07-malloclab/feature.png" />
-    </item>
-    
-    <item>
-      <title>06-ShellLab</title>
-      <link>https://twj-ink.github.io/ics/06-shelllab/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/06-shelllab/</guid>
-      <description>信号处理与系统调用的简单练习</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/06-shelllab/feature_mysh.png" />
-    </item>
-    
-    <item>
-      <title>05-CacheLab</title>
-      <link>https://twj-ink.github.io/ics/05-cachelab/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/05-cachelab/</guid>
-      <description>高速缓存设计与优化</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/05-cachelab/feature_%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.png" />
-    </item>
-    
-    <item>
-      <title>04-ArchLab</title>
-      <link>https://twj-ink.github.io/ics/04-archlab/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/04-archlab/</guid>
-      <description>流水线设计与优化</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/04-archlab/feature_load_forwarding.png" />
-    </item>
-    
-    <item>
-      <title>03-AttackLab</title>
-      <link>https://twj-ink.github.io/ics/03-attacklab/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/03-attacklab/</guid>
-      <description>函数调用与栈帧</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/03-attacklab/feature_2.jpg" />
-    </item>
-    
-    <item>
-      <title>02-BombLab</title>
-      <link>https://twj-ink.github.io/ics/02-bomblab/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/02-bomblab/</guid>
-      <description>x86-64汇编阅读</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/02-bomblab/feature_fsm_exp.png" />
+      <guid>https://twj-ink.github.io/ics/readnotes/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/readnotes/feature_vm.png" />
     </item>
     
     <item>
@@ -92,13 +32,73 @@
     </item>
     
     <item>
-      <title>CSAPP阅读笔记</title>
-      <link>https://twj-ink.github.io/ics/readnotes/</link>
+      <title>02-BombLab</title>
+      <link>https://twj-ink.github.io/ics/02-bomblab/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/readnotes/</guid>
-      <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/readnotes/feature_vm.png" />
+      <guid>https://twj-ink.github.io/ics/02-bomblab/</guid>
+      <description>x86-64汇编阅读</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/02-bomblab/feature_fsm_exp.png" />
+    </item>
+    
+    <item>
+      <title>03-AttackLab</title>
+      <link>https://twj-ink.github.io/ics/03-attacklab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/ics/03-attacklab/</guid>
+      <description>函数调用与栈帧</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/03-attacklab/feature_2.jpg" />
+    </item>
+    
+    <item>
+      <title>04-ArchLab</title>
+      <link>https://twj-ink.github.io/ics/04-archlab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/ics/04-archlab/</guid>
+      <description>流水线设计与优化</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/04-archlab/feature_load_forwarding.png" />
+    </item>
+    
+    <item>
+      <title>05-CacheLab</title>
+      <link>https://twj-ink.github.io/ics/05-cachelab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/ics/05-cachelab/</guid>
+      <description>高速缓存设计与优化</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/05-cachelab/feature_%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.png" />
+    </item>
+    
+    <item>
+      <title>06-ShellLab</title>
+      <link>https://twj-ink.github.io/ics/06-shelllab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/ics/06-shelllab/</guid>
+      <description>信号处理与系统调用的简单练习</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/06-shelllab/feature_mysh.png" />
+    </item>
+    
+    <item>
+      <title>07-MallocLab</title>
+      <link>https://twj-ink.github.io/ics/07-malloclab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/ics/07-malloclab/</guid>
+      <description>动态内存分配的设计与实现</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/07-malloclab/feature.png" />
+    </item>
+    
+    <item>
+      <title>08-ProxyLab</title>
+      <link>https://twj-ink.github.io/ics/08-proxylab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/ics/08-proxylab/</guid>
+      <description>代理服务器的简单原理与实现</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/08-proxylab/feature.png" />
     </item>
     
   </channel>

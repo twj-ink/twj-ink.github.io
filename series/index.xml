@@ -21,5 +21,25 @@
       
     </item>
     
+    <item>
+      <title>Operating Systems</title>
+      <link>https://twj-ink.github.io/series/operating-systems/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/series/operating-systems/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Operating Systems::Notes</title>
+      <link>https://twj-ink.github.io/series/operating-systemsnotes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/series/operating-systemsnotes/</guid>
+      <description></description>
+      
+    </item>
+    
   </channel>
 </rss>

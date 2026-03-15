@@ -101,5 +101,45 @@
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/readnotes/feature_vm.png" />
     </item>
     
+    <item>
+      <title>2. 操作系统运行环境与运行机制</title>
+      <link>https://twj-ink.github.io/os/study_notes/2-runtime_env/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/2-runtime_env/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>1. 操作系统概述</title>
+      <link>https://twj-ink.github.io/os/study_notes/1-intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/1-intro/</guid>
+      <description>定义、特征</description>
+      
+    </item>
+    
+    <item>
+      <title>makefile极简教程</title>
+      <link>https://twj-ink.github.io/os/makefile_tutorial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/makefile_tutorial/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>本地安装Linux</title>
+      <link>https://twj-ink.github.io/os/local_linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/local_linux/</guid>
+      <description></description>
+      
+    </item>
+    
   </channel>
 </rss>

@@ -24,6 +24,8 @@
     <meta name="description" content="x86-64汇编阅读">
   
   
+    <meta name="keywords" content="GDB,状态机,">
+  
   
   
   <link rel="canonical" href="https://twj-ink.github.io/ics/02-bomblab/">
@@ -61,6 +63,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="ics">
+    <meta property="article:tag" content="GDB">
+    <meta property="article:tag" content="状态机">
     <meta property="og:image" content="https://twj-ink.github.io/ics/02-bomblab/feature_fsm_exp.png">
       <meta property="og:see_also" content="https://twj-ink.github.io/ics/08-proxylab/">
       <meta property="og:see_also" content="https://twj-ink.github.io/ics/07-malloclab/">
@@ -246,7 +250,7 @@
     
     
     
-    
+    "keywords": ["GDB","状态机"],
     
     "mainEntityOfPage": "true",
     "wordCount": "2740"
@@ -375,11 +379,22 @@
               <a
                 href="/ics/"
                 
-                aria-label="ics"
+                aria-label="ICS"
                 class="flex items-center bf-icon-color-hover">
                 
                 <span class="text-sm font-sm" title="ICS">
-                  ics
+                  ICS
+                </span>
+              </a>
+            
+              <a
+                href="/os/"
+                
+                aria-label="OS"
+                class="flex items-center bf-icon-color-hover">
+                
+                <span class="text-sm font-sm" title="Operating Systems">
+                  OS
                 </span>
               </a>
             
@@ -541,12 +556,23 @@
               
                 <a
                   href="/ics/"
-                  aria-label="ics"
+                  aria-label="ICS"
                   
                   class="flex items-center gap-3 p-2 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
                   
                   <span title="ICS" class="text-lg">
-                    ics
+                    ICS
+                  </span>
+                </a>
+              
+                <a
+                  href="/os/"
+                  aria-label="OS"
+                  
+                  class="flex items-center gap-3 p-2 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+                  
+                  <span title="Operating Systems" class="text-lg">
+                    OS
                   </span>
                 </a>
               
@@ -2068,6 +2094,40 @@ $$ state_{new} = table[4_{bytes} \cdot (state_{old} + 7 \cdot input_{{0,1}})] $$
       </main><footer id="site-footer" class="py-10 print:hidden">
   
   
+    
+      
+      
+        
+          
+          
+      
+      
+      
+      <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400 ">
+        <ul class="flex list-none flex-col sm:flex-row">
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/tags/"
+                title="">
+                
+                Tags
+              </a>
+            </li>
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/categories/"
+                title="Categories">
+                
+                Categories
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
     
   
   <div class="flex items-center justify-between">

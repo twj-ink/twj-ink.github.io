@@ -9,15 +9,15 @@
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <atom:link href="https://twj-ink.github.io/os/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/os/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>本地安装Linux</title>
-      <link>https://twj-ink.github.io/os/local_linux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>操作系统实验Part0：实验概览</title>
+      <link>https://twj-ink.github.io/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</link>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/local_linux/</guid>
-      <description></description>
+      <guid>https://twj-ink.github.io/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</guid>
+      <description>os-kernel的实验介绍和测评流程</description>
       
     </item>
     
@@ -28,6 +28,16 @@
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/os/makefile_tutorial/</guid>
       <description></description>
+      
+    </item>
+    
+    <item>
+      <title>本地物理机安装Linux</title>
+      <link>https://twj-ink.github.io/os/local_linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/local_linux/</guid>
+      <description>个人安装过程和对计算机启动过程进行简要描述</description>
       
     </item>
     

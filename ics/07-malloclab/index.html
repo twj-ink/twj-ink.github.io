@@ -62,7 +62,6 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="ics">
     <meta property="og:image" content="https://twj-ink.github.io/ics/07-malloclab/feature.png">
-      <meta property="og:see_also" content="https://twj-ink.github.io/ics/readnotes/">
       <meta property="og:see_also" content="https://twj-ink.github.io/ics/01-datalab/">
       <meta property="og:see_also" content="https://twj-ink.github.io/ics/02-bomblab/">
       <meta property="og:see_also" content="https://twj-ink.github.io/ics/03-attacklab/">
@@ -279,6 +278,29 @@
 
   
   
+    
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+      <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCuWmwe8cR2YHXYAc5I-Z194igWTf4P7uc",
+      authDomain: "ink-site-b44a5.firebaseapp.com",
+      projectId: "ink-site-b44a5",
+      storageBucket: "ink-site-b44a5.firebasestorage.app",
+      messagingSenderId: "30175690030",
+      appId: "1:30175690030:web:1de6f2d3ad3c3e28d58ebf",
+      measurementId:  null 
+    };
+
+        var app = firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+        var auth = firebase.auth();
+
+      </script>
+    
+  
 
   
   
@@ -289,10 +311,6 @@
 
 
 
-
-  
-    
-  
 
 
 

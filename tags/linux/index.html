@@ -266,6 +266,29 @@
 
   
   
+    
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+      <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCuWmwe8cR2YHXYAc5I-Z194igWTf4P7uc",
+      authDomain: "ink-site-b44a5.firebaseapp.com",
+      projectId: "ink-site-b44a5",
+      storageBucket: "ink-site-b44a5.firebasestorage.app",
+      messagingSenderId: "30175690030",
+      appId: "1:30175690030:web:1de6f2d3ad3c3e28d58ebf",
+      measurementId:  null 
+    };
+
+        var app = firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+        var auth = firebase.auth();
+
+      </script>
+    
+  
 
   
   
@@ -276,10 +299,6 @@
 
 
 
-
-  
-    
-  
 
 
 
@@ -858,17 +877,10 @@
     
       
       
-        
-      
     
 
     
     
-      
-        
-        
-          
-        
       
     
   
@@ -876,15 +888,6 @@
 
 
 <article class="article-link--simple flex flex-col md:flex-row relative overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
-  
-    <div class="flex-none relative overflow-hidden  thumbnail">
-      <img
-        src="/img/feature_dr_hu_347b78f7f4b234d1.png"
-        role="presentation"
-        loading="lazy"
-        decoding="async"
-        class="not-prose absolute inset-0 w-full h-full object-cover">
-    </div>
   
   <div class=" p-4">
     <header class="items-center text-start text-xl font-semibold">
@@ -894,7 +897,7 @@
         
         class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
         <h2>
-          本地安装Linux
+          本地物理机安装Linux
           
         </h2>
       </a>
@@ -950,7 +953,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <span>7 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <span>183 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1014,7 +1017,7 @@
     </div>
     
       <div class="article-link__summary prose dark:prose-invert max-w-fit mt-1 line-clamp-3">
-        
+        个人安装过程和对计算机启动过程进行简要描述
       </div>
     
   </div>

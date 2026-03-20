@@ -64,8 +64,8 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="os">
     <meta property="article:tag" content="Makefile">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/local_linux/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/local_linux/">
 
   
   <meta name="twitter:card" content="summary">
@@ -275,6 +275,29 @@
 
   
   
+    
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+      <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCuWmwe8cR2YHXYAc5I-Z194igWTf4P7uc",
+      authDomain: "ink-site-b44a5.firebaseapp.com",
+      projectId: "ink-site-b44a5",
+      storageBucket: "ink-site-b44a5.firebasestorage.app",
+      messagingSenderId: "30175690030",
+      appId: "1:30175690030:web:1de6f2d3ad3c3e28d58ebf",
+      measurementId:  null 
+    };
+
+        var app = firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+        var auth = firebase.auth();
+
+      </script>
+    
+  
 
   
   
@@ -285,10 +308,6 @@
 
 
 
-
-  
-    
-  
 
 
 
@@ -1215,7 +1234,7 @@
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
         <a href="/os/local_linux/">
           Part 1:
-          本地安装Linux
+          本地物理机安装Linux
         </a>
       </div>
     
@@ -1473,7 +1492,7 @@
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
         <a href="/os/local_linux/">
           Part 1:
-          本地安装Linux
+          本地物理机安装Linux
         </a>
       </div>
     
@@ -1542,15 +1561,24 @@
           
             <a
               class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-              href="/os/local_linux/">
+              href="/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/">
               <span class="leading-6">
-                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;本地安装Linux
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;操作系统实验Part0：实验概览
               </span>
             </a>
             
           
         </span>
         <span class="flex flex-col items-end">
+          
+            <a
+              class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/os/local_linux/">
+              <span class="leading-6">
+                本地物理机安装Linux&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+              </span>
+            </a>
+            
           
         </span>
       </div>

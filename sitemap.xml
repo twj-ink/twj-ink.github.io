@@ -3,105 +3,105 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://twj-ink.github.io/</loc>
     <lastmod>2026-03-20T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/os/</loc>
+    <loc>https://twj-ink.github.io/os/</loc>
     <lastmod>2026-03-20T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</loc>
+    <loc>https://twj-ink.github.io/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</loc>
     <lastmod>2026-03-20T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/01-datalab/</loc>
+    <loc>https://twj-ink.github.io/ics/01-datalab/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/02-bomblab/</loc>
+    <loc>https://twj-ink.github.io/ics/02-bomblab/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/03-attacklab/</loc>
+    <loc>https://twj-ink.github.io/ics/03-attacklab/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/04-archlab/</loc>
+    <loc>https://twj-ink.github.io/ics/04-archlab/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/05-cachelab/</loc>
+    <loc>https://twj-ink.github.io/ics/05-cachelab/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/06-shelllab/</loc>
+    <loc>https://twj-ink.github.io/ics/06-shelllab/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/07-malloclab/</loc>
+    <loc>https://twj-ink.github.io/ics/07-malloclab/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/08-proxylab/</loc>
+    <loc>https://twj-ink.github.io/ics/08-proxylab/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/readnotes/</loc>
+    <loc>https://twj-ink.github.io/ics/readnotes/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/gallery/</loc>
+    <loc>https://twj-ink.github.io/gallery/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/ics/</loc>
+    <loc>https://twj-ink.github.io/ics/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/os/makefile_tutorial/</loc>
+    <loc>https://twj-ink.github.io/os/makefile_tutorial/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/castle/</loc>
+    <loc>https://twj-ink.github.io/castle/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/os/study_notes/</loc>
+    <loc>https://twj-ink.github.io/os/study_notes/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/os/study_notes/1-intro/</loc>
+    <loc>https://twj-ink.github.io/os/study_notes/1-intro/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/os/study_notes/2-runtime_env/</loc>
+    <loc>https://twj-ink.github.io/os/study_notes/2-runtime_env/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/os/local_linux/</loc>
+    <loc>https://twj-ink.github.io/os/local_linux/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

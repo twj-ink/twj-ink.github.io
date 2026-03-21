@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Operating Systems on GaleInk&#39;s blog</title>
-    <link>http://localhost:1313/os/</link>
+    <link>https://twj-ink.github.io/os/</link>
     <description>Recent content in Operating Systems on GaleInk&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/os/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/os/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>操作系统实验Part0：实验概览</title>
-      <link>http://localhost:1313/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</link>
+      <link>https://twj-ink.github.io/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</link>
       <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>http://localhost:1313/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</guid>
+      <guid>https://twj-ink.github.io/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</guid>
       <description>os-kernel的实验介绍和测评流程</description>
       
     </item>
     
     <item>
       <title>makefile极简教程</title>
-      <link>http://localhost:1313/os/makefile_tutorial/</link>
+      <link>https://twj-ink.github.io/os/makefile_tutorial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>http://localhost:1313/os/makefile_tutorial/</guid>
+      <guid>https://twj-ink.github.io/os/makefile_tutorial/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>本地物理机安装Linux</title>
-      <link>http://localhost:1313/os/local_linux/</link>
+      <link>https://twj-ink.github.io/os/local_linux/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>http://localhost:1313/os/local_linux/</guid>
+      <guid>https://twj-ink.github.io/os/local_linux/</guid>
       <description>一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理</description>
       
     </item>

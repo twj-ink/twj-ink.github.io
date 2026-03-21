@@ -2,51 +2,51 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on GaleInk&#39;s blog</title>
-    <link>https://twj-ink.github.io/series/</link>
+    <link>http://localhost:1313/series/</link>
     <description>Recent content in Series on GaleInk&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/series/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Operating Systems::Labs</title>
-      <link>https://twj-ink.github.io/series/operating-systemslabs/</link>
+      <link>http://localhost:1313/series/operating-systemslabs/</link>
       <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/series/operating-systemslabs/</guid>
+      <guid>http://localhost:1313/series/operating-systemslabs/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>ICS-Labs-2025</title>
-      <link>https://twj-ink.github.io/series/ics-labs-2025/</link>
+      <link>http://localhost:1313/series/ics-labs-2025/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/series/ics-labs-2025/</guid>
+      <guid>http://localhost:1313/series/ics-labs-2025/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Operating Systems</title>
-      <link>https://twj-ink.github.io/series/operating-systems/</link>
+      <link>http://localhost:1313/series/operating-systems/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/series/operating-systems/</guid>
+      <guid>http://localhost:1313/series/operating-systems/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Operating Systems::Notes</title>
-      <link>https://twj-ink.github.io/series/operating-systemsnotes/</link>
+      <link>http://localhost:1313/series/operating-systemsnotes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/series/operating-systemsnotes/</guid>
+      <guid>http://localhost:1313/series/operating-systemsnotes/</guid>
       <description></description>
       
     </item>

@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GDB on GaleInk&#39;s blog</title>
-    <link>https://twj-ink.github.io/tags/gdb/</link>
+    <link>http://localhost:1313/tags/gdb/</link>
     <description>Recent content in GDB on GaleInk&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <atom:link href="https://twj-ink.github.io/tags/gdb/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/gdb/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>02-BombLab</title>
-      <link>https://twj-ink.github.io/ics/02-bomblab/</link>
+      <link>http://localhost:1313/ics/02-bomblab/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/02-bomblab/</guid>
+      <guid>http://localhost:1313/ics/02-bomblab/</guid>
       <description>x86-64汇编阅读</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/02-bomblab/feature_fsm_exp.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/ics/02-bomblab/feature_fsm_exp.png" />
     </item>
     
   </channel>

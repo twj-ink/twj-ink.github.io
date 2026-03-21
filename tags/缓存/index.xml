@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>缓存 on GaleInk&#39;s blog</title>
-    <link>https://twj-ink.github.io/tags/%E7%BC%93%E5%AD%98/</link>
+    <link>http://localhost:1313/tags/%E7%BC%93%E5%AD%98/</link>
     <description>Recent content in 缓存 on GaleInk&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <atom:link href="https://twj-ink.github.io/tags/%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>05-CacheLab</title>
-      <link>https://twj-ink.github.io/ics/05-cachelab/</link>
+      <link>http://localhost:1313/ics/05-cachelab/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/ics/05-cachelab/</guid>
+      <guid>http://localhost:1313/ics/05-cachelab/</guid>
       <description>高速缓存设计与优化</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/05-cachelab/feature_%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/ics/05-cachelab/feature_%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.png" />
     </item>
     
   </channel>

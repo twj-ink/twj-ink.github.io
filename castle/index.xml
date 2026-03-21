@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My Castle on GaleInk&#39;s blog</title>
-    <link>https://twj-ink.github.io/castle/</link>
+    <link>http://localhost:1313/castle/</link>
     <description>Recent content in My Castle on GaleInk&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <atom:link href="https://twj-ink.github.io/castle/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/castle/index.xml" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>

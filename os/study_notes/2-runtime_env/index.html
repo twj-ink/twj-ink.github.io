@@ -65,6 +65,7 @@
     <meta property="article:section" content="os">
     <meta property="article:tag" content="OS">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/1-intro/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/3-process_thread/">
 
   
   <meta name="twitter:card" content="summary">
@@ -251,7 +252,7 @@
     "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "151"
+    "wordCount": "194"
   }]
   </script>
 
@@ -444,6 +445,24 @@
       
         <span class="text-base font-medium break-normal">
           Gallery
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <a
+      href="/moments/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Moments"
+      title="拾光">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Moments
         </span>
       
     </a>
@@ -690,6 +709,23 @@
     
     <div class="px-2">
       <a
+        href="/moments/"
+        aria-label="Moments"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="拾光" class="text-2xl font-bold tracking-tight">
+          Moments
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
         href="https://github.com/twj-ink/"
         aria-label="github"
         
@@ -860,7 +896,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <span>151 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <span>194 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1090,6 +1126,7 @@
         <li><a href="#系统调用">系统调用</a></li>
       </ul>
     </li>
+    <li><a href="#机制与策略分离的思想">机制与策略分离的思想</a></li>
   </ul>
 </nav>
   </div>
@@ -1115,6 +1152,7 @@
         <li><a href="#系统调用">系统调用</a></li>
       </ul>
     </li>
+    <li><a href="#机制与策略分离的思想">机制与策略分离的思想</a></li>
   </ul>
 </nav>
   </div>
@@ -1258,6 +1296,16 @@
       </div>
     
   
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/3-process_thread/">
+          Part 3:
+          操作系统笔记3：进程与线程模型
+        </a>
+      </div>
+    
+  
 
 
   </details>
@@ -1299,7 +1347,14 @@
 </ul>
 <p>其中<code>PSW</code>是操作系统进程上下文切换时需要保存和恢复的关键信息。</p>
 <p>为了实现保护，硬件提供了基本的运行机制，让处理器具有不同的运行模式，在不同模式下运行的指令集合不同，权限也不同。然而操作系统实际上只需要两种运行状态：<strong>内核态</strong>和<strong>用户态</strong>。对于x86而言支持4个特权级别，从R0到R3特权能力降低，R0-内核态，R3-用户态，大多数基于x86的处理器的操作系统只用了R0和R3两个特权级别。</p>
-<p>CPU的状态知道了，那如何进行转换呢？从用户态到内核态只有唯一途径：<strong>中断、异常/陷入机制</strong>；而从内核态到用户态，是由内核主动进行的。例如陷入指令，<code>x86</code>的<code>int(Interrupt)</code>，<code>x86-32</code>的<code>sysenter/sysexit</code>，<code>x86-64</code>的<code>syscall/sysret</code>，<code>risc-v</code>的<code>ecall</code>等等。</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          硬件为什么要提供不同的模式级别呢？
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>因为在对CPU进行虚拟化的时候，既要考虑效率又要考虑操作系统能够获取控制权。如果选择最原始的Direct Exectuion，即在运行程序的时候CPU中只有这个程序的代码，这样虽然有很高的效率，但是操作系统是无法保证程序在不破坏其他东西的情况下执行的；而且也无法使其停止并转移到其他进程来实现时间共享（这个也是虚拟化CPU的关键）。因此引入<code>user mode</code>和<code>kernel mode</code>来限制用户程序的执行权限以保证操作系统的安全。这就是Limited Direct Execution。</p></div></div><p>CPU的状态知道了，那如何进行转换呢？从用户态到内核态只有唯一途径：<strong>中断、异常/陷入机制</strong>；而从内核态到用户态，是由内核主动进行的。例如陷入指令，<code>x86</code>的<code>int(Interrupt)</code>，<code>x86-32</code>的<code>sysenter/sysexit</code>，<code>x86-64</code>的<code>syscall/sysret</code>，<code>risc-v</code>的<code>ecall</code>等等。</p>
 
 <h3 class="relative group">中断与异常
     <div id="中断与异常" class="anchor"></div>
@@ -1353,11 +1408,18 @@
 </table>
 <p>对于硬件来说会在每条指令<strong>执行结束后</strong>检测是否有中断信号，若有，</p>
 <ol>
-<li><em><strong>保存相关寄存器信息</strong></em>：将当前程序计数器（PC）的值压入<em>系统栈</em>，以便中断处理结束后能正确返回。中断硬件将该中断触发器内容按规定编码送入<code>PSW</code>的相应位，称为中断码，通过交换<strong>中断向量</strong>引出中断处理程序。</li>
+<li><em><strong>保存相关寄存器信息</strong></em>：CPU转为内核态。将当前程序计数器（PC）的值压入<em>系统栈</em>，以便中断处理结束后能正确返回。中断硬件将该中断触发器内容按规定编码送入<code>PSW</code>的相应位，称为中断码，通过交换<strong>中断向量</strong>引出中断处理程序。</li>
 <li><strong>识别中断源</strong>：CPU通过中断向量或中断查询的方式，确定具体是哪个设备或事件发出了中断请求。</li>
 <li><strong>获取入口地址</strong>：根据中断号查找<em>中断向量表</em>（<code>IVT</code>，<code>Interrupt Vector Table</code>），从中读出对应的<em>中断服务程序</em>（<code>ISR</code>，<code>Interrupt Service Routine</code>）的入口地址。</li>
 <li><strong>切换上下文</strong>：将CPU的指令指针（PC）设置为该入口地址，同时（如果需要）切换到内核栈，开始执行中断服务程序。</li>
 <li><strong>恢复现场</strong>。</li>
+</ol>
+<p>接着CPU控制器转移给中断处理程序：</p>
+<ol>
+<li><em><strong>保存相关寄存器信息</strong></em>：硬件由于成本原因只能保存2个或多个寄存器，而在软件层面需要保存完整的寄存器信息。</li>
+<li>分析中断/异常的具体原因</li>
+<li>执行对于的处理功能</li>
+<li>恢复线程，返回被打断的程序（或者scheduler）</li>
 </ol>
 <p>下面是硬件检查是否有中断图和中断相应流程图：
 <figure><img
@@ -1378,6 +1440,21 @@
     src="../imgs/2-interprocess.png"
     ></figure>
 </p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          Limited Direct Execution Protocol:
+        </div>
+      </div></div><figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/2-ldep.png"
+    ></figure>
 
 <h3 class="relative group">IA32中对中断的支持
     <div id="ia32中对中断的支持" class="anchor"></div>
@@ -1399,8 +1476,7 @@
 <li>通过<code>IDTR</code>寄存器（存放基址）找到<code>IDT</code>表，获得中断描述符（表中的第i项）</li>
 <li>从<code>GDTR</code>寄存器获得<code>GDT</code>(<code>Global Descriptor Table</code>全局描述符表)的地址；结合中断描述符中的段选择符，在<code>GDT</code>表获取对应的段描述符；从<strong>该段描述符</strong>中得到中断或异常处理程序所在的<strong>段基址</strong></li>
 <li>特权级检查：检查是否发生了特权级的变化，如果是，则进行堆栈切换(必须使用与新的特权级相关的栈)</li>
-<li>硬件压栈，保存上下文环境；如果异常产生了硬件出错码，也将它保存在
-栈中</li>
+<li>硬件压栈，保存上下文环境；如果异常产生了硬件出错码，也将它保存在栈中</li>
 <li>如果是中断，清IF位</li>
 <li>通过<strong>中断描述符中的段内偏移量</strong>和<strong>段描述符中的基地址</strong>，找到中断/异常处理程序的入口地址，执行其第一条指令</li>
 </ul>
@@ -1521,7 +1597,44 @@
   </tbody>
 </table>
 <blockquote><p>注：printf、malloc等库函数内部通常会封装系统调用（如write、brk/sbrk、read），但对外提供更友好的编程接口。</p>
-</blockquote>
+</blockquote><p>注意，在中断向量表中添加系统调用的中断向量，<strong>只需要添加一项</strong>即可，这一项作为所有系统调用的统一入口，使得CPU进入内核态，进入中断处理程序；然后在这里面会利用系统调用的系统调用号和使用系统调用表来确定应当对应哪一个特定的系统调用。</p>
+<p>执行过程是：</p>
+<ol>
+<li>硬件保护现场；查中断向量表吧控制权移交给总入口程序</li>
+<li>软件保存现场；参数保存在内核堆栈中，查<strong>系统调用表</strong>把控制权转给内核函数</li>
+<li>执行系统调用函数</li>
+<li>恢复现场返回用户程序</li>
+</ol>
+<p>例如在Linux中陷入指令选择的中断向量表的数字是<code>int 0x80</code>，硬件提供了四种门但软件实际只用了陷阱门和中断门，前者允许被打断允许新的系统调用进来；而后者则会“关门”直到这个执行结束。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/2-linux-syscall.png"
+    ></figure>
+<p>在进入内核后，<code>system_call</code>会将系统调用号压栈，检测是否是合法的号码，如果是，通过系统调用表寻址找到对应的系统调用例程:<code>call *SYMBOL_NAME(sys_call_table)(,%eax,4)</code>，执行完后将返回值存入eax中，并<code>ret_from_sys_call</code>。</p>
+<p>那么在从内核返回到用户态的过程中需要做什么呢？在<code>ret_from_sys_call</code>中，首先会关中断避免被打断，并执行：</p>
+<div class="highlight-wrapper"><pre tabindex="0"><code class="language-assembly" data-lang="assembly">cmpl $0,need_resched(%ebx)
+jne reschedule
+cmpl $0,sigpending(%ebx)
+jne signal_return</code></pre></div>
+<p>当为0时不需要重新调度继续执行；当为1时需要重新调度；如果继续执行，还会继续判断有没有未处理的信号（信号是异步处理的，处理点一般都是在<strong>内核返回到用户态之前</strong>，如果有挂起的信号，就调用信号处理函数，且要把信号全部处理完）</p>
+<p>假设选择调度另一个新的进程，此时不能<code>restore all</code>，而是会选择保存在<code>PCB(Process Control Block)</code>中，这是与进程一一对应的进程控制块，在Linux中就是<code>task_struct</code>。这个概念会在下一节中展开讲解。</p>
+
+<h2 class="relative group">机制与策略分离的思想
+    <div id="机制与策略分离的思想" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9c%ba%e5%88%b6%e4%b8%8e%e7%ad%96%e7%95%a5%e5%88%86%e7%a6%bb%e7%9a%84%e6%80%9d%e6%83%b3" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>机制解释的是<code>What</code>，能做什么？一般是不变的；策略解释的是<code>How</code>，怎么做？一般是可调的。</p>
+<p>比如缓存机制设计，机制是基础设施，提供通用的数据存储、访问和管理的功能，不关心具体如何使用。入读写接口、容量限制等等；而策略是在机制之上决定的具体行为规则，比如淘汰策略（LRU，LFU）、写策略（Write-Through，Write-Back）等等。</p>
+
           
           
           
@@ -1552,6 +1665,16 @@
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
         Part 2:
         This Article
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/3-process_thread/">
+          Part 3:
+          操作系统笔记3：进程与线程模型
+        </a>
       </div>
     
   
@@ -1610,6 +1733,15 @@
           
         </span>
         <span class="flex flex-col items-end">
+          
+            <a
+              class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/os/study_notes/3-process_thread/">
+              <span class="leading-6">
+                操作系统笔记3：进程与线程模型&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+              </span>
+            </a>
+            
           
         </span>
       </div>

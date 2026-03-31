@@ -86,6 +86,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://twj-ink.github.io/moments/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://twj-ink.github.io/os/study_notes/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -97,6 +102,11 @@
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/study_notes/2-runtime_env/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/study_notes/3-process_thread/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

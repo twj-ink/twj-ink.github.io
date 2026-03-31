@@ -15,20 +15,20 @@
 
   
   
-    <title>本地物理机安装Linux &middot; GaleInk&#39;s blog</title>
-    <meta name="title" content="本地物理机安装Linux &middot; GaleInk&#39;s blog">
+    <title>操作系统笔记3：进程与线程模型 &middot; GaleInk&#39;s blog</title>
+    <meta name="title" content="操作系统笔记3：进程与线程模型 &middot; GaleInk&#39;s blog">
   
 
   
   
-    <meta name="description" content="一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理">
+    <meta name="description" content="GaleInk&#39;s marvelous website">
   
   
-    <meta name="keywords" content="Linux,OS,">
+    <meta name="keywords" content="OS,">
   
   
   
-  <link rel="canonical" href="https://twj-ink.github.io/os/local_linux/">
+  <link rel="canonical" href="https://twj-ink.github.io/os/study_notes/3-process_thread/">
   
 
   
@@ -56,22 +56,21 @@
   
 
   
-  <meta property="og:url" content="https://twj-ink.github.io/os/local_linux/">
+  <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/3-process_thread/">
   <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="本地物理机安装Linux">
-  <meta property="og:description" content="一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理">
+  <meta property="og:title" content="操作系统笔记3：进程与线程模型">
+  <meta property="og:description" content="GaleInk&#39;s marvelous website">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="os">
-    <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="OS">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/makefile_tutorial/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/1-intro/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/2-runtime_env/">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="本地物理机安装Linux">
-  <meta name="twitter:description" content="一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理">
+  <meta name="twitter:title" content="操作系统笔记3：进程与线程模型">
+  <meta name="twitter:description" content="GaleInk&#39;s marvelous website">
 
   
   
@@ -235,11 +234,11 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Operating Systems",
-    "name": "本地物理机安装Linux",
-    "headline": "本地物理机安装Linux",
+    "name": "操作系统笔记3：进程与线程模型",
+    "headline": "操作系统笔记3：进程与线程模型",
     
     "inLanguage": "en",
-    "url" : "https://twj-ink.github.io/os/local_linux/",
+    "url" : "https://twj-ink.github.io/os/study_notes/3-process_thread/",
     "author" : {
       "@type": "Person",
       "name": "GaleInk"
@@ -250,10 +249,10 @@
     
     
     
-    "keywords": ["Linux","OS"],
+    "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "183"
+    "wordCount": "34"
   }]
   </script>
 
@@ -839,7 +838,7 @@
     <header id="single_header" class="mt-5 max-w-prose">
       
       <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-        本地物理机安装Linux
+        操作系统笔记3：进程与线程模型
       </h1>
       <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
         
@@ -897,7 +896,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <span>183 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <span>34 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -911,7 +910,7 @@
     
   
   <span
-    id="views_os/local_linux/index.md"
+    id="views_os/study_notes/3-process_thread/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="views"
     >loading</span
@@ -933,7 +932,7 @@
     
   
   <span
-    id="likes_os/local_linux/index.md"
+    id="likes_os/study_notes/3-process_thread/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="likes"
     >loading</span
@@ -1115,14 +1114,14 @@
     class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#准备工作">准备工作</a></li>
-    <li><a href="#下载过程">下载过程</a></li>
-    <li><a href="#额外知识补充">额外知识补充</a>
+    <li><a href="#一进程模型">一、进程模型</a>
       <ul>
-        <li><a href="#计算机是如何启动的">计算机是如何启动的？</a></li>
-        <li><a href="#为什么安装linux需要一个u盘">为什么安装Linux需要一个U盘？</a></li>
+        <li><a href="#1-进程的定义与概念">1. 进程的定义与概念</a></li>
+        <li><a href="#2-进程模型的组成">2. 进程模型的组成</a></li>
       </ul>
     </li>
+    <li><a href="#二线程模型">二、线程模型</a></li>
+    <li><a href="#三携程coroutine">三、携程coroutine</a></li>
   </ul>
 </nav>
   </div>
@@ -1136,14 +1135,14 @@
     class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#准备工作">准备工作</a></li>
-    <li><a href="#下载过程">下载过程</a></li>
-    <li><a href="#额外知识补充">额外知识补充</a>
+    <li><a href="#一进程模型">一、进程模型</a>
       <ul>
-        <li><a href="#计算机是如何启动的">计算机是如何启动的？</a></li>
-        <li><a href="#为什么安装linux需要一个u盘">为什么安装Linux需要一个U盘？</a></li>
+        <li><a href="#1-进程的定义与概念">1. 进程的定义与概念</a></li>
+        <li><a href="#2-进程模型的组成">2. 进程模型的组成</a></li>
       </ul>
     </li>
+    <li><a href="#二线程模型">二、线程模型</a></li>
+    <li><a href="#三携程coroutine">三、携程coroutine</a></li>
   </ul>
 </nav>
   </div>
@@ -1264,7 +1263,7 @@
     
   <summary
     class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
-    Operating Systems -
+    Operating Systems::Notes -
     This article is part of a series.
   </summary>
   
@@ -1272,17 +1271,19 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        Part 1:
-        This Article
+        <a href="/os/study_notes/1-intro/">
+          Part 1:
+          操作系统笔记1：操作系统概述
+        </a>
       </div>
     
   
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/os/makefile_tutorial/">
+        <a href="/os/study_notes/2-runtime_env/">
           Part 2:
-          makefile极简教程
+          操作系统笔记2：操作系统运行环境与运行机制
         </a>
       </div>
     
@@ -1290,10 +1291,8 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/os/study_notes/">
-          Part 3:
-          操作系统学习笔记
-        </a>
+        Part 3:
+        This Article
       </div>
     
   
@@ -1304,277 +1303,77 @@
 
         <div class="article-content max-w-prose mb-20">
           
-<h2 class="relative group">准备工作
-    <div id="准备工作" class="anchor"></div>
+<h2 class="relative group">一、进程模型
+    <div id="一进程模型" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<ol>
-<li>Rufus工具（<a href="https://rufus.ie/zh/"  target="_blank" rel="noreferrer">官网</a>）</li>
-<li>系统镜像ISO文件（<a href="https://cn.ubuntu.com/download"  target="_blank" rel="noreferrer">官网</a>，我下载的是<code>Ubuntu 25.10</code>）</li>
-<li>一个U盘（有20gb就够了）</li>
-<li>电脑</li>
-</ol>
-<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
-      <div class="flex items-center gap-2 font-semibold text-inherit">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
-</span></div>
-        <div class="grow">
-          为什么要用Rufus和一个U盘？请见额外知识补充部分。
-        </div>
-      </div></div>
-<h2 class="relative group">下载过程
-    <div id="下载过程" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%8b%e8%bd%bd%e8%bf%87%e7%a8%8b" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<ol>
-<li>下载并打开Rufus。</li>
-<li>插入空的USB盘，我的是50GB。制作过程会格式化 U 盘，确保里面没有重要文件。</li>
-<li>打开 Rufus，按以下设置：
-<ul>
-<li>设备：选择 U 盘</li>
-<li>引导类型选择：点击&quot;选择&quot;，找到下载的 Ubuntu ISO 文件</li>
-<li>分区类型：GPT（较新电脑）或 MBR（老电脑）。我选择的是GPT。</li>
-<li>其他选项保持默认</li>
-<li>点击&quot;开始&quot;，等待写入完成（约 5-10 分钟）</li>
-</ul>
-</li>
-</ol>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt="1"
-    src="./imgs/rufus.png"
-    ><figcaption>图1：在点击开始之前的设置截图</figcaption></figure>
-<ol start="4">
-<li>在Windows中压缩卷分配内存空间：</li>
-</ol>
-<p>由于我个人的电脑的d盘有700GB，内存仍然十分充裕，所以选择将其进行分区，也就是划分出来一部分空闲内存给即将要安装的操作系统使用。具体的操作办法是：</p>
-<ul>
-<li>右键点击&quot;此电脑&quot; → &ldquo;管理&rdquo; → &ldquo;磁盘管理&rdquo;</li>
-<li>找到 D 盘，右键点击 → &ldquo;压缩卷&rdquo;</li>
-<li>输入你想分配给 Ubuntu 的空间大小（我选择了35GB = 35840MB，建议至少30GB）</li>
-<li>点击&quot;压缩&quot;，会出现一块&quot;未分配&quot;的黑色区域，并保持未分配状态</li>
-</ul>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="2560"
-    height="1354"
-    src="/os/local_linux/imgs/%E5%88%86%E5%8D%B7%E5%90%8E_hu_f96cab48d376dc74.png"
-    srcset="/os/local_linux/imgs/%E5%88%86%E5%8D%B7%E5%90%8E_hu_f96cab48d376dc74.png 800w, /os/local_linux/imgs/%E5%88%86%E5%8D%B7%E5%90%8E_hu_1d909c88b6f54c9d.png 1280w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/os/local_linux/imgs/%E5%88%86%E5%8D%B7%E5%90%8E.png"><figcaption>图2：压缩卷后得到的35GB空闲区域</figcaption></figure>
-<ol start="5">
-<li>进入BIOS从USB启动</li>
-</ol>
-<p>重启电脑，在开机时反复按<strong>启动热键</strong>（这个因电脑品牌不同有差别，可自行搜索，我的是机械革命，按<code>f10</code>）。</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="1706"
-    height="1279"
-    src="/os/local_linux/imgs/f10boot_hu_e1731e320ca6d087.jpg"
-    srcset="/os/local_linux/imgs/f10boot_hu_e1731e320ca6d087.jpg 800w, /os/local_linux/imgs/f10boot_hu_60d9f385d6f69fd8.jpg 1280w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/os/local_linux/imgs/f10boot.jpg"><figcaption>图3：进入BIOS界面</figcaption></figure>
-<p>选择第一个<code>UEFI</code>开头的启动设备，这个就是刚刚插入的U盘。接着就是进行Ubuntu的安装和配置了，在出现下图之前是不需要操作的。</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="4096"
-    height="3072"
-    src="/os/local_linux/imgs/enter_hu_b9c1110dc440a373.jpg"
-    srcset="/os/local_linux/imgs/enter_hu_b9c1110dc440a373.jpg 800w, /os/local_linux/imgs/enter_hu_c4c729de6e36712c.jpg 1280w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/os/local_linux/imgs/enter.jpg"><figcaption>图4：首次进入Ubuntu界面</figcaption></figure>
-<p>接下来就是正常的配置，选择语言、时区、设置用户名密码等常规选项，其中有一项需要特别选择，在<code>disk setup</code>中选择<code>manual installation</code>，在下一步中就可以选择刚刚压缩出来的空闲空间进行分区了，为了方便起见，我直接为根分区<code>/</code>设置了35GB的空间。</p>
-<p><figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="4096"
-    height="3072"
-    src="/os/local_linux/imgs/manual_hu_7a1a32c8bd38f2c2.jpg"
-    srcset="/os/local_linux/imgs/manual_hu_7a1a32c8bd38f2c2.jpg 800w, /os/local_linux/imgs/manual_hu_2ed8259f87a297e5.jpg 1280w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/os/local_linux/imgs/manual.jpg"><figcaption>图5：手动设置</figcaption></figure>
-
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="4096"
-    height="3072"
-    src="/os/local_linux/imgs/free_space_hu_4dc0973bae661540.jpg"
-    srcset="/os/local_linux/imgs/free_space_hu_4dc0973bae661540.jpg 800w, /os/local_linux/imgs/free_space_hu_5af9469fc2d90dc.jpg 1280w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/os/local_linux/imgs/free_space.jpg"><figcaption>图6：选择刚刚压缩卷产生的空闲区域</figcaption></figure>
-
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="1706"
-    height="1279"
-    src="/os/local_linux/imgs/partition_hu_6698882a0479f5e6.jpg"
-    srcset="/os/local_linux/imgs/partition_hu_6698882a0479f5e6.jpg 800w, /os/local_linux/imgs/partition_hu_f769c42ecda08452.jpg 1280w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/os/local_linux/imgs/partition.jpg"><figcaption>图7：为根目录/设置35gb的分区</figcaption></figure>
-</p>
-<p>最后点击下载ubuntu而不是体验，就到达最后安装的流程了，需要等待一小段时间。</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="1706"
-    height="1279"
-    src="/os/local_linux/imgs/final_hu_c9724262431f81f4.jpg"
-    srcset="/os/local_linux/imgs/final_hu_c9724262431f81f4.jpg 800w, /os/local_linux/imgs/final_hu_56db6cfb1a4b1857.jpg 1280w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/os/local_linux/imgs/final.jpg"><figcaption>图8：安装完成</figcaption></figure>
-<ol start="6">
-<li>完成</li>
-</ol>
-<p>这样每次在开启电脑的时候，默认会进入原先的Windows系统，但是可以按启动热键，选择进入Ubuntu系统。</p>
-
-<h2 class="relative group">额外知识补充
-    <div id="额外知识补充" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%a2%9d%e5%a4%96%e7%9f%a5%e8%af%86%e8%a1%a5%e5%85%85" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80%e8%bf%9b%e7%a8%8b%e6%a8%a1%e5%9e%8b" aria-label="Anchor">#</a>
     </span>
     
 </h2>
 
-<h3 class="relative group">计算机是如何启动的？
-    <div id="计算机是如何启动的" class="anchor"></div>
+<h3 class="relative group">1. 进程的定义与概念
+    <div id="1-进程的定义与概念" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e8%ae%a1%e7%ae%97%e6%9c%ba%e6%98%af%e5%a6%82%e4%bd%95%e5%90%af%e5%8a%a8%e7%9a%84" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e8%bf%9b%e7%a8%8b%e7%9a%84%e5%ae%9a%e4%b9%89%e4%b8%8e%e6%a6%82%e5%bf%b5" aria-label="Anchor">#</a>
     </span>
     
 </h3>
-<blockquote><p>此处参考来源：https://www.ruanyifeng.com/blog/2013/02/booting.html</p>
-</blockquote><p>当我们按下电源键的那一刻，计算机不会直接立即进入操作系统（比如我们刚刚下载的Linux），而是要经历一系列严格定义的步骤。</p>
-<p><strong>一、从加电到固件启动</strong></p>
-<p>可以用一句谚语来形容计算机的启动：</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">pull oneself up by one&#39;s bootstraps.</span></span></code></pre></div></div>
-<p>字面意思是&quot;拽着鞋带把自己拉起来&quot;，也就是说，必须要先运行程序然后计算机才能启动，而计算机没有启动就无法运行程序，这看起来是一个很矛盾的过程。<code>boot</code>这个词也就来源于这句话。</p>
-<p>但这个看似矛盾的问题，其实通过一种非常巧妙的设计被解决了：在计算机中，总有一小段程序是“先天存在”的。这段程序并不是在开机后加载的，而是在主板制造时就已经被写入到一个特殊的存储介质中——ROM（只读存储器，现代多为 Flash）。</p>
-<p>计算机的主板上有一个ROM芯片，里面存储着<strong>BIOS/UEFI固件代码</strong>，在生产阶段，主板厂商会编写固件，使用烧录工具把固件写入ROM芯片，再将芯片焊接到主板上，这个过程就是<strong>刷入ROM</strong>。</p>
-<p>当计算机通电后，CPU 会从一个固定地址开始执行指令（地址由硬件架构严格规定好）。这个地址通常映射到主板上的固件程序（也就是在ROM中已经写好了的固件程序）：</p>
-<ul>
-<li>传统：BIOS（Basic Input/Output System）</li>
-<li>现代：UEFI（Unified Extensible Firmware Interface）</li>
-</ul>
-<p>这些固件的作用类似于“启动引导程序的引导程序”，也就是<code>bootstraps</code>。从CPU的角度来看，它只是做了很简单的事情：从某个地址取指令然后执行，再取下一条，但在硬件层面，这个地址会映射到固件的芯片中，从ROM中读取指令，再返回给CPU执行。</p>
-<p>BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做&quot;硬件自检&quot;（Power-On Self-Test），缩写为POST。如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。</p>
-<p><strong>二、从固件到操作系统</strong></p>
-<p>固件并不会启动操作系统，而是会去找谁来启动操作系统，也就是去<strong>选择启动设备</strong>。固件需要知道&quot;下一阶段的启动程序&quot;具体存放在哪一个设备。BIOS需要有一个外部储存设备的排序，排在前面的设备就是优先转交控制权的设备。这种排序叫做&quot;启动顺序&quot;。（可以查看上面的图3）</p>
-<p>固件会按照这个启动顺序，依次尝试设备。固件会加载该设备上的<strong>引导程序Bootloader</strong>（这里是简略的描述，具体请查看开头的参考来源）。常见的Linux引导程序是GNU-GRUB，其作用是提供系统选择菜单，并把控制器交给内核。</p>
-<p>当控制器交给操作系统之后，内核会被首先加载进内存。</p>
-<blockquote><p>以Linux系统为例，先载入/boot目录下面的kernel。内核加载成功后，第一个运行的程序是/sbin/init。它根据配置文件（Debian系统是/etc/initab）产生init进程。这是Linux启动后的第一个进程，pid进程编号为1，其他进程都是它的后代。
-然后，init线程加载系统的各个模块，比如窗口程序和网络程序，直至执行/bin/login程序，跳出登录界面，等待用户输入用户名和密码。</p>
-</blockquote><p>至此，全部启动过程完成。</p>
+<p>从资源管理的角度来看：进程是对CPU的抽象，地址空间是对内存的抽象，文件系统是对磁盘的抽象。</p>
+<p><strong>进程</strong>是具有独立功能的程序关于<strong>某个数据集合</strong>上的<strong>一次运行活动</strong>，是系统进行<strong>资源分配和调度</strong>的独立单位。</p>
+<p>进程是程序的一次执行过程，是正在运行程序的抽象。每一个进程有自己<em>独立的地址空间</em>。操作系统将单个（或有限个）物理 CPU 虚拟化为多个“虚拟 CPU”，让每个进程认为自己独占了一个 CPU。操作系统通过进程来分配CPU，通过进程来管理CPU。</p>
+<p>进程是动态的而程序的静态的，进程有生命周期；一个程序可以对应多个进程。</p>
 
-<h3 class="relative group">为什么安装Linux需要一个U盘？
-    <div id="为什么安装linux需要一个u盘" class="anchor"></div>
+<h3 class="relative group">2. 进程模型的组成
+    <div id="2-进程模型的组成" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%ae%89%e8%a3%85linux%e9%9c%80%e8%a6%81%e4%b8%80%e4%b8%aau%e7%9b%98" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e8%bf%9b%e7%a8%8b%e6%a8%a1%e5%9e%8b%e7%9a%84%e7%bb%84%e6%88%90" aria-label="Anchor">#</a>
     </span>
     
 </h3>
-<p>同样的，对于一个新的操作系统，我们可以找到其安装程序，但是该如何运行这个程序？我们电脑硬盘上没有Linux，也没有其Bootloader，也没有Linux内核，我们目前没有这个新的操作系统，那就没法运行安装器；没有安装器，也无法安装操作系统，那该怎么办？</p>
-<p>解决办法其实很巧妙：借助一个“外部可启动设备”，先运行一个临时系统，而这个设备最常见的就是U盘。</p>
-<p>我们在上面安装流程中用到了Rufus程序，其作用就是将一个普通的U盘转换成“可启动的安装介质”。一开始我们的U盘只是一个存储设备，没有启动能力，如果直接将下载的Linux的ISO文件复制进去是没法启动的。而Rufus会把<code>.iso</code>文件的内容按照特定格式写入U盘，这就是<strong>镜像写入</strong>；再根据选择的系统目标类型（上面选择的是UEFI）自动配置启动所需要的东西；还会配置相关的引导程序保证能正确加载Linux内核。</p>
-<p>好了，在经过Rufus的洗礼后，现在U盘有三种关键信息：</p>
 <ul>
-<li>Bootloader：被固件加载，负责进一步加载Linux内核</li>
-<li>Kernel：也就是Linux内核</li>
-<li>Live System（临时文件系统）：这是一个精简版的Linux系统，可以直接运行，提供图形界面。</li>
+<li><strong>进程的状态</strong></li>
 </ul>
-<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
-      <div class="flex items-center gap-2 font-semibold text-inherit">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
-</span></div>
-        <div class="grow">
-          Tip
-        </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>A <strong>live system</strong> usually means an operating system booted on a computer from a removable medium, such as a CD-ROM or USB stick, or from a network, ready to use without any installation on the usual drive (s), with auto-configuration done at run time (see Terms).</p></div></div><p>现在我们正在插着U盘，当开机进入BIOS界面时（上图3）会看到一个以UEFI开头的选项，选择这个选项时，实际上是让主板中的UEFI固件，从U盘的EFI分区中加载并执行一个<code>.efi</code>启动程序（通常是GRUB）。随后，这个启动程序会加载Linux内核，进入Live System，从而进行后续的安装。</p>
-<p>在这个临时系统中安装Linux时，会创建分区、复制系统文件（从U盘复制到硬盘）、<strong>把Bootloader安装到硬盘</strong>上。这样，以后在启动的时候，进入BIOS界面就可以看到位于硬盘上的Linux引导程序了，就和Windows系统共存了。此后也就可以拔掉U盘了。U盘的作用，不是“存储安装文件”，而是“提供一个可以被启动的最小操作系统环境”。</p>
-<p>总结一下，安装 Linux 之所以需要 U 盘，是因为计算机必须先运行一个操作系统，才能安装另一个操作系统（否则无法运行安装程序），而 U 盘正是这个“最初运行环境”的提供者（可以创建一个临时操作系统来完成本地安装流程）。</p>
-<p>整个启动流程分层一下就是：</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">第0层：ROM（主板）
-</span></span><span class="line"><span class="cl">  ↓
-</span></span><span class="line"><span class="cl">第1层：UEFI / BIOS（固件）
-</span></span><span class="line"><span class="cl">  ↓
-</span></span><span class="line"><span class="cl">第2层：U盘 / 硬盘（启动介质）
-</span></span><span class="line"><span class="cl">  ↓
-</span></span><span class="line"><span class="cl">第3层：Bootloader（GRUB）
-</span></span><span class="line"><span class="cl">  ↓
-</span></span><span class="line"><span class="cl">第4层：操作系统（Linux）</span></span></code></pre></div></div>
+<p>三种基本状态：运行态、就绪态、等待态</p>
+<p>此外还有其他状态如创建（已完成创建所必要的工作如PID但是未同意执行该进程）、终止（完成数据统计工作、资源回收）、挂起（把进程从内存转到磁盘，腾出内存空间。等待态就是阻塞，仍在内存中，不占用CPU但是还在占用内存）。</p>
+<ul>
+<li><strong>进程的数据结构</strong></li>
+</ul>
+<p>进程控制块<code>PCB</code>（Process Control Block），又称进程属性，记录属性，描述进程的动态变化过程。例如在Linux中是<code>task_struct</code>。</p>
+<p>操作系统通过PCB来控制和管理进程，进程与PCB是一一对应的，<em>PCB是系统感知进程存在的唯一标志</em>。那么<strong>进程表</strong>就是所有进程的PCB的集合。</p>
+<p>PCB的主要信息：</p>
+<ol>
+<li>进程描述信息：唯一进程标识符PID；进程名（通常基于可执行文件名）；用户标识符UID；等等</li>
+<li>进程控制信息：进程状态；优先级priority；可执行文件名；调度信息；进程的队列指针；进程的消息队列指针；等等</li>
+<li>所拥有的资源和使用情况：虚拟地址空间现状；打开文件列表；等等</li>
+<li>CPU现场信息：寄存器值（通用、PC、PSW、栈指针等）；指向该进程的页表指针；等等</li>
+</ol>
+<p>与进程执行的相关信息就在PCB中寻找，比如在系统调用返回时，需要重新调度其他进程运行，原来被打断的进程的信息不可能一直保持在系统栈中，而是会先保存在其PCB中；而后重新运行时再从PCB中取出进程相关信息。再比如Linux中在<code>task_struct</code>中的<code>mm_struct</code>会包含页表的指针，这样在进程切换的时候调度器可以将新进程的页表地址加载在CPU中。</p>
 
-  
-  
-  
-  
-
-
-
-<div
-  
-    class="flex px-4 py-3 rounded-md shadow" style="background-color: #e63946"
-  
-  >
-  <span
+<h2 class="relative group">二、线程模型
+    <div id="二线程模型" class="anchor"></div>
     
-      class="pe-3 flex items-center" style="color: #1d3557"
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%8c%e7%ba%bf%e7%a8%8b%e6%a8%a1%e5%9e%8b" aria-label="Anchor">#</a>
+    </span>
     
-    >
-    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-<path fill="currentColor"  d="M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-2.8-5.6-5.6-11.2-9.8-16.8l-50.6 58.8s-81.4-103.6-87.1-110.6C133.1 243.8 112 273.2 112 306.8C112 375.4 162.6 416 225.7 416z"/></svg></span>
-  </span>
+</h2>
 
-  <span
+<h2 class="relative group">三、携程coroutine
+    <div id="三携程coroutine" class="anchor"></div>
     
-      style="color: #0e0e0d"
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%89%e6%90%ba%e7%a8%8bcoroutine" aria-label="Anchor">#</a>
+    </span>
     
-    >没人感觉这样的设计真的很巧妙吗？！</span>
-</div>
-
+</h2>
 
           
           
@@ -1586,7 +1385,7 @@
     
   <summary
     class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
-    Operating Systems -
+    Operating Systems::Notes -
     This article is part of a series.
   </summary>
   
@@ -1594,17 +1393,19 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        Part 1:
-        This Article
+        <a href="/os/study_notes/1-intro/">
+          Part 1:
+          操作系统笔记1：操作系统概述
+        </a>
       </div>
     
   
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/os/makefile_tutorial/">
+        <a href="/os/study_notes/2-runtime_env/">
           Part 2:
-          makefile极简教程
+          操作系统笔记2：操作系统运行环境与运行机制
         </a>
       </div>
     
@@ -1612,10 +1413,8 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/os/study_notes/">
-          Part 3:
-          操作系统学习笔记
-        </a>
+        Part 3:
+        This Article
       </div>
     
   
@@ -1643,8 +1442,8 @@
           type="text/javascript"
           src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
           integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
-          data-oid="views_os/local_linux/index.md"
-          data-oid-likes="likes_os/local_linux/index.md"></script>
+          data-oid="views_os/study_notes/3-process_thread/index.md"
+          data-oid-likes="likes_os/study_notes/3-process_thread/index.md"></script>
       
     </section>
 
@@ -1665,9 +1464,9 @@
           
             <a
               class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-              href="/os/makefile_tutorial/">
+              href="/os/study_notes/2-runtime_env/">
               <span class="leading-6">
-                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;makefile极简教程
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;操作系统笔记2：操作系统运行环境与运行机制
               </span>
             </a>
             

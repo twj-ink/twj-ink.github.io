@@ -121,8 +121,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.b5368c8f64c443a2db3640baffb642b259c300b1b22c920ca173c246129a987e618d2ce489d86098e3470c351836906c95f0e0b44fd3514bb75ca118f8652640.css"
-    integrity="sha512-tTaMj2TEQ6LbNkC6/7ZCslnDALGyLJIMoXPCRhKamH5hjSzkidhgmONHDDUYNpBslfDgtE/TUUu3XKEY&#43;GUmQA==">
+    href="/css/main.bundle.min.ab019b470a037de88534469a63d83f2ae827f1a4f6cc1652eb35e9cfb8ee0b755fb78707ef83dad4c389ff60bccc0bf2b16a8f86a7fca77fb6b5a2a36e9b266a.css"
+    integrity="sha512-qwGbRwoDfeiFNEaaY9g/Kugn8aT2zBZS6zXpz7juC3Vft4cH74Pa1MOJ/2C8zAvysWqPhqf8p3&#43;2taKjbpsmag==">
 
   
   
@@ -252,7 +252,7 @@
     "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "34"
+    "wordCount": "35"
   }]
   </script>
 
@@ -896,7 +896,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <span>34 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <span>35 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1017,8 +1017,8 @@
         width="96"
         height="96"
         alt="GaleInk"
-        src="/img/avatar_hu_d682264e76c772b8.jpg"
-        data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
+        src="/img/avatar_hu_19a658521340f8d8.jpg"
+        data-zoom-src="/img/avatar_hu_127c054ca1326027.jpg">
     
   
   <div class="place-self-center">
@@ -1354,6 +1354,9 @@
 <li>CPU现场信息：寄存器值（通用、PC、PSW、栈指针等）；指向该进程的页表指针；等等</li>
 </ol>
 <p>与进程执行的相关信息就在PCB中寻找，比如在系统调用返回时，需要重新调度其他进程运行，原来被打断的进程的信息不可能一直保持在系统栈中，而是会先保存在其PCB中；而后重新运行时再从PCB中取出进程相关信息。再比如Linux中在<code>task_struct</code>中的<code>mm_struct</code>会包含页表的指针，这样在进程切换的时候调度器可以将新进程的页表地址加载在CPU中。</p>
+<ul>
+<li><strong>进程的地址空间</strong></li>
+</ul>
 
 <h2 class="relative group">二、线程模型
     <div id="二线程模型" class="anchor"></div>

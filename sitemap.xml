@@ -111,6 +111,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://twj-ink.github.io/os/study_notes/4-scheduling/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://twj-ink.github.io/os/local_linux/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

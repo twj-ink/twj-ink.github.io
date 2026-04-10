@@ -401,7 +401,7 @@
     "keywords": ["CSAPP","位运算","链接","Linux"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "3056"
+    "wordCount": "3066"
   }]
   </script>
 
@@ -1039,7 +1039,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <span>3056 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span><span class="mb-[2px]">
+      <span>3066 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span><span class="mb-[2px]">
   <span
     id="zen-mode-button"
     class="text-lg hover:text-primary-500"
@@ -2805,6 +2805,14 @@ $$<p>其中<code>addr1 addr2</code>分别是两个地址的值，相减之后的
     alt="alt text"
     src="../imgs/chapter9/%e4%b8%80%e4%b8%aalinux%e8%bf%9b%e7%a8%8b%e7%9a%84vm.png"
     ></figure>
+<p>操作系统给每个进程分配了一个地址空间，其布局如上图。“地址空间”是一个逻辑概念，定义了进程<strong>理论上可以访问的所有虚拟地址的范围</strong>；页表是一个物理数据结构，记录了地址空间中<strong>哪些区域已经被映射到物理内存</strong>。CPU在取指或者访问数据时，给出的是一个<strong>虚拟地址</strong>，并利用这个虚拟地址去查页表，从而去找到对应的物理内存。可以说，地址空间是对物理内存的抽象，是给CPU提供便利的。而具体的寻址还是需要页表和物理内存来实现。同时这样的抽象也为地址的合理性检查提供了便利。</p>
+<p>可以发现每个进程的地址空间分为两个部分：</p>
+<ul>
+<li>高地址处是内核空间，一部分是与进程相关的私有数据，如内核栈、进程控制块PCB、页表等等，这些在每个进程中是独立的，<strong>每个进程都不相同</strong>；另一部分则是内核代码和数据，这些则是每个进程共享的，具体的方式是每个进程的页表负责映射“高地址内核空间”的那些页表项，都指向物理内存中完全相同的那一页，<strong>对每个进程都一样</strong>。比如PCB就在这里。</li>
+<li>低地址处是用户空间，包括<code>.rodata</code>,<code>.bss</code>,<code>.data</code>,<code>.text</code>段以及堆栈等等。</li>
+</ul>
+<blockquote><p>可以使用<code>cat /proc/[PID]/maps</code>来查看</p>
+</blockquote><p>在Linux中，<code>struct mm_struct *mm</code>是整个进程用户态虚拟地址空间的总入口，包含页目录、虚拟内存区域链表等全部信息。如<code>pgd_t *pgd</code>是页目录的起始地址，在x86中会在利用这个值时保存在CR3寄存器中。</p>
 
 <h4 class="relative group">9.2.1 Linux虚拟内存区域
     <div id="921-linux虚拟内存区域" class="anchor"></div>

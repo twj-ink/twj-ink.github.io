@@ -9,7 +9,17 @@
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/os/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/os/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>本地物理机安装Linux</title>
+      <link>https://twj-ink.github.io/os/local_linux/</link>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/local_linux/</guid>
+      <description>一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理；日常使用遇到的问题及解决办法</description>
+      
+    </item>
     
     <item>
       <title>操作系统实验Part0：实验概览</title>
@@ -24,7 +34,7 @@
     <item>
       <title>makefile极简教程</title>
       <link>https://twj-ink.github.io/os/makefile_tutorial/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/os/makefile_tutorial/</guid>
       <description></description>
@@ -32,12 +42,12 @@
     </item>
     
     <item>
-      <title>本地物理机安装Linux</title>
-      <link>https://twj-ink.github.io/os/local_linux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Linux虚拟内存系统与红黑树的应用浅析</title>
+      <link>https://twj-ink.github.io/os/rb-tree_in_linux/</link>
+      <pubDate>Mon, 23 Feb 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/local_linux/</guid>
-      <description>一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理</description>
+      <guid>https://twj-ink.github.io/os/rb-tree_in_linux/</guid>
+      <description>红黑树在Linux中的定义声明，和简单的使用方法；对container_of宏的解析</description>
       
     </item>
     

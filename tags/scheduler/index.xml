@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scheduler on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/tags/scheduler/</link>
+    <description>Recent content in Scheduler on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Thu, 09 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/tags/scheduler/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>操作系统笔记4：进程与线程调度</title>
+      <link>https://twj-ink.github.io/os/study_notes/4-scheduling/</link>
+      <pubDate>Thu, 09 Apr 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/4-scheduling/</guid>
+      <description>各种常见经典的调度算法，以及在Linux中真实的CFS调度、在Windows中线程调度介绍</description>
+      
+    </item>
+    
+  </channel>
+</rss>

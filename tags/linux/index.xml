@@ -9,7 +9,37 @@
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <atom:link href="https://twj-ink.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>操作系统笔记4：进程与线程调度</title>
+      <link>https://twj-ink.github.io/os/study_notes/4-scheduling/</link>
+      <pubDate>Thu, 09 Apr 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/4-scheduling/</guid>
+      <description>各种常见经典的调度算法，以及在Linux中真实的CFS调度、在Windows中线程调度介绍</description>
+      
+    </item>
+    
+    <item>
+      <title>本地物理机安装Linux</title>
+      <link>https://twj-ink.github.io/os/local_linux/</link>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/local_linux/</guid>
+      <description>一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理；日常使用遇到的问题及解决办法</description>
+      
+    </item>
+    
+    <item>
+      <title>Linux虚拟内存系统与红黑树的应用浅析</title>
+      <link>https://twj-ink.github.io/os/rb-tree_in_linux/</link>
+      <pubDate>Mon, 23 Feb 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/rb-tree_in_linux/</guid>
+      <description>红黑树在Linux中的定义声明，和简单的使用方法；对container_of宏的解析</description>
+      
+    </item>
     
     <item>
       <title>CSAPP阅读笔记</title>
@@ -19,16 +49,6 @@
       <guid>https://twj-ink.github.io/ics/readnotes/</guid>
       <description></description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/ics/readnotes/feature_vm.png" />
-    </item>
-    
-    <item>
-      <title>本地物理机安装Linux</title>
-      <link>https://twj-ink.github.io/os/local_linux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/local_linux/</guid>
-      <description>一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理</description>
-      
     </item>
     
   </channel>

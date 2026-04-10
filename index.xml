@@ -9,7 +9,57 @@
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>操作系统笔记4：进程与线程调度</title>
+      <link>https://twj-ink.github.io/os/study_notes/4-scheduling/</link>
+      <pubDate>Thu, 09 Apr 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/4-scheduling/</guid>
+      <description>各种常见经典的调度算法，以及在Linux中真实的CFS调度、在Windows中线程调度介绍</description>
+      
+    </item>
+    
+    <item>
+      <title>本地物理机安装Linux</title>
+      <link>https://twj-ink.github.io/os/local_linux/</link>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/local_linux/</guid>
+      <description>一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理；日常使用遇到的问题及解决办法</description>
+      
+    </item>
+    
+    <item>
+      <title>操作系统笔记3：进程与线程模型</title>
+      <link>https://twj-ink.github.io/os/study_notes/3-process_thread/</link>
+      <pubDate>Sat, 04 Apr 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/3-process_thread/</guid>
+      <description>进程=地址空间+PCB+执行上下文</description>
+      
+    </item>
+    
+    <item>
+      <title>操作系统笔记2：操作系统运行环境与运行机制</title>
+      <link>https://twj-ink.github.io/os/study_notes/2-runtime_env/</link>
+      <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/2-runtime_env/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>操作系统笔记1：操作系统概述</title>
+      <link>https://twj-ink.github.io/os/study_notes/1-intro/</link>
+      <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/1-intro/</guid>
+      <description>定义、特征</description>
+      
+    </item>
     
     <item>
       <title>操作系统实验Part0：实验概览</title>
@@ -18,6 +68,26 @@
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</guid>
       <description>os-kernel的实验介绍和测评流程</description>
+      
+    </item>
+    
+    <item>
+      <title>makefile极简教程</title>
+      <link>https://twj-ink.github.io/os/makefile_tutorial/</link>
+      <pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/makefile_tutorial/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Linux虚拟内存系统与红黑树的应用浅析</title>
+      <link>https://twj-ink.github.io/os/rb-tree_in_linux/</link>
+      <pubDate>Mon, 23 Feb 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/rb-tree_in_linux/</guid>
+      <description>红黑树在Linux中的定义声明，和简单的使用方法；对container_of宏的解析</description>
       
     </item>
     
@@ -119,66 +189,6 @@
       <guid>https://twj-ink.github.io/gallery/</guid>
       <description>我的临摹画作/原创画作/游戏截图/日常😝</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/gallery/feature_draw.jpg" />
-    </item>
-    
-    <item>
-      <title>makefile极简教程</title>
-      <link>https://twj-ink.github.io/os/makefile_tutorial/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/makefile_tutorial/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>操作系统笔记1：操作系统概述</title>
-      <link>https://twj-ink.github.io/os/study_notes/1-intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/study_notes/1-intro/</guid>
-      <description>定义、特征</description>
-      
-    </item>
-    
-    <item>
-      <title>操作系统笔记2：操作系统运行环境与运行机制</title>
-      <link>https://twj-ink.github.io/os/study_notes/2-runtime_env/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/study_notes/2-runtime_env/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>操作系统笔记3：进程与线程模型</title>
-      <link>https://twj-ink.github.io/os/study_notes/3-process_thread/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/study_notes/3-process_thread/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>操作系统笔记4：进程与线程调度</title>
-      <link>https://twj-ink.github.io/os/study_notes/4-scheduling/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/study_notes/4-scheduling/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>本地物理机安装Linux</title>
-      <link>https://twj-ink.github.io/os/local_linux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/local_linux/</guid>
-      <description>一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理</description>
-      
     </item>
     
   </channel>

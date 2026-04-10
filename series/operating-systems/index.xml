@@ -9,22 +9,12 @@
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <atom:link href="https://twj-ink.github.io/series/operating-systems/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/series/operating-systems/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>makefile极简教程</title>
-      <link>https://twj-ink.github.io/os/makefile_tutorial/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/os/makefile_tutorial/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>操作系统学习笔记</title>
+      <title>[[NOTES]] 操作系统学习笔记</title>
       <link>https://twj-ink.github.io/os/study_notes/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 09 Apr 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/os/study_notes/</guid>
       <description>课堂和阅读教材的笔记，不包含实验教程</description>
@@ -34,10 +24,20 @@
     <item>
       <title>本地物理机安装Linux</title>
       <link>https://twj-ink.github.io/os/local_linux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/os/local_linux/</guid>
-      <description>一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理</description>
+      <description>一次本地Linux安装实录：从U盘启动到计算机启动过程的简单梳理；日常使用遇到的问题及解决办法</description>
+      
+    </item>
+    
+    <item>
+      <title>makefile极简教程</title>
+      <link>https://twj-ink.github.io/os/makefile_tutorial/</link>
+      <pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/makefile_tutorial/</guid>
+      <description></description>
       
     </item>
     

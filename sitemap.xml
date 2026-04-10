@@ -3,20 +3,68 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://twj-ink.github.io/os/study_notes/</loc>
+    <lastmod>2026-04-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://twj-ink.github.io/</loc>
-    <lastmod>2026-03-20T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-09T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/</loc>
-    <lastmod>2026-03-20T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/study_notes/4-scheduling/</loc>
+    <lastmod>2026-04-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/local_linux/</loc>
+    <lastmod>2026-04-07T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/study_notes/3-process_thread/</loc>
+    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/study_notes/2-runtime_env/</loc>
+    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/study_notes/1-intro/</loc>
+    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/os-kernel/part0%E5%AE%9E%E9%AA%8C%E6%A6%82%E8%A7%88/</loc>
     <lastmod>2026-03-20T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/makefile_tutorial/</loc>
+    <lastmod>2026-03-02T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/rb-tree_in_linux/</loc>
+    <lastmod>2026-02-23T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -76,47 +124,12 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://twj-ink.github.io/os/makefile_tutorial/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://twj-ink.github.io/castle/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/moments/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://twj-ink.github.io/os/study_notes/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://twj-ink.github.io/os/study_notes/1-intro/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://twj-ink.github.io/os/study_notes/2-runtime_env/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://twj-ink.github.io/os/study_notes/3-process_thread/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://twj-ink.github.io/os/study_notes/4-scheduling/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://twj-ink.github.io/os/local_linux/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

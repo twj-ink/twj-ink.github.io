@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虚拟地址空间 on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/tags/%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4/</link>
+    <description>Recent content in 虚拟地址空间 on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Sat, 04 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/tags/%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>操作系统笔记3：进程与线程模型</title>
+      <link>https://twj-ink.github.io/os/study_notes/3-process_thread/</link>
+      <pubDate>Sat, 04 Apr 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/3-process_thread/</guid>
+      <description>进程=地址空间+PCB+执行上下文</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -15,20 +15,20 @@
 
   
   
-    <title>操作系统笔记3：进程与线程模型 &middot; GaleInk&#39;s blog</title>
-    <meta name="title" content="操作系统笔记3：进程与线程模型 &middot; GaleInk&#39;s blog">
+    <title>操作系统笔记5：内存管理 &middot; GaleInk&#39;s blog</title>
+    <meta name="title" content="操作系统笔记5：内存管理 &middot; GaleInk&#39;s blog">
   
 
   
   
-    <meta name="description" content="进程=地址空间&#43;PCB&#43;执行上下文">
+    <meta name="description" content="内存管理的演化过程与基本思想">
   
   
-    <meta name="keywords" content="OS,虚拟地址空间,">
+    <meta name="keywords" content="OS,">
   
   
   
-  <link rel="canonical" href="https://twj-ink.github.io/os/study_notes/3-process_thread/">
+  <link rel="canonical" href="https://twj-ink.github.io/os/study_notes/5-memory_management/">
   
 
   
@@ -56,27 +56,26 @@
   
 
   
-  <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/3-process_thread/">
+  <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
   <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="操作系统笔记3：进程与线程模型">
-  <meta property="og:description" content="进程=地址空间&#43;PCB&#43;执行上下文">
+  <meta property="og:title" content="操作系统笔记5：内存管理">
+  <meta property="og:description" content="内存管理的演化过程与基本思想">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="os">
-    <meta property="article:published_time" content="2026-04-04T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-04-04T00:00:00+00:00">
+    <meta property="article:published_time" content="2026-04-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-04-16T00:00:00+00:00">
     <meta property="article:tag" content="OS">
-    <meta property="article:tag" content="虚拟地址空间">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/4-scheduling/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/3-process_thread/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/2-runtime_env/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/1-intro/">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="操作系统笔记3：进程与线程模型">
-  <meta name="twitter:description" content="进程=地址空间&#43;PCB&#43;执行上下文">
+  <meta name="twitter:title" content="操作系统笔记5：内存管理">
+  <meta name="twitter:description" content="内存管理的演化过程与基本思想">
 
   
   
@@ -192,6 +191,145 @@
 
 
 
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/lib/katex/katex.min.d2ee85d2418f4d482ca2af2a3dad30d370b1c66133dea61f97d7933c92fc0cae10244f7f5cbd524a8897a1886f0d70ab04c0555ad680216b16a028354e42726c.css"
+    integrity="sha512-0u6F0kGPTUgsoq8qPa0w03CxxmEz3qYfl9eTPJL8DK4QJE9/XL1SSoiXoYhvDXCrBMBVWtaAIWsWoCg1TkJybA==">
+  
+  
+  
+  <script
+    defer
+    type="text/javascript"
+    src="/js/katex.bundle.30c179d64bdee5ed56cf63adf7227f13507841aa61a91a492e45b333d618bc901f2b196d2effcfe6716a23e01416a572441480d511b13320dba26d58e1246178.js"
+    integrity="sha512-MMF51kve5e1Wz2Ot9yJ/E1B4QaphqRpJLkWzM9YYvJAfKxltLv/P5nFqI&#43;AUFqVyRBSA1RGxMyDbom1Y4SRheA=="
+    id="katex-render"></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
 
 
 
@@ -240,25 +378,25 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Operating Systems",
-    "name": "操作系统笔记3：进程与线程模型",
-    "headline": "操作系统笔记3：进程与线程模型",
+    "name": "操作系统笔记5：内存管理",
+    "headline": "操作系统笔记5：内存管理",
     
     "inLanguage": "en",
-    "url" : "https://twj-ink.github.io/os/study_notes/3-process_thread/",
+    "url" : "https://twj-ink.github.io/os/study_notes/5-memory_management/",
     "author" : {
       "@type": "Person",
       "name": "GaleInk"
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-04-04T00:00:00\u002b00:00",
-    "datePublished": "2026-04-04T00:00:00\u002b00:00",
+    "dateCreated": "2026-04-16T00:00:00\u002b00:00",
+    "datePublished": "2026-04-16T00:00:00\u002b00:00",
     
-    "dateModified": "2026-04-04T00:00:00\u002b00:00",
+    "dateModified": "2026-04-16T00:00:00\u002b00:00",
     
-    "keywords": ["OS","虚拟地址空间"],
+    "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "70"
+    "wordCount": "177"
   }]
   </script>
 
@@ -844,7 +982,7 @@
     <header id="single_header" class="mt-5 max-w-prose">
       
       <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-        操作系统笔记3：进程与线程模型
+        操作系统笔记5：内存管理
       </h1>
       <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
         
@@ -904,7 +1042,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-04-04T00:00:00&#43;00:00">2026/04/04</time><span class="px-2 text-primary-500">&middot;</span><span>70 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-04-16T00:00:00&#43;00:00">2026/04/16</time><span class="px-2 text-primary-500">&middot;</span><span>177 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -918,7 +1056,7 @@
     
   
   <span
-    id="views_os/study_notes/3-process_thread/index.md"
+    id="views_os/study_notes/5-memory_management/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="views"
     >loading</span
@@ -940,7 +1078,7 @@
     
   
   <span
-    id="likes_os/study_notes/3-process_thread/index.md"
+    id="likes_os/study_notes/5-memory_management/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="likes"
     >loading</span
@@ -1122,14 +1260,44 @@
     class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#一进程模型">一、进程模型</a>
+    <li><a href="#一为什么需要内存管理">一、为什么需要内存管理</a></li>
+    <li><a href="#二内存管理基本概念">二、内存管理基本概念</a>
       <ul>
-        <li><a href="#1-进程的定义与概念">1. 进程的定义与概念</a></li>
-        <li><a href="#2-进程模型的组成">2. 进程模型的组成</a></li>
+        <li><a href="#1-两个空间">1. 两个“空间”</a></li>
+        <li><a href="#2-两个空间地址的重定位地址如何映射">2. 两个空间地址的重定位（地址如何映射）</a>
+          <ul>
+            <li><a href="#静态地址重定位">静态地址重定位</a></li>
+            <li><a href="#动态地址重定位">动态地址重定位</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-地址绑定时机地址映射的时机">3. 地址绑定时机（地址映射的时机）</a></li>
+        <li><a href="#4-地址保护">4. 地址保护</a></li>
       </ul>
     </li>
-    <li><a href="#二线程模型">二、线程模型</a></li>
-    <li><a href="#三协程coroutine">三、协程coroutine</a></li>
+    <li><a href="#三物理内存空闲管理">三、物理内存空闲管理</a>
+      <ul>
+        <li><a href="#1-数据结构">1. 数据结构</a></li>
+        <li><a href="#2-分配算法">2. 分配算法</a></li>
+        <li><a href="#3-回收与合并">3. 回收与合并</a></li>
+        <li><a href="#4-分离适配算法的一些例子">4. 分离适配算法的一些例子</a>
+          <ul>
+            <li><a href="#伙伴系统">⭐伙伴系统</a></li>
+            <li><a href="#slab分配器">SLAB分配器</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#四内存管理方案的演进">四、内存管理方案的演进</a>
+      <ul>
+        <li><a href="#1-单一连续区">1. 单一连续区</a></li>
+        <li><a href="#2-固定分区">2. 固定分区</a></li>
+        <li><a href="#3-可变分区">3. ⭐可变分区</a></li>
+        <li><a href="#4-页式管理分页">4. ⭐页式管理（分页）</a></li>
+        <li><a href="#5-段式管理分段">5. 段式管理（分段）</a></li>
+        <li><a href="#6-段页式">6. 段页式</a></li>
+      </ul>
+    </li>
+    <li><a href="#五内存扩充">五、内存“扩充”</a></li>
   </ul>
 </nav>
   </div>
@@ -1143,14 +1311,44 @@
     class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#一进程模型">一、进程模型</a>
+    <li><a href="#一为什么需要内存管理">一、为什么需要内存管理</a></li>
+    <li><a href="#二内存管理基本概念">二、内存管理基本概念</a>
       <ul>
-        <li><a href="#1-进程的定义与概念">1. 进程的定义与概念</a></li>
-        <li><a href="#2-进程模型的组成">2. 进程模型的组成</a></li>
+        <li><a href="#1-两个空间">1. 两个“空间”</a></li>
+        <li><a href="#2-两个空间地址的重定位地址如何映射">2. 两个空间地址的重定位（地址如何映射）</a>
+          <ul>
+            <li><a href="#静态地址重定位">静态地址重定位</a></li>
+            <li><a href="#动态地址重定位">动态地址重定位</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-地址绑定时机地址映射的时机">3. 地址绑定时机（地址映射的时机）</a></li>
+        <li><a href="#4-地址保护">4. 地址保护</a></li>
       </ul>
     </li>
-    <li><a href="#二线程模型">二、线程模型</a></li>
-    <li><a href="#三协程coroutine">三、协程coroutine</a></li>
+    <li><a href="#三物理内存空闲管理">三、物理内存空闲管理</a>
+      <ul>
+        <li><a href="#1-数据结构">1. 数据结构</a></li>
+        <li><a href="#2-分配算法">2. 分配算法</a></li>
+        <li><a href="#3-回收与合并">3. 回收与合并</a></li>
+        <li><a href="#4-分离适配算法的一些例子">4. 分离适配算法的一些例子</a>
+          <ul>
+            <li><a href="#伙伴系统">⭐伙伴系统</a></li>
+            <li><a href="#slab分配器">SLAB分配器</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#四内存管理方案的演进">四、内存管理方案的演进</a>
+      <ul>
+        <li><a href="#1-单一连续区">1. 单一连续区</a></li>
+        <li><a href="#2-固定分区">2. 固定分区</a></li>
+        <li><a href="#3-可变分区">3. ⭐可变分区</a></li>
+        <li><a href="#4-页式管理分页">4. ⭐页式管理（分页）</a></li>
+        <li><a href="#5-段式管理分段">5. 段式管理（分段）</a></li>
+        <li><a href="#6-段页式">6. 段页式</a></li>
+      </ul>
+    </li>
+    <li><a href="#五内存扩充">五、内存“扩充”</a></li>
   </ul>
 </nav>
   </div>
@@ -1299,8 +1497,10 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        Part 3:
-        This Article
+        <a href="/os/study_notes/3-process_thread/">
+          Part 3:
+          操作系统笔记3：进程与线程模型
+        </a>
       </div>
     
   
@@ -1317,10 +1517,8 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/os/study_notes/5-memory_management/">
-          Part 5:
-          操作系统笔记5：内存管理
-        </a>
+        Part 5:
+        This Article
       </div>
     
   
@@ -1341,135 +1539,392 @@
 
         <div class="article-content max-w-prose mb-20">
           
-<h2 class="relative group">一、进程模型
-    <div id="一进程模型" class="anchor"></div>
+
+
+<h2 class="relative group">一、为什么需要内存管理
+    <div id="一为什么需要内存管理" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80%e8%bf%9b%e7%a8%8b%e6%a8%a1%e5%9e%8b" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>内存管理的演化过程：</p>
+<p>最开始，直接把一个进程放在物理内存中运行，此时物理内存中一部分是内核，另一部分就是进程，运行完了就出来；后来有了多道程序设计，物理内存不再是只给一个进程使用，而是多个进程同时分配一个物理内存；再后来为了安全考虑（防止越界、越权），引入了虚拟内存，每个进程都有一个自己独立的地址空间。</p>
+<p>在多道程序设计中，多个程序同时驻留内存，此时程序中的地址不直接等于物理地址，所以需要<strong>地址重定位</strong>（或者<strong>地址映射</strong>、<strong>地址翻译</strong>）；同时进程之间不能相互访问，需要地址保护，以及共享与隔离。</p>
+<p>那么内存管理就是为了解决如上述的问题而存在的。除此之外，还有很多内存管理需要解决的问题，比如程序什么时候进入内存、进程空间如何映射到物理内存、内存不够怎么办、怎么保证效率和保护等等。</p>
+
+<h2 class="relative group">二、内存管理基本概念
+    <div id="二内存管理基本概念" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%8c%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" aria-label="Anchor">#</a>
     </span>
     
 </h2>
 
-<h3 class="relative group">1. 进程的定义与概念
-    <div id="1-进程的定义与概念" class="anchor"></div>
+<h3 class="relative group">1. 两个“空间”
+    <div id="1-两个空间" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e8%bf%9b%e7%a8%8b%e7%9a%84%e5%ae%9a%e4%b9%89%e4%b8%8e%e6%a6%82%e5%bf%b5" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e4%b8%a4%e4%b8%aa%e7%a9%ba%e9%97%b4" aria-label="Anchor">#</a>
     </span>
     
 </h3>
-<p>从资源管理的角度来看：进程是对CPU的抽象，地址空间是对内存的抽象，文件系统是对磁盘的抽象。</p>
-<p><strong>进程</strong>是具有独立功能的程序关于<strong>某个数据集合</strong>上的<strong>一次运行活动</strong>，是系统进行<strong>资源分配和调度</strong>的独立单位。</p>
-<p>进程是程序的一次执行过程，是正在运行程序的抽象。每一个进程有自己<em>独立的地址空间</em>。操作系统将单个（或有限个）物理 CPU 虚拟化为多个“虚拟 CPU”，让每个进程认为自己独占了一个 CPU。操作系统通过进程来分配CPU，通过进程来管理CPU。</p>
-<p>进程是动态的而程序的静态的，进程有生命周期；一个程序可以对应多个进程。</p>
+<p><strong>逻辑地址空间</strong> vs <strong>物理内存空间</strong>：这对矛盾，是驱动整个内存管理技术演进的源动力。</p>
+<ul>
+<li>逻辑地址空间（程序看到的世界）要求：连续、从0开始、独立、无限大（理想情况下）。</li>
+<li>物理内存空间（硬件提供的现实）是：有限的、可能碎片化的、所有进程共享的、需要竞争的资源。</li>
+</ul>
+<p><strong>内存管理的核心任务，就是用物理内存这个有限的现实，去满足多个进程对逻辑地址空间这个无限的理想。</strong></p>
+<p>内存管理的基本功能：</p>
+<ul>
+<li>给进程分配内存——地址空间</li>
+<li>往内存加载内容——映射进程地址空间到物理内存</li>
+<li>存储保护——地址越界、权限</li>
+<li>管理共享的内存</li>
+<li>最小化存储访问时间</li>
+</ul>
+<p>关于“逻辑地址空间”，和本系列第三章的“进程线程模型”中的“虚拟地址空间”有关系但不完全相同，可以认为前者是一种概念，后则是实现这个概念的一种技术。</p>
+<p>下图是一个典型的逻辑地址空间的布局：</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-address-space.png"
+    ><figcaption>对于进程的虚拟地址空间更详细的介绍可参考第三章的进程线程模型内容</figcaption></figure>
 
-<h3 class="relative group">2. 进程模型的组成
-    <div id="2-进程模型的组成" class="anchor"></div>
+<h3 class="relative group">2. 两个空间地址的重定位（地址如何映射）
+    <div id="2-两个空间地址的重定位地址如何映射" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e8%bf%9b%e7%a8%8b%e6%a8%a1%e5%9e%8b%e7%9a%84%e7%bb%84%e6%88%90" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e4%b8%a4%e4%b8%aa%e7%a9%ba%e9%97%b4%e5%9c%b0%e5%9d%80%e7%9a%84%e9%87%8d%e5%ae%9a%e4%bd%8d%e5%9c%b0%e5%9d%80%e5%a6%82%e4%bd%95%e6%98%a0%e5%b0%84" aria-label="Anchor">#</a>
     </span>
     
 </h3>
 <ul>
-<li><strong>进程的状态</strong></li>
+<li>逻辑地址（相对地址，虚拟地址）：用户程序经过编译、汇编后形成目标代码，目标代码通常采用相对地址的形式，<strong>其首地址为0</strong>，其余指令中的地址都<strong>相对于首地址而编址</strong>，<strong>不能用逻辑地址在内存中读取信息</strong>。</li>
+<li>物理地址（绝对地址，实地址）：内存中存储单元的地址，可直接寻址。</li>
 </ul>
-<p>三种基本状态：运行态、就绪态、等待态</p>
-<p>此外还有其他状态如创建（已完成创建所必要的工作如PID但是未同意执行该进程）、终止（完成数据统计工作、资源回收）、挂起（把进程从内存转到磁盘，腾出内存空间。等待态就是阻塞，仍在内存中，不占用CPU但是还在占用内存）。</p>
-<ul>
-<li><strong>进程的数据结构</strong></li>
-</ul>
-<p>进程控制块<code>PCB</code>（Process Control Block），又称进程属性，记录属性，描述进程的动态变化过程。例如在Linux中是<code>task_struct</code>。</p>
-<p>操作系统通过PCB来控制和管理进程，进程与PCB是一一对应的，<em>PCB是系统感知进程存在的唯一标志</em>。那么<strong>进程表</strong>就是所有进程的PCB的集合。</p>
-<p>PCB的主要信息：</p>
-<ol>
-<li>进程描述信息：唯一进程标识符PID；进程名（通常基于可执行文件名）；用户标识符UID；等等</li>
-<li>进程控制信息：进程状态；优先级priority；可执行文件名；调度信息；进程的队列指针；进程的消息队列指针；等等</li>
-<li>所拥有的资源和使用情况：虚拟地址空间现状；打开文件列表；等等</li>
-<li>CPU现场信息：寄存器值（通用、PC、PSW、栈指针等）；指向该进程的页表指针；等等</li>
-</ol>
-<p>与进程执行的相关信息就在PCB中寻找，比如在系统调用返回时，需要重新调度其他进程运行，原来被打断的进程的信息不可能一直保持在系统栈中，而是会先保存在其PCB中；而后重新运行时再从PCB中取出进程相关信息。再比如Linux中在<code>task_struct</code>中的<code>mm_struct</code>会包含页表的指针，这样在进程切换的时候调度器可以将新进程的页表地址加载在CPU中。</p>
-<ul>
-<li><strong>进程的地址空间</strong></li>
-</ul>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/3-%e8%bf%9b%e7%a8%8b%e5%9c%b0%e5%9d%80%e7%a9%ba%e9%97%b4.png"
-    ></figure>
-<p>操作系统给每个进程分配了一个地址空间，其布局如上图。“地址空间”是一个逻辑概念，定义了进程<strong>理论上可以访问的所有虚拟地址的范围</strong>；页表是一个物理数据结构，记录了地址空间中<strong>哪些区域已经被映射到物理内存</strong>。CPU在取指或者访问数据时，给出的是一个<strong>虚拟地址</strong>，并利用这个虚拟地址去查页表，从而去找到对应的物理内存。可以说，地址空间是对物理内存的抽象，是给CPU提供便利的。而具体的寻址还是需要页表和物理内存来实现。同时这样的抽象也为地址的合理性检查提供了便利。</p>
-<p>可以发现每个进程的地址空间分为两个部分：</p>
-<ul>
-<li>高地址处是内核空间，一部分是与进程相关的私有数据，如内核栈、进程控制块PCB、页表等等，这些在每个进程中是独立的，<strong>每个进程都不相同</strong>；另一部分则是内核代码和数据，这些则是每个进程共享的，具体的方式是每个进程的页表负责映射“高地址内核空间”的那些页表项，都指向物理内存中完全相同的那一页，<strong>对每个进程都一样</strong>。比如PCB就在这里。</li>
-<li>低地址处是用户空间，包括<code>.rodata</code>,<code>.bss</code>,<code>.data</code>,<code>.text</code>段以及堆栈等等。</li>
-</ul>
-<blockquote><p>可以使用<code>cat /proc/[PID]/maps</code>来查看</p>
-</blockquote><p>在Linux中，<code>struct mm_struct *mm</code>是整个进程用户态虚拟地址空间的总入口，包含页目录、虚拟内存区域链表等全部信息。如<code>pgd_t *pgd</code>是页目录的起始地址，在x86中会在利用这个值时保存在CR3寄存器中。</p>
-<ul>
-<li><strong>进程队列（表）</strong></li>
-</ul>
-<p>操作系统为每一类进程建立一个或多个队列，队列元素为PCB，伴随进程状态的改变，PCB可能会从一个队列进入另一个队列。</p>
-<ul>
-<li><strong>进程状态转换和进程控制</strong></li>
-</ul>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/3-%e8%bf%9b%e7%a8%8b%e7%8a%b6%e6%80%81%e8%bd%ac%e6%8d%a2%e9%98%9f%e5%88%97.png"
-    ></figure>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/3-%e8%bf%9b%e7%a8%8b%e7%8a%b6%e6%80%81%e8%bd%ac%e6%8d%a22.png"
-    ></figure>
-<p>进程状态转换需要有控制操作，这些操作由具有特定功能的<strong>原语</strong>完成（原子操作，执行不可被中断，更准确地说是在执行的时候<code>disable interrupt</code>，不响应中断）。如创建、撤销、阻塞、挂起等等。</p>
-<p>进程何时创建？在系统初始化/由现有进程派生新进程/提交一个程序执行等等。</p>
-<p>创建时分配一个pid和PCB并分配地址空间。在unix中创建是通过<code>fork()</code>和<code>exec()</code>来完成的。在UNIX中<code>fork()</code>会以一次一页的方式复制父进程的地址空间，在Linux中利用<em>存储管理模块中</em>的<code>copy-on-write(COW)</code>的技术进行优化（注：这个技术不是来自于fork而是来自于存储管理模块）。</p>
+<p>地址重定位：将用户程序中的逻辑地址转换为运行时可由机器直接寻址的物理地址的过程。目的是保证CPU执行指令时可正确访问内存单元。</p>
 
-<h2 class="relative group">二、线程模型
-    <div id="二线程模型" class="anchor"></div>
+<h4 class="relative group">静态地址重定位
+    <div id="静态地址重定位" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%8c%e7%ba%bf%e7%a8%8b%e6%a8%a1%e5%9e%8b" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%9d%99%e6%80%81%e5%9c%b0%e5%9d%80%e9%87%8d%e5%ae%9a%e4%bd%8d" aria-label="Anchor">#</a>
     </span>
     
-</h2>
-<p>为何需要引入线程？应用的需要、开销（轻量进程）、性能。</p>
-<p>应用：在web服务器中如何提高效率？使用多线程。在没有线程的时候可以使用一个服务进程顺序编程、采用非阻塞I/O的有限状态机（涉及到系统调用<code>select() poll() epoll()</code>）</p>
-<p>线程是进程中的一个运行实体，进程是<em>资源的拥有者</em>和<em>调度单位</em>，线程是CPU的<em>调度单位</em>。每个线程都有自己独立的栈，但是都是在一个进程的地址空间中的。</p>
-<p>线程具体是如何实现的呢？有三种：</p>
-<ul>
-<li>用户级线程：在用户空间建立线程库，内核只能感知到进程的存在，进程通过<code>Run-time system</code>来管理线程；线程的切换不需要内核态特权。e.g. POSIX Pthreads。但是有一个问题就是线程的系统调用仍然需要以进程的身份进入内核，若是阻塞的调用会导致整个进程阻塞。解决办法是要么修改系统调用为非阻塞的（可能由runtime system来细节实现），要么重新实现对应系统调用的io函数。</li>
-<li>内核级线程：内核管理所有线程，并向应用程序提供接口，以线程为基础进行调度，线程的切换需要内核支持。e.g. Windows。</li>
-<li>混合模型：用户态线程和内核线程一一对应，在用户态创建，在内核态调度。e.g. Solaris。</li>
-</ul>
+</h4>
+<p>当程序加载到内存时一次性由装载器实现从逻辑地址到物理地址的转换，一般可以由软件完成。</p>
 
-<h2 class="relative group">三、协程coroutine
-    <div id="三协程coroutine" class="anchor"></div>
+<h4 class="relative group">动态地址重定位
+    <div id="动态地址重定位" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%89%e5%8d%8f%e7%a8%8bcoroutine" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8a%a8%e6%80%81%e5%9c%b0%e5%9d%80%e9%87%8d%e5%ae%9a%e4%bd%8d" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>在执行过程中进行地址转换，需要硬件支持。CPU将逻辑地址给硬件<strong>内存管理单元</strong>MMU，得到物理地址。</p>
+
+<h3 class="relative group">3. 地址绑定时机（地址映射的时机）
+    <div id="3-地址绑定时机地址映射的时机" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#3-%e5%9c%b0%e5%9d%80%e7%bb%91%e5%ae%9a%e6%97%b6%e6%9c%ba%e5%9c%b0%e5%9d%80%e6%98%a0%e5%b0%84%e7%9a%84%e6%97%b6%e6%9c%ba" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-before.png"
+    ><figcaption>程序执行前的准备过程，可以看出有4种绑定时机</figcaption></figure>
+<p>那么程序里的“地址”是在哪个阶段，被最终确定成为物理内存中的“真实地址”的呢？在现代操作系统中一般而言都是<strong>运行时绑定</strong>，这是出于性能的考虑。</p>
+<p>如果用编译时绑定，会直接生成<strong>绝对的物理地址</strong>，程序必须加载到固定的内存位置才能运行，这样显然是没有灵活性的，只适合早期单任务系统或极简单的嵌入式设备。</p>
+<p>如果用链接时绑定，链接器将多个<code>.o</code>目标文件合并成可执行文件，并在此时确定各个符号的<strong>相对地址</strong>（相对于可执行文件起始位置的），程序仍然需要在加载时整体放入内存但不需要固定位置。</p>
+<p>如果是加载时绑定，加载器知道应该放在哪个物理位置，然后将程序的所有地址一次性放在最终转换得到的物理地址；允许程序在加载时选择位置但一旦放入后就不能移动。</p>
+<p>如果是运行时绑定，每次涉及到地址的指令时都通过硬件MMU配合页表来将逻辑地址转换为物理地址，这样性能是最优的。一是因为有CPU内部的TLB的帮助，二是因为虚拟内存技术允许进程的一部分放在内存其余放在磁盘，可以懒分配。</p>
+
+<h3 class="relative group">4. 地址保护
+    <div id="4-地址保护" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#4-%e5%9c%b0%e5%9d%80%e4%bf%9d%e6%8a%a4" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>越界</li>
+</ul>
+<p>基地址寄存器和界限寄存器：保证CPU访问的地址是在这两个范围内的。（在虚存提出后，每个进程都是一样的地址空间，就不会有越界的问题了，最多是越权）</p>
+<ul>
+<li>越权</li>
+</ul>
+
+<h2 class="relative group">三、物理内存空闲管理
+    <div id="三物理内存空闲管理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%89%e7%89%a9%e7%90%86%e5%86%85%e5%ad%98%e7%a9%ba%e9%97%b2%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
     </span>
     
 </h2>
-<p>是<strong>用户态</strong>的（没有进内核的开销）、可主动挂起和恢复的执行单元，调度由程序员控制而不是操作系统内核。</p>
-<p>协程运行在线程之上，当一个协程执行完成后，可以选择主动让出，让另一个协程运行在当前线程之上。协程并没有增加线程数量，只是在线程的基础之上通过分时复用的方式运行多个协程，而且协程的切换在用户态完成，切换的代价比线程从用户态到内核态的代价小很多。所以协程适用于IO密集型的任务。</p>
-<blockquote><p>参考：https://zhuanlan.zhihu.com/p/172471249</p>
-</blockquote>
+
+<h3 class="relative group">1. 数据结构
+    <div id="1-数据结构" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>位图：每个分配单元对应于位图中的一位，0表示空闲，1表示占用（或者相反）</li>
+<li>空闲区表、已分配区表：表中每一项记录了空闲区（或已分配区）的起始地址、长度、标志</li>
+<li>空闲块链表：隐式空闲链表、显式空闲链表、分离空闲链表</li>
+</ul>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-%e7%a9%ba%e9%97%b2%e5%8c%ba%e8%a1%a8.png"
+    ><figcaption>空闲区表和已分配区表示意图</figcaption></figure>
+
+<h3 class="relative group">2. 分配算法
+    <div id="2-分配算法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e5%88%86%e9%85%8d%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>考虑的衡量指标：1. 内存资源利用率（内碎片、外碎片）。2. 性能。</p>
+<ul>
+<li>首次适配 first fit：在空闲区表中找到第一个满足进程要求的空闲区</li>
+<li>下次适配 next fit：从上次找到的空闲区处接着查找</li>
+<li>最佳适配 best fit：查找整个空闲区表，找到能够满足进程要求的最小空闲区</li>
+<li>最差适配 worst fit：总是分配满足进程要求的最大空闲区</li>
+<li>分离适配算法：核心思想是：将空闲块按照大小分成不同的类别（大小类），每个类别维护一个独立的空闲链表。</li>
+</ul>
+
+<h3 class="relative group">3. 回收与合并
+    <div id="3-回收与合并" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#3-%e5%9b%9e%e6%94%b6%e4%b8%8e%e5%90%88%e5%b9%b6" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>内存回收算法：当某一块归还后，前后空闲空间合并，修改内存空闲区表。有四种情况：上相邻、下相邻、上下都相邻、上下都不相邻。</p>
+
+<h3 class="relative group">4. 分离适配算法的一些例子
+    <div id="4-分离适配算法的一些例子" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#4-%e5%88%86%e7%a6%bb%e9%80%82%e9%85%8d%e7%ae%97%e6%b3%95%e7%9a%84%e4%b8%80%e4%ba%9b%e4%be%8b%e5%ad%90" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+
+<h4 class="relative group">⭐伙伴系统
+    <div id="伙伴系统" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%bc%99%e4%bc%b4%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>一种经典的分离适配算法（或者说一种）：<strong>伙伴系统</strong>。主要思想是<strong>将内存按2的幂进行划分</strong>，组成若干空闲块链表；查找该链表找到能满足进程需求的最佳匹配块。算法的流程是，首先将整个可用空间看作一块：$ 2^U $ ，假设进程申请的空间大小为 $ s $ ，如果满足$ 2^{U-1} \lg s \le 2^{U} $，则分配整个块；否则，将块划分为两个大小相等的伙伴，大小为 $ 2^{U-1} $ 。一直划分下去直到产生大于或等于 $ s $ 的最小块。</p>
+<p>当合并的时候，每个块只能与其伙伴进行合并（大小相同，位置相邻）。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-%e4%bc%99%e4%bc%b4%e7%b3%bb%e7%bb%9f.png"
+    ><figcaption>一个伙伴系统分配和释放的流程例子</figcaption></figure>
+
+<h4 class="relative group">SLAB分配器
+    <div id="slab分配器" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#slab%e5%88%86%e9%85%8d%e5%99%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>伙伴系统分配的最小单位是 一页（通常 4KB），但操作系统<strong>内核</strong>经常需要分配很小的对象，比如进程描述符（task_struct）：约 1-2KB，文件描述符（file 结构体）：几十字节，锁、信号量、缓冲区头等。直接使用伙伴系统会导致内碎片严重且效率低，缓存不友好。伙伴系统管理用户空间的大块内存，对于系统内核的小对象，需要专门的“批发零售”机制，这就引出了<strong>SLAB分配</strong>：为每种常用大小的对象，预先申请一批内存，内部维护一个“空闲对象池”，分配时直接拿一个，释放时放回池子，避免频繁调用伙伴系统。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-slab.png"
+    ></figure>
+<p>但会维护太多的队列，容易出现锁竞争，提出了改进，如SLUB（数据结构简单）、SLOB（简单紧凑的设计）</p>
+
+<h2 class="relative group">四、内存管理方案的演进
+    <div id="四内存管理方案的演进" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9b%9b%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e6%96%b9%e6%a1%88%e7%9a%84%e6%bc%94%e8%bf%9b" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e5%9f%ba%e6%9c%ac%e6%96%b9%e6%a1%88.png"
+    ></figure>
+<p>注意加载单位是进程，上述都是在<strong>把进程的内容都放进内存</strong>为前提的，而目前的虚拟内存则是不需要把进程的内容都放进内存的。</p>
+
+<h3 class="relative group">1. 单一连续区
+    <div id="1-单一连续区" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e5%8d%95%e4%b8%80%e8%bf%9e%e7%bb%ad%e5%8c%ba" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>一段时间内只有一个进程在内存，用完就出去。</p>
+
+<h3 class="relative group">2. 固定分区
+    <div id="2-固定分区" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e5%9b%ba%e5%ae%9a%e5%88%86%e5%8c%ba" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>先把内存空间分割成固定大小，每个分区只能装一个进程，容易产生<strong>内碎片</strong>。</p>
+
+<h3 class="relative group">3. ⭐可变分区
+    <div id="3-可变分区" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#3-%e5%8f%af%e5%8f%98%e5%88%86%e5%8c%ba" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>根据需要分割分区分配给进程，剩余的成为新的空闲区。这样在回收的时候容易形成<strong>外碎片</strong>。</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          内碎片和外碎片
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>内碎片：分配给进程的内存块中，未被使用的部分。当分配的内存块大小 <strong>大于</strong> 进程实际请求的大小的时候会产生，往往是在固定大小分配的场景中会见到。
+外碎片：内存中分散的小空闲块，加起来够大但每个都不够用（内存中散布的太小而无法被利用的空闲块）。当进程被加载、换出、释放后，内存被切割成多个小空闲区时可能产生，往往是在可变大小分配的场景。</p></div></div><p>为了解决外碎片，一种方法是<strong>紧缩技术</strong>(memory compaction)，通过移动正在运行的进程，将分散的小空闲区合并成一个大空闲区，从而能够容纳更大的进程。</p>
+<p>那什么时候做紧凑呢？当分配失败的时候进行按需紧凑，但是分配延迟高；或者定期执行；或者在释放内存时进行但是可能会频繁移动。一般而言现代会使用按需紧凑+定期检查的组合策略。同时，能移动的前提是<strong>动态重定位</strong>，否则移动后程序会失效。主要的开销是CPU拷贝数据、暂停进程执行的时间、更新紧凑的基址寄存器/页表等等。</p>
+<p>那哪些进行适合移动呢？小进程移动成本低，优先移动；阻塞/睡眠进程容易移动；IO密集进程移动成本高（比如<code>read()</code>系统调用，可能DMA固定把读取的内容放在内存的某个位置，不能随便移动）。其中阻塞态是最佳的，因为不占用CPU可以安全移动。</p>
+<p>另一种方法就是下面的页式管理，从根本上解决。</p>
+
+<h3 class="relative group">4. ⭐页式管理（分页）
+    <div id="4-页式管理分页" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#4-%e9%a1%b5%e5%bc%8f%e7%ae%a1%e7%90%86%e5%88%86%e9%a1%b5" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>逻辑地址空间划分为大小相等的区域：页 <code>page</code>；物理内存空间按页大小划分为大小相等的区域，称为内存块 <code>page frame</code>。</p>
+<p>内存分配规则：以页为单位进行分配，并按进程需要的页数来分配；逻辑上相邻的页，物理上不一定相邻。典型的页面尺寸：4K或4M。</p>
+<p>为了完成逻辑地址空间的页和物理地址空间的页，引入了<strong>页表</strong>来对二者的地址进行映射。每个进程一个页表，存放在内存中；<strong>页表项</strong>记录着逻辑页号与页框号的对应关系。页表的其实地址保存在PCB中。</p>
+<p>CPU通过页表来完成<strong>地址转换</strong>：CPU取到逻辑地址，自动划分为页号和页内地址；用页号查页表（由硬件完成），得到页框号，再与页内地址（页内偏移）拼接为物理地址。</p>
+<p>由于页式也是固定分区类型，仍然会有内碎片问题的存在；但是不会有在物理内存上的外碎片问题（因为连续的逻辑页可以映射到不连续的物理页框）。</p>
+
+<h3 class="relative group">5. 段式管理（分段）
+    <div id="5-段式管理分段" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#5-%e6%ae%b5%e5%bc%8f%e7%ae%a1%e7%90%86%e5%88%86%e6%ae%b5" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>与分页类似，但是是<strong>按照程序自身的逻辑结构</strong>来划分内存，每个逻辑单元（如一个代码段、数据段、堆、栈）是一个<strong>段</strong>。每个进程会有一个段表，存放在内存中，与页表类似进行段的地址的转换。</p>
+
+<h3 class="relative group">6. 段页式
+    <div id="6-段页式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#6-%e6%ae%b5%e9%a1%b5%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>先分段，再分页。这样逻辑地址就是段号+页号+偏移。</p>
+<ul>
+<li>段表：记录了每一段的页表始址和页表长度</li>
+<li>页表：记录了逻辑页号与内存块号的对应关系（每一段有一个，一个程序可能有多个页表）</li>
+<li>空闲区管理、分配、回收：同页式管理</li>
+</ul>
+
+<h2 class="relative group">五、内存“扩充”
+    <div id="五内存扩充" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%94%e5%86%85%e5%ad%98%e6%89%a9%e5%85%85" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>目标：解决在较小的存储空间中运行较大程序时遇到的矛盾（内存不够了怎么办？）</p>
+<ul>
+<li>覆盖技术：按照其自身的逻辑结构将那些不会同时执行的程序段共享同一块内存区域，要求程序各模块之间有明确的调用结构。程序员声明覆盖结构，操作系统完成自动覆盖。</li>
+</ul>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-overlapping.png"
+    ></figure>
+<ul>
+<li>交换技术：内存空间紧张时，系统将内存中某些进程暂时移到外存，把外存中某些进程换进内存，占据前者所占用的区域（进程在内存与外存之间的动态调度）
+<ul>
+<li>交换时机？当系统发现物理内存不足或有不够的危险，且需要为即将运行的程序腾出空间时。</li>
+<li>如何选择被换出的进程？<strong>不应该</strong>换出处于等待IO的进程</li>
+<li>换出后再换入的进程不一定回到原处，采用动态重定位，可以换到新的物理地址处，但是通过查页表可以得知虚拟地址位置是不会变的</li>
+</ul>
+</li>
+</ul>
+
           
           
           
@@ -1508,8 +1963,10 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        Part 3:
-        This Article
+        <a href="/os/study_notes/3-process_thread/">
+          Part 3:
+          操作系统笔记3：进程与线程模型
+        </a>
       </div>
     
   
@@ -1526,10 +1983,8 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/os/study_notes/5-memory_management/">
-          Part 5:
-          操作系统笔记5：内存管理
-        </a>
+        Part 5:
+        This Article
       </div>
     
   
@@ -1567,8 +2022,8 @@
           type="text/javascript"
           src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
           integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
-          data-oid="views_os/study_notes/3-process_thread/index.md"
-          data-oid-likes="likes_os/study_notes/3-process_thread/index.md"></script>
+          data-oid="views_os/study_notes/5-memory_management/index.md"
+          data-oid-likes="likes_os/study_notes/5-memory_management/index.md"></script>
       
     </section>
 
@@ -1587,32 +2042,19 @@
       <div class="flex justify-between pt-3">
         <span class="flex flex-col">
           
-            <a
-              class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-              href="/os/study_notes/4-scheduling/">
-              <span class="leading-6">
-                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;操作系统笔记4：进程与线程调度
-              </span>
-            </a>
-            
-              <span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
-                <time datetime="2026-04-09T00:00:00&#43;00:00">2026/04/09</time>
-              </span>
-            
-          
         </span>
         <span class="flex flex-col items-end">
           
             <a
               class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-              href="/os/study_notes/2-runtime_env/">
+              href="/os/study_notes/6-virtual_memory_management/">
               <span class="leading-6">
-                操作系统笔记2：操作系统运行环境与运行机制&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+                操作系统笔记6：虚拟内存管理&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
               </span>
             </a>
             
               <span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
-                <time datetime="2026-03-22T00:00:00&#43;00:00">2026/03/22</time>
+                <time datetime="2026-04-16T00:00:00&#43;00:00">2026/04/16</time>
               </span>
             
           

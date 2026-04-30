@@ -3,62 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://twj-ink.github.io/os/study_notes/</loc>
-    <lastmod>2026-04-16T00:00:00+00:00</lastmod>
+    <loc>https://twj-ink.github.io/blogs/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/claude-and-deepseek/</loc>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/</loc>
-    <lastmod>2026-04-16T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://twj-ink.github.io/os/</loc>
-    <lastmod>2026-04-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-30T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/study_notes/5-memory_management/</loc>
-    <lastmod>2026-04-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-27T20:26:50+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/</loc>
-    <lastmod>2026-04-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-27T20:26:50+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/study_notes/4-scheduling/</loc>
-    <lastmod>2026-04-09T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/local_linux/</loc>
-    <lastmod>2026-04-07T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/study_notes/3-process_thread/</loc>
-    <lastmod>2026-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/study_notes/2-runtime_env/</loc>
-    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/study_notes/1-intro/</loc>
-    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -70,78 +70,103 @@
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/makefile_tutorial/</loc>
-    <lastmod>2026-03-02T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/rb-tree_in_linux/</loc>
-    <lastmod>2026-02-23T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/study_notes/</loc>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/01-datalab/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/02-bomblab/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/03-attacklab/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/04-archlab/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/05-cachelab/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/06-shelllab/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/07-malloclab/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/08-proxylab/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/readnotes/</loc>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/gallery/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/ics/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/castle/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/os/</loc>
+    <lastmod>2026-04-10T18:53:16+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/moments/</loc>
+    <lastmod>2026-03-31T12:39:18+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

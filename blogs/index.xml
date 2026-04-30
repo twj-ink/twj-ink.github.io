@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/blogs/</link>
+    <description>Recent content in Blogs on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Thu, 30 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>claude code &#43; deepseek v4 部署流程和个人使用体验</title>
+      <link>https://twj-ink.github.io/blogs/claude-and-deepseek/</link>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/blogs/claude-and-deepseek/</guid>
+      <description>从deepseek网页版转为CLI版，代码编辑和操作更加方便</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://twj-ink.github.io/blogs/claude-and-deepseek/feature_ex.png" />
+    </item>
+    
+  </channel>
+</rss>

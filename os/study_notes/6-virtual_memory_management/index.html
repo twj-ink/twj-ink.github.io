@@ -66,6 +66,7 @@
     <meta property="article:published_time" content="2026-04-16T00:00:00+00:00">
     <meta property="article:modified_time" content="2026-04-27T20:26:50+08:00">
     <meta property="article:tag" content="OS">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/4-scheduling/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/3-process_thread/">
@@ -257,7 +258,7 @@
     "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "20"
+    "wordCount": "626"
   }]
   </script>
 
@@ -940,7 +941,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-04-16T00:00:00&#43;00:00">2026/04/16</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-04-27T20:26:50&#43;08:00">Updated: 2026/04/27</time><span class="px-2 text-primary-500">&middot;</span><span>306 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-04-16T00:00:00&#43;00:00">2026/04/16</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-04-27T20:26:50&#43;08:00">Updated: 2026/04/27</time><span class="px-2 text-primary-500">&middot;</span><span>3183 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1158,13 +1159,70 @@
     class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#页表">页表</a>
+    <li><a href="#一虚拟内存概述">一、虚拟内存概述</a>
       <ul>
-        <li><a href="#页表项设计">页表项设计</a></li>
-        <li><a href="#多级页表">多级页表</a></li>
-        <li><a href="#tlb">TLB</a></li>
+        <li><a href="#11-存储体系">1.1 存储体系</a></li>
+        <li><a href="#12-核心术语">1.2 核心术语</a></li>
+        <li><a href="#13-虚拟内存管理的目标">1.3 虚拟内存管理的目标</a></li>
       </ul>
     </li>
+    <li><a href="#二虚拟页式存储管理">二、虚拟页式存储管理</a>
+      <ul>
+        <li><a href="#21-基本思想">2.1 基本思想</a></li>
+        <li><a href="#22-调页的三个策略coffman--denning">2.2 调页的三个策略（Coffman &amp; Denning）</a></li>
+      </ul>
+    </li>
+    <li><a href="#三硬件机制地址转换">三、硬件机制：地址转换</a>
+      <ul>
+        <li><a href="#31-mmu-工作原理">3.1 MMU 工作原理</a></li>
+        <li><a href="#32-地址转换过程">3.2 地址转换过程</a></li>
+        <li><a href="#33-x86-保护模式下的寻址">3.3 x86 保护模式下的寻址</a></li>
+      </ul>
+    </li>
+    <li><a href="#四页表">四、页表</a>
+      <ul>
+        <li><a href="#41-页表项pte设计">4.1 页表项（PTE）设计</a></li>
+        <li><a href="#42-多级页表">4.2 多级页表</a></li>
+        <li><a href="#43-反转页表inverted-page-table">4.3 反转页表（Inverted Page Table）</a></li>
+      </ul>
+    </li>
+    <li><a href="#五tlb--加速地址转换">五、TLB — 加速地址转换</a>
+      <ul>
+        <li><a href="#51-为什么需要-tlb">5.1 为什么需要 TLB</a></li>
+        <li><a href="#52-tlb-原理">5.2 TLB 原理</a></li>
+        <li><a href="#53-关键问题">5.3 关键问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#六缺页异常处理">六、缺页异常处理</a></li>
+    <li><a href="#七软件策略">七、软件策略</a>
+      <ul>
+        <li><a href="#71-驻留集管理">7.1 驻留集管理</a></li>
+        <li><a href="#72-页面置换算法">7.2 页面置换算法</a>
+          <ul>
+            <li><a href="#721-opt最佳置换算法">7.2.1 OPT（最佳置换算法）</a></li>
+            <li><a href="#722-fifo先进先出">7.2.2 FIFO（先进先出）</a></li>
+            <li><a href="#723-second-chance第二次机会">7.2.3 Second Chance（第二次机会）</a></li>
+            <li><a href="#724-clock时钟算法">7.2.4 Clock（时钟算法）</a></li>
+            <li><a href="#725-nru最近未使用">7.2.5 NRU（最近未使用）</a></li>
+            <li><a href="#726-lru最近最久未使用">7.2.6 LRU（最近最久未使用）</a></li>
+            <li><a href="#727-nfu最不经常使用与-aging老化算法">7.2.7 NFU（最不经常使用）与 Aging（老化算法）</a></li>
+            <li><a href="#728-工作集算法">7.2.8 工作集算法</a></li>
+          </ul>
+        </li>
+        <li><a href="#73-算法总结">7.3 算法总结</a></li>
+        <li><a href="#74-影响缺页次数的因素">7.4 影响缺页次数的因素</a></li>
+        <li><a href="#75-清除策略">7.5 清除策略</a></li>
+        <li><a href="#76-加载控制">7.6 加载控制</a></li>
+      </ul>
+    </li>
+    <li><a href="#八内存映射文件">八、内存映射文件</a>
+      <ul>
+        <li><a href="#81-mmap-机制">8.1 mmap() 机制</a></li>
+        <li><a href="#82-写时复制cow与-fork">8.2 写时复制（COW）与 fork()</a></li>
+      </ul>
+    </li>
+    <li><a href="#九linux-虚拟地址空间布局">九、Linux 虚拟地址空间布局</a></li>
+    <li><a href="#十windows-虚拟内存管理补充">十、Windows 虚拟内存管理（补充）</a></li>
   </ul>
 </nav>
   </div>
@@ -1178,13 +1236,70 @@
     class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#页表">页表</a>
+    <li><a href="#一虚拟内存概述">一、虚拟内存概述</a>
       <ul>
-        <li><a href="#页表项设计">页表项设计</a></li>
-        <li><a href="#多级页表">多级页表</a></li>
-        <li><a href="#tlb">TLB</a></li>
+        <li><a href="#11-存储体系">1.1 存储体系</a></li>
+        <li><a href="#12-核心术语">1.2 核心术语</a></li>
+        <li><a href="#13-虚拟内存管理的目标">1.3 虚拟内存管理的目标</a></li>
       </ul>
     </li>
+    <li><a href="#二虚拟页式存储管理">二、虚拟页式存储管理</a>
+      <ul>
+        <li><a href="#21-基本思想">2.1 基本思想</a></li>
+        <li><a href="#22-调页的三个策略coffman--denning">2.2 调页的三个策略（Coffman &amp; Denning）</a></li>
+      </ul>
+    </li>
+    <li><a href="#三硬件机制地址转换">三、硬件机制：地址转换</a>
+      <ul>
+        <li><a href="#31-mmu-工作原理">3.1 MMU 工作原理</a></li>
+        <li><a href="#32-地址转换过程">3.2 地址转换过程</a></li>
+        <li><a href="#33-x86-保护模式下的寻址">3.3 x86 保护模式下的寻址</a></li>
+      </ul>
+    </li>
+    <li><a href="#四页表">四、页表</a>
+      <ul>
+        <li><a href="#41-页表项pte设计">4.1 页表项（PTE）设计</a></li>
+        <li><a href="#42-多级页表">4.2 多级页表</a></li>
+        <li><a href="#43-反转页表inverted-page-table">4.3 反转页表（Inverted Page Table）</a></li>
+      </ul>
+    </li>
+    <li><a href="#五tlb--加速地址转换">五、TLB — 加速地址转换</a>
+      <ul>
+        <li><a href="#51-为什么需要-tlb">5.1 为什么需要 TLB</a></li>
+        <li><a href="#52-tlb-原理">5.2 TLB 原理</a></li>
+        <li><a href="#53-关键问题">5.3 关键问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#六缺页异常处理">六、缺页异常处理</a></li>
+    <li><a href="#七软件策略">七、软件策略</a>
+      <ul>
+        <li><a href="#71-驻留集管理">7.1 驻留集管理</a></li>
+        <li><a href="#72-页面置换算法">7.2 页面置换算法</a>
+          <ul>
+            <li><a href="#721-opt最佳置换算法">7.2.1 OPT（最佳置换算法）</a></li>
+            <li><a href="#722-fifo先进先出">7.2.2 FIFO（先进先出）</a></li>
+            <li><a href="#723-second-chance第二次机会">7.2.3 Second Chance（第二次机会）</a></li>
+            <li><a href="#724-clock时钟算法">7.2.4 Clock（时钟算法）</a></li>
+            <li><a href="#725-nru最近未使用">7.2.5 NRU（最近未使用）</a></li>
+            <li><a href="#726-lru最近最久未使用">7.2.6 LRU（最近最久未使用）</a></li>
+            <li><a href="#727-nfu最不经常使用与-aging老化算法">7.2.7 NFU（最不经常使用）与 Aging（老化算法）</a></li>
+            <li><a href="#728-工作集算法">7.2.8 工作集算法</a></li>
+          </ul>
+        </li>
+        <li><a href="#73-算法总结">7.3 算法总结</a></li>
+        <li><a href="#74-影响缺页次数的因素">7.4 影响缺页次数的因素</a></li>
+        <li><a href="#75-清除策略">7.5 清除策略</a></li>
+        <li><a href="#76-加载控制">7.6 加载控制</a></li>
+      </ul>
+    </li>
+    <li><a href="#八内存映射文件">八、内存映射文件</a>
+      <ul>
+        <li><a href="#81-mmap-机制">8.1 mmap() 机制</a></li>
+        <li><a href="#82-写时复制cow与-fork">8.2 写时复制（COW）与 fork()</a></li>
+      </ul>
+    </li>
+    <li><a href="#九linux-虚拟地址空间布局">九、Linux 虚拟地址空间布局</a></li>
+    <li><a href="#十windows-虚拟内存管理补充">十、Windows 虚拟内存管理（补充）</a></li>
   </ul>
 </nav>
   </div>
@@ -1368,6 +1483,16 @@
       </div>
     
   
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/7-file_system/">
+          Part 7:
+          操作系统笔记7：文件系统
+        </a>
+      </div>
+    
+  
 
 
   </details>
@@ -1382,51 +1507,858 @@
     alt=""
     src="../imgs/6-csapp-vm.png"
     ><figcaption>CSAPP,chapter9: 虚拟内存为每一个进程提供了一个大的、统一的、私有的、稀疏的地址空间</figcaption></figure>
-<p>操作系统协调各个存储器的使用，存储体系是从小到大：寄存器-缓存-内存-磁盘。这样的体系结构存储着各个进程的虚拟空间的内容。</p>
-<p>虚拟内存管理的目标：1. 透明性 2. 效率 3. 保护。</p>
-<p><em>虚拟内存</em>即虚存，<em>虚拟地址空间</em>即分配给进程的虚拟内存，<em>虚拟存储技术</em>即当进程运行时，先将其一部分装入内存，另一部分暂时保存在磁盘；当要执行的指令或访问的数据不在内存时，由操作系统自动完成将它们从磁盘调入内存的工作。</p>
-<p>虚拟地址空间是对内存的抽象，进程使用虚拟内存的地址，通过MMU转换得到物理地址，仿佛进程能够直接访问内存一样。</p>
 
-<h2 class="relative group">页表
-    <div id="页表" class="anchor"></div>
+<h2 class="relative group">一、虚拟内存概述
+    <div id="一虚拟内存概述" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%a1%b5%e8%a1%a8" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e6%a6%82%e8%bf%b0" aria-label="Anchor">#</a>
     </span>
     
 </h2>
 
-<h3 class="relative group">页表项设计
-    <div id="页表项设计" class="anchor"></div>
+<h3 class="relative group">1.1 存储体系
+    <div id="11-存储体系" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%a1%b5%e8%a1%a8%e9%a1%b9%e8%ae%be%e8%ae%a1" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#11-%e5%ad%98%e5%82%a8%e4%bd%93%e7%b3%bb" aria-label="Anchor">#</a>
     </span>
     
 </h3>
-<p>组成：页框号、有效位（表示该页在内存还是在磁盘）、访问位/引用位、修改位（是否在内存中被修改过）、保护位。</p>
+<p>操作系统协调各级存储器的使用，从上到下：寄存器 → 缓存 → 内存 → 磁盘。目标是让&quot;内存&quot;速度尽量快（匹配 CPU 取指速度），容量尽量大（能装下当前运行的程序与数据）。</p>
+<p>进程的虚拟地址空间横跨整个存储体系，物理内存和磁盘结合起来，提供一个大容量的&quot;虚存&quot;。</p>
 
-<h3 class="relative group">多级页表
-    <div id="多级页表" class="anchor"></div>
+<h3 class="relative group">1.2 核心术语
+    <div id="12-核心术语" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%a4%9a%e7%ba%a7%e9%a1%b5%e8%a1%a8" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#12-%e6%a0%b8%e5%bf%83%e6%9c%af%e8%af%ad" aria-label="Anchor">#</a>
     </span>
     
 </h3>
+<table>
+  <thead>
+      <tr>
+          <th>术语</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>虚拟内存（虚存）</strong></td>
+          <td>把物理内存与磁盘结合，得到一个容量很大的&quot;内存&quot;</td>
+      </tr>
+      <tr>
+          <td><strong>虚拟地址空间</strong></td>
+          <td>分配给进程的虚拟内存</td>
+      </tr>
+      <tr>
+          <td><strong>虚拟地址</strong></td>
+          <td>虚拟内存中某一位置的地址，可被自动转换成物理地址</td>
+      </tr>
+      <tr>
+          <td><strong>虚拟存储技术</strong></td>
+          <td>进程运行时先装入一部分到内存，其余暂存磁盘；访问的数据不在内存时，由操作系统自动从磁盘调入</td>
+      </tr>
+  </tbody>
+</table>
+<p>虚存大小受计算机寻址机制和可用磁盘容量的限制。虚拟地址空间是对内存的抽象——进程使用虚拟地址，通过 MMU 转换得到物理地址，仿佛能直接访问内存。</p>
 
-<h3 class="relative group">TLB
-    <div id="tlb" class="anchor"></div>
+<h3 class="relative group">1.3 虚拟内存管理的目标
+    <div id="13-虚拟内存管理的目标" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#tlb" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#13-%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e7%9a%84%e7%9b%ae%e6%a0%87" aria-label="Anchor">#</a>
     </span>
     
 </h3>
+<ol>
+<li><strong>透明性</strong>：进程感觉不到虚拟内存的存在</li>
+<li><strong>效率</strong>：地址转换和缺页处理的开销尽量小</li>
+<li><strong>保护</strong>：进程间地址空间隔离</li>
+</ol>
+<hr>
+
+<h2 class="relative group">二、虚拟页式存储管理
+    <div id="二虚拟页式存储管理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%8c%e8%99%9a%e6%8b%9f%e9%a1%b5%e5%bc%8f%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>在开始之前可以先回忆一下上一节的内存管理方案的演进：</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/6-%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e6%96%b9%e6%a1%88.png"
+    ><figcaption>内存管理方案的演进</figcaption></figure>
+<p>这里使用的是页式管理。</p>
+
+<h3 class="relative group">2.1 基本思想
+    <div id="21-基本思想" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#21-%e5%9f%ba%e6%9c%ac%e6%80%9d%e6%83%b3" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>装载程序时，只装入几个甚至零个页面</li>
+<li>进程执行时需要不在内存的页面 → 动态装入（<strong>请求调页 demand paging</strong>）</li>
+<li>需要空间时，将暂时不用的页面交换到磁盘</li>
+<li>也可采用**预先调页（prepaging）**减少缺页次数</li>
+</ul>
+<p>本质是操作系统的资源转换技术——以 CPU 时间和磁盘空间换取物理内存空间。</p>
+
+<h3 class="relative group">2.2 调页的三个策略（Coffman &amp; Denning）
+    <div id="22-调页的三个策略coffman--denning" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#22-%e8%b0%83%e9%a1%b5%e7%9a%84%e4%b8%89%e4%b8%aa%e7%ad%96%e7%95%a5coffman--denning" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>策略</th>
+          <th>问题</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>取页策略（fetch policy）</strong></td>
+          <td>何时把页面载入内存</td>
+      </tr>
+      <tr>
+          <td><strong>放置策略（placement policy）</strong></td>
+          <td>页面放在何处</td>
+      </tr>
+      <tr>
+          <td><strong>置换策略（replacement policy）</strong></td>
+          <td>页框不足时，删除哪些页</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+
+<h2 class="relative group">三、硬件机制：地址转换
+    <div id="三硬件机制地址转换" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%89%e7%a1%ac%e4%bb%b6%e6%9c%ba%e5%88%b6%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">3.1 MMU 工作原理
+    <div id="31-mmu-工作原理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#31-mmu-%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CPU → 虚拟地址 → [MMU] → 物理地址 → 内存</span></span></code></pre></div></div>
+<p>MMU（Memory Management Unit）完成虚拟地址到物理地址的转换。如果转换失败（页面不在内存、非法访问、保护违例），硬件产生异常，陷入操作系统执行缺页处理程序。</p>
+
+<h3 class="relative group">3.2 地址转换过程
+    <div id="32-地址转换过程" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#32-%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2%e8%bf%87%e7%a8%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">if (虚拟页面不在内存 || 页面非法 || 被保护) {
+</span></span><span class="line"><span class="cl">    硬件产生异常 → 操作系统执行 Page Fault 服务程序
+</span></span><span class="line"><span class="cl">} else {
+</span></span><span class="line"><span class="cl">    页框号 = 页表[虚页号]
+</span></span><span class="line"><span class="cl">    物理地址 = 页框号 ‖ 页内偏移
+</span></span><span class="line"><span class="cl">}</span></span></code></pre></div></div>
+
+<h3 class="relative group">3.3 x86 保护模式下的寻址
+    <div id="33-x86-保护模式下的寻址" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#33-x86-%e4%bf%9d%e6%8a%a4%e6%a8%a1%e5%bc%8f%e4%b8%8b%e7%9a%84%e5%af%bb%e5%9d%80" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>x86 提供段式 + 页式两级转换：逻辑地址 →（段式转换）→ 线性地址 →（页式转换）→ 物理地址。Linux 通过将段基址设为 0 来绕过分段机制，实际上只使用页式转换。</p>
+<hr>
+
+<h2 class="relative group">四、页表
+    <div id="四页表" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9b%9b%e9%a1%b5%e8%a1%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">4.1 页表项（PTE）设计
+    <div id="41-页表项pte设计" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#41-%e9%a1%b5%e8%a1%a8%e9%a1%b9pte%e8%ae%be%e8%ae%a1" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>字段</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>页框号（PFN）</strong></td>
+          <td>物理页面号</td>
+      </tr>
+      <tr>
+          <td><strong>有效位（P/Present）</strong></td>
+          <td>该页在内存还是磁盘</td>
+      </tr>
+      <tr>
+          <td><strong>访问位（A/Accessed）</strong></td>
+          <td>是否被访问过</td>
+      </tr>
+      <tr>
+          <td><strong>修改位（D/Dirty）</strong></td>
+          <td>是否在内存中被修改过</td>
+      </tr>
+      <tr>
+          <td><strong>保护位（R/W, U/S）</strong></td>
+          <td>读/写/执行权限</td>
+      </tr>
+      <tr>
+          <td><strong>PWT</strong></td>
+          <td>缓存写策略（Write Through）</td>
+      </tr>
+      <tr>
+          <td><strong>PCD</strong></td>
+          <td>禁止缓存（Cache Disable）</td>
+      </tr>
+  </tbody>
+</table>
+<p>页表项中 P 位为 0 时引发缺页异常（由硬件检测，操作系统处理）。</p>
+
+<h3 class="relative group">4.2 多级页表
+    <div id="42-多级页表" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#42-%e5%a4%9a%e7%ba%a7%e9%a1%b5%e8%a1%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>为什么要多级？</strong> 32 位地址空间，4K 页，每个进程的页表需要 512 页（2MB）。64 位更是天文数字。页表本身太大，且各页在内存中不连续存放。</p>
+<p><strong>解决思路</strong>：将数组结构转为树形结构。</p>
+<ul>
+<li><strong>一级页表（页目录）</strong>：索引指向二级页表</li>
+<li><strong>二级页表</strong>：索引指向实际页面</li>
+</ul>
+<p><strong>Core i7 四级页表结构</strong>（48 位虚拟地址）：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">VPN4 → VPN3 → VPN2 → VPN1 → 页内偏移
+</span></span><span class="line"><span class="cl">  9      9      9      9       12
+</span></span><span class="line"><span class="cl">L4 PDE → L3 PDE → L2 PDE → L1 PTE → 物理地址</span></span></code></pre></div></div>
+<p>CR3 寄存器保存页目录的物理地址。</p>
+
+<h3 class="relative group">4.3 反转页表（Inverted Page Table）
+    <div id="43-反转页表inverted-page-table" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#43-%e5%8f%8d%e8%bd%ac%e9%a1%b5%e8%a1%a8inverted-page-table" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>传统页表从虚拟地址出发查页框号，每个进程一张。反转页表从物理地址出发，系统只建一张表，表项记录 &ldquo;进程 i 的虚页号 → 页框号&rdquo; 的映射。</p>
+<ul>
+<li>优势：页表大小与实际内存成固定比例，与进程数无关</li>
+<li>实现：将虚页号 + PID 散列到一个反转页表项，需要拉链解决冲突</li>
+<li>采用体系结构：PowerPC、UltraSPARC、IA-64</li>
+</ul>
+<hr>
+
+<h2 class="relative group">五、TLB — 加速地址转换
+    <div id="五tlb--加速地址转换" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%94tlb--%e5%8a%a0%e9%80%9f%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">5.1 为什么需要 TLB
+    <div id="51-为什么需要-tlb" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#51-%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81-tlb" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>页表至少需要两次内存访问（查页目录 + 查页表）。CPU 速度与内存访问速度差异大，必须加速地址映射。</p>
+
+<h3 class="relative group">5.2 TLB 原理
+    <div id="52-tlb-原理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#52-tlb-%e5%8e%9f%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li><strong>TLB（Translation Look-aside Buffer）</strong>：相联存储器，按内容并行查找</li>
+<li>保存当前进程页表的子集（部分表项）</li>
+<li>工作原理：联想映射 → 同时比较虚拟页号 → 命中则直接返回页框号</li>
+</ul>
+
+<h3 class="relative group">5.3 关键问题
+    <div id="53-关键问题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#53-%e5%85%b3%e9%94%ae%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>问题</th>
+          <th>解决</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>TLB 大小/位置</td>
+          <td>一般在 MMU 内部，容量很小</td>
+      </tr>
+      <tr>
+          <td>TLB 置换</td>
+          <td>类似页面置换（LRU 等）</td>
+      </tr>
+      <tr>
+          <td>进程切换 TLB 刷新</td>
+          <td>PCID（x86）/ ASID 标识不同地址空间，避免频繁刷新</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+
+<h2 class="relative group">六、缺页异常处理
+    <div id="六缺页异常处理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ad%e7%bc%ba%e9%a1%b5%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>缺页异常是最常见的 Page Fault。地址映射过程中，硬件检查页表时发现所要访问的页不在内存，产生异常。</p>
+<p><strong>处理流程</strong>：</p>
+<ol>
+<li>获得缺页的磁盘地址</li>
+<li>启动磁盘，将页面调入内存</li>
+<li>如有空闲页框 → 直接分配，修改页表项的驻留位和页框号</li>
+<li>如无空闲页框 → 置换某一页；若被置换页在内存期间被修改过，需写回磁盘</li>
+<li>可能预取相邻页面</li>
+</ol>
+<p><strong>常见引发场景</strong>：</p>
+<ul>
+<li>页面未提交（不在内存）</li>
+<li>违反权限访问</li>
+<li>修改私有 COW 页面</li>
+<li>需要扩大栈</li>
+<li>页面已提交但尚未映射</li>
+<li>请求零页面</li>
+</ul>
+<hr>
+
+<h2 class="relative group">七、软件策略
+    <div id="七软件策略" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%83%e8%bd%af%e4%bb%b6%e7%ad%96%e7%95%a5" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">7.1 驻留集管理
+    <div id="71-驻留集管理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#71-%e9%a9%bb%e7%95%99%e9%9b%86%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>驻留集</strong>：当前时刻，进程实际驻留在内存中的页框集合。</p>
+<table>
+  <thead>
+      <tr>
+          <th>策略</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>固定分配</strong></td>
+          <td>进程创建时确定页框数</td>
+      </tr>
+      <tr>
+          <td><strong>可变分配</strong></td>
+          <td>根据缺页率动态调整（缺页率高 → 增加，缺页率低 → 减少）</td>
+      </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th style="text-align: center">局部置换</th>
+          <th style="text-align: center">全局置换</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>固定分配</strong></td>
+          <td style="text-align: center">√</td>
+          <td style="text-align: center">—</td>
+      </tr>
+      <tr>
+          <td><strong>可变分配</strong></td>
+          <td style="text-align: center">√</td>
+          <td style="text-align: center">√</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>全局置换</strong>：将内存中所有未锁定的页框作为置换候选。
+<strong>局部置换</strong>：仅在产生缺页的进程驻留集中选择。</p>
+
+<h3 class="relative group">7.2 页面置换算法
+    <div id="72-页面置换算法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#72-%e9%a1%b5%e9%9d%a2%e7%bd%ae%e6%8d%a2%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<blockquote><p>目标：置换最近最不可能访问的页。设计越精致，实现开销越大。</p>
+</blockquote><hr>
+
+<h4 class="relative group">7.2.1 OPT（最佳置换算法）
+    <div id="721-opt最佳置换算法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#721-opt%e6%9c%80%e4%bd%b3%e7%bd%ae%e6%8d%a2%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>置换以后不再需要的或最远的将来才会用到的页面。<strong>不可实现，作为理论基准</strong>。</p>
+<hr>
+
+<h4 class="relative group">7.2.2 FIFO（先进先出）
+    <div id="722-fifo先进先出" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#722-fifo%e5%85%88%e8%bf%9b%e5%85%88%e5%87%ba" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>置换驻留时间最长的页。实现简单，但可能淘汰重要页面，且存在 <strong>Belady 现象</strong>（分配的页框数增加，缺页次数反而增加）。</p>
+<hr>
+
+<h4 class="relative group">7.2.3 Second Chance（第二次机会）
+    <div id="723-second-chance第二次机会" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#723-second-chance%e7%ac%ac%e4%ba%8c%e6%ac%a1%e6%9c%ba%e4%bc%9a" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>FIFO 的改进：检查访问位 R，若 R=0 则置换；若 R=1 则给第二次机会，将 R 置 0。</p>
+<hr>
+
+<h4 class="relative group">7.2.4 Clock（时钟算法）
+    <div id="724-clock时钟算法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#724-clock%e6%97%b6%e9%92%9f%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>页框组织成循环缓冲区，指针轮转。是 Second Chance 的工程实现。</p>
+<hr>
+
+<h4 class="relative group">7.2.5 NRU（最近未使用）
+    <div id="725-nru最近未使用" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#725-nru%e6%9c%80%e8%bf%91%e6%9c%aa%e4%bd%bf%e7%94%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>根据 R（访问位）和 M（修改位）将页面分为四类：</p>
+<table>
+  <thead>
+      <tr>
+          <th>类别</th>
+          <th>R</th>
+          <th>M</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>第 0 类</td>
+          <td>0</td>
+          <td>0</td>
+          <td>无访问，无修改</td>
+      </tr>
+      <tr>
+          <td>第 1 类</td>
+          <td>0</td>
+          <td>1</td>
+          <td>无访问，有修改</td>
+      </tr>
+      <tr>
+          <td>第 2 类</td>
+          <td>1</td>
+          <td>0</td>
+          <td>有访问，无修改</td>
+      </tr>
+      <tr>
+          <td>第 3 类</td>
+          <td>1</td>
+          <td>1</td>
+          <td>有访问，有修改</td>
+      </tr>
+  </tbody>
+</table>
+<p>随机从编号最小的非空类中选择一页置换。优先选择不需写回磁盘的页面，节省时间。</p>
+<hr>
+
+<h4 class="relative group">7.2.6 LRU（最近最久未使用）
+    <div id="726-lru最近最久未使用" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#726-lru%e6%9c%80%e8%bf%91%e6%9c%80%e4%b9%85%e6%9c%aa%e4%bd%bf%e7%94%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>置换最后一次访问时间距离当前最远的一页。性能接近 OPT，但实现开销大（需时间戳或维护访问栈）。</p>
+<hr>
+
+<h4 class="relative group">7.2.7 NFU（最不经常使用）与 Aging（老化算法）
+    <div id="727-nfu最不经常使用与-aging老化算法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#727-nfu%e6%9c%80%e4%b8%8d%e7%bb%8f%e5%b8%b8%e4%bd%bf%e7%94%a8%e4%b8%8e-aging%e8%80%81%e5%8c%96%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p><strong>NFU</strong>：软件计数器，每页一个。每次时钟中断，计数器 += R。缺页时选计数器最小的置换。</p>
+<p><strong>Aging</strong>：改进版——计数器加 R 前先右移一位，R 加到最左端。模拟 LRU，近似效果很好。</p>
+<hr>
+
+<h4 class="relative group">7.2.8 工作集算法
+    <div id="728-工作集算法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#728-%e5%b7%a5%e4%bd%9c%e9%9b%86%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p><strong>工作集 W(t, Δ)</strong> = 进程在过去的 Δ 个虚拟时间单位中使用的虚拟页面集合。</p>
+<ul>
+<li>工作集是进程固有性质；驻留集取决于系统分配策略</li>
+<li>核心思路：找出不在工作集中的页面并置换它</li>
+<li>实现：记录每页最后访问时间，超出&quot;当前时间 − T&quot;的页面被置换</li>
+</ul>
+<p><strong>缺页率算法</strong>：设置缺页率上下阈值，动态调整驻留集大小。</p>
+<hr>
+
+<h3 class="relative group">7.3 算法总结
+    <div id="73-算法总结" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#73-%e7%ae%97%e6%b3%95%e6%80%bb%e7%bb%93" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>算法</th>
+          <th>评价</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>OPT</td>
+          <td>不可实现，作为基准</td>
+      </tr>
+      <tr>
+          <td>NRU</td>
+          <td>LRU 的粗略近似</td>
+      </tr>
+      <tr>
+          <td>FIFO</td>
+          <td>可能淘汰重要页面，有 Belady 现象</td>
+      </tr>
+      <tr>
+          <td>Second Chance</td>
+          <td>比 FIFO 有很大改善</td>
+      </tr>
+      <tr>
+          <td>Clock</td>
+          <td>现实可用</td>
+      </tr>
+      <tr>
+          <td>LRU</td>
+          <td>优秀但难实现</td>
+      </tr>
+      <tr>
+          <td>NFU</td>
+          <td>LRU 的相对粗略近似</td>
+      </tr>
+      <tr>
+          <td>Aging</td>
+          <td>非常近似 LRU</td>
+      </tr>
+      <tr>
+          <td>Working Set</td>
+          <td>开销很大</td>
+      </tr>
+      <tr>
+          <td>WSClock</td>
+          <td>好的有效算法</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">7.4 影响缺页次数的因素
+    <div id="74-影响缺页次数的因素" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#74-%e5%bd%b1%e5%93%8d%e7%bc%ba%e9%a1%b5%e6%ac%a1%e6%95%b0%e7%9a%84%e5%9b%a0%e7%b4%a0" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li><strong>页面置换算法</strong></li>
+<li><strong>页面大小</strong>（最优尺寸 <code>P = √(2se)</code>）</li>
+<li><strong>程序编制方法</strong>（按行访问 vs 按列访问，差异巨大）</li>
+<li><strong>分配给进程的物理页面数</strong></li>
+</ul>
+<p><strong>颠簸（Thrashing）</strong>：页面在内存与磁盘之间频繁调度，调度开销超过进程实际运行时间，系统效率急剧下降。</p>
+
+<h3 class="relative group">7.5 清除策略
+    <div id="75-清除策略" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#75-%e6%b8%85%e9%99%a4%e7%ad%96%e7%95%a5" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>分页守护进程（paging daemon）：定期检查内存，保持一定数量的空闲页框</li>
+<li>双指针时钟：前指针（paging daemon 控制）写回脏页；后指针（置换时使用）命中干净页概率增加</li>
+<li><strong>页缓冲技术</strong>：被置换的页保留在内存（未修改 → 空闲链表，已修改 → 修改链表），可快速恢复</li>
+</ul>
+
+<h3 class="relative group">7.6 加载控制
+    <div id="76-加载控制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#76-%e5%8a%a0%e8%bd%bd%e6%8e%a7%e5%88%b6" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>通过调节系统并发度（驻留在内存中的进程数）进行负载控制。必要时挂起进程，将其页面交换到磁盘。</p>
+<hr>
+
+<h2 class="relative group">八、内存映射文件
+    <div id="八内存映射文件" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ab%e5%86%85%e5%ad%98%e6%98%a0%e5%b0%84%e6%96%87%e4%bb%b6" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">8.1 mmap() 机制
+    <div id="81-mmap-机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#81-mmap-%e6%9c%ba%e5%88%b6" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>进程通过 <code>mmap()</code> 将文件映射到虚拟地址空间，访问文件像访问内存中的大数组。</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">mmap</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">start</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">prot</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="kt">int</span> <span class="n">flags</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">off_t</span> <span class="n">offset</span><span class="p">);</span></span></span></code></pre></div></div>
+<p><strong>prot（访问权限）</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>标志</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>PROT_READ</td>
+          <td>可读</td>
+      </tr>
+      <tr>
+          <td>PROT_WRITE</td>
+          <td>可写</td>
+      </tr>
+      <tr>
+          <td>PROT_EXEC</td>
+          <td>可执行</td>
+      </tr>
+      <tr>
+          <td>PROT_NONE</td>
+          <td>不可访问</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>flags（映射类型）</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>标志</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>MAP_PRIVATE</td>
+          <td>私有写时拷贝（.text, .rodata, .data）</td>
+      </tr>
+      <tr>
+          <td>MAP_SHARED</td>
+          <td>共享对象（共享库文件）</td>
+      </tr>
+      <tr>
+          <td>MAP_ANON</td>
+          <td>请求零页面（匿名文件）</td>
+      </tr>
+      <tr>
+          <td>MAP_PRIVATE | MAP_ANON</td>
+          <td>未初始化数据 <code>.bss</code>、堆、栈</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>第一次访问时会慢（缺页调入），之后跟访问内存一样快（已在页缓存中）</li>
+<li>两个进程 mmap 同一文件 → 看到的是同一份物理页（MAP_SHARED）</li>
+</ul>
+
+<h3 class="relative group">8.2 写时复制（COW）与 fork()
+    <div id="82-写时复制cow与-fork" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#82-%e5%86%99%e6%97%b6%e5%a4%8d%e5%88%b6cow%e4%b8%8e-fork" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>COW（Copy-On-Write）</strong>：多个进程共享同一物理页，标记为只读。当某个进程尝试写入时，触发缺页异常，内核分配新页框并复制内容。</p>
+<p><strong>fork() + COW</strong>：</p>
+<ol>
+<li>创建子进程的 <code>mm_struct</code>、<code>vm_area_struct</code>、页表的精确副本</li>
+<li>将两个进程的每个页面标记为只读</li>
+<li>将每个 <code>vm_area_struct</code> 标记为私有 COW</li>
+<li>返回时父子进程都有虚拟内存的精确副本</li>
+<li>后续写入通过 COW 机制创建新页面</li>
+</ol>
+<p>→ 如果父子进程都只读，物理页不会被真正复制，这就是 fork() 能快速返回的原因。</p>
+<hr>
+
+<h2 class="relative group">九、Linux 虚拟地址空间布局
+    <div id="九linux-虚拟地址空间布局" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b9%9dlinux-%e8%99%9a%e6%8b%9f%e5%9c%b0%e5%9d%80%e7%a9%ba%e9%97%b4%e5%b8%83%e5%b1%80" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">高地址  内核虚拟内存
+</span></span><span class="line"><span class="cl">       ────────
+</span></span><span class="line"><span class="cl">       用户栈（运行时创建）
+</span></span><span class="line"><span class="cl">       ↓
+</span></span><span class="line"><span class="cl">       ────────
+</span></span><span class="line"><span class="cl">       共享库映射区域
+</span></span><span class="line"><span class="cl">       ────────
+</span></span><span class="line"><span class="cl">       ↑
+</span></span><span class="line"><span class="cl">       运行时堆（malloc 创建）
+</span></span><span class="line"><span class="cl">       ────────
+</span></span><span class="line"><span class="cl">       读/写数据段（.data, .bss）
+</span></span><span class="line"><span class="cl">       ────────
+</span></span><span class="line"><span class="cl">低地址  只读代码段（.text, .rodata）</span></span></code></pre></div></div>
+<p>Linux 内核通过 <code>vm_area_struct</code> 链表描述每个虚拟内存区域，记录起始地址、结束地址、访问权限和映射标志。</p>
+<hr>
+
+<h2 class="relative group">十、Windows 虚拟内存管理（补充）
+    <div id="十windows-虚拟内存管理补充" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8d%81windows-%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e8%a1%a5%e5%85%85" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<ul>
+<li>x86 段页式：段选择符 → 段描述符 → 线性地址 → 页目录/页表 → 物理地址</li>
+<li>32 位 Windows：默认 2GB 用户空间 + 2GB 系统空间（可配置为 3GB/1GB）</li>
+<li>缺页异常中断号 0xe，CR2 存故障地址，<code>KiTrap0E</code> → <code>MmAccessFault</code> 处理</li>
+<li><strong>页目录自映射</strong>：利用 PDE[0x300] 自指，可快速计算任意虚拟地址的 PDE/PTE</li>
+<li>工作集分进程私有和系统全局，内核维护工作集列表进行管理</li>
+</ul>
 
           
           
@@ -1498,6 +2430,16 @@
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
         Part 6:
         This Article
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/7-file_system/">
+          Part 7:
+          操作系统笔记7：文件系统
+        </a>
       </div>
     
   

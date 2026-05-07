@@ -1832,6 +1832,308 @@
 </div>
 
     </div>
-  </body>
+<style>
+  #music-player * { box-sizing: border-box; }
+  #music-player svg { display: block; }
+
+   
+  #music-player input[type=range] {
+    -webkit-appearance: none; appearance: none;
+    height: 4px; border-radius: 999px; cursor: pointer; outline: none;
+    background: linear-gradient(to right, var(--music-fill, #3b82f6) 0%, var(--music-fill, #3b82f6) var(--music-pct, 0%), #d4d4d4 var(--music-pct, 0%), #d4d4d4 100%);
+  }
+  .dark #music-player input[type=range] {
+    background: linear-gradient(to right, var(--music-fill, #3b82f6) 0%, var(--music-fill, #3b82f6) var(--music-pct, 0%), #525252 var(--music-pct, 0%), #525252 100%);
+  }
+  #music-player input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--music-fill, #3b82f6); cursor: pointer; border: none;
+  }
+  #music-player input[type=range]::-moz-range-thumb {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--music-fill, #3b82f6); cursor: pointer; border: none;
+  }
+
+   
+  #music-player .mp-card { border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.08); }
+  #music-player .mp-title { color: #1e293b; }
+  #music-player .mp-time  { color: #64748b; }
+  #music-player .mp-btn   { color: #64748b; }
+  #music-player .mp-vol   { color: #94a3b8; }
+
+   
+  .dark #music-player .mp-card { border-color: rgba(59,130,246,0.3); background: rgba(30,58,138,0.25); }
+  .dark #music-player #disc-badge { background: rgba(59,130,246,0.25); color: rgba(147,197,253,0.9); }
+  .dark #music-player .mp-title { color: #fff; }
+  .dark #music-player .mp-time  { color: rgba(255,255,255,0.7); }
+  .dark #music-player .mp-btn   { color: rgba(255,255,255,0.6); }
+  .dark #music-player .mp-vol   { color: rgba(255,255,255,0.5); }
+
+   
+  @keyframes mp-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  #music-player .mp-mini.playing .mp-spin { animation: mp-spin 3s linear infinite; }
+</style>
+
+<div id="music-player" style="position:fixed; bottom:1rem; left:1rem; z-index:50; font-family:inherit;">
+
+  
+  <div class="mp-mini-wrap" style="display:flex; flex-direction:column; align-items:center;"
+    onmouseenter="document.getElementById('mp-mini-circle').style.transform='scale(1.08)'; document.getElementById('mp-close-btn').style.display='flex';"
+    onmouseleave="document.getElementById('mp-mini-circle').style.transform='scale(1)'; document.getElementById('mp-close-btn').style.display='none';">
+    
+    <div id="mp-close-btn" onclick="closePlayer()"
+      style="display:none; width:20px; height:20px; margin-bottom:4px; border-radius:50%; background:rgba(239,68,68,0.9); color:#fff;
+      align-items:center; justify-content:center; cursor:pointer; font-size:11px; line-height:1;
+      box-shadow:0 2px 6px rgba(0,0,0,0.2);" title="close">✕</div>
+    
+    <div id="mp-mini-circle" class="mp-mini" onclick="expandPlayer()"
+      style="width:44px; height:44px; border-radius:50%; background:rgba(59,130,246,0.9);
+      display:flex; align-items:center; justify-content:center; cursor:pointer;
+      box-shadow:0 4px 12px rgba(59,130,246,0.3); transition: transform .2s;"
+      title="click to expand">
+      <svg class="mp-spin" style="width:22px; height:22px; color:#fff;" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+      </svg>
+    </div>
+  </div>
+
+  
+  <div class="mp-card" style="display:none; width:18rem; border-radius:0.75rem; padding:1rem; box-shadow:0 25px 50px -12px rgba(59,130,246,0.2);">
+    
+    <div style="margin-bottom:0.5rem;">
+      <span id="disc-badge" style="display:inline-block; font-size:0.65rem; font-weight:700; letter-spacing:0.05em;
+        padding:1px 6px; border-radius:3px; background:rgba(59,130,246,0.15); color:var(--music-fill, #3b82f6); margin-bottom:0.25rem;">DISC 1</span>
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <span class="mp-title" style="font-size:0.875rem; font-weight:600; max-width:170px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Select a song</span>
+        <button onclick="minimizePlayer()" class="mp-btn" style="background:none; border:none; cursor:pointer; padding:0; line-height:0;" title="minimize">
+          <svg style="width:18px; height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"/></svg>
+        </button>
+      </div>
+    </div>
+    
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+      <button id="play-btn" onclick="togglePlay()" style="flex-shrink:0; width:2.5rem; height:2.5rem; border-radius:50%;
+        background:var(--music-fill, #3b82f6); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="play/pause">
+        <svg id="play-icon" style="width:20px; height:20px;" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+        <svg id="pause-icon" style="width:20px; height:20px; display:none;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+      </button>
+      <input type="range" id="progress-bar" value="0" min="0" max="100" step="0.1" oninput="seek(this.value)" style="flex:1;" />
+      <span id="time-display" class="mp-time" style="font-size:0.75rem; text-align:right; min-width:4rem;">0:00 / 0:00</span>
+    </div>
+    
+    <div style="display:flex; align-items:center; gap:0.5rem;">
+      <button onclick="prevSong()" class="mp-btn" style="background:none; border:none; cursor:pointer; padding:0; line-height:0;" title="previous">
+        <svg style="width:16px; height:16px;" fill="currentColor" viewBox="0 0 20 20"><path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/></svg>
+      </button>
+      <button onclick="nextSong()" class="mp-btn" style="background:none; border:none; cursor:pointer; padding:0; line-height:0;" title="next">
+        <svg style="width:16px; height:16px;" fill="currentColor" viewBox="0 0 20 20"><path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L9 10.798V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 009 6v2.798L4.555 5.168z"/></svg>
+      </button>
+      <div style="display:flex; align-items:center; gap:0.25rem; margin-left:auto;">
+        <svg class="mp-vol" style="width:14px; height:14px;" fill="currentColor" viewBox="0 0 20 20"><path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/></svg>
+        <input type="range" id="volume-bar" value="70" min="0" max="100" oninput="setVolume(this.value)" style="width:4rem;" />
+      </div>
+    </div>
+    <audio id="audio" preload="metadata"></audio>
+  </div>
+</div>
+
+<script>
+  
+  const discs = [
+    {
+      label: "Disc 1",
+      songs: [
+        "Angelic layer","Pure Ruby","Night Ignition","Sekirei","Jade Star",
+        "Cold Breath","ELECTRO SYLPH","BABYLON","Chariot","Sepia"
+      ]
+    },
+    {
+      label: "Disc 2",
+      songs: [
+        "AIR","IRiA","Lapis","Mercury Lamp","Qliphoth",
+        "Rose Quartz","SETSUNA (Inst.Ver)","Silent sky","Xecus","irony"
+      ]
+    }
+  ];
+  const playlist = [];
+  discs.forEach(function(d) {
+    d.songs.forEach(function(name) {
+      playlist.push({ title: name, src: "/music/" + encodeURIComponent(name) + ".mp3", disc: d.label });
+    });
+  });
+  
+
+  const PRIMARY = '#3b82f6';
+  document.documentElement.style.setProperty('--music-fill', PRIMARY);
+
+  let currentIndex = 0, isPlaying = false, closed = false;
+  const audio = document.getElementById("audio");
+  const playIcon = document.getElementById("play-icon");
+  const pauseIcon = document.getElementById("pause-icon");
+  const progressBar = document.getElementById("progress-bar");
+  const volumeBar = document.getElementById("volume-bar");
+  const timeDisplay = document.getElementById("time-display");
+  const songTitle = document.querySelector(".mp-title");
+  const miniCircle = document.querySelector(".mp-mini");
+  const mpCard = document.querySelector(".mp-card");
+
+  function fmt(t) {
+    var m = Math.floor(t / 60);
+    var s = Math.floor(t % 60).toString().padStart(2, "0");
+    return m + ":" + s;
+  }
+
+  function loadSong(index) {
+    if (index < 0 || index >= playlist.length) return;
+    currentIndex = index;
+    var song = playlist[index];
+    songTitle.textContent = song.title;
+    document.getElementById("disc-badge").textContent = song.disc;
+    if (song.src) { audio.src = song.src; audio.load(); }
+  }
+
+  function togglePlay() {
+    if (!playlist[currentIndex] || !playlist[currentIndex].src) return;
+    isPlaying ? audio.pause() : audio.play().catch(function(){});
+  }
+
+  function nextSong() {
+    loadSong((currentIndex + 1) % playlist.length);
+    audio.play().catch(function(){});
+  }
+
+  function prevSong() {
+    loadSong((currentIndex - 1 + playlist.length) % playlist.length);
+    audio.play().catch(function(){});
+  }
+
+  function seek(val) {
+    if (audio.duration) audio.currentTime = (val / 100) * audio.duration;
+  }
+
+  function setVolume(val) {
+    audio.volume = val / 100;
+    updateRangeBg(volumeBar, val);
+  }
+
+  function updateRangeBg(el, pct) {
+    el.style.setProperty('--music-pct', pct + '%');
+  }
+
+  function minimizePlayer() {
+    mpCard.style.display = 'none';
+    miniCircle.style.display = 'flex';
+  }
+
+  function expandPlayer() {
+    if (closed) return;
+    mpCard.style.display = 'block';
+    miniCircle.style.display = 'none';
+  }
+
+  function closePlayer() {
+    closed = true;
+    audio.pause();
+    mpCard.style.display = 'none';
+    miniCircle.style.display = 'none';
+    document.getElementById('mp-reopen').style.display = 'flex';
+  }
+
+  function reopenPlayer() {
+    closed = false;
+    miniCircle.style.display = 'flex';
+    document.getElementById('mp-reopen').style.display = 'none';
+  }
+
+  audio.addEventListener("play", function() {
+    isPlaying = true;
+    playIcon.style.display = "none";
+    pauseIcon.style.display = "";
+    miniCircle.classList.add("playing");
+  });
+  audio.addEventListener("pause", function() {
+    isPlaying = false;
+    playIcon.style.display = "";
+    pauseIcon.style.display = "none";
+    miniCircle.classList.remove("playing");
+  });
+  audio.addEventListener("timeupdate", function() {
+    if (audio.duration) {
+      var pct = (audio.currentTime / audio.duration) * 100;
+      progressBar.value = pct;
+      updateRangeBg(progressBar, pct);
+      timeDisplay.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
+    }
+  });
+  audio.addEventListener("ended", nextSong);
+
+  
+  function saveState() {
+    var state = {
+      idx: currentIndex, time: audio.currentTime || 0,
+      playing: isPlaying, vol: audio.volume, closed: closed
+    };
+    localStorage.setItem('mp-state', JSON.stringify(state));
+  }
+
+  function restoreState() {
+    try {
+      var raw = localStorage.getItem('mp-state');
+      if (!raw) return false;
+      var s = JSON.parse(raw);
+      if (s.idx < 0 || s.idx >= playlist.length) return false;
+      loadSong(s.idx);
+      audio.volume = s.vol;
+      volumeBar.value = s.vol * 100;
+      updateRangeBg(volumeBar, s.vol * 100);
+      if (s.time > 0) {
+        audio.addEventListener('loadedmetadata', function seekOnce() {
+          audio.currentTime = s.time;
+          audio.removeEventListener('loadedmetadata', seekOnce);
+        });
+      }
+      if (!s.closed && s.playing) {
+        closed = false;
+        expandPlayer();
+        audio.play().catch(function(){});
+      } else if (!s.closed && !s.playing) {
+        closed = false;
+        miniCircle.style.display = 'flex';
+      } else {
+        closed = true;
+        miniCircle.style.display = 'none';
+        document.getElementById('mp-reopen').style.display = 'flex';
+      }
+      return true;
+    } catch(e) { return false; }
+  }
+
+  window.addEventListener('beforeunload', saveState);
+  
+  setInterval(saveState, 5000);
+
+  audio.volume = volumeBar.value / 100;
+  updateRangeBg(volumeBar, volumeBar.value);
+  if (!restoreState()) loadSong(0);
+</script>
+
+
+<div id="mp-reopen" onclick="reopenPlayer()"
+  style="display:none; position:fixed; left:0; bottom:2rem; z-index:50;
+  width:24px; height:48px; border-radius:0 24px 24px 0;
+  background:rgba(59,130,246,0.85); cursor:pointer;
+  box-shadow:2px 0 8px rgba(59,130,246,0.2);"
+  title="reopen">
+  <span style="display:flex; align-items:center; justify-content:center; width:100%; height:100%;">
+  <svg style="width:14px; height:14px; color:#fff; margin-right:4px;" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd"/>
+  </svg>
+  </span>
+</div>
+</body>
   
 </html>

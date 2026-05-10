@@ -402,7 +402,7 @@
     "keywords": ["CSAPP","位运算","链接","Linux"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "3066"
+    "wordCount": "3518"
   }]
   </script>
 
@@ -1083,7 +1083,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-04-10T18:53:16&#43;08:00">Updated: 2026/04/10</time><span class="px-2 text-primary-500">&middot;</span><span>15325 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">77 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-04-10T18:53:16&#43;08:00">Updated: 2026/04/10</time><span class="px-2 text-primary-500">&middot;</span><span>17559 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">88 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1352,6 +1352,18 @@
             <li><a href="#923-红黑树在虚拟内存中的应用浅析">9.2.3 红黑树在虚拟内存中的应用浅析</a></li>
           </ul>
         </li>
+        <li><a href="#93-地址转换">9.3 地址转换</a>
+          <ul>
+            <li><a href="#931-页表设计">9.3.1 页表设计</a></li>
+          </ul>
+        </li>
+        <li><a href="#932-页表太大了多级页表">9.3.2 页表太大了？多级页表</a>
+          <ul>
+            <li><a href="#933-例子">9.3.3 例子</a></li>
+          </ul>
+        </li>
+        <li><a href="#934-反转页表">9.3.4 反转页表</a></li>
+        <li><a href="#935-tlb加速地址转换">9.3.5 TLB：加速地址转换</a></li>
       </ul>
     </li>
   </ul>
@@ -1418,6 +1430,18 @@
             <li><a href="#923-红黑树在虚拟内存中的应用浅析">9.2.3 红黑树在虚拟内存中的应用浅析</a></li>
           </ul>
         </li>
+        <li><a href="#93-地址转换">9.3 地址转换</a>
+          <ul>
+            <li><a href="#931-页表设计">9.3.1 页表设计</a></li>
+          </ul>
+        </li>
+        <li><a href="#932-页表太大了多级页表">9.3.2 页表太大了？多级页表</a>
+          <ul>
+            <li><a href="#933-例子">9.3.3 例子</a></li>
+          </ul>
+        </li>
+        <li><a href="#934-反转页表">9.3.4 反转页表</a></li>
+        <li><a href="#935-tlb加速地址转换">9.3.5 TLB：加速地址转换</a></li>
       </ul>
     </li>
   </ul>
@@ -3277,6 +3301,247 @@ $$<p>其中<code>BUILD_BUG_ON_MSG</code>：如果不匹配，编译时报错；<
 <p>而在后续中则使用了B树的变体：</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">mm_struct → mm_mt (Maple Tree根) → vm_area_struct (通过Maple Tree节点)</span></span></code></pre></div></div>
 <p>这也说明CSAPP这本书参考的linux版本较早。</p>
+
+<h3 class="relative group">9.3 地址转换
+    <div id="93-地址转换" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#93-%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>给予一个虚拟地址空间的虚拟地址va，如何转换为实际的物理地址空间的物理地址pa呢？这是由硬件MMU结合页表来完成的。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/chapter9/%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2.png"
+    ><figcaption><strong>以下讨论我们先不考虑图中的TLB的部分</strong></figcaption></figure>
+
+<h4 class="relative group">9.3.1 页表设计
+    <div id="931-页表设计" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#931-%e9%a1%b5%e8%a1%a8%e8%ae%be%e8%ae%a1" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>下面我们来讨论一下页表是怎么设计出来的。</p>
+<p>首先对于一个va，其和某一个pa是一一对应着的。最自然的想法就是，<strong>设计一个两列的表格，第一列是索引，代表着虚拟地址va；第二列是值，代表着这个va所对应着的pa</strong>。这样MMU直接拿着一个从CPU来的va去查表，即可得到对应的pa。但是问题来了：这样的表也太大了。光是一个进程想要保存自己的页表都要很大一部分空间了。</p>
+<p>那么我们怎么优化呢？仍然考虑一个两列的表格，但是我不要直接保存整个va和pa了，而是利用到<strong>分页</strong>的设计模式。由于每个页大小是固定的（比如4K），那<strong>不妨</strong>把每个va拆成两部分：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">+------+------------+
+</span></span><span class="line"><span class="cl">| VPN  | VPO(12位)  |
+</span></span><span class="line"><span class="cl">+------+------------+</span></span></code></pre></div></div>
+<p>其中低12位是页内偏移量(<code>Virtual Page Offset</code>)，高的剩余位是对于该地址所处的虚拟页的地址索引(<code>Vitrual Page Number</code>)。</p>
+<p>你可能会问，这样设计有什么好处？其一，页表项目的个数会骤减，从原来的保存所有的地址到现在只保存所有的页，也就是说将原来的4096个页表项都缩减成了1个页表项（这也算是为什么叫做“<strong>页</strong>表项”了）；其二，由于分页是同时在虚拟地址空间和物理地址空间进行的，对于某一页内的内容，其在虚拟页中的偏移（相对于该虚拟页的起始地址）和其在物理页中的偏移（相对于该物理页的起始地址）是一样的。</p>
+<p>那么，对于物理地址也按照上述方式进行划分得到</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">+------+------------+
+</span></span><span class="line"><span class="cl">| PPN  | PPO(12位)  |
+</span></span><span class="line"><span class="cl">+------+------------+</span></span></code></pre></div></div>
+<p>而且，<code>PPO(Physical Page Offset)</code>和<code>VPO</code>是完全一致的！所以对于页表项而言，第一列存<code>VPN</code>，第二列存对应的<code>PPN</code>即可，然后MMU再把<code>VPO</code>拼接到<code>PPN</code>的末尾即可得到pa了。这样来看，不仅仅页表项的个数减少了，每一个页表项的大小也减小了（毕竟从原来的整个地址变成了现在的地址的一部分）。</p>
+<p>到这里你可能还会说，这个思路是<strong>不妨</strong>出来的，看着好像是正确的但是又隐隐地感觉不太对，能证明出来是正确的吗？其实是可以的，这种对于地址的分割方式也来源于下面的证明。由于每个页都是按照页对齐的，每一个页的起始地址很显然都是低12位为0。那么对于一个va，直接把低12位置0，得到的地址就是其所在的页的起始地址。然后，在查页表的时候，把那低12位的0去掉，得到对应的物理页的地址，注意这里的地址也是去掉了低12位。然后把原来va的低12位偏移直接拼到从页表查出来的物理地址上，就得到了实际的物理地址pa。下面的代码展示了这个过程：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// get top several bits of VA
+</span></span></span><span class="line"><span class="cl"><span class="n">VPN</span> <span class="o">=</span> <span class="p">(</span><span class="n">Virtual</span> <span class="n">Address</span> <span class="o">&amp;</span> <span class="n">VPN_MASK</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// now get offset
+</span></span></span><span class="line"><span class="cl"><span class="n">VPO</span> <span class="o">=</span> <span class="n">Virtual</span> <span class="n">Address</span> <span class="o">&amp;</span> <span class="n">OFFSET_MASK</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// get final PA
+</span></span></span><span class="line"><span class="cl"><span class="n">PPN</span> <span class="o">=</span> <span class="n">PTE</span><span class="p">[</span><span class="n">VPN</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">Physical</span> <span class="n">Address</span> <span class="o">=</span> <span class="n">PPN</span> <span class="o">||</span> <span class="n">VPO</span></span></span></code></pre></div></div>
+
+<h3 class="relative group">9.3.2 页表太大了？多级页表
+    <div id="932-页表太大了多级页表" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#932-%e9%a1%b5%e8%a1%a8%e5%a4%aa%e5%a4%a7%e4%ba%86%e5%a4%9a%e7%ba%a7%e9%a1%b5%e8%a1%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>然而上述的&quot;两列表中&quot;在工程上有一个致命问题：<strong>页表太大了</strong>。</p>
+<p>以 32 位系统（4KB 页）为例，用户空间占一半（2GB = $2^{31}$ 字节）：</p>
+<ul>
+<li>虚拟页数 = $2^{31} / 2^{12} = 2^{19} = 524288$ 个</li>
+<li>每个 PTE 4 字节</li>
+<li>页表大小 = $2^{19} \times 4 = 2^{21}$ 字节 = 2MB = <strong>512 页</strong></li>
+</ul>
+<p>光是存页表就要 512 个物理页，而且必须<strong>连续存放</strong>。100 个进程就是 200MB 全用来存页表。64 位更是天文数字。</p>
+<p><strong>解决思路</strong>：将数组转为树形结构。</p>
+
+<h4 class="relative group">9.3.3 例子
+    <div id="933-例子" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#933-%e4%be%8b%e5%ad%90" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<ul>
+<li><strong>两级页表</strong></li>
+</ul>
+<p>32 位 VA 拆成三层：<code>[10位 页目录 | 10位 页表 | 12位 页内偏移]</code></p>
+<ul>
+<li>一级表（页目录）：索引指向二级页表，占据 1 页</li>
+<li>二级表（页表）：索引指向实际物理页</li>
+</ul>
+<p><strong>两级页表一定更省吗？不。</strong> 若进程用满全部 2GB，两级页表需要 1（页目录）+ 1024（二级表）= <strong>1025 页</strong>，比单级 512 页还多。但实际进程的地址空间是<strong>稀疏</strong>的——代码在低地址、栈在高地址、中间大片未用。单级页表不管用不用都得分配完整的 512 页（数组必须连续），而两级页表：未使用的虚拟地址区间对应的页目录项（PDE）标记为无效，其二级表根本不分配。一个典型进程可能只需要页目录 1 页 + 实际用到的几个二级表 = 不到 10 页。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/chapter9/6-%e4%ba%8c%e7%ba%a7%e9%a1%b5%e8%a1%a8.png"
+    ></figure>
+<ul>
+<li><strong>一个地址转换例子</strong></li>
+</ul>
+<p>假设 32 位系统，4KB 页，两级页表。已知 CR3 存的是<strong>页目录的物理地址</strong>。</p>
+<p>给定：CR3 = <code>0xA4000</code>，虚拟地址 VA = <code>0x00805014</code>。</p>
+<p><strong>第一步：拆解 VA</strong></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">VA = 0x00805014 = 二进制：
+</span></span><span class="line"><span class="cl">0000 0000 10   000000 0101   0000 0001 0100
+</span></span><span class="line"><span class="cl">└─ PDI=2 ──┘  └─ PTI=5 ──┘  └─ offset=0x14 ─┘</span></span></code></pre></div></div>
+<ul>
+<li>页目录索引 (PDI) = 2</li>
+<li>页表索引 (PTI) = 5</li>
+<li>页内偏移 = 0x14</li>
+</ul>
+<p><strong>第二步：查页目录</strong></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CR3 = 0xA4000  ──→ 物理地址 0xA4000（页目录基址）
+</span></span><span class="line"><span class="cl">                    │ 每个 PDE 占用 4 字节
+</span></span><span class="line"><span class="cl">                    │ 访问地址 = 0xA4000 + 2×4 = 0xA4008
+</span></span><span class="line"><span class="cl">                    │ 读出 PDE = 0x000B7000
+</span></span><span class="line"><span class="cl">                    │ PFN = 0xB7，P=1（在内存）
+</span></span><span class="line"><span class="cl">                    └→ 二级页表物理地址 = 0xB7000</span></span></code></pre></div></div>
+<p><strong>第三步：查页表</strong></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">二级页表基址 = 0xB7000
+</span></span><span class="line"><span class="cl">                    │ 每个 PTE 占用 4 字节
+</span></span><span class="line"><span class="cl">                    │ 访问地址 = 0xB7000 + 5×4 = 0xB7014
+</span></span><span class="line"><span class="cl">                    │ 读出 PTE = 0x00C3000
+</span></span><span class="line"><span class="cl">                    │ PFN = 0xC3，P=1（在内存）
+</span></span><span class="line"><span class="cl">                    └→ 页框物理地址 = 0xC3000</span></span></code></pre></div></div>
+<p><strong>第四步：拼接</strong></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">页框地址 = 0xC3000
+</span></span><span class="line"><span class="cl">页内偏移 = 0x00014
+</span></span><span class="line"><span class="cl">─────────────────
+</span></span><span class="line"><span class="cl">物理地址  = 0xC3014  ← 最终结果</span></span></code></pre></div></div>
+<p>全程 MMU 自动完成两次物理内存读（读 PDE + 读 PTE），软件不需要干预。CR3 是这条查表链的入口。</p>
+<ul>
+<li><strong>Core i7 四级页表</strong></li>
+</ul>
+<p>64 位系统只用了低 48 位，四级页表结构：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">VPN4 ─→ VPN3 ─→ VPN2 ─→ VPN1 ─→ 页内偏移
+</span></span><span class="line"><span class="cl">  9       9       9       9       12
+</span></span><span class="line"><span class="cl"> L4 PDE → L3 PDE → L2 PDE → L1 PTE → 物理地址</span></span></code></pre></div></div>
+<p>对四级页表，页表需要的页数：$1 + 512 + 512^2 + 512^3$（稀疏场景下实际远小于此）。</p>
+
+<h3 class="relative group">9.3.4 反转页表
+    <div id="934-反转页表" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#934-%e5%8f%8d%e8%bd%ac%e9%a1%b5%e8%a1%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>多级页表虽然缓解了空间问题，但每个进程仍需要一套页表，进程数增多时开销依然明显。<strong>反转（反置）页表</strong>换了一个思路：不从虚拟地址出发，而是<strong>从物理地址出发</strong>，系统全局只建一张表。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>传统页表</th>
+          <th>反转页表</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>方向</td>
+          <td>VA → PA（每个进程一张）</td>
+          <td>PA → VA（全局一张）</td>
+      </tr>
+      <tr>
+          <td>大小</td>
+          <td>与虚拟地址空间成正比</td>
+          <td>与物理内存大小成正比，与进程数无关</td>
+      </tr>
+      <tr>
+          <td>查找</td>
+          <td>直接索引 VPN</td>
+          <td>散列查找（VA + PID）</td>
+      </tr>
+  </tbody>
+</table>
+<p>工作原理：将虚页号 + PID 散列到一个反转页表项，若冲突则拉链。由于散列查找需要处理冲突，地址翻译比多级页表慢一些，但内存开销小得多。</p>
+<p>采用体系结构：PowerPC、UltraSPARC、IA-64。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/chapter9/6-%e5%8f%8d%e8%bd%ac%e9%a1%b5%e8%a1%a8.png"
+    ></figure>
+
+<h3 class="relative group">9.3.5 TLB：加速地址转换
+    <div id="935-tlb加速地址转换" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#935-tlb%e5%8a%a0%e9%80%9f%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>多级页表至少需要两次（两级）或四次（四级）物理内存访问。CPU 和内存之间的速度差异使得这种开销无法忍受。利用程序访问的<strong>局部性</strong>原理，引入 TLB（Translation Look-aside Buffer）。</p>
+<ul>
+<li>TLB 是<strong>相联存储器</strong>，按内容并行查找，保存当前进程页表的子集</li>
+<li>工作原理：联想映射 → 同时比较所有虚拟页号 → 命中则直接返回页框号</li>
+<li>位于 MMU 内部，容量很小（通常几十到几百项），访问速度极快</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>问题</th>
+          <th>解决</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>TLB 置换</td>
+          <td>类似页面置换策略（LRU 等）</td>
+      </tr>
+      <tr>
+          <td>进程切换 TLB 刷新</td>
+          <td>PCID（x86）/ ASID（ARM/RISC-V）：给每条 TLB 项打上&quot;属于哪个进程&quot;的标签，切进程无需刷空</td>
+      </tr>
+  </tbody>
+</table>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/chapter9/6-tlb1.png"
+    ></figure>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/chapter9/6-tlb2.png"
+    ></figure>
+<p>PCID/ASID 的核心思想：TLB 中存的不只是 VPN→PPN 映射，还有进程标识符。比较时需&quot;虚页号 + PCID&quot;同时匹配才命中。这样进程 A 和进程 B 的 TLB 项可以共存，切来切去互不污染，大幅减少刷新带来的性能损失。</p>
+<p><strong>总结</strong>：地址转换的完整链路是——</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">VA → (TLB 命中?) → 直接得 PA
+</span></span><span class="line"><span class="cl">   → (TLB miss) → 查页表(多级/反转) → 更新 TLB → 得 PA
+</span></span><span class="line"><span class="cl">   → (Page Fault) → 缺页处理 → 从磁盘/交换区调页 → 更新页表/PTE → 重试</span></span></code></pre></div></div>
+<p>整个过程从 CPU 发出 VA 开始，MMU 查 TLB 是最快路径；若 miss 则硬件遍历多级页表（CR3 → 页目录 → 页表 → PTE）；若页不在内存则触发缺页异常由 OS 处理。这就是虚拟地址到物理地址的完整转换故事。</p>
 
           
           

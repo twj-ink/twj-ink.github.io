@@ -397,7 +397,7 @@
     "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "177"
+    "wordCount": "183"
   }]
   </script>
 
@@ -1080,7 +1080,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-04-16T00:00:00&#43;00:00">2026/04/16</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-04-27T20:26:50&#43;08:00">Updated: 2026/04/27</time><span class="px-2 text-primary-500">&middot;</span><span>3611 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">19 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-04-16T00:00:00&#43;00:00">2026/04/16</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-04-27T20:26:50&#43;08:00">Updated: 2026/04/27</time><span class="px-2 text-primary-500">&middot;</span><span>3763 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">19 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1330,8 +1330,8 @@
         <li><a href="#1-单一连续区">1. 单一连续区</a></li>
         <li><a href="#2-固定分区">2. 固定分区</a></li>
         <li><a href="#3-可变分区">3. ⭐可变分区</a></li>
-        <li><a href="#4-页式管理分页">4. ⭐页式管理（分页）</a></li>
-        <li><a href="#5-段式管理分段">5. 段式管理（分段）</a></li>
+        <li><a href="#4-段式管理分段">4. 段式管理（分段）</a></li>
+        <li><a href="#5-页式管理分页">5. ⭐页式管理（分页）</a></li>
         <li><a href="#6-段页式">6. 段页式</a></li>
       </ul>
     </li>
@@ -1381,8 +1381,8 @@
         <li><a href="#1-单一连续区">1. 单一连续区</a></li>
         <li><a href="#2-固定分区">2. 固定分区</a></li>
         <li><a href="#3-可变分区">3. ⭐可变分区</a></li>
-        <li><a href="#4-页式管理分页">4. ⭐页式管理（分页）</a></li>
-        <li><a href="#5-段式管理分段">5. 段式管理（分段）</a></li>
+        <li><a href="#4-段式管理分段">4. 段式管理（分段）</a></li>
+        <li><a href="#5-页式管理分页">5. ⭐页式管理（分页）</a></li>
         <li><a href="#6-段页式">6. 段页式</a></li>
       </ul>
     </li>
@@ -1683,6 +1683,44 @@
     
 </h4>
 <p>在执行过程中进行地址转换，需要硬件支持。CPU将逻辑地址给硬件<strong>内存管理单元</strong>MMU，得到物理地址。</p>
+<p>以下是在动态重定位中，硬件和软件分别需要的要求：</p>
+<p><figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-%e5%8a%a8%e6%80%81%e9%87%8d%e5%ae%9a%e4%bd%8d1.png"
+    ></figure>
+
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-%e5%8a%a8%e6%80%81%e9%87%8d%e5%ae%9a%e4%bd%8d2.png"
+    ></figure>
+</p>
+<p>动态重定位的过程由MMU完成，是不需要OS干预的。下面是在操作系统初始化和运行时阶段的有关动态重定位的图示：</p>
+<p><figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-lde-boot.png"
+    ></figure>
+
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-lde-runtime.png"
+    ></figure>
+</p>
 
 <h3 class="relative group">3. 地址绑定时机（地址映射的时机）
     <div id="3-地址绑定时机地址映射的时机" class="anchor"></div>
@@ -1705,7 +1743,7 @@
 <p>如果用编译时绑定，会直接生成<strong>绝对的物理地址</strong>，程序必须加载到固定的内存位置才能运行，这样显然是没有灵活性的，只适合早期单任务系统或极简单的嵌入式设备。</p>
 <p>如果用链接时绑定，链接器将多个<code>.o</code>目标文件合并成可执行文件，并在此时确定各个符号的<strong>相对地址</strong>（相对于可执行文件起始位置的），程序仍然需要在加载时整体放入内存但不需要固定位置。</p>
 <p>如果是加载时绑定，加载器知道应该放在哪个物理位置，然后将程序的所有地址一次性放在最终转换得到的物理地址；允许程序在加载时选择位置但一旦放入后就不能移动。</p>
-<p>如果是运行时绑定，每次涉及到地址的指令时都通过硬件MMU配合页表来将逻辑地址转换为物理地址，这样性能是最优的。一是因为有CPU内部的TLB的帮助，二是因为虚拟内存技术允许进程的一部分放在内存其余放在磁盘，可以懒分配。</p>
+<p>如果是运行时绑定，每次涉及到地址的指令时都通过硬件MMU配合页表来将逻辑地址转换为物理地址，这样性能是最优的。一是因为有CPU内部的TLB的帮助，二是因为虚拟内存技术允许进程的一部分放在内存其余放在磁盘，可以懒分配。这也是最常见的方式。</p>
 
 <h3 class="relative group">4. 地址保护
     <div id="4-地址保护" class="anchor"></div>
@@ -1886,45 +1924,52 @@
     </span>
     
 </h3>
-<p>根据需要分割分区分配给进程，剩余的成为新的空闲区。这样在回收的时候容易形成<strong>外碎片</strong>。</p>
+<p>根据需要分割分区分配给进程，剩余的成为新的空闲区。这样在回收的时候容易形成<strong>外部碎片</strong>。</p>
 <div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
       <div class="flex items-center gap-2 font-semibold text-inherit">
         <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
 </span></div>
         <div class="grow">
-          内碎片和外碎片
+          内部碎片和外部碎片
         </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>内碎片：分配给进程的内存块中，未被使用的部分。当分配的内存块大小 <strong>大于</strong> 进程实际请求的大小的时候会产生，往往是在固定大小分配的场景中会见到。
-外碎片：内存中分散的小空闲块，加起来够大但每个都不够用（内存中散布的太小而无法被利用的空闲块）。当进程被加载、换出、释放后，内存被切割成多个小空闲区时可能产生，往往是在可变大小分配的场景。</p></div></div><p>为了解决外碎片，一种方法是<strong>紧缩技术</strong>(memory compaction)，通过移动正在运行的进程，将分散的小空闲区合并成一个大空闲区，从而能够容纳更大的进程。</p>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>内部碎片(<code>internal fragmentation</code>)：分配给进程的内存块中，未被使用的部分。当分配的内存块大小 <strong>大于</strong> 进程实际请求的大小的时候会产生，往往是在固定大小分配的场景中会见到。</p>
+<p>外部碎片(<code>external fragmentation</code>)：内存中分散的小空闲块，加起来够大但每个都不够用（内存中散布的太小而无法被利用的空闲块）。当进程被加载、换出、释放后，内存被切割成多个小空闲区时可能产生，往往是在可变大小分配的场景。</p></div></div><p>为了解决外碎片，一种方法是<strong>紧缩技术</strong>(memory compaction)，通过移动正在运行的进程，将分散的小空闲区合并成一个大空闲区，从而能够容纳更大的进程。</p>
 <p>那什么时候做紧凑呢？当分配失败的时候进行按需紧凑，但是分配延迟高；或者定期执行；或者在释放内存时进行但是可能会频繁移动。一般而言现代会使用按需紧凑+定期检查的组合策略。同时，能移动的前提是<strong>动态重定位</strong>，否则移动后程序会失效。主要的开销是CPU拷贝数据、暂停进程执行的时间、更新紧凑的基址寄存器/页表等等。</p>
-<p>那哪些进行适合移动呢？小进程移动成本低，优先移动；阻塞/睡眠进程容易移动；IO密集进程移动成本高（比如<code>read()</code>系统调用，可能DMA固定把读取的内容放在内存的某个位置，不能随便移动）。其中阻塞态是最佳的，因为不占用CPU可以安全移动。</p>
-<p>另一种方法就是下面的页式管理，从根本上解决。</p>
+<p>那哪些进程适合移动呢？小进程移动成本低，优先移动；阻塞/睡眠进程容易移动；IO密集进程移动成本高（比如<code>read()</code>系统调用，可能DMA固定把读取的内容放在内存的某个位置，不能随便移动）。其中阻塞态是最佳的，因为不占用CPU可以安全移动。</p>
+<p>下面的页式管理可以有效缓解外部碎片的问题。</p>
 
-<h3 class="relative group">4. ⭐页式管理（分页）
-    <div id="4-页式管理分页" class="anchor"></div>
+<h3 class="relative group">4. 段式管理（分段）
+    <div id="4-段式管理分段" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#4-%e9%a1%b5%e5%bc%8f%e7%ae%a1%e7%90%86%e5%88%86%e9%a1%b5" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#4-%e6%ae%b5%e5%bc%8f%e7%ae%a1%e7%90%86%e5%88%86%e6%ae%b5" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>与分页类似，但是是<strong>按照程序自身的逻辑结构</strong>来划分内存，每个逻辑单元（如一个代码段、数据段、堆、栈）是一个<strong>段</strong>。每个进程会有一个段表，存放在内存中，与页表类似进行段的地址的转换。</p>
+
+<h3 class="relative group">5. ⭐页式管理（分页）
+    <div id="5-页式管理分页" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#5-%e9%a1%b5%e5%bc%8f%e7%ae%a1%e7%90%86%e5%88%86%e9%a1%b5" aria-label="Anchor">#</a>
     </span>
     
 </h3>
 <p>逻辑地址空间划分为大小相等的区域：页 <code>page</code>；物理内存空间按页大小划分为大小相等的区域，称为内存块 <code>page frame</code>。</p>
 <p>内存分配规则：以页为单位进行分配，并按进程需要的页数来分配；逻辑上相邻的页，物理上不一定相邻。典型的页面尺寸：4K或4M。</p>
 <p>为了完成逻辑地址空间的页和物理地址空间的页，引入了<strong>页表</strong>来对二者的地址进行映射。每个进程一个页表，存放在内存中；<strong>页表项</strong>记录着逻辑页号与页框号的对应关系。页表的其实地址保存在PCB中。</p>
-<p>CPU通过页表来完成<strong>地址转换</strong>：CPU取到逻辑地址，自动划分为页号和页内地址；用页号查页表（由硬件完成），得到页框号，再与页内地址（页内偏移）拼接为物理地址。</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          有关页表的内容请查看下一章：6-虚拟内存管理的内容。
+        </div>
+      </div></div><p>CPU通过页表来完成<strong>地址转换</strong>：CPU取到逻辑地址，自动划分为页号和页内地址；用页号查页表（由硬件完成），得到页框号，再与页内地址（页内偏移）拼接为物理地址。</p>
 <p>由于页式也是固定分区类型，仍然会有内碎片问题的存在；但是不会有在物理内存上的外碎片问题（因为连续的逻辑页可以映射到不连续的物理页框）。</p>
-
-<h3 class="relative group">5. 段式管理（分段）
-    <div id="5-段式管理分段" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#5-%e6%ae%b5%e5%bc%8f%e7%ae%a1%e7%90%86%e5%88%86%e6%ae%b5" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p>与分页类似，但是是<strong>按照程序自身的逻辑结构</strong>来划分内存，每个逻辑单元（如一个代码段、数据段、堆、栈）是一个<strong>段</strong>。每个进程会有一个段表，存放在内存中，与页表类似进行段的地址的转换。</p>
 
 <h3 class="relative group">6. 段页式
     <div id="6-段页式" class="anchor"></div>
@@ -1964,14 +2009,26 @@
     src="../imgs/5-overlapping.png"
     ></figure>
 <ul>
-<li>交换技术：内存空间紧张时，系统将内存中某些进程暂时移到外存，把外存中某些进程换进内存，占据前者所占用的区域（进程在内存与外存之间的动态调度）
+<li>
+<p>交换技术：内存空间紧张时，系统将内存中某些进程暂时移到外存，把外存中某些进程换进内存，占据前者所占用的区域（进程在内存与外存之间的动态调度）</p>
 <ul>
 <li>交换时机？当系统发现物理内存不足或有不够的危险，且需要为即将运行的程序腾出空间时。</li>
 <li>如何选择被换出的进程？<strong>不应该</strong>换出处于等待IO的进程</li>
 <li>换出后再换入的进程不一定回到原处，采用动态重定位，可以换到新的物理地址处，但是通过查页表可以得知虚拟地址位置是不会变的</li>
 </ul>
 </li>
+<li>
+<p>紧缩技术：在本文第四节的第3部分有介绍到，目的是解决外部碎片，从而来达到产生大片空闲区域。</p>
+</li>
 </ul>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/5-compact.png"
+    ></figure>
 
           
           

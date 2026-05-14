@@ -5,7 +5,6 @@
   class="scroll-smooth"
   data-default-appearance="light"
   data-auto-appearance="true"><head>
-	<meta name="generator" content="Hugo 0.155.0">
   <meta charset="utf-8">
   
     <meta http-equiv="content-language" content="en">
@@ -16,24 +15,20 @@
 
   
   
-    <title>GaleInk&#39;s blog</title>
-    <meta name="title" content="GaleInk&#39;s blog">
+    <title>数组与链表之我见 &middot; GaleInk&#39;s blog</title>
+    <meta name="title" content="数组与链表之我见 &middot; GaleInk&#39;s blog">
   
 
   
   
-    <meta name="description" content="GaleInk&#39;s marvelous website">
+    <meta name="description" content="写一点我对于这两种数据结构的一些思考，以及与我学习生活的关联。二者在实际应用中不是割裂的！">
+  
+  
+    <meta name="keywords" content="数据结构,链表,">
   
   
   
-  
-  <link rel="canonical" href="https://twj-ink.github.io/">
-  
-    
-      <link rel="alternate" type="application/rss+xml" href="/index.xml" title="GaleInk's blog" />
-  
-    
-      <link rel="alternate" type="application/json" href="/index.json" title="GaleInk's blog" />
+  <link rel="canonical" href="https://twj-ink.github.io/blogs/my_view_of_list/">
   
 
   
@@ -61,17 +56,22 @@
   
 
   
-  <meta property="og:url" content="https://twj-ink.github.io/">
+  <meta property="og:url" content="https://twj-ink.github.io/blogs/my_view_of_list/">
   <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="Home">
-  <meta property="og:description" content="GaleInk&#39;s marvelous website">
+  <meta property="og:title" content="数组与链表之我见">
+  <meta property="og:description" content="写一点我对于这两种数据结构的一些思考，以及与我学习生活的关联。二者在实际应用中不是割裂的！">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2026-05-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-05-14T00:00:00+00:00">
+    <meta property="article:tag" content="数据结构">
+    <meta property="article:tag" content="链表">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Home">
-  <meta name="twitter:description" content="GaleInk&#39;s marvelous website">
+  <meta name="twitter:title" content="数组与链表之我见">
+  <meta name="twitter:description" content="写一点我对于这两种数据结构的一些思考，以及与我学习生活的关联。二者在实际应用中不是割裂的！">
 
   
   
@@ -135,6 +135,12 @@
   
   
   
+  
+    
+    <script
+      type="text/javascript"
+      src="/js/zen-mode.min.9814dee9614d32aeb56239d118edfe20acd6231424f9b19c2dd48835038414130a5e946c0d1c9087d60e60e31840c9babfd217e3d4b95643dc8d651a71ccdf4a.js"
+      integrity="sha512-mBTe6WFNMq61YjnRGO3&#43;IKzWIxQk&#43;bGcLdSINQOEFBMKXpRsDRyQh9YOYOMYQMm6v9IX49S5VkPcjWUacczfSg=="></script>
   
   
     
@@ -225,20 +231,30 @@
 
   
   <script type="application/ld+json">
-  {
+  [{
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://twj-ink.github.io/",
-    "name": "GaleInk\u0027s blog",
-    "description": "GaleInk\u0027s marvelous website",
-    "inLanguage": "en",
-    "url": "https://twj-ink.github.io/",
+    "@type": "Article",
+    "articleSection": "Blogs",
+    "name": "数组与链表之我见",
+    "headline": "数组与链表之我见",
     
-    "publisher" : {
+    "inLanguage": "en",
+    "url" : "https://twj-ink.github.io/blogs/my_view_of_list/",
+    "author" : {
       "@type": "Person",
       "name": "GaleInk"
-    }
-  }
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-05-14T00:00:00\u002b00:00",
+    "datePublished": "2026-05-14T00:00:00\u002b00:00",
+    
+    "dateModified": "2026-05-14T00:00:00\u002b00:00",
+    
+    "keywords": ["数据结构","链表"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "127"
+  }]
   </script>
 
 
@@ -850,113 +866,18 @@
       <main id="main-content" class="grow">
         
   
-  
+  <article>
     
-<article
-  class=" flex flex-col items-center justify-center text-center">
-  <header class="relative px-1 py-1 flex flex-col items-center mb-3">
     
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
       
-      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        数组与链表之我见
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
         
-      
-      
-        
-        
-        
-          
-          
-          
-        
-        <img
-          class="mb-2 h-36 w-36 rounded-full"
-          width="144"
-          height="144"
-          alt="GaleInk"
-          src="/img/avatar_hu_6dc8041110984dae.jpg"
-          data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
-      
-    
-    <h1 class="text-4xl font-extrabold">
-      GaleInk
-    </h1>
-    
-      <h2 class="text-xl text-neutral-500 dark:text-neutral-400">
-        A Breezing Gale ~
-      </h2>
-    
-    <div class="mt-1 text-2xl">
-      
-  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
-    
-      
-        <a
-          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
-          href="https://github.com/twj-ink"
-          target="_blank"
-          aria-label="Github"
-          title="Github"
-          rel="me noopener noreferrer"
-          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-</span></span></a
-        >
-      
-    
-      
-        <a
-          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
-          href="https://www.zhihu.com/people/GaleInk"
-          target="_blank"
-          aria-label="Zhihu"
-          title="Zhihu"
-          rel="me noopener noreferrer"
-          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-  <path d="M5.721 0C2.251 0 0 2.25 0 5.719V18.28C0 21.751 2.252 24 5.721 24h12.56C21.751 24 24 21.75 24 18.281V5.72C24 2.249 21.75 0 18.281 0zm1.964 4.078c-.271.73-.5 1.434-.68 2.11h4.587c.545-.006.445 1.168.445 1.171H9.384a58.104 58.104 0 01-.112 3.797h2.712c.388.023.393 1.251.393 1.266H9.183a9.223 9.223 0 01-.408 2.102l.757-.604c.452.456 1.512 1.712 1.906 2.177.473.681.063 2.081.063 2.081l-2.794-3.382c-.653 2.518-1.845 3.607-1.845 3.607-.523.468-1.58.82-2.64.516 2.218-1.73 3.44-3.917 3.667-6.497H4.491c0-.015.197-1.243.806-1.266h2.71c.024-.32.086-3.254.086-3.797H6.598c-.136.406-.158.447-.268.753-.594 1.095-1.603 1.122-1.907 1.155.906-1.821 1.416-3.6 1.591-4.064.425-1.124 1.671-1.125 1.671-1.125zM13.078 6h6.377v11.33h-2.573l-2.184 1.373-.401-1.373h-1.219zm1.313 1.219v8.86h.623l.263.937 1.455-.938h1.456v-8.86z"/>
-</svg></span></span></a
-        >
-      
-    
-      
-        <a
-          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
-          href="mailto:298731943@qq.com"
-          target="_blank"
-          aria-label="Email"
-          title="Email"
-          rel="me noopener noreferrer"
-          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
-</span></span></a
-        >
-      
-    
-  </div>
-
-
-    </div>
-  </header>
-  <section class="prose dark:prose-invert w-full"><p>Hi~，我是 GaleInk。这里是我的个人博客，记录我的学习笔记，以及日常学习中遇到的问题和解决方案。</p>
-</section>
-</article>
-<section>
-  
-
-
-  
-    
-  
-  <h2 class="mt-8 text-2xl font-extrabold mb-10">Recent</h2>
-
-  
-    
-
-
-
-<section class="space-y-10 w-full">
-  
-    
-
-
-
 
 
 
@@ -964,68 +885,6 @@
 
   
   
-  
-
-
-
-
-
-
-
-
-  
-  
-    
-
-    
-    
-      
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-      
-      
-    
-
-    
-    
-      
-    
-  
-
-
-
-<article class="article-link--simple flex flex-col md:flex-row relative overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
-  
-  <div class=" p-4">
-    <header class="items-center text-start text-xl font-semibold">
-      <a
-        
-          href="/blogs/my_view_of_list/"
-        
-        class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
-        <h2>
-          数组与链表之我见
-          
-        </h2>
-      </a>
-      
-      
-    </header>
-    <div class="text-sm text-neutral-500 dark:text-neutral-400">
-      
-
-
-
-
 
 
 
@@ -1062,9 +921,13 @@
   
 
   
+    
+  
 
   
 
+  
+    
   
 
 
@@ -1115,197 +978,31 @@
   <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 <path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></span></span>
 </span>
-
-    
-
-    
-    
-  </div>
-
-  
-
-  
-  
-
-  
-  
-
-
-
-    </div>
-    
-      <div class="article-link__summary prose dark:prose-invert max-w-fit mt-1 line-clamp-3">
-        写一点我对于这两种数据结构的一些思考，以及与我学习生活的关联。二者在实际应用中不是割裂的！
-      </div>
-    
-  </div>
-  <div class="px-6 pt-4 pb-2"></div>
-</article>
-
-  
-    
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-
-
-
-
-  
-  
-    
-
-    
-    
-      
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-      
-      
-    
-
-    
-    
-      
-    
-  
-
-
-
-<article class="article-link--simple flex flex-col md:flex-row relative overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
-  
-  <div class=" p-4">
-    <header class="items-center text-start text-xl font-semibold">
-      <a
-        
-          href="/os/study_notes/7-file_system/"
-        
-        class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
-        <h2>
-          操作系统笔记7：文件系统
-          
-        </h2>
-      </a>
-      
-      
-    </header>
-    <div class="text-sm text-neutral-500 dark:text-neutral-400">
-      
-
-
-
-
-
-
-
-  
-
-  
-  
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-
-  
-
-  
-
-
-  <div class="flex flex-row flex-wrap items-center">
-    
-    
-      <time datetime="2026-05-07T00:00:00&#43;00:00">2026/05/07</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-11T00:54:08&#43;08:00">Updated: 2026/05/11</time><span class="px-2 text-primary-500">&middot;</span><span>4675 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">24 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
-  
-  
-    
-    
-      
-      
-        
-        
-      
-      
-    
-  
-  <span
-    id="views_os/study_notes/7-file_system/index.md"
-    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
-    title="views"
-    >loading</span
-  >
-  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-<path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></span>
-</span>
 <span class="px-2 text-primary-500">&middot;</span><span>
-  
-  
-    
-    
-      
-      
-        
-        
-      
-      
-    
-  
+  <button
+    id="button_likes"
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    <span id="button_likes_heart" class="inline-block align-text-bottom hidden"
+      ><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></span>
+    </span>
+    <span id="button_likes_emtpty_heart" class="inline-block align-text-bottom"
+      ><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/></svg></span></span
+    >
+    <span id="button_likes_text">&nbsp;Like</span>
+  </button>
+</span><span class="px-2 text-primary-500">&middot;</span><span class="mb-[2px]">
   <span
-    id="likes_os/study_notes/7-file_system/index.md"
-    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
-    title="likes"
-    >loading</span
-  >
-  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></span></span>
+    id="zen-mode-button"
+    class="text-lg hover:text-primary-500"
+    title="Enable zen mode"
+    data-title-i18n-disable="Enable zen mode"
+    data-title-i18n-enable="Disable zen mode">
+    <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+    <path fill="currentColor" d="M 12.980469 4 C 9.1204688 4 5.9804688 7.14 5.9804688 11 L 6 26 L 9.9804688 26 L 9.9804688 11 C 9.9804688 9.35 11.320469 8 12.980469 8 L 40.019531 8 C 41.679531 8 43.019531 9.35 43.019531 11 L 43.019531 39 C 43.019531 40.65 41.679531 42 40.019531 42 L 29 42 C 29 43.54 28.420938 44.94 27.460938 46 L 40.019531 46 C 43.879531 46 47.019531 42.86 47.019531 39 L 47.019531 11 C 47.019531 7.14 43.879531 4 40.019531 4 L 12.980469 4 z M 7 28 C 4.794 28 3 29.794 3 32 L 3 42 C 3 44.206 4.794 46 7 46 L 23 46 C 25.206 46 27 44.206 27 42 L 27 32 C 27 29.794 25.206 28 23 28 L 7 28 z M 7 32 L 23 32 L 23.001953 42 L 7 42 L 7 32 z"/>
+</svg></span></span>
+  </span>
 </span>
 
     
@@ -1324,279 +1021,242 @@
 
 
 
-    </div>
-    
-      <div class="article-link__summary prose dark:prose-invert max-w-fit mt-1 line-clamp-3">
-        
       </div>
-    
-  </div>
-  <div class="px-6 pt-4 pb-2"></div>
-</article>
-
-  
-    
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-
-
-
-
-  
-  
-    
-
-    
-    
-      
       
         
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+    
+    
       
-        
-      
-        
-      
-    
-
     
     
       
-      
-    
-
-    
-    
-      
-    
-  
-
-
-
-<article class="article-link--simple flex flex-col md:flex-row relative overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
-  
-  <div class=" p-4">
-    <header class="items-center text-start text-xl font-semibold">
-      <a
-        
-          href="/blogs/hugo-music-player/"
-        
-        class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
-        <h2>
-          给 Blowfish 主题添加自托管音乐播放器
-          
-        </h2>
-      </a>
-      
-      
-    </header>
-    <div class="text-sm text-neutral-500 dark:text-neutral-400">
-      
-
-
-
-
-
-
-
-  
-
-  
-  
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-
-  
-
-  
-
-
-  <div class="flex flex-row flex-wrap items-center">
-    
-    
-      <time datetime="2026-05-07T00:00:00&#43;00:00">2026/05/07</time><span class="px-2 text-primary-500">&middot;</span><span>675 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
-  
-  
-    
-    
       
       
         
         
-      
-      
-    
-  
-  <span
-    id="views_blogs/hugo-music-player/index.md"
-    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
-    title="views"
-    >loading</span
-  >
-  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-<path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></span>
-</span>
-<span class="px-2 text-primary-500">&middot;</span><span>
-  
-  
-    
-    
-      
-      
-        
         
       
-      
-    
-  
-  <span
-    id="likes_blogs/hugo-music-player/index.md"
-    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
-    title="likes"
-    >loading</span
-  >
-  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></span></span>
-</span>
-
-    
-
-    
-    
-  </div>
-
-  
-
-  
-  
-
-  
-  
-
-
-
-    </div>
-    
-      <div class="article-link__summary prose dark:prose-invert max-w-fit mt-1 line-clamp-3">
-        在 Hugo + Blowfish 主题中手写一个悬浮音乐播放器，不依赖第三方服务
-      </div>
-    
-  </div>
-  <div class="px-6 pt-4 pb-2"></div>
-</article>
-
-  
-    
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-
-
-
-
-  
-  
-    
-
-    
-    
-      
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-
-    
-    
-      
-        
-        
-          
-        
-      
-    
-  
-
-
-
-<article class="article-link--simple flex flex-col md:flex-row relative overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
-  
-    <div class="flex-none relative overflow-hidden  thumbnail">
       <img
-        src="/blogs/claude-and-deepseek/feature_ex_hu_f12f3f27192a8825.png"
-        role="presentation"
-        loading="lazy"
-        decoding="async"
-        class="not-prose absolute inset-0 w-full h-full object-cover">
-    </div>
+        class="!mt-0 !mb-0 h-24 w-24 rounded-full me-4"
+        width="96"
+        height="96"
+        alt="GaleInk"
+        src="/img/avatar_hu_d682264e76c772b8.jpg"
+        data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
+    
   
-  <div class=" p-4">
+  <div class="place-self-center">
+    
+      <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+        Author
+      </div>
+      <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+        GaleInk
+      </div>
+    
+    
+      <div class="text-sm text-neutral-700 dark:text-neutral-400">A Breezing Gale ~</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/twj-ink"
+          target="_blank"
+          aria-label="Github"
+          title="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/GaleInk"
+          target="_blank"
+          aria-label="Zhihu"
+          title="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M5.721 0C2.251 0 0 2.25 0 5.719V18.28C0 21.751 2.252 24 5.721 24h12.56C21.751 24 24 21.75 24 18.281V5.72C24 2.249 21.75 0 18.281 0zm1.964 4.078c-.271.73-.5 1.434-.68 2.11h4.587c.545-.006.445 1.168.445 1.171H9.384a58.104 58.104 0 01-.112 3.797h2.712c.388.023.393 1.251.393 1.266H9.183a9.223 9.223 0 01-.408 2.102l.757-.604c.452.456 1.512 1.712 1.906 2.177.473.681.063 2.081.063 2.081l-2.794-3.382c-.653 2.518-1.845 3.607-1.845 3.607-.523.468-1.58.82-2.64.516 2.218-1.73 3.44-3.917 3.667-6.497H4.491c0-.015.197-1.243.806-1.266h2.71c.024-.32.086-3.254.086-3.797H6.598c-.136.406-.158.447-.268.753-.594 1.095-1.603 1.122-1.907 1.155.906-1.821 1.416-3.6 1.591-4.064.425-1.124 1.671-1.125 1.671-1.125zM13.078 6h6.377v11.33h-2.573l-2.184 1.373-.401-1.373h-1.219zm1.313 1.219v8.86h.623l.263.937 1.455-.938h1.456v-8.86z"/>
+</svg></span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:298731943@qq.com"
+          target="_blank"
+          aria-label="Email"
+          title="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-5"></div>
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+
+        <div class="article-content max-w-prose mb-20">
+          <p>这个文章算是第一篇具有博客性质的文章（我估计），一方面是想写一点我对于这两种数据结构的一些思考，以及与我学习生活的关联；另一方面是锻炼文字能力，只有真的一个字一个字敲键盘才发现自己有时候连一个通顺的句子都写不出来。这俩数据结构虽然是看起来很简单的东西，但是我从接触编程到现在发觉这俩东西蕴含的能量其实很大。</p>
+<p>能把这俩放在一起比较的，目前我能想到的就是数据结构考试中会出现，或者实习面试可能会出现，不过都是作为简单的东西出现。事实上的确原理都很简单，但是谈到应用就很夯了。</p>
+<hr>
+<p>我在大一上入门编程的时候学习的是Python，最基础的数据结构就是<strong>列表</strong>了，而且当时学的时候很开心，因为啥都能往里面放，比如整数、浮点数、字符串，甚至是列表、集合等等。做简单算法题也很舒服，输入的东西一般想都不用想就直接往列表里面装，想用谁或者修改就直接用<strong>索引</strong>取出来就行了，真的是方便的不得了。除了取值，还可以在常数时间内在末尾append值。【注：python列表存的是引用，底层有开销。】</p>
+<p>在大一下学习了<strong>链表</strong>，真的是不比不知道一比吓一跳，真的是麻烦死了（我个人感觉是这样的）。一方面想写个链表要专门搞个类来写，另一方面访问或者修改某个节点都要从头遍历一遍。不过，有个好处是一个节点可以装很多的东西，比如装一个整数一个字符串，只需要保证有一个连接着后续节点的指针即可。</p>
+<p>此外，做有关链表的算法题也是很烧脑，最恶心的就是无法随机存取，在写题的时候需要动脑子想怎么遍历才不会出错，才能找到想要的那个值。比如反转链表之类的。</p>
+<p>这个时候我就已经发现<strong>数组</strong>和<strong>链表</strong>有一些很显然的区别点了：</p>
+<ul>
+<li>数组可以随机存取，对于访问值是O(1)复杂度的，十分方便；而链表只能顺序访问，要访问某个结点是需要O(n)复杂度的。</li>
+<li>做简单算法题能用数组就用数组，尽量别碰链表。</li>
+<li>数组保存的东西往往是比较固定的或者已知大小的；而链表保存的东西是可以自定义的，只需要保证有一个后续节点指针来作链接即可。</li>
+</ul>
+<p>不过，链表并不只是只能用来做线性的存储方式，每个节点从原先的存一个后续节点指针改为存多个节点指针，便成了<strong>树</strong>。那有关树的问题往往是数组不好解决的了，比如二叉树、红黑树之类，在实际应用中各种树结构以其独特的优点得以大放光彩，比如查找效率和插入效率极高的红黑树。那这种情况下数组显然是没法碰瓷的。</p>
+<hr>
+<p>在大二上，我学习了ICS课程，算是第一次正式接触到C语言和其比较底层的东西。说实话我第一次看到C语言的时候，有一种很奇怪的感觉，就是<strong>为啥每个变量都要在名字前面加上类型啊</strong>？你看人家Python多方便，直接写名字就行了。我当时还因为这个东西和一个朋友吵了半天，他当时说的是那是因为你没有遇到过大工程，写Python不带类型你到用的时候都不知道你引用的东西到底是个字符串还是个整数。我那时还不知道Python也可以在变量名处写类型名（比如<code>def f(num: int) -&gt; int</code>），还相当不服气他说的话，坚持觉得C语言这样写类型很繁琐且不好看。除此之外还有为啥数组只能放一种数据类型啊？这样哪有python方便呢？【注：C语言会在运行时强制类型检查，python中的类型注解只是给人看的提示，即使在上面例子中num传入一个字符串也不会报错】</p>
+<p>在ICS课程中首先就介绍了计算机的<strong>内存是一个大的数组，每个位置存一个字节的数据</strong>。接着又学了C语言中各个类型的大小，比如一般来说short是2字节，int是4字节等等。还学了<strong>大端序和小端序</strong>，即在内存中字节之间存放的顺序。</p>
+<p>我在某天突然又想到了我在之前和朋友争吵的那个问题，比如在C语言中我定义了一个数组<code>int array[3]</code>，然后写<code>int a = array[1]</code>，这个变量a前面的int真的是有必要写的吗？我假如写成<code>short a</code>可以吗？</p>
+<p>事实上是可以的，而这也是为什么需要添加类型的原因。首先，数组中的数据是顺序存储的，在上面的例子中3个<code>int</code>是连续放着的，4字节4字节挨着的。接着，<code>array[1]</code>其实只是一个指针解引用后的值，相当于是<code>*(array + 1)</code>，这里<strong>由于</strong><code>array</code><strong>存的是以4字节为单位的数据</strong>，加1就是加4个字节，所以这个指针实际上指向的是第二个<code>int</code>的起始地址。最后，正是由于这个a前面写的是<code>int</code>，才会从这个地址处读取<code>int</code>的4个字节的数据，并把字节顺序颠倒（由于是小端序）得到最终a的结果。假设a的类型写成<code>short</code>，那无所谓呀，直接从刚刚这个地址处读取2个字节的数据颠倒给a即可。然而这显然是没有意义的（一般来说）。虽然我感觉这个东西对于其他人来说是很小儿科的，但是确实是困惑了我很久，并在学习到这里的时候才发现是底层存储所安排好的。</p>
+<hr>
+<p>这里我其实是搞懂了一个<strong>事实</strong>，也就是<strong>类型会影响读取长度</strong>。但是，这并不是解释为什么C语言需要在变量前写类型的<strong>原因</strong>。后来，学到了汇编语言，这才发现，C代码的类型是会影响汇编代码的，在生成每条机器码之前，编译器是需要知道每个操作数的大小和操作类型的，以及需要知道内存布局应该是如何做的。也就是说写类型是C语言设计所决定的。</p>
+<p>有关C语言设计决定的还有在编译期间确定内存布局，这一点在学习struct和union结构的时候感受最深，当时是第一次知晓struct的内容在内存布局原来是如此规矩成方圆，这里就不多赘述具体原则了。</p>
+<hr>
+<p>再后来，在ICS中第一次碰到需要用到链表的应该是虚拟内存管理的部分，在管理空闲内存的时候用到了<strong>链表</strong>来把一个个空闲的内存块串起来，加上各种分配算法实现高效的动态内存分配。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="./%e9%9a%90%e5%bc%8f%e7%a9%ba%e9%97%b2%e9%93%be%e8%a1%a8%e5%9d%97%e7%bb%93%e6%9e%84.png"
+    ></figure>
+<p>我记得最深刻的就是在描述隐式空闲链表的部分，对于节点的设计是如此之精妙。还记得前面说的树的结构吗？在那个时候，我傻傻地认为链表的每个节点顶多就存个后续几个指针，再存个数据，就已经对其利用很足了；没想到在这里能对其进一步“压榨”。对于一个节点，当前节点指针指的是这个节点本身的数据的起始地址；然而，这个节点的起始地址却在节点指针之前&ndash;在数据起始地址之前，还存着一个4字节（或8字节）的<strong>合并</strong>了的数据，即当前节点的大小 和 当前节点是否是空闲状态 的 或运算 的 结果，具体可以看一下上图，真的是精妙至极，算是把位运算玩的炉火纯青了（为什么能这样合并？因为每一个块的大小都是8字节的倍数，保证了起始地址是按照8字节对齐的，也就意味着其低3位都是0。在取节点大小的时候把低3位置0即可）。此外还有节点末尾的信息，和头部一致来保证能够遍历链表。</p>
+<p>这里我们整理一下思绪，原本的链表都是保证存一个后续指针，可能会存有数据；这里的链表并没有显式地存后续指针，而是选择了存当前节点的大小，从而利用指针地址运算（加上节点大小）即可得到前后节点的指针。至于为什么能这样做？那当然得益于<strong>内存大数组的连续性</strong>了啊！毕竟，这里管理的是空闲内存块，它们是连续的，当然可以用地址运算来获取前后块了啊！所以，在这个应用中，数组是地基，链表是地基上面的一个个楼房，由于地基的连续性保证了楼房也在紧紧挨着，方便了相邻楼房之间的互访。此时二者已不再是割裂的数据结构了，而是互利互惠的关系了。</p>
+<hr>
+<p>除了这里有利用到链表，还有在编写一个小型proxy时，对于来自server的内容进行LRU缓存时也有用到。具体地，维护一个双向链表，头部表示最近使用的内容和URL，尾部表示最远使用的内容和URL。每次URL访问都会将其对应的节点移到链表的开头，若整个链表满了，只需要把末尾的节点抛弃即可。尽管在实现上颇有做双向链表算法题时候的烧脑感，但是原理还是易懂的。</p>
+<hr>
+<p>这里还想再谈谈数组没法碰瓷的链表应用：红黑树。就仅仅拿Linux来说，光是一个红黑树就被用在了好几个部分，这里引用来自<a href="https://lwn.net/"  target="_blank" rel="noreferrer">Linux Weekly News</a>的一段话：</p>
+<blockquote><p>There are a number of red-black trees in use in the kernel. The deadline and CFQ I/O schedulers employ rbtrees to track requests; the packet CD/DVD driver does the same. The high-resolution timer code uses an rbtree to organize outstanding timer requests. The ext3 filesystem tracks directory entries in a red-black tree. Virtual memory areas (VMAs) are tracked with red-black trees, as are epoll file descriptors, cryptographic keys, and network packets in the “hierarchical token bucket” scheduler.</p>
+</blockquote><p>比如在调度模块中有CFS调度算法利用红黑树来管理可运行进程，在虚拟内存管理模块中的vm_area_struct有红黑树节点来管理虚拟地址空间区域，在高性能网络服务中的epoll机制中有红黑树来管理连接文件描述符和其数据&hellip;&hellip;这足以看出红黑树的威力了吧！此外，还记得上面提到的链表节点的写法吗？要存后续指针和当前节点的数据内容。然而在Linux中却采用了另一种<strong>天才</strong>般的方式：把红黑树的节点反向保存在数据内容结构体当中，然后对于节点本身依然维护着一颗红黑树。也就是说，从<strong>原先的数据保存在节点里，变成了节点保存在数据里</strong>了。有关红黑树在Linux中具体的实现这里也不在赘述，可参考：
+
+
+
+
+
+  
+
+
+  <section class="space-y-10 w-full">
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+
+    
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+      
+      
+    
+
+    
+    
+      
+    
+  
+
+
+
+<article class="article-link--shortcode flex flex-col md:flex-row relative overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
+  
+  <div class=" p-4 pt-2">
     <header class="items-center text-start text-xl font-semibold">
       <a
         
-          href="/blogs/claude-and-deepseek/"
+          href="/os/rb-tree_in_linux/"
         
         class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
         <h2>
-          claude code + deepseek v4 部署流程和个人使用体验
+          Linux虚拟内存系统与红黑树的应用浅析
           
         </h2>
       </a>
@@ -1656,7 +1316,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-04-30T00:00:00&#43;00:00">2026/04/30</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-08T00:39:37&#43;08:00">Updated: 2026/05/08</time><span class="px-2 text-primary-500">&middot;</span><span>1149 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-02-23T00:00:00&#43;00:00">2026/02/23</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-07T21:35:38&#43;08:00">Updated: 2026/05/07</time><span class="px-2 text-primary-500">&middot;</span><span>4294 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">22 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1670,7 +1330,7 @@
     
   
   <span
-    id="views_blogs/claude-and-deepseek/index.md"
+    id="views_os/rb-tree_in_linux/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="views"
     >loading</span
@@ -1692,7 +1352,7 @@
     
   
   <span
-    id="likes_blogs/claude-and-deepseek/index.md"
+    id="likes_os/rb-tree_in_linux/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="likes"
     >loading</span
@@ -1719,352 +1379,110 @@
 
     </div>
     
-      <div class="article-link__summary prose dark:prose-invert max-w-fit mt-1 line-clamp-3">
-        从deepseek网页版转为CLI版，代码编辑和操作更加方便
+      
+      <div
+        class="article-link__summary prose dark:prose-invert max-w-fit mt-1 line-clamp-3">
+        红黑树在Linux中的定义声明，和简单的使用方法；对container_of宏的解析
       </div>
     
   </div>
-  <div class="px-6 pt-4 pb-2"></div>
 </article>
 
-  
-    
+  </section>
 
+</p>
 
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-
-
-
-
-  
-  
-    
-
-    
-    
-      
-      
-        
-      
-        
-      
-        
-      
-    
-
-    
-    
-      
-      
-    
-
-    
-    
-      
-    
-  
-
-
-
-<article class="article-link--simple flex flex-col md:flex-row relative overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
-  
-  <div class=" p-4">
-    <header class="items-center text-start text-xl font-semibold">
-      <a
-        
-          href="/os/study_notes/6-virtual_memory_management/"
-        
-        class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
-        <h2>
-          操作系统笔记6：虚拟内存管理
           
-        </h2>
-      </a>
-      
-      
-    </header>
-    <div class="text-sm text-neutral-500 dark:text-neutral-400">
-      
-
-
-
-
-
-
-
-  
-
-  
-  
-  
-    
-  
-
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-    
-  
-
-  
-
-  
-
-  
-
-
-  <div class="flex flex-row flex-wrap items-center">
-    
-    
-      <time datetime="2026-04-21T00:00:00&#43;00:00">2026/04/21</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-11T00:54:08&#43;08:00">Updated: 2026/05/11</time><span class="px-2 text-primary-500">&middot;</span><span>8354 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">42 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
-  
-  
-    
-    
-      
-      
+          
+          
+        </div>
         
         
-      
-      
-    
-  
-  <span
-    id="views_os/study_notes/6-virtual_memory_management/index.md"
-    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
-    title="views"
-    >loading</span
-  >
-  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-<path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></span>
-</span>
-<span class="px-2 text-primary-500">&middot;</span><span>
-  
-  
-    
-    
-      
-      
+
         
+
         
-      
-      
-    
-  
-  <span
-    id="likes_os/study_notes/6-virtual_memory_management/index.md"
-    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
-    title="likes"
-    >loading</span
-  >
-  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></span></span>
-</span>
 
-    
-
-    
-    
-  </div>
-
-  
-
-  
-  
-
-  
-  
-
-
-
-    </div>
-    
-      <div class="article-link__summary prose dark:prose-invert max-w-fit mt-1 line-clamp-3">
-        
       </div>
-    
-  </div>
-  <div class="px-6 pt-4 pb-2"></div>
-</article>
 
-  
-</section>
-
-  
-
-  
-    
       
-    
-    <div class="mt-10 flex justify-center">
-      <a href="/castle/">
-        <button
-          class="bg-transparent hover:text-primary-500 prose dark:prose-invert font-semibold py-2 px-4 border border-primary-500 hover:border-transparent rounded">
-          Show More
-        </button>
-      </a>
-    </div>
-  
+      
+        
+        
+          
+          
+        
+        
+        
+        <script
+          type="text/javascript"
+          src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
+          integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
+          data-oid="views_blogs/my_view_of_list/index.md"
+          data-oid-likes="likes_blogs/my_view_of_list/index.md"></script>
+      
+    </section>
 
-
-</section>
-
-  
-
-  
-  
-  
-  
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
   
     
-  
     
-  
     
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-  
-
-  <div class="mx-auto max-w-7xl px-4 mt-8 mb-16">
-    
-    <div class="flex justify-center mb-12">
-      <div class="text-center" style="margin-right: 200px;">
-        <div class="text-4xl font-bold text-primary-500">24</div>
-        <div class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Articles</div>
-      </div>
-      <div class="text-center">
-        <div class="text-4xl font-bold text-primary-500">80k+</div>
-        <div class="text-sm text-neutral-500 dark:text-neutral-400 mt-1">Words</div>
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span class="flex flex-col">
+          
+            <a
+              class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/blogs/hugo-music-player/">
+              <span class="leading-6">
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;给 Blowfish 主题添加自托管音乐播放器
+              </span>
+            </a>
+            
+              <span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2026-05-07T00:00:00&#43;00:00">2026/05/07</time>
+              </span>
+            
+          
+        </span>
+        <span class="flex flex-col items-end">
+          
+        </span>
       </div>
     </div>
+  
 
-    
-    <div class="text-center">
-      <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-3 font-semibold tracking-wide">RECENT UPDATES</div>
-      <ul class="space-y-1.5 inline-block text-left">
-        
-          <li>
-            <a href="/blogs/my_view_of_list/" class="text-sm text-neutral-700 dark:text-neutral-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
-              数组与链表之我见
-            </a>
-            <span class="text-xs text-neutral-400 dark:text-neutral-500 ml-2">
-              2026/05/14
-            </span>
-          </li>
-        
-          <li>
-            <a href="/ics/readnotes/" class="text-sm text-neutral-700 dark:text-neutral-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
-              CSAPP阅读笔记
-            </a>
-            <span class="text-xs text-neutral-400 dark:text-neutral-500 ml-2">
-              2026/05/11
-            </span>
-          </li>
-        
-          <li>
-            <a href="/os/study_notes/5-memory_management/" class="text-sm text-neutral-700 dark:text-neutral-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
-              操作系统笔记5：内存管理
-            </a>
-            <span class="text-xs text-neutral-400 dark:text-neutral-500 ml-2">
-              2026/05/11
-            </span>
-          </li>
-        
-          <li>
-            <a href="/os/study_notes/6-virtual_memory_management/" class="text-sm text-neutral-700 dark:text-neutral-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
-              操作系统笔记6：虚拟内存管理
-            </a>
-            <span class="text-xs text-neutral-400 dark:text-neutral-500 ml-2">
-              2026/05/11
-            </span>
-          </li>
-        
-          <li>
-            <a href="/os/study_notes/7-file_system/" class="text-sm text-neutral-700 dark:text-neutral-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
-              操作系统笔记7：文件系统
-            </a>
-            <span class="text-xs text-neutral-400 dark:text-neutral-500 ml-2">
-              2026/05/11
-            </span>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
+      
+        
+          <div class="pt-3">
+            <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+            <div class="pt-3">
+              <script src="https://giscus.app/client.js"
+        data-repo="twj-ink/giscus-comments-system"
+        data-repo-id="R_kgDORs0KyA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDORs0KyM4C46yg"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+            </div>
+          </div>
+        
+      
+    </footer>
+  </article>
 
         
 

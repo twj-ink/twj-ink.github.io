@@ -258,7 +258,7 @@
     "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "824"
+    "wordCount": "1116"
   }]
   </script>
 
@@ -941,7 +941,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-05-07T00:00:00&#43;00:00">2026/05/07</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-11T00:54:08&#43;08:00">Updated: 2026/05/11</time><span class="px-2 text-primary-500">&middot;</span><span>4675 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">24 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-05-07T00:00:00&#43;00:00">2026/05/07</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-11T00:54:08&#43;08:00">Updated: 2026/05/11</time><span class="px-2 text-primary-500">&middot;</span><span>8316 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">42 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1176,8 +1176,8 @@
     <li><a href="#三存储介质与物理块">三、存储介质与物理块</a>
       <ul>
         <li><a href="#31-相关术语">3.1 相关术语</a></li>
-        <li><a href="#32-机械磁盘访问hdd">3.2 机械磁盘访问（HDD）</a></li>
-        <li><a href="#33-ssd-特点">3.3 SSD 特点</a></li>
+        <li><a href="#32-机械硬盘hdd">3.2 机械硬盘HDD</a></li>
+        <li><a href="#33-固态驱动器ssd">3.3 固态驱动器SSD</a></li>
         <li><a href="#34-lba-与-pba">3.4 LBA 与 PBA</a></li>
       </ul>
     </li>
@@ -1189,7 +1189,7 @@
     </li>
     <li><a href="#五文件目录">五、文件目录</a>
       <ul>
-        <li><a href="#51-目录目录项与目录文件">5.1 目录、目录项与目录文件</a></li>
+        <li><a href="#51-文件目录目录项与目录文件">5.1 文件目录、目录项与目录文件</a></li>
         <li><a href="#52-树形目录结构">5.2 树形目录结构</a></li>
         <li><a href="#53-目录检索">5.3 目录检索</a></li>
         <li><a href="#54-目录项分解法提高检索速度">5.4 目录项分解法（提高检索速度）</a></li>
@@ -1203,7 +1203,7 @@
             <li><a href="#fat-布局">FAT 布局</a></li>
           </ul>
         </li>
-        <li><a href="#62-文件的物理结构存储结构">6.2 文件的物理结构（存储结构）</a>
+        <li><a href="#62-文件的物理结构lba的组织方式">6.2 文件的物理结构（LBA的组织方式）</a>
           <ul>
             <li><a href="#621-连续结构">6.2.1 连续结构</a></li>
             <li><a href="#622-链接结构">6.2.2 链接结构</a></li>
@@ -1213,26 +1213,24 @@
         </li>
         <li><a href="#63-目录文件的组织方式">6.3 目录文件的组织方式</a></li>
         <li><a href="#64-文件共享">6.4 文件共享</a></li>
+        <li><a href="#65-磁盘空间管理">6.5 磁盘空间管理</a>
+          <ul>
+            <li><a href="#空闲空间管理方法">空闲空间管理方法</a></li>
+            <li><a href="#unix-成组链接法">UNIX 成组链接法</a></li>
+          </ul>
+        </li>
+        <li><a href="#66-内存中的数据结构打开文件管理">6.6 内存中的数据结构（打开文件管理）</a>
+          <ul>
+            <li><a href="#unix-的文件打开结构">UNIX 的文件打开结构</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#七磁盘空间管理">七、磁盘空间管理</a>
+    <li><a href="#七文件系统实例">七、文件系统实例</a>
       <ul>
-        <li><a href="#71-空闲空间管理方法">7.1 空闲空间管理方法</a></li>
-        <li><a href="#72-unix-成组链接法">7.2 UNIX 成组链接法</a></li>
-      </ul>
-    </li>
-    <li><a href="#八内存中的数据结构打开文件管理">八、内存中的数据结构（打开文件管理）</a>
-      <ul>
-        <li><a href="#unix-的文件打开结构">UNIX 的文件打开结构</a></li>
-      </ul>
-    </li>
-    <li><a href="#九文件系统的挂载mount">九、文件系统的挂载（Mount）</a></li>
-    <li><a href="#十虚拟文件系统vfs">十、虚拟文件系统（VFS）</a></li>
-    <li><a href="#十一文件系统实例">十一、文件系统实例</a>
-      <ul>
-        <li><a href="#111-unix-文件系统">11.1 UNIX 文件系统</a></li>
-        <li><a href="#112-fat-文件系统">11.2 FAT 文件系统</a></li>
-        <li><a href="#113-ntfs-文件系统">11.3 NTFS 文件系统</a>
+        <li><a href="#unix-文件系统">⭐UNIX 文件系统</a></li>
+        <li><a href="#fat-文件系统">⭐FAT 文件系统</a></li>
+        <li><a href="#73-ntfs-文件系统">7.3 NTFS 文件系统</a>
           <ul>
             <li><a href="#设计目标">设计目标</a></li>
             <li><a href="#核心概念">核心概念</a></li>
@@ -1242,7 +1240,13 @@
         </li>
       </ul>
     </li>
-    <li><a href="#十二其他常用文件系统">十二、其他常用文件系统</a></li>
+    <li><a href="#八挂载与虚拟文件系统">八、挂载与虚拟文件系统</a>
+      <ul>
+        <li><a href="#81-文件系统的挂载mount">8.1 文件系统的挂载（Mount）</a></li>
+        <li><a href="#82-虚拟文件系统vfs">8.2 虚拟文件系统（VFS）</a></li>
+      </ul>
+    </li>
+    <li><a href="#九其他常用文件系统">九、其他常用文件系统</a></li>
   </ul>
 </nav>
   </div>
@@ -1273,8 +1277,8 @@
     <li><a href="#三存储介质与物理块">三、存储介质与物理块</a>
       <ul>
         <li><a href="#31-相关术语">3.1 相关术语</a></li>
-        <li><a href="#32-机械磁盘访问hdd">3.2 机械磁盘访问（HDD）</a></li>
-        <li><a href="#33-ssd-特点">3.3 SSD 特点</a></li>
+        <li><a href="#32-机械硬盘hdd">3.2 机械硬盘HDD</a></li>
+        <li><a href="#33-固态驱动器ssd">3.3 固态驱动器SSD</a></li>
         <li><a href="#34-lba-与-pba">3.4 LBA 与 PBA</a></li>
       </ul>
     </li>
@@ -1286,7 +1290,7 @@
     </li>
     <li><a href="#五文件目录">五、文件目录</a>
       <ul>
-        <li><a href="#51-目录目录项与目录文件">5.1 目录、目录项与目录文件</a></li>
+        <li><a href="#51-文件目录目录项与目录文件">5.1 文件目录、目录项与目录文件</a></li>
         <li><a href="#52-树形目录结构">5.2 树形目录结构</a></li>
         <li><a href="#53-目录检索">5.3 目录检索</a></li>
         <li><a href="#54-目录项分解法提高检索速度">5.4 目录项分解法（提高检索速度）</a></li>
@@ -1300,7 +1304,7 @@
             <li><a href="#fat-布局">FAT 布局</a></li>
           </ul>
         </li>
-        <li><a href="#62-文件的物理结构存储结构">6.2 文件的物理结构（存储结构）</a>
+        <li><a href="#62-文件的物理结构lba的组织方式">6.2 文件的物理结构（LBA的组织方式）</a>
           <ul>
             <li><a href="#621-连续结构">6.2.1 连续结构</a></li>
             <li><a href="#622-链接结构">6.2.2 链接结构</a></li>
@@ -1310,26 +1314,24 @@
         </li>
         <li><a href="#63-目录文件的组织方式">6.3 目录文件的组织方式</a></li>
         <li><a href="#64-文件共享">6.4 文件共享</a></li>
+        <li><a href="#65-磁盘空间管理">6.5 磁盘空间管理</a>
+          <ul>
+            <li><a href="#空闲空间管理方法">空闲空间管理方法</a></li>
+            <li><a href="#unix-成组链接法">UNIX 成组链接法</a></li>
+          </ul>
+        </li>
+        <li><a href="#66-内存中的数据结构打开文件管理">6.6 内存中的数据结构（打开文件管理）</a>
+          <ul>
+            <li><a href="#unix-的文件打开结构">UNIX 的文件打开结构</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#七磁盘空间管理">七、磁盘空间管理</a>
+    <li><a href="#七文件系统实例">七、文件系统实例</a>
       <ul>
-        <li><a href="#71-空闲空间管理方法">7.1 空闲空间管理方法</a></li>
-        <li><a href="#72-unix-成组链接法">7.2 UNIX 成组链接法</a></li>
-      </ul>
-    </li>
-    <li><a href="#八内存中的数据结构打开文件管理">八、内存中的数据结构（打开文件管理）</a>
-      <ul>
-        <li><a href="#unix-的文件打开结构">UNIX 的文件打开结构</a></li>
-      </ul>
-    </li>
-    <li><a href="#九文件系统的挂载mount">九、文件系统的挂载（Mount）</a></li>
-    <li><a href="#十虚拟文件系统vfs">十、虚拟文件系统（VFS）</a></li>
-    <li><a href="#十一文件系统实例">十一、文件系统实例</a>
-      <ul>
-        <li><a href="#111-unix-文件系统">11.1 UNIX 文件系统</a></li>
-        <li><a href="#112-fat-文件系统">11.2 FAT 文件系统</a></li>
-        <li><a href="#113-ntfs-文件系统">11.3 NTFS 文件系统</a>
+        <li><a href="#unix-文件系统">⭐UNIX 文件系统</a></li>
+        <li><a href="#fat-文件系统">⭐FAT 文件系统</a></li>
+        <li><a href="#73-ntfs-文件系统">7.3 NTFS 文件系统</a>
           <ul>
             <li><a href="#设计目标">设计目标</a></li>
             <li><a href="#核心概念">核心概念</a></li>
@@ -1339,7 +1341,13 @@
         </li>
       </ul>
     </li>
-    <li><a href="#十二其他常用文件系统">十二、其他常用文件系统</a></li>
+    <li><a href="#八挂载与虚拟文件系统">八、挂载与虚拟文件系统</a>
+      <ul>
+        <li><a href="#81-文件系统的挂载mount">8.1 文件系统的挂载（Mount）</a></li>
+        <li><a href="#82-虚拟文件系统vfs">8.2 虚拟文件系统（VFS）</a></li>
+      </ul>
+    </li>
+    <li><a href="#九其他常用文件系统">九、其他常用文件系统</a></li>
   </ul>
 </nav>
   </div>
@@ -1539,7 +1547,14 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          
+          <div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          笔者认为本文内容较为繁杂且逻辑不算特别清晰，有“见木不见林”的感觉，后续会对本文框架和逻辑进行调整，敬请期待。当前版本更适合用来作为一个速查手册。
+        </div>
+      </div></div>
 <h2 class="relative group">一、文件系统基本概念
     <div id="一文件系统基本概念" class="anchor"></div>
     
@@ -1725,7 +1740,7 @@
           <td>磁盘的物理存储单元，通常 512B，一般保证扇区写入的原子性</td>
       </tr>
       <tr>
-          <td><strong>物理块 / 磁盘块 / 数据块 / 簇</strong></td>
+          <td><strong>物理块 / 磁盘块 / 数据块 / 块 / 簇</strong></td>
           <td>信息存储、传输、分配的基本单位，由若干扇区组成</td>
       </tr>
       <tr>
@@ -1754,14 +1769,15 @@
     alt=""
     src="../imgs/7-%e6%9c%ba%e6%a2%b0%e7%9b%98.png"
     ><figcaption>一个典型的机械盘的结构</figcaption></figure>
-<p>在有了块之后，扇区差不多就被屏蔽了，至于一个块可以有多少个扇区可以自己定义。<strong>块的索引用逻辑块号LBA来进行</strong>。对于OS来说看不到真正的PBA，所谓的数据块一开始也都是LBA，都需要经过映射才能得到真正的物理地址来读取真正的数据。</p>
+<p>在有了<strong>块/簇</strong>之后，扇区差不多就被屏蔽了，至于一个块可以有多少个扇区可以自己定义。<strong>块的索引用逻辑块号LBA来进行</strong>。对于OS来说看不到真正的PBA，所谓的数据块一开始也都是LBA，都需要经过映射才能得到真正的物理地址来读取真正的数据。</p>
+<p>在硬件层面，磁盘读写的最小单位是<strong>扇区</strong>，但是对于操作系统来说，文件系统将多个连续的扇区组成一个<strong>逻辑块</strong>，每次IO操作至少读写一个完整的块。<strong>块是存储分配的最小单位。</strong></p>
 
-<h3 class="relative group">3.2 机械磁盘访问（HDD）
-    <div id="32-机械磁盘访问hdd" class="anchor"></div>
+<h3 class="relative group">3.2 机械硬盘HDD
+    <div id="32-机械硬盘hdd" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#32-%e6%9c%ba%e6%a2%b0%e7%a3%81%e7%9b%98%e8%ae%bf%e9%97%aehdd" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#32-%e6%9c%ba%e6%a2%b0%e7%a1%ac%e7%9b%98hdd" aria-label="Anchor">#</a>
     </span>
     
 </h3>
@@ -1773,12 +1789,12 @@
 <li><strong>数据传输</strong>：数据在磁盘与内存之间的实际传输</li>
 </ol>
 
-<h3 class="relative group">3.3 SSD 特点
-    <div id="33-ssd-特点" class="anchor"></div>
+<h3 class="relative group">3.3 固态驱动器SSD
+    <div id="33-固态驱动器ssd" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#33-ssd-%e7%89%b9%e7%82%b9" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#33-%e5%9b%ba%e6%80%81%e9%a9%b1%e5%8a%a8%e5%99%a8ssd" aria-label="Anchor">#</a>
     </span>
     
 </h3>
@@ -1796,7 +1812,6 @@
 <li>闪存物理存储单元（块、页）离散分布，无法直接对应操作系统的连续逻辑地址。</li>
 <li>块有擦除寿命限制，需要<strong>磨损均衡</strong>（Wear Leveling）延长寿命。</li>
 <li>FTL（Flash Translation Layer）在底层完成逻辑地址到物理地址的映射，操作系统只需使用 LBA（Logical Block Address）访问，无需关心内部细节。</li>
-<li>地址不连续：闪存的物理存储单元（块、页）是离散的，无法直接对应操作系统的连续逻辑地址</li>
 </ol>
 <p>对于 SSD 没有机械部件了，只需要考虑数据传输的时间。</p>
 
@@ -1847,6 +1862,14 @@
 </table>
 <p><strong>核心思想</strong>：LBA 是对 OS 的抽象承诺——&ldquo;我就给你一串块号，你随便读写&rdquo;，这是OS对于文件系统读写的接口；PBA 是 SSD 内部实现——受限于 NAND 不能原地覆盖、有擦除寿命等物理约束。FTL 在中间做翻译，使得 OS 可以用简单的线性块号访问，而 SSD 底层可以做写时重定向、垃圾回收、磨损均衡等优化，OS 完全不用关心。</p>
 <p>在SSD中，由FTL来进行二者的映射，并通过磨损优化、垃圾回收来优化寿命；在HHD中，由硬件的固件管理来进行简单的映射得到CHS（磁头柱面扇区）。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2.png"
+    ></figure>
 <hr>
 
 <h2 class="relative group">四、文件控制块（FCB）与文件操作
@@ -1914,6 +1937,12 @@
       </tr>
   </tbody>
 </table>
+<ol>
+<li>创建文件：建立文件的FCB（目录项），分配存储空间</li>
+<li>打开文件：根据文件名在文件目录中检索，并将该文件的目录项（FCB）读入内存，建立相应的数据结构（用户打开文件表、系统打开文件表），为后续的文件操作做好准备。更细节一点，根据文件路径名查目录得到目录项（或i节点号），根据文件号查<strong>系统打开文件表</strong>，查看文件是否已经被打开，若是则引用计数加1，若否则将目录项（或i节点）等信息填入到系统打开文件表空表项中，引用计数置为1；根据打开方式、共享说明和用户身份检查访问合法性；在<strong>用户打开文件表</strong>中取一个空表项，填写打开方式等，并指向系统打开文件表对应表项。</li>
+<li>指针定位：由fd查用户打开文件表找到对应入口，将表中文件读写指针位置设为新指针位置。</li>
+<li>读文件：根据fd找到FCB，确定读的合法性；获取文件的逻辑块地址LBA；申请缓冲区，启动磁盘IO操作把磁盘块中的信息读入缓冲区，再传送到指定的内存区</li>
+</ol>
 <hr>
 
 <h2 class="relative group">五、文件目录
@@ -1926,22 +1955,32 @@
     
 </h2>
 
-<h3 class="relative group">5.1 目录、目录项与目录文件
-    <div id="51-目录目录项与目录文件" class="anchor"></div>
+<h3 class="relative group">5.1 文件目录、目录项与目录文件
+    <div id="51-文件目录目录项与目录文件" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#51-%e7%9b%ae%e5%bd%95%e7%9b%ae%e5%bd%95%e9%a1%b9%e4%b8%8e%e7%9b%ae%e5%bd%95%e6%96%87%e4%bb%b6" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#51-%e6%96%87%e4%bb%b6%e7%9b%ae%e5%bd%95%e7%9b%ae%e5%bd%95%e9%a1%b9%e4%b8%8e%e7%9b%ae%e5%bd%95%e6%96%87%e4%bb%b6" aria-label="Anchor">#</a>
     </span>
     
 </h3>
 <ul>
 <li><strong>文件目录</strong>：将所有文件的管理信息组织在一起，统一管理每个文件的信息</li>
-<li><strong>目录文件</strong>：将文件目录以文件形式存放在磁盘上，内容由<strong>目录项</strong>组成，是典型的记录式文件</li>
+<li><strong>目录文件</strong>：将文件目录以文件形式存放在磁盘上，内容由<strong>目录项</strong>组成，是典型的记录式文件。所以，<strong>在磁盘上，目录文件的形式就是一个一个的目录项组合起来的</strong>。</li>
 <li><strong>目录项</strong>：构成目录文件的基本单元，通常包含 FCB（或 FCB 的关键字段）</li>
 </ul>
 <p>为确保映射的完整性，只允许内核修改目录，应用程序通过系统调用（如<code>mkdir</code>）访问目录。</p>
-
+<p>目录文件的内容就是一个<strong>目录项的数组</strong>，每个目录项是一个定长结构，在UNIX中包含文件名、i节点号等等，在FAT32中包含文件名、起始簇号、属性、大小等等，一个接着一个地填满磁盘块。所以，<strong>目录文件 = 目录项序列</strong>，这和<strong>普通文件 = 字节序列</strong>是一个道理。</p>
+<p>目录文件和普通文件的分配规则是一样的，都是<strong>按块分配</strong>，最小1块，可以多块。块是存储分配的最小单位。对于目录文件，其分配的一块中都是一系列定长的结构体：目录项构成，一般最少包含<code>.</code>和<code>..</code>这两个目录项。</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          目录项 vs FCB
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>目录项是&quot;索引卡片&quot;，FCB 是&quot;完整档案&quot;。目录项的内容是文件名+指向FCB的指针，存在目录文件的数据块里；FCB的内容是文件的所有管理信息如文件大小、物理地址等，存在inode区或目录项本身。</p>
+<p>在早期的FAT模式中，目录项 = FCB。缺点就是目录项很大，查找的时候要把大块数据全部读进内存。在目录项中有文件名用于查找、起始簇号用于提供文件地址信息等等。在后来的UNIX模式中，把FCB拆成了两半：一部分是<strong>符号目录项</strong>，包含文件名和inode号；另一部分是<strong>基本目录项</strong>，包含FCB的其余内容。优点是目录文件里只存轻量级的索引卡片，查找时读入内存的数据更小。完整的FCB按需从inode区读取。</p></div></div>
 <h3 class="relative group">5.2 树形目录结构
     <div id="52-树形目录结构" class="anchor"></div>
     
@@ -2013,7 +2052,19 @@
 <li>分解前：平均访盘 <strong>7 次</strong></li>
 <li>分解后：平均访盘 <strong>2.5 次</strong></li>
 </ul>
-<hr>
+<blockquote><p><strong>分解前</strong>：FCB 全部 48 字节全放在目录文件里。</p>
+<ul>
+<li>一块 512B 只能放 10 个目录项（512 / 48 = 10，剩 32B 浪费）</li>
+<li>128 个目录项 = 需 13 块</li>
+<li>线性查找，平均读一半的块 → 13 / 2 ≈ 7 次</li>
+</ul>
+<p><strong>分解后</strong>：FCB 拆成符号目录项（6B 文件名 + 2B i 节点号 = 8B）和基本目录项（42B）。</p>
+<ul>
+<li>符号目录文件：一块放 64 个（512 / 8 = 64），128 个条目只需 2 块，平均读 1 块</li>
+<li>基本目录文件：一块放 12 个（512 / 42 ≈ 12），128 个条目需 11 块。但不需要线性搜索——符号目录项里已经拿到了文件号，直接在基本目录文件里定位到对应条目所在的块（摊下来平均约 1.5 次，因为 42B 条目可能跨块边界）</li>
+</ul>
+<p>平均访盘 = 1 + 1.5 = 2.5 次，从 7 次降到 2.5 次。关键不在于算得更少，而在于符号目录文件瘦身后查找快得多，基本目录文件只需要随机访问一次。</p>
+</blockquote><hr>
 
 <h2 class="relative group">六、文件系统的实现
     <div id="六文件系统的实现" class="anchor"></div>
@@ -2073,12 +2124,12 @@
     src="../imgs/7-fat%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e5%b8%83%e5%b1%80.png"
     ><figcaption>FAT和NTFS文件布局示意图</figcaption></figure>
 
-<h3 class="relative group">6.2 文件的物理结构（存储结构）
-    <div id="62-文件的物理结构存储结构" class="anchor"></div>
+<h3 class="relative group">6.2 文件的物理结构（LBA的组织方式）
+    <div id="62-文件的物理结构lba的组织方式" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#62-%e6%96%87%e4%bb%b6%e7%9a%84%e7%89%a9%e7%90%86%e7%bb%93%e6%9e%84%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#62-%e6%96%87%e4%bb%b6%e7%9a%84%e7%89%a9%e7%90%86%e7%bb%93%e6%9e%84lba%e7%9a%84%e7%bb%84%e7%bb%87%e6%96%b9%e5%bc%8f" aria-label="Anchor">#</a>
     </span>
     
 </h3>
@@ -2250,6 +2301,14 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
     alt=""
     src="../imgs/7-inode.png"
     ><figcaption>UNIX中的多级索引示意图，i节点只画出了索引信息</figcaption></figure>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-inode%e7%bb%93%e6%9e%84.png"
+    ><figcaption>UNIX的inode结构示意图。这个图中假设每个索引项是4字节，其余与上图一致，这个图好看一点</figcaption></figure>
 <hr>
 
 <h3 class="relative group">6.3 目录文件的组织方式
@@ -2278,6 +2337,7 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
     </span>
     
 </h3>
+<p>文件共享是指一个文件被多个用户或进程使用。多用户系统中的文件共享是很必要的。一种实现方式是<strong>文件别名</strong>：</p>
 <table>
   <thead>
       <tr>
@@ -2299,27 +2359,33 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
       </tr>
   </tbody>
 </table>
+<p>硬链接的实现：</p>
+<ol>
+<li>在FCB中直接给出文件地址，但是这样可能导致同步问题。</li>
+<li>目录项指向i节点，i节点中增加一个<strong>共享计数</strong>，每次创建硬链接共享计数 +1，删除硬链接共享计数 -1，共享计数为0时才真正删除文件。</li>
+</ol>
+<p>软链接的实现：建立一种特殊类型（Link）的文件，其内容是<strong>要共享的文件路径名</strong>。访问软链接时，系统会自动解析路径名，找到目标文件进行访问。只有真正的文件所有者才有指向i节点的指针。可以建立任意的别名关系，甚至原文件是在其他计算机上。问题：系统开销大；目录结构可能形成环状；优势：计算机网络环境下可用</p>
 <hr>
 
-<h2 class="relative group">七、磁盘空间管理
-    <div id="七磁盘空间管理" class="anchor"></div>
+<h3 class="relative group">6.5 磁盘空间管理
+    <div id="65-磁盘空间管理" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%83%e7%a3%81%e7%9b%98%e7%a9%ba%e9%97%b4%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-
-<h3 class="relative group">7.1 空闲空间管理方法
-    <div id="71-空闲空间管理方法" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#71-%e7%a9%ba%e9%97%b2%e7%a9%ba%e9%97%b4%e7%ae%a1%e7%90%86%e6%96%b9%e6%b3%95" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#65-%e7%a3%81%e7%9b%98%e7%a9%ba%e9%97%b4%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
     </span>
     
 </h3>
+
+<h4 class="relative group">空闲空间管理方法
+    <div id="空闲空间管理方法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%a9%ba%e9%97%b2%e7%a9%ba%e9%97%b4%e7%ae%a1%e7%90%86%e6%96%b9%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 <table>
   <thead>
       <tr>
@@ -2347,33 +2413,44 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
   </tbody>
 </table>
 
-<h3 class="relative group">7.2 UNIX 成组链接法
-    <div id="72-unix-成组链接法" class="anchor"></div>
+<h4 class="relative group">UNIX 成组链接法
+    <div id="unix-成组链接法" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#72-unix-%e6%88%90%e7%bb%84%e9%93%be%e6%8e%a5%e6%b3%95" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#unix-%e6%88%90%e7%bb%84%e9%93%be%e6%8e%a5%e6%b3%95" aria-label="Anchor">#</a>
     </span>
     
-</h3>
+</h4>
 <ul>
 <li>专用块记录当前空闲块组：<code>[空闲块数 N, 空闲块号1, …, 空闲块号N]</code></li>
 <li>分配时：从专用块取块；若剩最后一块，该块中存着下一组信息</li>
 <li>回收时：若当前组不满，填入；若满，将当前组信息写入回收块，回收块成为新组</li>
 </ul>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-%e6%88%90%e7%bb%84%e9%93%be%e6%8e%a5%e6%b3%95.png"
+    ><figcaption>UNIX的成组链接法示意图</figcaption></figure>
+<p>文件卷的目录区中专门用一个磁盘块作为“专用块”，当系统启动时需要将专用块读入<strong>内存</strong>，并且要保证内存与外存中的“专用块”数据一致。专用块的第一个元素是下一组空闲盘块数 n，接下来跟着的是 n 个空闲块号。其中第一个空闲块指向保存下一个超级块的信息，仍然是空闲盘块数 n 和 n 个空闲块号。直到最后一个专用块的信息没有后续的空闲块号，它的第一个空闲块号为特殊值例如 -1。</p>
+<p>当需要 i 个空闲块时，检查第一个分组的块数是否足够，如果 i &lt; n 是足够的，就分配第一个分组中的 i 个空闲块，并修改相应数据。例如上图的成组链接，若需要 5 个空闲块，可以分配 201 ~ 205 号空闲块，并修改专用块的空闲块数量为 95。</p>
+<p>如果 i ≥ n 刚好或不足够，则需要分配第一个分组中的全部空闲块，由于第一个空闲块存放了再下一组的信息，因此<strong>号块的数据需要复制到专用块中</strong>。例如上图的成组链接，若再需要 95 个空闲块，可以分配 206 ~ 300 号空闲块，由于 300 号块内存放了再下一组的信息，因此 300 号块的数据需要复制到专用块中。</p>
 <hr>
 
-<h2 class="relative group">八、内存中的数据结构（打开文件管理）
-    <div id="八内存中的数据结构打开文件管理" class="anchor"></div>
+<h3 class="relative group">6.6 内存中的数据结构（打开文件管理）
+    <div id="66-内存中的数据结构打开文件管理" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ab%e5%86%85%e5%ad%98%e4%b8%ad%e7%9a%84%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e6%89%93%e5%bc%80%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#66-%e5%86%85%e5%ad%98%e4%b8%ad%e7%9a%84%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e6%89%93%e5%bc%80%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
     </span>
     
-</h2>
+</h3>
 
-<h3 class="relative group">UNIX 的文件打开结构
+<h4 class="relative group">UNIX 的文件打开结构
     <div id="unix-的文件打开结构" class="anchor"></div>
     
     <span
@@ -2381,7 +2458,7 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
         <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#unix-%e7%9a%84%e6%96%87%e4%bb%b6%e6%89%93%e5%bc%80%e7%bb%93%e6%9e%84" aria-label="Anchor">#</a>
     </span>
     
-</h3>
+</h4>
 <table>
   <thead>
       <tr>
@@ -2413,87 +2490,300 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
 </ol>
 <hr>
 
-<h2 class="relative group">九、文件系统的挂载（Mount）
-    <div id="九文件系统的挂载mount" class="anchor"></div>
+<h2 class="relative group">七、文件系统实例
+    <div id="七文件系统实例" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b9%9d%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%8c%82%e8%bd%bdmount" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%83%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e5%ae%9e%e4%be%8b" aria-label="Anchor">#</a>
     </span>
     
 </h2>
-<p>将一个文件系统加入到另一个文件系统，用户提供：被挂载文件系统的根目录 + 挂载点。挂载后，被挂载文件系统的目录树出现在挂载点之下。</p>
-<hr>
-
-<h2 class="relative group">十、虚拟文件系统（VFS）
-    <div id="十虚拟文件系统vfs" class="anchor"></div>
+<p>对于磁盘而言，其分区结构是：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">+-------+-----------+-----------+-----------+-------+
+</span></span><span class="line"><span class="cl">| MBR   | 文件系统1  | 文件系统2   |  文件系统3 | 其他分区 |
+</span></span><span class="line"><span class="cl">+-------+-----------+-----------+-----------+-------+</span></span></code></pre></div></div>
+<p><code>MBR</code>（主引导记录，LBA 0）是磁盘分区表的载体，跟文件系统无关——它告诉你磁盘分了几个区、每个区从哪开始到哪结束，负责引导 BIOS 找到活动分区并加载该分区的引导扇区。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-MBR.png"
+    ></figure>
+<blockquote><p>此处来源：<a href="https://www.ruanyifeng.com/blog/2013/02/booting.html"  target="_blank" rel="noreferrer">计算机是如何启动的？</a>
+&ldquo;主引导记录&quot;只有512个字节，放不了太多东西。它的主要作用是，告诉计算机到硬盘的哪一个位置去找操作系统。</p>
+<p>主引导记录由三个部分组成：</p>
+<p>（1） 第1-446字节：调用操作系统的机器码。</p>
+<p>（2） 第447-510字节：分区表（Partition table）。</p>
+<p>（3） 第511-512字节：主引导记录签名（0x55和0xAA）。</p>
+<p>其中，第二部分&quot;分区表&quot;的作用，是将硬盘分成若干个区。考虑到每个区可以安装不同的操作系统，&ldquo;主引导记录&quot;因此必须知道将控制权转交给哪个区。分区表的长度只有64个字节，里面又分成四项，每项16个字节。所以，一个硬盘最多只能分四个一级分区，又叫做&quot;主分区&rdquo;。</p>
+<p>计算机在启动的时候，BIOS回把控制器转交给排在第一位的储存设备。这时，计算机读取该设备的第一个扇区，也就是读取最前面的512个字节。如果这512个字节的最后两个字节是0x55和0xAA，表明这个设备可以用于启动；如果不是，表明设备不能用于启动，控制权于是被转交给&quot;启动顺序&quot;中的下一个设备。MBR就是这512字节。</p>
+</blockquote>
+<h3 class="relative group">⭐UNIX 文件系统
+    <div id="unix-文件系统" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8d%81%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9fvfs" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<p>VFS 是一个抽象层，为不同文件系统提供统一接口。用户程序以相同方式访问不同文件系统，屏蔽底层差异。</p>
-<p>工作流程：</p>
-<ol>
-<li>VFS 对用户发起的文件系统调用进行<strong>路径解析</strong></li>
-<li>查找对应的目录项（dentry）和 inode</li>
-<li>确定目标文件所在的真实文件系统</li>
-<li>调用对应文件系统实现的具体方法</li>
-<li>返回结果给用户</li>
-</ol>
-<hr>
-
-<h2 class="relative group">十一、文件系统实例
-    <div id="十一文件系统实例" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8d%81%e4%b8%80%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e5%ae%9e%e4%be%8b" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-
-<h3 class="relative group">11.1 UNIX 文件系统
-    <div id="111-unix-文件系统" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#111-unix-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#unix-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
     </span>
     
 </h3>
+<p>UNIX的文件系统中的文件以索引结构来组织。文件系统为每个文件的所有块建立了一个索引表，索引表就是块地址数组，每个数组元素是块的地址，每个数组元素的下标是文件块的索引，第n个数组元素指向文件中的第n个块。</p>
+<p>包含这个索引表的索引结构成为<code>inode</code>，即<code>index node</code>，索引节点，用来索引一个文件的所有块。在UNIX系统中，<strong>一个文件必须对应一个inode</strong>，磁盘中有多少文件就有多少个inode。</p>
 <ul>
-<li>FCB = <strong>目录项</strong>（文件名 + i 节点号） + <strong>i 节点</strong>（文件属性 + 数据块指针）</li>
-<li>目录文件由目录项构成</li>
-<li>每个文件：1 个目录项 + 1 个 i 节点 + 若干磁盘块</li>
-<li>i 节点包含 15 个索引项，采用直接 + 多级间接索引</li>
+<li>inode 结构</li>
 </ul>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-inode%e7%bb%93%e6%9e%84.png"
+    ><figcaption>UNIX的inode结构示意图。这个图中假设每个索引项是4字节，其余与上图一致，这个图好看一点</figcaption></figure>
+<p>inode包含了文件的属性，12个直接数据块指针，和3个间接块指针。对于数据块索引表，也是存在磁盘上。</p>
+<ul>
+<li>目录项</li>
+</ul>
+<p>inode用来表示文件，不管是普通文件还是目录文件。文件系统区分这两种文件的方式并不依赖于inode，inode是无法决定的，也是不必关心的。唯一的方式就是<strong>数据块本身的内容</strong>了。如果inode表示的是普通文件，这个inode指向的数据块中的内容就是普通文件自己的数据；如果表示的是目录文件，这个inode指向的数据块中的内容就是该目录下的<strong>目录项</strong>。在只考虑这两种文件的情况下，目录文件的数据块中，要么是普通文件的目录项，要么是目录文件的目录项。</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          本文上方已经提到过：目录文件是由目录项构成的，目录项是目录文件的基本单位。
+        </div>
+      </div></div><p>可以认为，UNIX系统中的FCB就是inode，或者说FCB = inode + 目录项。<strong>目录项中包含了文件名和对应的inode号；inode中包含了文件的属性、文件地址信息、块指针等等。</strong></p>
+<p><figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-inode.jpg"
+    ></figure>
 
-<h3 class="relative group">11.2 FAT 文件系统
-    <div id="112-fat-文件系统" class="anchor"></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-inode2.jpg"
+    ></figure>
+</p>
+<ul>
+<li>超级块和文件系统布局</li>
+</ul>
+<p>每个文件都有一个inode，所有的inode都放在inode数组中，这个数组在哪里？大小是多少？对于一个硬盘，每个分区都有自己的根目录，地址不统一，怎么找到根目录地址？</p>
+<p>这时需要在某个固定地方去获取文件系统元信息的配置，这个地方就是<strong>超级块</strong>，超级块是保存文件系统元信息的元信息。下图是硬盘布局和其中一个UNIX分区的布局：</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-%e7%a3%81%e7%9b%98%e5%b8%83%e5%b1%80.jpg"
+    ></figure>
+<ul>
+<li>查找文件过程</li>
+</ul>
+<p>给出一个文件名<code>/user/ast/mbox</code>，查询文件的流程：</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-exp.png"
+    ></figure>
+<ul>
+<li>练习1</li>
+</ul>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-%e7%bb%83%e4%b9%a01.png"
+    ></figure>
+<p><figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-1.jpg"
+    ></figure>
+
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-2.jpg"
+    ></figure>
+
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-3.jpg"
+    ></figure>
+</p>
+<ul>
+<li>练习2</li>
+</ul>
+<p>假设一块刚格式化好的磁盘大小是2M，每块为512字节，画出UNIX文件系统布局，和在经过如下操作后的布局。</p>
+<p>操作序列：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">\ mkdir A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">A mkdir B
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">B create File1(4块)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">\ mkdir C
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">\ mkdir D
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">C mkdir E
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">E create File2(16块)</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-unix%e5%88%86%e5%8c%ba%e5%b8%83%e5%b1%80.jpg"
+    ></figure>
+
+<h3 class="relative group">⭐FAT 文件系统
+    <div id="fat-文件系统" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#112-fat-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#fat-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
     </span>
     
 </h3>
+<p>FAT文件系统中，FCB就是目录项，与UNIX不同。根目录大小固定。其分区布局是：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">+-------+-----------+-----------+-----------+-------+
+</span></span><span class="line"><span class="cl">| 引导区 | 文件分配表1 | 文件分配表2 |  根目录区  | 数据区 |
+</span></span><span class="line"><span class="cl">+-------+-----------+-----------+-----------+-------+</span></span></code></pre></div></div>
 <ul>
-<li>以<strong>簇</strong>为单位分配，FAT 表项描述簇的分配状态和下一簇号</li>
-<li>FAT12 / FAT16 / FAT32 的区别在于表项位数</li>
-<li>引导扇区包含 BPB（BIOS 参数块），记录扇区大小、每簇扇区数等</li>
-<li>FAT32：FAT 表项 32 位，根目录起始簇号通常为 2</li>
-<li>目录项占 32 字节，根目录大小固定（FAT16 中）</li>
+<li>引导区</li>
 </ul>
+<p>引导区有引导代码和其他元数据，这些其他元数据相当于UNIX的super block</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-DBR.png"
+    ><figcaption>FAT的引导扇区（DBR）示意图</figcaption></figure>
+<p>其中BIOS参数块中给出了每簇的扇区数、每扇区的字节数等信息，这些信息可以用来计算每簇的字节数，从而知道每个簇能存多少目录项（FAT16中一个目录项48字节，FAT32中一个目录项32字节）。FAT表的大小和位置也在引导区中给出。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-BIOS%e5%8f%82%e6%95%b0%e5%9d%97.png"
+    ><figcaption>FAT的BIOS参数块示意图</figcaption></figure>
+<ul>
+<li>文件分配表</li>
+</ul>
+<p>FAT表可以看作是一个整数数组，每个整数代表数据区的一个簇号。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-fat1.png"
+    ></figure>
+<ul>
+<li>目录项</li>
+</ul>
+<p>FAT32系统的目录项也是在数据区中以文件的形式存储的。每个目录项占用32字节，包含文件名、属性、起始簇号、文件大小、修改时间等信息。</p>
+<p>下面是FAT16的目录项（FCB），可以发现只有<strong>修改</strong>的日期和时间，没有创建和查看的，会有安全问题；还有起始簇号。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-fat16.png"
+    ></figure>
+<p>在FAT32中目录项仍然是32字节，但是分为各种类型（包括：“.”目录项、“..”目录项、短文件名目录项、卷标项（根目录）、已删除目录项（第一字节为0xE5）、长文件名目录项等）。对于一个文件至少有俩目录项，即短和长文件名目录项。在短目录项中，把保留的10个字节做了使用，存储了文件的起始簇号的高 16 位（FAT16 中没有这个字段）。因此 FAT32 的短目录项仍然是 32 字节，但结构发生了变化。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-fat32.png"
+    ></figure>
+<p>对于长文件名目录项，也是32字节，一个长文件名目录项可以存储 13 个 Unicode 字符（26 字节），剩余 6 字节用于其他信息（如序号、校验和等）。长文件名目录项与对应的短目录项通过序号和校验和关联起来，形成一个完整的文件名。</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">long_name_entry</span> <span class="p">{</span>            
+</span></span><span class="line"><span class="cl">      <span class="n">uint8</span>       <span class="n">order</span><span class="p">;</span>       <span class="c1">// 序号：1~N，最后一项 | 0x40                  
+</span></span></span><span class="line"><span class="cl">      <span class="n">wchar</span>       <span class="n">name1</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>    <span class="c1">// 5 个 Unicode 字符                                       
+</span></span></span><span class="line"><span class="cl">      <span class="n">uint8</span>       <span class="n">attr</span><span class="p">;</span>        <span class="c1">// 必须是 0x0F（长文件名标记）                        
+</span></span></span><span class="line"><span class="cl">      <span class="n">uint8</span>       <span class="n">_type</span><span class="p">;</span>       <span class="c1">// 保留                
+</span></span></span><span class="line"><span class="cl">      <span class="n">uint8</span>       <span class="n">checksum</span><span class="p">;</span>    <span class="c1">// 短文件名校验和                              
+</span></span></span><span class="line"><span class="cl">      <span class="n">wchar</span>       <span class="n">name2</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>    <span class="c1">// 6 个 Unicode 字符                                       
+</span></span></span><span class="line"><span class="cl">      <span class="n">uint16</span>      <span class="n">_fst_clus_lo</span><span class="p">;</span><span class="c1">// 文件起始簇号，常置0
+</span></span></span><span class="line"><span class="cl">      <span class="n">wchar</span>       <span class="n">name3</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>    <span class="c1">// 2 个 Unicode 字符                                       
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-%e9%95%bf%e6%96%87%e4%bb%b6%e5%90%8d.png"
+    ></figure>
+<ul>
+<li>练习</li>
+</ul>
+<p>假设一块刚格式化好的磁盘大小是2M，每块为512字节，画出FAT16文件系统布局，和在经过如下操作后的布局。</p>
+<p>操作序列：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">\ mkdir A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">A mkdir B
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">B create File1(4块)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">\ mkdir C
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">\ mkdir D
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">C mkdir E
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">E create File2(16块)</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-fat16.jpg"
+    ></figure>
 
-<h3 class="relative group">11.3 NTFS 文件系统
-    <div id="113-ntfs-文件系统" class="anchor"></div>
+<h3 class="relative group">7.3 NTFS 文件系统
+    <div id="73-ntfs-文件系统" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#113-ntfs-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#73-ntfs-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
     </span>
     
 </h3>
@@ -2536,7 +2826,7 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
       </tr>
       <tr>
           <td><strong>属性</strong></td>
-          <td>所有信息都是属性，文件内容是&quot;未命名数据属性流&quot;</td>
+          <td>所有信息都是属性，文件内容是&quot;未命名数据属性流&rdquo;</td>
       </tr>
       <tr>
           <td><strong>常驻属性</strong></td>
@@ -2588,12 +2878,54 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
 </ul>
 <hr>
 
-<h2 class="relative group">十二、其他常用文件系统
-    <div id="十二其他常用文件系统" class="anchor"></div>
+<h2 class="relative group">八、挂载与虚拟文件系统
+    <div id="八挂载与虚拟文件系统" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8d%81%e4%ba%8c%e5%85%b6%e4%bb%96%e5%b8%b8%e7%94%a8%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ab%e6%8c%82%e8%bd%bd%e4%b8%8e%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">8.1 文件系统的挂载（Mount）
+    <div id="81-文件系统的挂载mount" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#81-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%8c%82%e8%bd%bdmount" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>将一个文件系统加入到另一个文件系统，用户提供：被挂载文件系统的根目录 + 挂载点。挂载后，被挂载文件系统的目录树出现在挂载点之下。</p>
+<hr>
+
+<h3 class="relative group">8.2 虚拟文件系统（VFS）
+    <div id="82-虚拟文件系统vfs" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#82-%e8%99%9a%e6%8b%9f%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9fvfs" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>VFS 是一个抽象层，为不同文件系统提供统一接口。用户程序以相同方式访问不同文件系统，屏蔽底层差异。</p>
+<p>工作流程：</p>
+<ol>
+<li>VFS 对用户发起的文件系统调用进行<strong>路径解析</strong></li>
+<li>查找对应的目录项（dentry）和 inode</li>
+<li>确定目标文件所在的真实文件系统</li>
+<li>调用对应文件系统实现的具体方法</li>
+<li>返回结果给用户</li>
+</ol>
+<hr>
+
+<h2 class="relative group">九、其他常用文件系统
+    <div id="九其他常用文件系统" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b9%9d%e5%85%b6%e4%bb%96%e5%b8%b8%e7%94%a8%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="Anchor">#</a>
     </span>
     
 </h2>
@@ -2635,7 +2967,19 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
       </tr>
   </tbody>
 </table>
-
+<blockquote><p>参考文章：</p>
+<ol>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/695281200"  target="_blank" rel="noreferrer">手写一个linux文件系统（一）</a></p>
+</li>
+<li>
+<p><a href="https://www.cnblogs.com/linfangnan/p/15139136.html"  target="_blank" rel="noreferrer">操作系统：磁盘的组织和空间管理</a></p>
+</li>
+<li>
+<p><a href="https://www.ruanyifeng.com/blog/2013/02/booting.html"  target="_blank" rel="noreferrer">计算机是如何启动的？</a></p>
+</li>
+</ol>
+</blockquote>
           
           
           

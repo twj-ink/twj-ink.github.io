@@ -15,8 +15,8 @@
 
   
   
-    <title>操作系统笔记6：虚拟内存管理 &middot; GaleInk&#39;s blog</title>
-    <meta name="title" content="操作系统笔记6：虚拟内存管理 &middot; GaleInk&#39;s blog">
+    <title>操作系统笔记8：同步机制 &middot; GaleInk&#39;s blog</title>
+    <meta name="title" content="操作系统笔记8：同步机制 &middot; GaleInk&#39;s blog">
   
 
   
@@ -28,7 +28,7 @@
   
   
   
-  <link rel="canonical" href="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
+  <link rel="canonical" href="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
   
 
   
@@ -56,18 +56,18 @@
   
 
   
-  <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
+  <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
   <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="操作系统笔记6：虚拟内存管理">
+  <meta property="og:title" content="操作系统笔记8：同步机制">
   <meta property="og:description" content="GaleInk&#39;s marvelous website">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="os">
-    <meta property="article:published_time" content="2026-04-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-14T13:09:20+08:00">
+    <meta property="article:published_time" content="2026-05-28T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-05-28T00:00:00+00:00">
     <meta property="article:tag" content="OS">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/4-scheduling/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/3-process_thread/">
@@ -75,7 +75,7 @@
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="操作系统笔记6：虚拟内存管理">
+  <meta name="twitter:title" content="操作系统笔记8：同步机制">
   <meta name="twitter:description" content="GaleInk&#39;s marvelous website">
 
   
@@ -240,25 +240,25 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Operating Systems",
-    "name": "操作系统笔记6：虚拟内存管理",
-    "headline": "操作系统笔记6：虚拟内存管理",
+    "name": "操作系统笔记8：同步机制",
+    "headline": "操作系统笔记8：同步机制",
     
     "inLanguage": "en",
-    "url" : "https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/",
+    "url" : "https://twj-ink.github.io/os/study_notes/8-async_mechanism/",
     "author" : {
       "@type": "Person",
       "name": "GaleInk"
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-04-21T00:00:00\u002b00:00",
-    "datePublished": "2026-04-21T00:00:00\u002b00:00",
+    "dateCreated": "2026-05-28T00:00:00\u002b00:00",
+    "datePublished": "2026-05-28T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-14T13:09:20\u002b08:00",
+    "dateModified": "2026-05-28T00:00:00\u002b00:00",
     
     "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "874"
+    "wordCount": "695"
   }]
   </script>
 
@@ -879,7 +879,7 @@
     <header id="single_header" class="mt-5 max-w-prose">
       
       <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-        操作系统笔记6：虚拟内存管理
+        操作系统笔记8：同步机制
       </h1>
       <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
         
@@ -907,8 +907,6 @@
     
   
 
-  
-    
   
 
   
@@ -941,7 +939,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-04-21T00:00:00&#43;00:00">2026/04/21</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-14T13:09:20&#43;08:00">Updated: 2026/05/14</time><span class="px-2 text-primary-500">&middot;</span><span>8354 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">42 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-05-28T00:00:00&#43;00:00">2026/05/28</time><span class="px-2 text-primary-500">&middot;</span><span>2832 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -955,7 +953,7 @@
     
   
   <span
-    id="views_os/study_notes/6-virtual_memory_management/index.md"
+    id="views_os/study_notes/8-async_mechanism/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="views"
     >loading</span
@@ -977,7 +975,7 @@
     
   
   <span
-    id="likes_os/study_notes/6-virtual_memory_management/index.md"
+    id="likes_os/study_notes/8-async_mechanism/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="likes"
     >loading</span
@@ -1159,64 +1157,55 @@
     class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#一虚拟内存概述">一、虚拟内存概述</a>
+    <li><a href="#一并发执行带来的问题">一、并发执行带来的问题</a>
       <ul>
-        <li><a href="#11-存储体系">1.1 存储体系</a></li>
-        <li><a href="#12-核心术语">1.2 核心术语</a></li>
-        <li><a href="#13-虚拟内存管理的目标">1.3 虚拟内存管理的目标</a></li>
+        <li><a href="#11-竞态条件race-condition">1.1 竞态条件（Race Condition）</a></li>
+        <li><a href="#12-临界区critical-section">1.2 临界区（Critical Section）</a></li>
+        <li><a href="#13-互斥与同步">1.3 互斥与同步</a></li>
       </ul>
     </li>
-    <li><a href="#二虚拟页式存储管理">二、虚拟页式存储管理</a></li>
-    <li><a href="#三硬件机制地址转换">三、硬件机制：地址转换</a>
+    <li><a href="#二软件互斥解法">二、软件互斥解法</a>
       <ul>
-        <li><a href="#31-mmu-工作原理">3.1 MMU 工作原理</a></li>
-        <li><a href="#32-地址转换过程">3.2 地址转换过程</a></li>
-        <li><a href="#33-x86-保护模式下的寻址">3.3 x86 保护模式下的寻址</a></li>
+        <li><a href="#21-早期尝试">2.1 早期尝试</a></li>
+        <li><a href="#22-dekker-算法1965">2.2 Dekker 算法（1965）</a></li>
+        <li><a href="#23-peterson-算法1981">2.3 Peterson 算法（1981）</a></li>
       </ul>
     </li>
-    <li><a href="#四页表">四、页表</a>
+    <li><a href="#三硬件互斥解法">三、硬件互斥解法</a>
       <ul>
-        <li><a href="#41-页表项pte设计">4.1 页表项（PTE）设计</a></li>
-        <li><a href="#42-多级页表">4.2 多级页表</a></li>
-        <li><a href="#43-反转页表inverted-page-table">4.3 反转页表（Inverted Page Table）</a></li>
+        <li><a href="#31-关闭中断">3.1 关闭中断</a></li>
+        <li><a href="#32-tsltest-and-set-lock指令">3.2 TSL（Test and Set Lock）指令</a></li>
       </ul>
     </li>
-    <li><a href="#五tlb--加速地址转换">五、TLB — 加速地址转换</a>
+    <li><a href="#四信号量与-pv-操作">四、信号量与 PV 操作</a>
       <ul>
-        <li><a href="#51-为什么需要-tlb">5.1 为什么需要 TLB</a></li>
-        <li><a href="#52-tlb-原理">5.2 TLB 原理</a></li>
-        <li><a href="#53-关键问题">5.3 关键问题</a></li>
+        <li><a href="#41-信号量定义">4.1 信号量定义</a></li>
+        <li><a href="#42-p--v-操作">4.2 P / V 操作</a></li>
+        <li><a href="#43-用-pv-解决互斥">4.3 用 PV 解决互斥</a></li>
+        <li><a href="#44-用-pv-解决生产者-消费者问题">4.4 用 PV 解决生产者-消费者问题</a></li>
+        <li><a href="#45-用-pv-解决读者-写者问题">4.5 用 PV 解决读者-写者问题</a></li>
       </ul>
     </li>
-    <li><a href="#六缺页异常处理">六、缺页异常处理</a></li>
-    <li><a href="#七软件策略">七、软件策略</a>
+    <li><a href="#五管程monitor">五、管程（Monitor）</a>
       <ul>
-        <li><a href="#71-驻留集管理">7.1 驻留集管理</a></li>
-        <li><a href="#72-页面置换算法">7.2 页面置换算法</a>
-          <ul>
-            <li><a href="#721-opt最佳置换算法">7.2.1 OPT（最佳置换算法）</a></li>
-            <li><a href="#722-fifo先进先出">7.2.2 FIFO（先进先出）</a></li>
-            <li><a href="#723-second-chance第二次机会">7.2.3 Second Chance（第二次机会）</a></li>
-            <li><a href="#724-clock时钟算法">7.2.4 Clock（时钟算法）</a></li>
-            <li><a href="#725-nru最近未使用">7.2.5 NRU（最近未使用）</a></li>
-            <li><a href="#726-lru最近最久未使用">7.2.6 LRU（最近最久未使用）</a></li>
-            <li><a href="#727-nfu最不经常使用与-aging老化算法">7.2.7 NFU（最不经常使用）与 Aging（老化算法）</a></li>
-            <li><a href="#728-工作集算法">7.2.8 工作集算法</a></li>
-          </ul>
-        </li>
-        <li><a href="#73-算法总结">7.3 算法总结</a></li>
-        <li><a href="#74-影响缺页次数的因素">7.4 影响缺页次数的因素</a></li>
-        <li><a href="#75-清除策略">7.5 清除策略</a></li>
-        <li><a href="#76-加载控制">7.6 加载控制</a></li>
+        <li><a href="#51-为什么引入管程">5.1 为什么引入管程</a></li>
+        <li><a href="#52-管程结构">5.2 管程结构</a></li>
+        <li><a href="#53-条件变量与-wait--signal">5.3 条件变量与 wait / signal</a></li>
+        <li><a href="#54-hoare-管程">5.4 Hoare 管程</a></li>
+        <li><a href="#55-mesa-管程">5.5 Mesa 管程</a></li>
+        <li><a href="#56-broadcast">5.6 broadcast</a></li>
+        <li><a href="#57-用信号量构造管程间接实现">5.7 用信号量构造管程（间接实现）</a></li>
       </ul>
     </li>
-    <li><a href="#八内存映射文件">八、内存映射文件</a>
+    <li><a href="#六锁mutex">六、锁（Mutex）</a>
       <ul>
-        <li><a href="#81-mmap-机制">8.1 mmap() 机制</a></li>
-        <li><a href="#82-写时复制cow与-fork">8.2 写时复制（COW）与 fork()</a></li>
+        <li><a href="#61-锁的实现方式">6.1 锁的实现方式</a></li>
+        <li><a href="#62-锁的基本结构">6.2 锁的基本结构</a></li>
       </ul>
     </li>
-    <li><a href="#九windows-虚拟内存管理补充">九、Windows 虚拟内存管理（补充）</a></li>
+    <li><a href="#七pthreads-中的同步机制">七、Pthreads 中的同步机制</a></li>
+    <li><a href="#八同步机制的层次">八、同步机制的层次</a></li>
+    <li><a href="#九xv6-中的同步机制">九、XV6 中的同步机制</a></li>
   </ul>
 </nav>
   </div>
@@ -1230,64 +1219,55 @@
     class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#一虚拟内存概述">一、虚拟内存概述</a>
+    <li><a href="#一并发执行带来的问题">一、并发执行带来的问题</a>
       <ul>
-        <li><a href="#11-存储体系">1.1 存储体系</a></li>
-        <li><a href="#12-核心术语">1.2 核心术语</a></li>
-        <li><a href="#13-虚拟内存管理的目标">1.3 虚拟内存管理的目标</a></li>
+        <li><a href="#11-竞态条件race-condition">1.1 竞态条件（Race Condition）</a></li>
+        <li><a href="#12-临界区critical-section">1.2 临界区（Critical Section）</a></li>
+        <li><a href="#13-互斥与同步">1.3 互斥与同步</a></li>
       </ul>
     </li>
-    <li><a href="#二虚拟页式存储管理">二、虚拟页式存储管理</a></li>
-    <li><a href="#三硬件机制地址转换">三、硬件机制：地址转换</a>
+    <li><a href="#二软件互斥解法">二、软件互斥解法</a>
       <ul>
-        <li><a href="#31-mmu-工作原理">3.1 MMU 工作原理</a></li>
-        <li><a href="#32-地址转换过程">3.2 地址转换过程</a></li>
-        <li><a href="#33-x86-保护模式下的寻址">3.3 x86 保护模式下的寻址</a></li>
+        <li><a href="#21-早期尝试">2.1 早期尝试</a></li>
+        <li><a href="#22-dekker-算法1965">2.2 Dekker 算法（1965）</a></li>
+        <li><a href="#23-peterson-算法1981">2.3 Peterson 算法（1981）</a></li>
       </ul>
     </li>
-    <li><a href="#四页表">四、页表</a>
+    <li><a href="#三硬件互斥解法">三、硬件互斥解法</a>
       <ul>
-        <li><a href="#41-页表项pte设计">4.1 页表项（PTE）设计</a></li>
-        <li><a href="#42-多级页表">4.2 多级页表</a></li>
-        <li><a href="#43-反转页表inverted-page-table">4.3 反转页表（Inverted Page Table）</a></li>
+        <li><a href="#31-关闭中断">3.1 关闭中断</a></li>
+        <li><a href="#32-tsltest-and-set-lock指令">3.2 TSL（Test and Set Lock）指令</a></li>
       </ul>
     </li>
-    <li><a href="#五tlb--加速地址转换">五、TLB — 加速地址转换</a>
+    <li><a href="#四信号量与-pv-操作">四、信号量与 PV 操作</a>
       <ul>
-        <li><a href="#51-为什么需要-tlb">5.1 为什么需要 TLB</a></li>
-        <li><a href="#52-tlb-原理">5.2 TLB 原理</a></li>
-        <li><a href="#53-关键问题">5.3 关键问题</a></li>
+        <li><a href="#41-信号量定义">4.1 信号量定义</a></li>
+        <li><a href="#42-p--v-操作">4.2 P / V 操作</a></li>
+        <li><a href="#43-用-pv-解决互斥">4.3 用 PV 解决互斥</a></li>
+        <li><a href="#44-用-pv-解决生产者-消费者问题">4.4 用 PV 解决生产者-消费者问题</a></li>
+        <li><a href="#45-用-pv-解决读者-写者问题">4.5 用 PV 解决读者-写者问题</a></li>
       </ul>
     </li>
-    <li><a href="#六缺页异常处理">六、缺页异常处理</a></li>
-    <li><a href="#七软件策略">七、软件策略</a>
+    <li><a href="#五管程monitor">五、管程（Monitor）</a>
       <ul>
-        <li><a href="#71-驻留集管理">7.1 驻留集管理</a></li>
-        <li><a href="#72-页面置换算法">7.2 页面置换算法</a>
-          <ul>
-            <li><a href="#721-opt最佳置换算法">7.2.1 OPT（最佳置换算法）</a></li>
-            <li><a href="#722-fifo先进先出">7.2.2 FIFO（先进先出）</a></li>
-            <li><a href="#723-second-chance第二次机会">7.2.3 Second Chance（第二次机会）</a></li>
-            <li><a href="#724-clock时钟算法">7.2.4 Clock（时钟算法）</a></li>
-            <li><a href="#725-nru最近未使用">7.2.5 NRU（最近未使用）</a></li>
-            <li><a href="#726-lru最近最久未使用">7.2.6 LRU（最近最久未使用）</a></li>
-            <li><a href="#727-nfu最不经常使用与-aging老化算法">7.2.7 NFU（最不经常使用）与 Aging（老化算法）</a></li>
-            <li><a href="#728-工作集算法">7.2.8 工作集算法</a></li>
-          </ul>
-        </li>
-        <li><a href="#73-算法总结">7.3 算法总结</a></li>
-        <li><a href="#74-影响缺页次数的因素">7.4 影响缺页次数的因素</a></li>
-        <li><a href="#75-清除策略">7.5 清除策略</a></li>
-        <li><a href="#76-加载控制">7.6 加载控制</a></li>
+        <li><a href="#51-为什么引入管程">5.1 为什么引入管程</a></li>
+        <li><a href="#52-管程结构">5.2 管程结构</a></li>
+        <li><a href="#53-条件变量与-wait--signal">5.3 条件变量与 wait / signal</a></li>
+        <li><a href="#54-hoare-管程">5.4 Hoare 管程</a></li>
+        <li><a href="#55-mesa-管程">5.5 Mesa 管程</a></li>
+        <li><a href="#56-broadcast">5.6 broadcast</a></li>
+        <li><a href="#57-用信号量构造管程间接实现">5.7 用信号量构造管程（间接实现）</a></li>
       </ul>
     </li>
-    <li><a href="#八内存映射文件">八、内存映射文件</a>
+    <li><a href="#六锁mutex">六、锁（Mutex）</a>
       <ul>
-        <li><a href="#81-mmap-机制">8.1 mmap() 机制</a></li>
-        <li><a href="#82-写时复制cow与-fork">8.2 写时复制（COW）与 fork()</a></li>
+        <li><a href="#61-锁的实现方式">6.1 锁的实现方式</a></li>
+        <li><a href="#62-锁的基本结构">6.2 锁的基本结构</a></li>
       </ul>
     </li>
-    <li><a href="#九windows-虚拟内存管理补充">九、Windows 虚拟内存管理（补充）</a></li>
+    <li><a href="#七pthreads-中的同步机制">七、Pthreads 中的同步机制</a></li>
+    <li><a href="#八同步机制的层次">八、同步机制的层次</a></li>
+    <li><a href="#九xv6-中的同步机制">九、XV6 中的同步机制</a></li>
   </ul>
 </nav>
   </div>
@@ -1466,8 +1446,10 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        Part 6:
-        This Article
+        <a href="/os/study_notes/6-virtual_memory_management/">
+          Part 6:
+          操作系统笔记6：虚拟内存管理
+        </a>
       </div>
     
   
@@ -1484,10 +1466,8 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/os/study_notes/8-async_mechanism/">
-          Part 8:
-          操作系统笔记8：同步机制
-        </a>
+        Part 8:
+        This Article
       </div>
     
   
@@ -1497,1074 +1477,659 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-csapp-vm.png"
-    ><figcaption>CSAPP,chapter9: 虚拟内存为每一个进程提供了一个大的、统一的、私有的、稀疏的地址空间</figcaption></figure>
-
-<h2 class="relative group">一、虚拟内存概述
-    <div id="一虚拟内存概述" class="anchor"></div>
+          
+<h2 class="relative group">一、并发执行带来的问题
+    <div id="一并发执行带来的问题" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e6%a6%82%e8%bf%b0" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80%e5%b9%b6%e5%8f%91%e6%89%a7%e8%a1%8c%e5%b8%a6%e6%9d%a5%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
     </span>
     
 </h2>
+<p>进程/线程并发执行的基本特征：执行过程是间断的、相对速度不可预测、结果取决于精确时序（不确定性）。</p>
+<p>并发是所有问题的基础，也是操作系统设计的基础。</p>
 
-<h3 class="relative group">1.1 存储体系
-    <div id="11-存储体系" class="anchor"></div>
+<h3 class="relative group">1.1 竞态条件（Race Condition）
+    <div id="11-竞态条件race-condition" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#11-%e5%ad%98%e5%82%a8%e4%bd%93%e7%b3%bb" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#11-%e7%ab%9e%e6%80%81%e6%9d%a1%e4%bb%b6race-condition" aria-label="Anchor">#</a>
     </span>
     
 </h3>
-<p>操作系统协调各级存储器的使用，从上到下：寄存器 → 缓存 → 内存 → 磁盘。目标是让&quot;内存&quot;速度尽量快（匹配 CPU 取指速度），容量尽量大（能装下当前运行的程序与数据）。</p>
-<p>进程的虚拟地址空间横跨整个存储体系，物理内存和磁盘结合起来，提供一个大容量的&quot;虚存&quot;。</p>
+<p>两个或多个进程/线程读写共享数据时，最终结果取决于它们运行的精确时序。</p>
+<p><strong>例子1：ATM 取款</strong></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">T1: read(x); if x&gt;=1000 then x:=x-1000; write(x);  // 取 1000
+</span></span><span class="line"><span class="cl">T2: read(x); if x&gt;=2000 then x:=x-2000; write(x);  // 取 2000</span></span></code></pre></div></div>
+<p>若 T1 和 T2 的 read/write 交叉执行，最终余额可能错误。</p>
+<p><strong>例子2：cnt++ 的汇编级竞态</strong></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">movq</span> <span class="no">cnt</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span> <span class="nv">%rdx</span>   <span class="c1">; Load
+</span></span></span><span class="line"><span class="cl"><span class="nf">addq</span> <span class="no">$1</span><span class="p">,</span> <span class="nv">%rdx</span>           <span class="c1">; Update
+</span></span></span><span class="line"><span class="cl"><span class="nf">movq</span> <span class="nv">%rdx</span><span class="p">,</span> <span class="no">cnt</span><span class="p">(</span><span class="nv">%rip</span><span class="p">)</span>    <span class="err">;</span> <span class="no">Store</span></span></span></code></pre></div></div>
+<p>两个线程同时 Load 到旧值 → 两次 <code>cnt++</code> 的结果可能只加了一次。</p>
 
-<h3 class="relative group">1.2 核心术语
-    <div id="12-核心术语" class="anchor"></div>
+<h3 class="relative group">1.2 临界区（Critical Section）
+    <div id="12-临界区critical-section" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#12-%e6%a0%b8%e5%bf%83%e6%9c%af%e8%af%ad" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#12-%e4%b8%b4%e7%95%8c%e5%8c%bacritical-section" aria-label="Anchor">#</a>
     </span>
     
 </h3>
-<table>
-  <thead>
-      <tr>
-          <th>术语</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>虚拟内存（虚存）</strong></td>
-          <td>把物理内存与磁盘结合，得到一个容量很大的&quot;内存&quot;</td>
-      </tr>
-      <tr>
-          <td><strong>虚拟地址空间</strong></td>
-          <td>分配给进程的虚拟内存</td>
-      </tr>
-      <tr>
-          <td><strong>虚拟地址</strong></td>
-          <td>虚拟内存中某一位置的地址，可被自动转换成物理地址</td>
-      </tr>
-      <tr>
-          <td><strong>虚拟存储技术</strong></td>
-          <td>进程运行时先装入一部分到内存，其余暂存磁盘；访问的数据不在内存时，由操作系统自动从磁盘调入</td>
-      </tr>
-  </tbody>
-</table>
-<p>虚存大小受计算机寻址机制和可用磁盘容量的限制。虚拟地址空间是对内存的抽象——进程使用虚拟地址，通过 MMU 转换得到物理地址，仿佛能直接访问内存。</p>
-
-<h3 class="relative group">1.3 虚拟内存管理的目标
-    <div id="13-虚拟内存管理的目标" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#13-%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e7%9a%84%e7%9b%ae%e6%a0%87" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
+<p><strong>临界资源（critical resource）</strong>：一次只允许一个进程使用的共享资源。</p>
+<p><strong>临界区（critical section）</strong>：进程中访问临界资源的代码片段。</p>
+<p>使用原则：</p>
 <ol>
-<li><strong>透明性</strong>：进程感觉不到虚拟内存的存在</li>
-<li><strong>效率</strong>：地址转换和缺页处理的开销尽量小</li>
-<li><strong>保护</strong>：进程间地址空间隔离</li>
+<li><strong>有空让进</strong>：无进程在临界区时，任何有权进程可进入</li>
+<li><strong>无空等待</strong>：不允许两个以上进程同时进入</li>
+<li><strong>有限等待</strong>：进入临界区的要求在有限时间内满足</li>
+<li><strong>多中择一</strong>：多个进程同时请求时，只能让其中之一进入</li>
+<li><strong>让权等待</strong>：等待时应放弃 CPU</li>
 </ol>
-<hr>
 
-<h2 class="relative group">二、虚拟页式存储管理
-    <div id="二虚拟页式存储管理" class="anchor"></div>
+<h3 class="relative group">1.3 互斥与同步
+    <div id="13-互斥与同步" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%8c%e8%99%9a%e6%8b%9f%e9%a1%b5%e5%bc%8f%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<p>在开始之前可以先回忆一下上一节的内存管理方案的演进：</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e6%96%b9%e6%a1%88.png"
-    ><figcaption>内存管理方案的演进</figcaption></figure>
-<p>这里使用的是页式管理。</p>
-<p><strong>基本思想</strong>是：</p>
-<ol>
-<li>装载程序时，只装入几个甚至零个页面</li>
-<li>进程执行时需要不在内存的页面（Page Fault），则动态装入所需页面（<strong>请求调页 demand paging</strong>）</li>
-<li>需要空间时，将暂时不用的页面交换到磁盘</li>
-<li>也可采用**预先调页（prepaging）**减少缺页次数</li>
-</ol>
-<p>本质是操作系统的资源转换技术——以 CPU 时间和磁盘空间换取物理内存空间。</p>
-<p>虚拟页式系统（Paging）调页的三个策略（Coffman &amp; Denning）：</p>
-<ol>
-<li><strong>取页策略（fetch policy）</strong> ：何时把页面载入内存</li>
-<li><strong>放置策略（placement policy）</strong> ： 页面放在何处</li>
-<li><strong>置换策略（replacement policy）</strong> ：页框不足时，删除哪些页</li>
-</ol>
-<hr>
-
-<h2 class="relative group">三、硬件机制：地址转换
-    <div id="三硬件机制地址转换" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%89%e7%a1%ac%e4%bb%b6%e6%9c%ba%e5%88%b6%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-
-<h3 class="relative group">3.1 MMU 工作原理
-    <div id="31-mmu-工作原理" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#31-mmu-%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#13-%e4%ba%92%e6%96%a5%e4%b8%8e%e5%90%8c%e6%ad%a5" aria-label="Anchor">#</a>
     </span>
     
 </h3>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CPU → 虚拟地址 → [MMU] → 物理地址 → 内存</span></span></code></pre></div></div>
-<p>MMU（Memory Management Unit）完成虚拟地址到物理地址的转换。如果转换失败（页面不在内存、非法访问、保护违例），硬件产生异常，陷入操作系统执行缺页处理程序。</p>
-
-<h3 class="relative group">3.2 地址转换过程
-    <div id="32-地址转换过程" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#32-%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2%e8%bf%87%e7%a8%8b" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p>这是硬件机制：</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">if (虚拟页面不在内存 || 页面非法 || 被保护) {
-</span></span><span class="line"><span class="cl">    硬件产生异常 → 操作系统执行 Page Fault 服务程序
-</span></span><span class="line"><span class="cl">} else {
-</span></span><span class="line"><span class="cl">    页框号 = 页表[虚页号]
-</span></span><span class="line"><span class="cl">    物理地址 = 页框号 || 页内偏移
-</span></span><span class="line"><span class="cl">}</span></span></code></pre></div></div>
-<p>第一个if语句中的都算是<code>Page Fault</code>。其中第一个虚拟页面不在内存，具体需要从哪里来找内容（如磁盘、交换区）可以参考Linux源码，我在<a href="/os/rb-tree_in_linux/#923-%e7%ba%a2%e9%bb%91%e6%a0%91%e5%9c%a8%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e4%b8%ad%e7%9a%84%e5%ba%94%e7%94%a8%e6%b5%85%e6%9e%90" >另一篇文章</a>(在9.2.3节中的第(3)个小节部分)中进行了简单的窥探，可以去阅读一下。此外也可以阅读9.2.2小节内容进一步了解缺页异常处理。</p>
-<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
-      <div class="flex items-center gap-2 font-semibold text-inherit">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
-</span></div>
-        <div class="grow">
-          缺页异常 和 Page Fault
-        </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p><strong>Page Fault</strong>是这三个分支的总称——MMU在地址转换过程中发现任何问题，硬件都触发同一个异常（x86 上中断号0xe），然后操作系统根据原因分派处理；<strong>缺页异常</strong>只是其中&quot;页面不在内存&quot;这一种——PTE 的 P 位为0，映射关系存在但页面当前不在物理内存，需要从磁盘/交换区调入。</p></div></div>
-<h3 class="relative group">3.3 x86 保护模式下的寻址
-    <div id="33-x86-保护模式下的寻址" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#33-x86-%e4%bf%9d%e6%8a%a4%e6%a8%a1%e5%bc%8f%e4%b8%8b%e7%9a%84%e5%af%bb%e5%9d%80" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p>x86 提供段式 + 页式两级转换：逻辑地址 →（段式转换）→ 线性地址 →（页式转换）→ 物理地址。Linux 通过将段基址设为 0 来绕过分段机制，实际上只使用页式转换。</p>
-<hr>
-
-<h2 class="relative group">四、页表
-    <div id="四页表" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9b%9b%e9%a1%b5%e8%a1%a8" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-
-<h3 class="relative group">4.1 页表项（PTE）设计
-    <div id="41-页表项pte设计" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#41-%e9%a1%b5%e8%a1%a8%e9%a1%b9pte%e8%ae%be%e8%ae%a1" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th>字段</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>页框号（PFN）</strong></td>
-          <td>物理页面号</td>
-      </tr>
-      <tr>
-          <td><strong>有效位/驻留位/中断位（P/Present）</strong></td>
-          <td>该页在内存还是磁盘</td>
-      </tr>
-      <tr>
-          <td><strong>访问位/引用位（A/Accessed）</strong></td>
-          <td>是否被访问过</td>
-      </tr>
-      <tr>
-          <td><strong>修改位（D/Dirty）</strong></td>
-          <td>是否在内存中被修改过</td>
-      </tr>
-      <tr>
-          <td><strong>保护位（R/W, U/S）</strong></td>
-          <td>读/写/执行权限</td>
-      </tr>
-      <tr>
-          <td><strong>PWT</strong></td>
-          <td>缓存写策略（Write Through）</td>
-      </tr>
-      <tr>
-          <td><strong>PCD</strong></td>
-          <td>禁止缓存（Cache Disable）</td>
-      </tr>
-  </tbody>
-</table>
-<p>页表项中 P 位为 0 时引发缺页异常（由硬件检测，操作系统处理）。</p>
-
-<h3 class="relative group">4.2 多级页表
-    <div id="42-多级页表" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#42-%e5%a4%9a%e7%ba%a7%e9%a1%b5%e8%a1%a8" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p><strong>为什么要多级？</strong> 32 位地址空间，4K 每页，用户空间占一半是2^31次方字节。每个进程需要有2^19个页表项，每个页表项是4字节，也就是需要2^21字节的页表项，也就是需要 512 个页（2MB）。光是页表就需要这个多个页；而且还需要这512个页<strong>连续在内存中存放</strong>。64 位更是天文数字。页表本身太大，且各页在内存中不连续存放。</p>
-<p><strong>解决思路</strong>：将数组结构转为树形结构。</p>
-<ul>
-<li><strong>一级页表（页目录）</strong>：索引指向二级页表</li>
-<li><strong>二级页表</strong>：索引指向实际页面</li>
-</ul>
-<p>比如对于上面的例子，用二级列表，第一级是1024个页表项，每个页表项存的是第二级页表的起始地址，第一级页表自身占用了1页；一共有1024个第二级页表，每个页表项存的是一个物理地址页，第二级页表自身占用了1024页。而能够存储的物理页的总数是：1024个第二级页表，每个第二级页表存1024个物理页，也就是2^20个物理页。在上面没分级的例子中，每个进程需要有2^19个页表项，采用分级也是足够的。</p>
-<p>然而分级后的页表不一定会更省空间，二级的页表会使用1025个页来存页表。但，实际进程的地址空间是<strong>稀疏</strong>的——代码在低地址、栈在高地址、中间大片未用。单级页表不管用不用都得分配完整的 512 页（数组必须连续），而两级页表：未使用的虚拟地址区间对应的页目录项（PDE）标记为无效，其二级表根本不分配。一个典型进程可能只需要页目录 1 页 + 实际用到的几个二级表 = 不到 10 页。这就是稀疏的好处，在通常情况下页表使用的页是低于一级页表的。</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-%e4%ba%8c%e7%ba%a7%e9%a1%b5%e8%a1%a8.png"
-    ></figure>
-<p><strong>Core i7 四级页表结构</strong>（48 位虚拟地址）：</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">VPN4 → VPN3 → VPN2 → VPN1 → 页内偏移
-</span></span><span class="line"><span class="cl">  9      9      9      9       12
-</span></span><span class="line"><span class="cl">L4 PDE → L3 PDE → L2 PDE → L1 PTE → 物理地址</span></span></code></pre></div></div>
-<p>对于四级，页表需要的页数：1 + 512 + 512^2 + 512^3</p>
-<p>CR3 寄存器保存页目录的<strong>物理地址</strong>。</p>
-
-<h3 class="relative group">4.3 反转页表（Inverted Page Table）
-    <div id="43-反转页表inverted-page-table" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#43-%e5%8f%8d%e8%bd%ac%e9%a1%b5%e8%a1%a8inverted-page-table" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p>传统页表从虚拟地址出发查页框号，每个进程一张。反转页表从物理地址出发，系统只建一张表，表项记录 &ldquo;进程 i 的虚页号 → 页框号&rdquo; 的映射。</p>
-<ul>
-<li>优势：页表大小与实际内存成固定比例，与进程数无关</li>
-<li>实现：将虚页号 + <strong>PID</strong> <strong>散列</strong>到一个反转页表项，需要<strong>拉链解决冲突</strong></li>
-<li>采用体系结构：PowerPC、UltraSPARC、IA-64</li>
-</ul>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-%e5%8f%8d%e8%bd%ac%e9%a1%b5%e8%a1%a8.png"
-    ></figure>
-<hr>
-
-<h2 class="relative group">五、TLB — 加速地址转换
-    <div id="五tlb--加速地址转换" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%94tlb--%e5%8a%a0%e9%80%9f%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-
-<h3 class="relative group">5.1 为什么需要 TLB
-    <div id="51-为什么需要-tlb" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#51-%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81-tlb" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p>页表至少需要两次内存访问（查页目录 + 查页表）。CPU 速度与内存访问速度差异大，必须加速地址映射。</p>
-
-<h3 class="relative group">5.2 TLB 原理
-    <div id="52-tlb-原理" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#52-tlb-%e5%8e%9f%e7%90%86" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<ul>
-<li><strong>TLB（Translation Look-aside Buffer）</strong>：相联存储器，按内容<strong>并行查找</strong></li>
-<li>保存当前进程页表的子集（部分表项）</li>
-<li>工作原理：采用联想映射技术，同时比较虚拟页号，命中则直接返回页框号</li>
-</ul>
-
-<h3 class="relative group">5.3 关键问题
-    <div id="53-关键问题" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#53-%e5%85%b3%e9%94%ae%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th>问题</th>
-          <th>解决</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TLB 大小/位置</td>
-          <td>一般在 MMU 内部，容量很小</td>
-      </tr>
-      <tr>
-          <td>TLB 置换</td>
-          <td>类似页面置换（LRU 等）</td>
-      </tr>
-      <tr>
-          <td>进程切换 TLB 刷新</td>
-          <td>PCID（x86）/ ASID 标识不同地址空间，避免频繁刷新</td>
-      </tr>
-  </tbody>
-</table>
-<blockquote><p>每个进程分配一个唯一的PCID/ASID，TLB比较时多一步：虚页号 + PCID,同时匹配才叫命中。这样进程 A 的 TLB 项和进程 B 的 TLB项可以共存，切来切去互不污染，大幅减少刷新带来的性能损失。在<a href="/os/study_notes/4-scheduling/#%e5%a4%9a%e5%a4%84%e7%90%86%e5%99%a8%e8%b0%83%e5%ba%a6" >多处理器的亲和性和负载均衡讨论</a>（操作系统笔记4：进程与线程调度，五、一些实例：多处理器调度）中，TLB的这种处理对于亲和性是友好的，但是对于后者是不友好的。</p>
-</blockquote><figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-tlb1.png"
-    ><figcaption>TLB对VPN并行查找</figcaption></figure>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-tlb2.png"
-    ></figure>
-<hr>
-
-<h2 class="relative group">六、缺页异常处理
-    <div id="六缺页异常处理" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ad%e7%bc%ba%e9%a1%b5%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<p>缺页异常是最常见的 Page Fault。地址映射过程中，硬件检查页表时发现所要访问的页不在内存，产生缺页异常。</p>
-<p>处理流程是：</p>
-<ol>
-<li>获得缺页的磁盘地址（从哪找？从PCB找，找可执行的相关信息）</li>
-<li>启动磁盘，将该页面调入内存（<code>demand paging</code>）</li>
-<li>如有空闲页框 → 直接分配，修改页表项的驻留位和页框号</li>
-<li>如无空闲页框 → 置换某一页；若被置换页在内存期间被修改过，需写回磁盘（具体的相关置换算法在下面的7.2小节中）</li>
-<li>可能预取相邻页面（<code>prepaging</code>）</li>
-</ol>
-<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
-      <div class="flex items-center gap-2 font-semibold text-inherit">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
-</span></div>
-        <div class="grow">
-          <strong>现代的操作系统不会有当缺页时无空闲页框的情况出现</strong>！因为分页系统工作的最佳状态是，发生缺页异常时，系统中有<strong>大量</strong>的空闲页框，保存一定数目的页框供给 比 使用所有内存并在需要时搜索一个页框 有更好的性能。现代操作系统会使用一定的策略来实现，不仅仅是简单的按需调页。
-        </div>
-      </div></div><p><strong>常见引发场景</strong>：</p>
-<ul>
-<li>页面未提交（不在内存）</li>
-<li>违反权限访问</li>
-<li>修改私有 COW 页面</li>
-<li>需要扩大栈</li>
-<li>页面已提交但尚未映射</li>
-<li>请求零页面</li>
-</ul>
-<hr>
-
-<h2 class="relative group">七、软件策略
-    <div id="七软件策略" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%83%e8%bd%af%e4%bb%b6%e7%ad%96%e7%95%a5" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-
-<h3 class="relative group">7.1 驻留集管理
-    <div id="71-驻留集管理" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#71-%e9%a9%bb%e7%95%99%e9%9b%86%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p><strong>驻留集</strong>：当前时刻，进程实际驻留在内存中的页框集合。</p>
-<p>这里给出一个缺页率和分配给进程的页框数目（驻留集大小）之间的关系图：</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-%e9%a9%bb%e7%95%99%e9%9b%86.png"
-    ></figure>
-<p>可以看出若分配给进程的页框较多的时候，即使其缺页率降低了但是也有可能会影响到其他的进程。那么为了保证平衡性，对于驻留集大小的管理有两者策略：</p>
-<table>
-  <thead>
-      <tr>
-          <th>策略</th>
-          <th>说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>固定分配</strong></td>
-          <td>进程创建时确定页框数</td>
-      </tr>
-      <tr>
-          <td><strong>可变分配</strong></td>
-          <td>根据缺页率动态调整（缺页率高 → 增加，缺页率低 → 减少，也就是调节到上图中的W位置）</td>
-      </tr>
-  </tbody>
-</table>
-
-<h3 class="relative group">7.2 页面置换算法
-    <div id="72-页面置换算法" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#72-%e9%a1%b5%e9%9d%a2%e7%bd%ae%e6%8d%a2%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p><code>replacement</code>，这里讲的是当硬件发现<code>page fault</code>的时候，如果内存没有空闲页框了，就需要牺牲一个旧页框，也就是置换。</p>
-<p>置换范围：计划置换页面的集合是局限在产生缺页异常的进程，还是所有进程的页框？</p>
-<p><strong>全局置换</strong>：将<strong>内存中所有未锁定的页框</strong>作为置换候选。
-<strong>局部置换</strong>：仅在<strong>产生本次缺页的进程驻留集</strong>中选择。</p>
 <table>
   <thead>
       <tr>
           <th></th>
-          <th style="text-align: center">局部置换</th>
-          <th style="text-align: center">全局置换</th>
+          <th>互斥（Mutual Exclusion）</th>
+          <th>同步（Synchronization）</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><strong>固定分配</strong></td>
-          <td style="text-align: center">√</td>
-          <td style="text-align: center">—</td>
+          <td>关系</td>
+          <td>竞争共享资源，排他性使用</td>
+          <td>协作完成任务，存在时序关系</td>
       </tr>
       <tr>
-          <td><strong>可变分配</strong></td>
-          <td style="text-align: center">√</td>
-          <td style="text-align: center">√</td>
+          <td>场景</td>
+          <td>写同一变量、同一文件</td>
+          <td>生产者-消费者、读者-写者</td>
       </tr>
   </tbody>
 </table>
-<p>以下介绍一些算法，总体的目标是<strong>置换最近最不可能访问的页</strong>。根据局部性原理，最近的访问历史和最近将要访问的模式间存在相关性，因此，大多数策略都<strong>基于过去的行为来预测将来的行为</strong>（和MLFQ类似的设计思想，这里举一个投递简历的例子，简历是过去的行为，面试官以此来预测未来的工作表现）。。设计越精致，实现开销越大。</p>
-<p>此外，还需要考虑一个约束条件：不能置换<strong>被锁定</strong>的页框，比如，正在IO的进程所正在使用着的。</p>
-<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
-      <div class="flex items-center gap-2 font-semibold text-inherit">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
-</span></div>
-        <div class="grow">
-          页框锁定
-        </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>为什么要锁定页面？因为采用虚存后，程序运行时间变得不确定。给每一页框增加一个锁定位，通过设置相应的锁定位，不让操作系统将进程使用的页面换出内存，避免产生由交换过程带来的不确定的延迟。例如：操作系统核心代码、关键数据结构、I/O缓冲区&hellip;</p></div></div><hr>
-
-<h4 class="relative group">7.2.1 OPT（最佳置换算法）
-    <div id="721-opt最佳置换算法" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#721-opt%e6%9c%80%e4%bd%b3%e7%bd%ae%e6%8d%a2%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
-    </span>
-    
-</h4>
-<p>置换以后不再需要的或最远的将来才会用到的页面。<strong>不可实现，作为理论基准</strong>。</p>
 <hr>
 
-<h4 class="relative group">7.2.2 FIFO（先进先出）
-    <div id="722-fifo先进先出" class="anchor"></div>
+<h2 class="relative group">二、软件互斥解法
+    <div id="二软件互斥解法" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#722-fifo%e5%85%88%e8%bf%9b%e5%85%88%e5%87%ba" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%8c%e8%bd%af%e4%bb%b6%e4%ba%92%e6%96%a5%e8%a7%a3%e6%b3%95" aria-label="Anchor">#</a>
     </span>
     
-</h4>
-<p>置换驻留时间最长的页。实现简单，但可能淘汰重要页面，且存在 <strong>Belady 现象</strong>（分配的页框数增加，缺页次数反而增加）。实现：用链表。</p>
-<hr>
+</h2>
 
-<h4 class="relative group">7.2.3 Second Chance（第二次机会）
-    <div id="723-second-chance第二次机会" class="anchor"></div>
+<h3 class="relative group">2.1 早期尝试
+    <div id="21-早期尝试" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#723-second-chance%e7%ac%ac%e4%ba%8c%e6%ac%a1%e6%9c%ba%e4%bc%9a" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#21-%e6%97%a9%e6%9c%9f%e5%b0%9d%e8%af%95" aria-label="Anchor">#</a>
     </span>
     
-</h4>
-<p>FIFO 的改进：检查访问位 R，若 R=0 则置换；若 R=1 则给第二次机会，将 R 置 0。</p>
-<p>R位可以看作是读取过这个页，会定期清理，不会永远为1否则没有意义了。</p>
-<hr>
-
-<h4 class="relative group">7.2.4 Clock（时钟算法）
-    <div id="724-clock时钟算法" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#724-clock%e6%97%b6%e9%92%9f%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
-    </span>
-    
-</h4>
-<p>页框组织成循环缓冲区，指针轮转。是 Second Chance 的工程实现。</p>
-<hr>
-
-<h4 class="relative group">7.2.5 NRU（最近未使用）
-    <div id="725-nru最近未使用" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#725-nru%e6%9c%80%e8%bf%91%e6%9c%aa%e4%bd%bf%e7%94%a8" aria-label="Anchor">#</a>
-    </span>
-    
-</h4>
-<p>Not Recently Used</p>
-<p>根据 R（访问位）和 M（修改位）将页面分为四类：</p>
+</h3>
 <table>
   <thead>
       <tr>
-          <th>类别</th>
-          <th>R</th>
-          <th>M</th>
-          <th>说明</th>
+          <th>方案</th>
+          <th>思路</th>
+          <th>问题</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>第 0 类</td>
-          <td>0</td>
-          <td>0</td>
-          <td>无访问，无修改</td>
+          <td>方案1</td>
+          <td><code>while(free); free=true;</code> — 临界区 — <code>free=false</code></td>
+          <td>lock() 不原子</td>
       </tr>
       <tr>
-          <td>第 1 类</td>
-          <td>0</td>
-          <td>1</td>
-          <td>无访问，有修改</td>
+          <td>方案2</td>
+          <td><code>while(not turn);</code> — 临界区 — <code>turn=other</code></td>
+          <td>强制轮流，无空不让进</td>
       </tr>
       <tr>
-          <td>第 2 类</td>
-          <td>1</td>
-          <td>0</td>
-          <td>有访问，无修改</td>
-      </tr>
-      <tr>
-          <td>第 3 类</td>
-          <td>1</td>
-          <td>1</td>
-          <td>有访问，有修改</td>
+          <td>方案3</td>
+          <td><code>pturn=true; while(qturn);</code> — <code>pturn=false</code></td>
+          <td>After you 死锁</td>
       </tr>
   </tbody>
 </table>
-<p>发生缺页异常时，随机从类<strong>编号最小</strong>的非空类中选择一页置换。优先选择不需写回磁盘的页面，节省时间。</p>
+
+<h3 class="relative group">2.2 Dekker 算法（1965）
+    <div id="22-dekker-算法1965" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#22-dekker-%e7%ae%97%e6%b3%951965" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>第一个正确解决互斥问题的软件方案。结合 <code>pturn</code> / <code>qturn</code>（想进标志）+ <code>turn</code> （裁决变量）：若双方都想进，由 turn 裁决谁先谁后。</p>
+
+<h3 class="relative group">2.3 Peterson 算法（1981）
+    <div id="23-peterson-算法1981" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#23-peterson-%e7%ae%97%e6%b3%951981" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">turn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">interested</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">FALSE</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">enter_region</span><span class="p">(</span><span class="kt">int</span> <span class="n">process</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">other</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">process</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">interested</span><span class="p">[</span><span class="n">process</span><span class="p">]</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">turn</span> <span class="o">=</span> <span class="n">process</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="n">process</span> <span class="o">&amp;&amp;</span> <span class="n">interested</span><span class="p">[</span><span class="n">other</span><span class="p">]</span> <span class="o">==</span> <span class="n">TRUE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">leave_region</span><span class="p">(</span><span class="kt">int</span> <span class="n">process</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">interested</span><span class="p">[</span><span class="n">process</span><span class="p">]</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>解决了强制轮流问题，且避免了死锁。</p>
 <hr>
 
-<h4 class="relative group">7.2.6 LRU（最近最久未使用）
-    <div id="726-lru最近最久未使用" class="anchor"></div>
+<h2 class="relative group">三、硬件互斥解法
+    <div id="三硬件互斥解法" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#726-lru%e6%9c%80%e8%bf%91%e6%9c%80%e4%b9%85%e6%9c%aa%e4%bd%bf%e7%94%a8" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%89%e7%a1%ac%e4%bb%b6%e4%ba%92%e6%96%a5%e8%a7%a3%e6%b3%95" aria-label="Anchor">#</a>
     </span>
     
-</h4>
-<p>Least Recently Used</p>
-<p>置换最后一次访问时间距离当前最远的一页。性能接近 OPT，但实现开销大（需时间戳或维护访问栈）。</p>
-<blockquote><figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-lru.png"
-    ></figure>
-<p>这是用硬件矩阵实现 LRU 的经典做法。原理如下：   <br>
-<strong>数据结构</strong>：N 个页框 → 一个 N×N 的位矩阵（硬件寄存器阵列），初始全 0。</p>
-<p><strong>访问规则</strong>：当访问第 k 号页框时，硬件同步做两个操作：(1) 第 k 行全部置 1 ；(2) 第 k 列全部置 0</p>
-<p><strong>含义</strong>：矩阵中 bit(i, j) = 1 表示&quot;<strong>页框 i 比页框 j 更近被访问过</strong>&quot;。当访问页框 k 后，行 k 全 1 意味着&quot; k 比所有页框都更新&quot;，列 k 全 0 意味着&quot;没有页框比 k 更旧&quot;。</p>
-<p><strong>找 LRU 页</strong>：读取每一行的二进制值，值最小的行对应的页框就是 LRU。</p>
+</h2>
+
+<h3 class="relative group">3.1 关闭中断
+    <div id="31-关闭中断" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#31-%e5%85%b3%e9%97%ad%e4%b8%ad%e6%96%ad" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">disable_interrupts</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// critical section
+</span></span></span><span class="line"><span class="cl"><span class="nf">enable_interrupts</span><span class="p">();</span></span></span></code></pre></div></div>
+<p>简单高效，但不适用于多处理器；适用于 OS 内核，不适于用户进程。</p>
+
+<h3 class="relative group">3.2 TSL（Test and Set Lock）指令
+    <div id="32-tsltest-and-set-lock指令" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#32-tsltest-and-set-lock%e6%8c%87%e4%bb%a4" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">enter_region:</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">tsl</span> <span class="no">register</span><span class="p">,</span> <span class="no">lock</span>   <span class="c1">; 复制锁到寄存器并将锁置 1
+</span></span></span><span class="line"><span class="cl">    <span class="nf">cmp</span> <span class="no">register</span><span class="p">,</span> <span class="c1">#0     ; 锁原来是 0 吗？
+</span></span></span><span class="line"><span class="cl">    <span class="nf">jne</span> <span class="no">enter_region</span>     <span class="c1">; 否 → 自旋等待
+</span></span></span><span class="line"><span class="cl">    <span class="nf">ret</span>                  <span class="c1">; 是 → 进入临界区
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">leave_region:</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">mov</span> <span class="no">lock</span><span class="p">,</span> <span class="c1">#0
+</span></span></span><span class="line"><span class="cl">    <span class="nf">ret</span></span></span></code></pre></div></div>
+<p>TSL 是原子的&quot;读-改-写&quot;指令，多处理器有效，但忙等待形成<strong>自旋锁（Spin Lock）</strong>。</p>
+<blockquote><p>硬件方法存在<strong>优先级反转</strong>问题：高优先级进程自旋等待低优先级进程释放锁。</p>
 </blockquote><hr>
 
-<h4 class="relative group">7.2.7 NFU（最不经常使用）与 Aging（老化算法）
-    <div id="727-nfu最不经常使用与-aging老化算法" class="anchor"></div>
+<h2 class="relative group">四、信号量与 PV 操作
+    <div id="四信号量与-pv-操作" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#727-nfu%e6%9c%80%e4%b8%8d%e7%bb%8f%e5%b8%b8%e4%bd%bf%e7%94%a8%e4%b8%8e-aging%e8%80%81%e5%8c%96%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9b%9b%e4%bf%a1%e5%8f%b7%e9%87%8f%e4%b8%8e-pv-%e6%93%8d%e4%bd%9c" aria-label="Anchor">#</a>
     </span>
     
-</h4>
-<p>Not Frequently Used</p>
-<p><strong>NFU</strong>：软件计数器，每页一个。每次时钟中断，计数器 += R。缺页时选计数器最小的置换。</p>
-<p><strong>Aging</strong>：改进版——计数器加 R 前先右移一位，R 加到最左端。模拟 LRU，近似效果很好。</p>
+</h2>
+<p>由 Dijkstra 于 1965 年提出。</p>
+
+<h3 class="relative group">4.1 信号量定义
+    <div id="41-信号量定义" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#41-%e4%bf%a1%e5%8f%b7%e9%87%8f%e5%ae%9a%e4%b9%89" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">semaphore</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>         <span class="c1">// 信号量值
+</span></span></span><span class="line"><span class="cl">    <span class="n">queueType</span> <span class="n">queue</span><span class="p">;</span>   <span class="c1">// 等待队列
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+
+<h3 class="relative group">4.2 P / V 操作
+    <div id="42-p--v-操作" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#42-p--v-%e6%93%8d%e4%bd%9c" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">P(s):                        V(s):
+</span></span><span class="line"><span class="cl">  s.count--;                   s.count++;
+</span></span><span class="line"><span class="cl">  if (s.count &lt; 0) {           if (s.count &lt;= 0) {
+</span></span><span class="line"><span class="cl">    阻塞当前进程；               唤醒 s.queue 中一个进程；
+</span></span><span class="line"><span class="cl">    插入 s.queue 等待；          改为就绪态，插入就绪队列；
+</span></span><span class="line"><span class="cl">    重新调度；                 }
+</span></span><span class="line"><span class="cl">  }</span></span></code></pre></div></div>
+<ul>
+<li>P (proberen) = 测试/申请，V (verhogen) = 增加/释放</li>
+<li>P、V 是<strong>原语</strong>（不可中断），通过关中断或 TSL 实现</li>
+<li><code>|s.count|</code> = 等待队列中的进程数</li>
+</ul>
+
+<h3 class="relative group">4.3 用 PV 解决互斥
+    <div id="43-用-pv-解决互斥" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#43-%e7%94%a8-pv-%e8%a7%a3%e5%86%b3%e4%ba%92%e6%96%a5" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">mutex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>   <span class="c1">// 进入临界区
+</span></span></span><span class="line"><span class="cl"><span class="cm">/* critical section */</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>   <span class="c1">// 离开临界区
+</span></span></span></code></pre></div></div>
+
+<h3 class="relative group">4.4 用 PV 解决生产者-消费者问题
+    <div id="44-用-pv-解决生产者-消费者问题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#44-%e7%94%a8-pv-%e8%a7%a3%e5%86%b3%e7%94%9f%e4%ba%a7%e8%80%85-%e6%b6%88%e8%b4%b9%e8%80%85%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">mutex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// 互斥访问缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">empty</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>   <span class="c1">// 空闲槽位数
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">full</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>   <span class="c1">// 已占用槽位数
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 生产者
+</span></span></span><span class="line"><span class="cl"><span class="n">item</span> <span class="o">=</span> <span class="nf">produce_item</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">empty</span><span class="p">);</span>     <span class="c1">// 先申请空位（同步），再申请互斥
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">insert_item</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">full</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 消费者
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">full</span><span class="p">);</span>      <span class="c1">// 先等有货，再申请互斥
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">item</span> <span class="o">=</span> <span class="nf">remove_item</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">empty</span><span class="p">);</span></span></span></code></pre></div></div>
+<blockquote><p>两个 P 顺序不能颠倒——先 P(mutex) 再 P(empty) 会导致死锁（缓冲区满时生产者持 mutex 等 empty，消费者等 mutex 无法消费）。</p>
+</blockquote>
+<h3 class="relative group">4.5 用 PV 解决读者-写者问题
+    <div id="45-用-pv-解决读者-写者问题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#45-%e7%94%a8-pv-%e8%a7%a3%e5%86%b3%e8%af%bb%e8%80%85-%e5%86%99%e8%80%85%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>问题描述：多个进程共享一个数据区，这些进程分为两组：</p>
+<ol>
+<li>读者进程：只读数据区中的数据</li>
+<li>写者进程：只往数据区写数据</li>
+</ol>
+<p>要求满足条件：允许多个读者同时执行读操作；不允许多个写者同时操作；不允许读者、写者同时操作</p>
+<ul>
+<li>读者优先</li>
+</ul>
+<p>描述：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>              <span class="c1">// 读者计数
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">mutex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>     <span class="c1">// 保护 rc
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>         <span class="c1">// 写者/第一个读者的互斥
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 读者
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">rc</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>     <span class="c1">// 第一个读者锁住写者
+</span></span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 读操作 */</span>
+</span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">rc</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>     <span class="c1">// 最后一个读者释放写者
+</span></span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 写者
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 写操作 */</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span></span></span></code></pre></div></div>
+<hr>
+
+<h2 class="relative group">五、管程（Monitor）
+    <div id="五管程monitor" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%94%e7%ae%a1%e7%a8%8bmonitor" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>是一种语言机制，核心是条件变量/wait/signal</p>
+
+<h3 class="relative group">5.1 为什么引入管程
+    <div id="51-为什么引入管程" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#51-%e4%b8%ba%e4%bb%80%e4%b9%88%e5%bc%95%e5%85%a5%e7%ae%a1%e7%a8%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>信号量机制的 PV 操作分散在代码各处，编写困难、容易出错。管程将共享数据、操作和同步集中在一个模块中，由<strong>编译器保证互斥</strong>，是一种高级同步机制。</p>
+
+<h3 class="relative group">5.2 管程结构
+    <div id="52-管程结构" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#52-%e7%ae%a1%e7%a8%8b%e7%bb%93%e6%9e%84" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">管程 Monitor：
+</span></span><span class="line"><span class="cl">  ┌─ 共享数据结构
+</span></span><span class="line"><span class="cl">  ├─ 一组操作过程（互斥进入，编译器保证）
+</span></span><span class="line"><span class="cl">  ├─ 条件变量 + wait / signal
+</span></span><span class="line"><span class="cl">  └─ 初始化代码</span></span></code></pre></div></div>
+<p>管程由关于共享资源的数据结构及在其上操作的一组过程组成。</p>
+<p>进程只能通过<strong>调用管程中的过程</strong>来<strong>间接访问</strong>管程中的数据结构。过程是互斥的，某一时刻<strong>只能有一个进程</strong>在管程中执行。</p>
+
+<h3 class="relative group">5.3 条件变量与 wait / signal
+    <div id="53-条件变量与-wait--signal" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#53-%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f%e4%b8%8e-wait--signal" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>管程需要解决两个问题：一是<strong>互斥</strong>，这个由编译器负责保证（管程是互斥进入的）；二是<strong>同步</strong>，管程中通过设置<strong>条件变量</strong>及<strong>等待/唤醒</strong>操作来解决。具体的策略是，可以让一个进程/线程在条件变量上等待，此时，<em>先释放管程的使用权</em>；后面通过发送信号来将这些等待的进程/线程唤醒。</p>
+<p><strong>条件变量</strong>：管程内用于同步的特殊变量，每个条件变量关联一个等待队列。</p>
+<p>这里有一个问题是，当一个进程在管程中执行 wait 后，应当释放管程互斥权；但后续 signal 唤醒时，<strong>管程中存在两个活跃进程</strong>。有三种解决方案：</p>
+<table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th>signal 后的处理</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Hoare</strong></td>
+          <td>唤醒者进入紧急队列等待，<strong>被唤醒者立即执行</strong></td>
+      </tr>
+      <tr>
+          <td><strong>Hansen</strong> (Concurrent Pascal)</td>
+          <td>signal 必须是管程最后一个操作</td>
+      </tr>
+      <tr>
+          <td><strong>Mesa</strong></td>
+          <td>signal → notify，唤醒者继续执行，被唤醒者将来恢复</td>
+      </tr>
+  </tbody>
+</table>
+
+<h3 class="relative group">5.4 Hoare 管程
+    <div id="54-hoare-管程" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#54-hoare-%e7%ae%a1%e7%a8%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="low"
     alt=""
-    src="../imgs/6-aging.png"
+    src="../imgs/8-Hoare.png"
     ></figure>
-<hr>
-
-<h4 class="relative group">7.2.8 工作集算法
-    <div id="728-工作集算法" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#728-%e5%b7%a5%e4%bd%9c%e9%9b%86%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
-    </span>
-    
-</h4>
-<p>基本思想：根据程序的局部性原理，一般情况下，进程在一段时间内总是集中访问一些页面，这些页面称为<strong>活跃页面</strong>，如果分配给一个进程的页框太少了，使该进程所需的活跃页面不能全部装入内存，则进程在运行过程中将频繁发生中断。如果能为进程提供与活跃页面数相等的页框数，则可减少缺页异常次数。</p>
-<p><strong>工作集 W(t, Δ)</strong> = 在当前<code>t</code>时刻，进程在过去的<code>Δ</code>个虚拟时间单位中使用的虚拟页面集合。</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">wait(c):
+</span></span><span class="line"><span class="cl">  若紧急队列非空 → 唤醒第一个等待者
+</span></span><span class="line"><span class="cl">  否则 → 释放管程互斥权，自身进入 c 链尾部
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">signal(c):
+</span></span><span class="line"><span class="cl">  若 c 链非空 → 唤醒第一个等待者，自身进入紧急队列尾部
+</span></span><span class="line"><span class="cl">  否则 → 空操作</span></span></code></pre></div></div>
 <ul>
-<li>工作集是进程固有性质；驻留集取决于系统分配策略</li>
-<li>核心思路：从驻留集中找出当前不在工作集中的页面并置换它，使得驻留集向着工作集逼近</li>
-<li>实现：记录每页最后访问时间，超出&quot;当前时间 − T&quot;的页面被置换</li>
+<li>入口等待队列：等待进入管程</li>
+<li><strong>紧急等待队列</strong>：因 signal 而被挂起的进程，优先级高于入口队列</li>
 </ul>
-<p><strong>缺页率算法</strong>：设置缺页率上下阈值，动态调整驻留集大小。这是一个类似于工作集的方法。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/8-%e7%ae%a1%e7%a8%8bexp.png"
+    ></figure>
+<p>在JAVA中，<code>synchronized</code> 块就是一个管程，go_to_sleep() / notify() 就是条件变量的 wait/signal。例如<code>public synchronized void insert(int val)</code>。</p>
+
+<h3 class="relative group">5.5 Mesa 管程
+    <div id="55-mesa-管程" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#55-mesa-%e7%ae%a1%e7%a8%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><code>signal → notify</code>：通知 c 队列，唤醒者继续执行。</p>
+<p>被唤醒进程<strong>在将来某时</strong>恢复执行，不能保证在它之前没有其他进程进入管程，可能会导致条件又不成立了，必须用 <code>while</code> 重新检查条件（而非 <code>if</code>）。</p>
+<p><strong>Mesa 优于 Hoare</strong>：在Hoare中有两次额外的进程切换，可能会使条件队列中的进程永久挂起。没有额外的进程切换开销，且因 while 重检条件，错误唤醒不会导致出错。</p>
+<p>对notify的改进：给每个条件原语关联一个监视计时器，不论条件是否被通知，一个等待时间超时的进程将被设置为就绪状态。当该进程被调度执行时，会再次检查相关条件，如果条件满足则继续执行。超时可以防止如下情况的发生：<strong>当某些进程在产生相关条件的信号之前失败时，等待该条件的进程被无限制地推迟执行而处于饥饿状态</strong>。</p>
+
+<h3 class="relative group">5.6 broadcast
+    <div id="56-broadcast" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#56-broadcast" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>使某条件变量上的所有等待进程进入就绪态。适用于：不知道有多少进程需要被激活；生产者产生一批数据但不知道每个消费者消耗多少。</p>
+
+<h3 class="relative group">5.7 用信号量构造管程（间接实现）
+    <div id="57-用信号量构造管程间接实现" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#57-%e7%94%a8%e4%bf%a1%e5%8f%b7%e9%87%8f%e6%9e%84%e9%80%a0%e7%ae%a1%e7%a8%8b%e9%97%b4%e6%8e%a5%e5%ae%9e%e7%8e%b0" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>利用基础管程模块（<code>enter</code>/<code>leave</code>/<code>wait</code>/<code>signal</code>），每个基础管程维护 <code>mutex</code>（入口互斥）、<code>urgent</code>（紧急等待队列）和 <code>urgent_count</code>。条件变量映射为独立的信号量和等待计数。</p>
 <hr>
 
-<h3 class="relative group">7.3 算法总结
-    <div id="73-算法总结" class="anchor"></div>
+<h2 class="relative group">六、锁（Mutex）
+    <div id="六锁mutex" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#73-%e7%ae%97%e6%b3%95%e6%80%bb%e7%bb%93" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th>算法</th>
-          <th>评价</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>OPT</td>
-          <td>不可实现，作为基准</td>
-      </tr>
-      <tr>
-          <td>NRU</td>
-          <td>LRU 的粗略近似</td>
-      </tr>
-      <tr>
-          <td>FIFO</td>
-          <td>可能淘汰重要页面，有 Belady 现象</td>
-      </tr>
-      <tr>
-          <td>Second Chance</td>
-          <td>比 FIFO 有很大改善</td>
-      </tr>
-      <tr>
-          <td>Clock</td>
-          <td>现实可用</td>
-      </tr>
-      <tr>
-          <td>LRU</td>
-          <td>优秀但难实现</td>
-      </tr>
-      <tr>
-          <td>NFU</td>
-          <td>LRU 的相对粗略近似</td>
-      </tr>
-      <tr>
-          <td>Aging</td>
-          <td>非常近似 LRU</td>
-      </tr>
-      <tr>
-          <td>Working Set</td>
-          <td>开销很大</td>
-      </tr>
-      <tr>
-          <td>WSClock</td>
-          <td>好的有效算法</td>
-      </tr>
-  </tbody>
-</table>
-
-<h3 class="relative group">7.4 影响缺页次数的因素
-    <div id="74-影响缺页次数的因素" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#74-%e5%bd%b1%e5%93%8d%e7%bc%ba%e9%a1%b5%e6%ac%a1%e6%95%b0%e7%9a%84%e5%9b%a0%e7%b4%a0" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<ul>
-<li><strong>页面置换算法</strong></li>
-<li><strong>页面大小</strong>（最优尺寸 <code>P = √(2se)</code>）</li>
-<li><strong>程序编制方法</strong>（按行访问 vs 按列访问，差异巨大）</li>
-<li><strong>分配给进程的物理页面数</strong></li>
-</ul>
-<p><strong>颠簸/抖动（Thrashing）</strong>：页面在内存与磁盘之间频繁调度，调度开销超过进程实际运行时间，系统效率急剧下降。</p>
-
-<h3 class="relative group">7.5 清除策略
-    <div id="75-清除策略" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#75-%e6%b8%85%e9%99%a4%e7%ad%96%e7%95%a5" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p>分页系统工作的最佳状态是，发生缺页异常时，系统中有<strong>大量</strong>的空闲页框，保存一定数目的页框供给 比 使用所有内存并在需要时搜索一个页框 有更好的性能。现代操作系统会使用一定的策略来实现，不仅仅是简单的按需调页。</p>
-<p>在Linux中有一个分页守护进程（paging daemon），多数时间处于睡眠，会定期检查内存，保持一定数量的空闲页框；若过少，就会用预设的页面置换算法来选择页面换出内存，若页面装入内存后被修改过旧写回磁盘，保证所有空闲页框是干净的。</p>
-<p>清除策略说的就是，当需要使用一个已置换出的页框时，如果该页框还没有被新内容覆盖，则将它从空闲页框缓冲池中移出即可恢复该页面。具体实现来说可能只是在PTE的V位设置成0或者1的过程，在某一个页被换出的时候把V设置为0，但是后续在用这一页的时候会造成缺页异常，这时可以直接从缓冲池中恢复。一种具体的方法是<strong>双指针时钟</strong>：前指针（paging daemon 控制）写回脏页；后指针（置换时使用）命中干净页概率增加。</p>
-<p>在Windows中有<strong>页缓冲技术</strong>：被置换的页保留在内存（未修改 → 空闲链表，已修改 → 修改链表），可快速恢复</p>
-
-<h3 class="relative group">7.6 加载控制
-    <div id="76-加载控制" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#76-%e5%8a%a0%e8%bd%bd%e6%8e%a7%e5%88%b6" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p>通过调节系统并发度（驻留在内存中的进程数）进行负载控制。必要时挂起进程，将其页面交换到磁盘。</p>
-<hr>
-
-<h2 class="relative group">八、内存映射文件
-    <div id="八内存映射文件" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ab%e5%86%85%e5%ad%98%e6%98%a0%e5%b0%84%e6%96%87%e4%bb%b6" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ad%e9%94%81mutex" aria-label="Anchor">#</a>
     </span>
     
 </h2>
+<p>锁常用于实现<strong>用户空间线程包</strong>，有加锁和解锁两种状态。</p>
 
-<h3 class="relative group">8.1 mmap() 机制
-    <div id="81-mmap-机制" class="anchor"></div>
+<h3 class="relative group">6.1 锁的实现方式
+    <div id="61-锁的实现方式" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#81-mmap-%e6%9c%ba%e5%88%b6" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#61-%e9%94%81%e7%9a%84%e5%ae%9e%e7%8e%b0%e6%96%b9%e5%bc%8f" aria-label="Anchor">#</a>
     </span>
     
 </h3>
-<p>进程通过 <code>mmap()</code> 将文件映射到虚拟地址空间，访问文件像访问内存中的大数组，从而避免了使用<code>read</code>、<code>write</code>等系统调用来操作文件。</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">mmap</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">start</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">prot</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">           <span class="kt">int</span> <span class="n">flags</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">off_t</span> <span class="n">offset</span><span class="p">);</span></span></span></code></pre></div></div>
-<p>作用是将指定文件<code>fd</code>中偏移量<code>offset</code>开始的长度为<code>length</code>个字节的一块信息映射到虚拟空间中起始地址为<code>start</code>、长度为<code>length</code>个字节的一块区域。得到<code>vm_area_struct</code>结构的信息，并生成相应页表项，建立文件地址和区域之间的映射关系。</p>
-<p>注意，这里仅仅是生成页表项和建立映射关系，<strong>还没有真正地将文件内容映射到内存中</strong>。</p>
-<p><strong>prot（访问权限）</strong>：</p>
 <table>
   <thead>
       <tr>
-          <th>标志</th>
-          <th>含义</th>
+          <th>方式</th>
+          <th>特点</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>PROT_READ</td>
-          <td>可读</td>
+          <td>关闭中断</td>
+          <td>单 CPU 有效，忙等待</td>
       </tr>
       <tr>
-          <td>PROT_WRITE</td>
-          <td>可写</td>
+          <td>TSL / XCHG 指令</td>
+          <td>多 CPU 有效，自旋锁</td>
       </tr>
       <tr>
-          <td>PROT_EXEC</td>
-          <td>可执行</td>
-      </tr>
-      <tr>
-          <td>PROT_NONE</td>
-          <td>不可访问</td>
+          <td>睡眠/唤醒 + 关中断</td>
+          <td>无忙等待，保护等待队列</td>
       </tr>
   </tbody>
 </table>
-<p>这些也对应<code>vm_area_struct</code>结构中的<code>vm_prot</code>字段。</p>
-<p><strong>flags（映射类型）</strong>：</p>
+
+<h3 class="relative group">6.2 锁的基本结构
+    <div id="62-锁的基本结构" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#62-%e9%94%81%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">mutex</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">locked</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">queue_t</span> <span class="n">queue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">mutex_lock</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="nf">atomic_swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">locked</span><span class="p">,</span> <span class="nb">true</span><span class="p">)</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">add_to_queue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">queue</span><span class="p">,</span> <span class="n">current_thread</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">yield_cpu</span><span class="p">();</span>  <span class="c1">// 让出 CPU
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">mutex_unlock</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">atomic_swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">locked</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">queue_empty</span><span class="p">)</span> <span class="nf">wakeup</span><span class="p">(</span><span class="n">next_thread</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<hr>
+
+<h2 class="relative group">七、Pthreads 中的同步机制
+    <div id="七pthreads-中的同步机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%83pthreads-%e4%b8%ad%e7%9a%84%e5%90%8c%e6%ad%a5%e6%9c%ba%e5%88%b6" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
 <table>
   <thead>
       <tr>
-          <th>标志</th>
+          <th>类型</th>
+          <th>API</th>
           <th>用途</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>MAP_PRIVATE</td>
-          <td>私有的写时拷贝对象，对应<strong>可执行文件</strong>中只读代码区域（<code>.init</code>, <code>.text</code>, <code>.rodata</code>），和已初始化数据区域（<code>.data</code>）</td>
+          <td>互斥锁</td>
+          <td><code>pthread_mutex_lock</code> / <code>unlock</code></td>
+          <td>保护临界区</td>
       </tr>
       <tr>
-          <td>MAP_SHARED</td>
-          <td>对应<strong>共享库文件</strong>中的信息</td>
-      </tr>
-      <tr>
-          <td>MAP_ANON</td>
-          <td>请求零页面（<strong>匿名文件</strong>）</td>
-      </tr>
-      <tr>
-          <td>MAP_PRIVATE / MAP_ANON</td>
-          <td>未初始化数据 <code>.bss</code>、堆、栈</td>
+          <td>条件变量</td>
+          <td><code>pthread_cond_wait</code> / <code>signal</code> / <code>broadcast</code></td>
+          <td>线程间同步</td>
       </tr>
   </tbody>
 </table>
-<ul>
-<li>第一次访问时会慢（缺页调入），之后跟访问内存一样快（已在页缓存中）</li>
-<li>两个进程 mmap 同一文件 → 看到的是同一份物理页（MAP_SHARED）</li>
-</ul>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-mmap.png"
-    ><figcaption>mmap的作用与应用场景</figcaption></figure>
-<p>内存映射文件的应用：LMDB（Lightning Memory-Mapped Database），是内存映射型数据库，通过使用内存映射文件，可以提供更好的输入/输出性能，对于用于神经网络的大型数据集( 比如<a href="http://image-net.org/"  target="_blank" rel="noreferrer">ImageNet</a>)，可以将其存储在LMDB中。</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-mmap2.png"
-    ><figcaption>虚拟地址空间各个段的映射类型</figcaption></figure>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-mmap3.png"
-    ><figcaption>OS操作的是左边的虚存，虚拟地址空间的内容来自于可执行文件和共享文件，虚存通过建立页表来实现和物理内存进行映射，实现了虚拟地址空间的统一性、安全性、巨大性、稀疏性</figcaption></figure>
-<p>对于共享对象，只需要在内存和磁盘保存一份即可，对于进程而言只需要在页表中对页框号进行映射即可；同时对于共享文件的写操作也要保持同步，对于其他进程要可见结果、对于磁盘也要更新。</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-share1.png"
-    ></figure>
-
-<h3 class="relative group">8.2 写时复制（COW）与 fork()
-    <div id="82-写时复制cow与-fork" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#82-%e5%86%99%e6%97%b6%e5%a4%8d%e5%88%b6cow%e4%b8%8e-fork" aria-label="Anchor">#</a>
-    </span>
-    
-</h3>
-<p><strong>COW（Copy-On-Write）</strong>：多个进程共享同一物理页，标记为只读。当某个进程尝试写入时，触发缺页异常，内核分配新页框并复制内容。</p>
-<p>UNIX的原始fork流程是：
-为子进程分配一个空闲的进程描述符 <code>proc</code> 结构 -&gt; 分配给子进程唯一标识<code>pid</code> -&gt; <strong>以一次一页的方式复制父进程地址空间</strong> -&gt; 从父进程处继承共享资源，如打开的文件和当前工作目录等 -&gt; 将子进程的状态设为就绪，插入到就绪队列 -&gt; 对子进程返回标识符0 -&gt; 向父进程返回子进程的pid</p>
-<p>其中一次一页方式复制太低效了，Linux的解决方案是利用存储管理模块中的“写时复制技术”COW（Copy-On-Write）对fork()进行了优化：</p>
-<p><strong>fork() + COW</strong>：</p>
-<ol>
-<li>创建子进程的 <code>mm_struct</code>、<code>vm_area_struct</code>、页表的精确副本</li>
-<li>将两个进程的每个页面标记为<strong>只读</strong></li>
-<li>将每个 <code>vm_area_struct</code> 标记为<strong>私有 COW</strong></li>
-<li>返回时父子进程都有虚拟内存的精确副本</li>
-<li>后续写入通过 COW 机制创建新页面（也是在<code>page fault</code>的处理流程当中）</li>
-</ol>
-<p>因此，如果父子进程都只读，物理页不会被真正复制，这就是 fork() 能快速返回的原因。</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-share2.png"
-    ></figure>
+<p><code>pthread_cond_wait</code> 的三个原子动作：<strong>解锁 → 等待信号 → 收到信号后重新上锁</strong>。被唤醒后必须用 <code>while</code> 重新检查条件。</p>
 <hr>
 
-<h2 class="relative group">九、Windows 虚拟内存管理（补充）
-    <div id="九windows-虚拟内存管理补充" class="anchor"></div>
+<h2 class="relative group">八、同步机制的层次
+    <div id="八同步机制的层次" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b9%9dwindows-%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e8%a1%a5%e5%85%85" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ab%e5%90%8c%e6%ad%a5%e6%9c%ba%e5%88%b6%e7%9a%84%e5%b1%82%e6%ac%a1" aria-label="Anchor">#</a>
     </span>
     
 </h2>
-<p>Inter x86 段页式：逻辑地址 -&gt; <code>段选择符 → 段描述符</code>(段式转换) → 线性地址(此时相当于只有一个段了，分页机制开启) → <code>页目录/页表</code>(页式转换) → 物理地址</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-windows-mlayout.png"
-    ><figcaption>Windows虚拟地址空间布局</figcaption></figure>
-<p>对于缺页异常，页目录项PDE和页表项PTE的最低位为1，有效(Valid)，表示该页映射了物理内存。当要访问的虚拟页在物理内存中时，该虚拟页对应的PDE、PTE 都有效，CPU 根据相应的PDE、PTE自动把虚拟地址转换成物理地址，完成访问，<strong>这一过程操作系统不需介入</strong>如果要访问的虚拟页在不物理内存，此时的PTE无效（最低位为0）。对无效PTE的格式的定义，由操作系统负责：</p>
-<p>无效的PTE：</p>
-<ul>
-<li>所引用的页面没有被提交（不在内存）</li>
-<li>违反权限的页面访问</li>
-<li>修改一个私有共享的写时复制页面</li>
-<li>需要扩大栈</li>
-<li>所引用的页已被提交但尚未被映射</li>
-<li>请求一个零页面</li>
-</ul>
-<p>缺页异常中断号 0xe，发生缺页异常时，CPU自动将引发异常的虚拟地址存入CR2，CPU自动根据中断号在中断描述符表中找到对应的描述符，根据描述符中的地址转到异常处理程序<code>KiTrap0E</code>，会调用<code>MmAccessFault</code> ，其通过CR2的地址计算出相应的PDE/PTE地址，通过分析PTE中的内容可以得知是哪种情况引起的异常，并作出处理。</p>
-<ul>
-<li>Windows的页目录</li>
-</ul>
-<p>是内存管理器创建的特殊页，用于映射进程所有页表的位置，其物理地址保存在KPROCESS中，硬件访问页目录、页表和页：通过VPN、PFN完成，内核通过虚地址来对它们进行访问。在x86中，它还同时被映射到地址0xC0300000处（在。专用寄存器（x86中为CR3）用于保存页目录的物理地址</p>
-<ul>
-<li><strong>页目录自映射</strong>：利用 PDE[0x300] 自指，可快速计算任意虚拟地址的 PDE/PTE</li>
-</ul>
-<p><figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-%e8%87%aa%e6%98%a0%e5%b0%84.png"
-    ></figure>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">硬件原子操作（load/store、关中断、TSL、XCHG）
+</span></span><span class="line"><span class="cl">          ↓
+</span></span><span class="line"><span class="cl">同步原语（信号量、管程、锁、条件变量）
+</span></span><span class="line"><span class="cl">          ↓
+</span></span><span class="line"><span class="cl">并发程序（进程/线程）</span></span></code></pre></div></div>
+<hr>
+<p>硬件事务内存是一些新的硬件扩展，从硬件层面支持一部分事务性、原子性，可以提高现代多核场景下的并发度。</p>
+<p>现代硬件充满了指令重排，表面看没有使用锁的代码可能也会有并发问题。</p>
+<p><strong>原子操作</strong>：在执行过程中不可被中断的操作，保证了并发环境下的正确性。在硬件层面，有CPU指令保证，例如在x86中的<code>LOCK</code>前缀指令。在操作系统层面，可以封装成API。</p>
+<p>Futex(fast user-space mutex) 是一种高效的用户空间锁实现，结合了用户空间的快速路径和内核空间的慢速路径。它允许线程在用户空间进行快速的锁操作(不进入内核，不系统调用，无开销，速度极快)，只有在发生竞争时才进入内核进行等待和唤醒，从而减少了上下文切换的开销。</p>
 
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-%e8%87%aa%e6%98%a0%e5%b0%842.png"
-    ></figure>
-</p>
-<ul>
-<li>Windows中的<strong>工作集</strong></li>
-</ul>
-<p>是进程在物理内存的所有页框的集合。工作集的大小会改变，当内存访问的局部性区域位置大致稳定时，工作集大小大致稳定；当位置变化时，会快速扩张和收缩过渡到下一个稳定值
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-%e5%b7%a5%e4%bd%9c%e9%9b%86.png"
-    ></figure>
-</p>
-<p>同时，Windows还会给每个进程设计一个最大值和最小值的工作集大小，如果超过了最大值就把超过最大值的部分收回。当可用页框数量降低到一定程度时，启动工作集修整策略（因为Windows的缺页策略是**只要缺页就调入一页，需要保证有充足的空闲页框）。</p>
-<p><strong>平衡集管理器线程</strong>（几秒醒来一次）调用<strong>工作集管理器</strong>进行周期性检查，是否有大量可用内存、内存开始紧张、内存紧缺。</p>
-<ul>
-<li>Windows用户空间内存分配方式</li>
-</ul>
-<ol>
-<li>以页为单位的虚拟内存分配方式（函数Virtualxxx）</li>
-<li>内存映射文件（函数CreateFileMapping,  MapViewOfFile）</li>
-<li>内存堆方法
-（Heapxxx和早期的接口Localxxx和Globalxxx）</li>
-</ol>
-<p>对于按页分配：</p>
-<p>进程地址空间0x0~0x7FFFFFFF，用户程序必须经过“<strong>保留</strong>”和“<strong>提交</strong>”两个阶段使用一段地址范围。VirtualAlloc和VirtualAllocEx函数实现这些功能，用户程序可以首先<strong>保留</strong>地址空间，然后向此地址空间<strong>提交</strong>物理页面。保留地址空间是为线程将来使用所保留的一块虚拟地址。在已保留的区域中，提交页面必须指出将物理存储器提交到何处以及提交多少；提交页面在访问时会转变为物理内存中的有效页面。VirtualFree或VirtualFreeEx函数回收页面或释放地址空间。</p>
-<p>使用VirtualAlloc可以在用户地址空间中保留或者提交指定地址和大小的一段地址空间，那么<strong>系统如何知道指定的这段地址空间是不是已经被分配</strong>（保留或者提交）？</p>
-<ol>
-<li>对于指定地址空间是否已经被<strong>提交</strong>了物理内存，可以通过页目录和页表来判断，不过这样做很麻烦；</li>
-<li>对于指定地址空间是否已经被保留，通过页目录和页表是没有办法判断的。Windows中使用 <code>VAD</code> 来解决这个问题。</li>
-</ol>
-<p>对于每一个进程，Windows的内存管理器维护一组<strong>虚拟地址描述符</strong>（<code>VAD</code>）来描述一段被分配的进程虚拟空间的状态。虚拟地址描述信息被构造成一棵自平衡二叉树以使查找更有效率。<code>VAD</code>类似于Linux中的<code>vm_area_struct</code>。</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-vad.png"
-    ></figure>
-<ul>
-<li>Windows物理内存管理</li>
-</ul>
-<p>在Linux中用的是伙伴系统。在Windows中，有一个页框号数据库（PFN数据库），由结构体<code>MMPFN</code>（24字节）来保存每一个物理页的相关信息和全局变量<code>MmPfnDatabase</code>来保存页框号数据库的首地址。</p>
-<p>对于每个物理页面有7种状态：</p>
-<ol>
-<li>活动（Active）/有效（Valid）：该页框在某个进程的工作集中。此进程的对应页表项是有效的，从高20bit可获得PFN。</li>
-<li>过渡（Transition）：系统正在从一个文件将内容读入该页框，或者正在向一个文件写出该页框的内容</li>
-<li>空闲（Free）：该页框中的内容不再被需要</li>
-<li>零初始化（zeroed）：该页框空闲并且已经被用零初始化</li>
-<li>坏（Bad ）：该页框存在硬件错误，不能被使用</li>
-<li>后备(standby)：该页框曾经在某个进程的工作集中，且该页框的内容在被此进程使用时<strong>没有改变</strong>。该页框现在已被移出该进程的工作集，但页框中的内容仍是此进程的内容，即对应的PTE中的高20bit仍然是该页框号，只是该PTE被标记为invalid 和transition。当此进程需要再次访问这一页内容时，只需要重新设定该PTE的标志，并把该PTE变为有效，即把该页框从standby 状态变为active(valid) 状态即可</li>
-<li>修改（Modified ）：该页框曾经在某个进程的工作集中，且该页框的内容在被此进程使用时<strong>有改变</strong>。该页框现在已被移出该进程的工作集，但页框中的内容仍是在此进程的内容，即对应的PTE中的高20bit仍然是该页框号，只是该PTE被标记为invalid 和transition。当此进程需要再次访问这一页内容时，只需要重新设定该PTE的标志，并把该PTE变为有效，即把该页框从modified 状态变为active(valid) 状态就可以了。在该页框被系统作为其他用途使用之前，需要将该页框中的内容写入硬盘中的页文件中</li>
-</ol>
-<p>对于6和7，参考在本文上方7.5节的清除策略的第一段文字：</p>
-<blockquote><p>分页系统工作的最佳状态是，发生缺页异常时，系统中有<strong>大量</strong>的空闲页框，保存一定数目的页框供给 比 使用所有内存并在需要时搜索一个页框 有更好的性能。现代操作系统会使用一定的策略来实现，不仅仅是简单的按需调页。</p>
-</blockquote><p>这里和Linux的清除策略类似。这里也就是Windows的页缓冲技术，在7.5节末尾提及。</p>
-<p>下图展示了 Windows 中页框数据库（PFN Database）各个状态之间的转换关系：</p>
-<p><figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-%e9%a1%b5%e6%a1%86%e6%95%b0%e6%8d%ae%e5%ba%93.png"
-    ></figure>
-
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../imgs/6-%e9%a1%b5%e6%a1%86%e6%95%b0%e6%8d%ae%e5%ba%932.png"
-    ></figure>
-</p>
-<p>Windows 的 PFN 数据库为每个物理页框维护一个状态，各状态之间转换的场景如下：</p>
-<p><strong>8 Zeroed → Active（零页分配）</strong>：进程调用 malloc、栈扩展或 COW 需要新页时，内存管理器直接从 Zeroed 链表头取一个已归零的页框分配出去。这也是 Windows 后台有一个零页线程一直在清空 Free 页面的原因。</p>
-<p><strong>2 Active → Modified（脏页移出工作集）</strong>：工作集管理器检测到某进程驻留集过大，将其部分页面移出。若该页在内存期间被修改过（D=1），不能直接丢弃——必须后续写回磁盘（文件映射页写回文件，匿名页写回页面文件），先放入 Modified 链表。</p>
-<p><strong>3 Active → Standby（干净页移出工作集）</strong>：同样是工作集修剪，但该页未被修改（D=0，比如只读的代码段页）。内容仍在内存中完好保留，放入 Standby 链表等待复用。</p>
-<p><strong>9 10 Modified → Standby（写回完成）</strong>：Modified Page Writer 线程将脏页写回磁盘后，该页变为干净，移入 Standby 链表。此时内容依然在内存中，随时可供软缺页恢复。</p>
-<p><strong>12 Standby → Active（软缺页 / Soft Fault）</strong>：进程访问了一个不在工作集中、但仍在 Standby 链表中的页。这是最快的缺页——不需要任何磁盘 I/O，直接从 Standby 链表中取出重新加入工作集即可。</p>
-<p><strong>4 Standby → Free（内存回收）</strong>：系统需要更多空闲物理内存时，直接从 Standby 链表末尾取页释放。Standby 中的页最容易被牺牲，因为其内容在磁盘已有备份。</p>
-<p><strong>6 7Free → Zeroed（零页线程）</strong>：后台零页线程持续从 Free 链表取页，用 0 填满后放入 Zeroed 链表。清零是安全需求——防止新进程读到旧进程遗留在物理内存中的数据。修改后的图即第二个图，将这些状态和转换关系放置在了整个 Windows 物理内存管理的上下文当中，可以看到其与进程的驻留集（工作集）、系统空闲链表、修改链表、磁盘后备存储之间的关系。</p>
-<p><strong>1 Active -&gt; Free</strong>：<em>进程终止</em>：进程的所有私有页面（堆、栈、私有数据）不再属于任何工作集，直接从 Active 变为Free——因为其他进程不可能用到这些私有页，没有保留内容的必要。共享页（如 DLL 代码页）则走 Active → Standby，因为其他进程可能还在用。<em>显式释放</em>：进程调用 VirtualFree / munmap主动释放一块已提交的内存，对应物理页框直接从 Active 回到 Free。</p>
+<h2 class="relative group">九、XV6 中的同步机制
+    <div id="九xv6-中的同步机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b9%9dxv6-%e4%b8%ad%e7%9a%84%e5%90%8c%e6%ad%a5%e6%9c%ba%e5%88%b6" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<table>
+  <thead>
+      <tr>
+          <th>机制</th>
+          <th>实现</th>
+          <th>应用场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>spinlock</strong></td>
+          <td><code>acquire()</code> / <code>release()</code>，忙等待</td>
+          <td>proc、kmem、log、console</td>
+      </tr>
+      <tr>
+          <td><strong>sleeplock</strong></td>
+          <td>用 spinlock 保护内部结构，阻塞等待</td>
+          <td>inode 操作（fs.c, bio.c）</td>
+      </tr>
+      <tr>
+          <td><strong>sleep / wakeup</strong></td>
+          <td>等效 P / V，<code>chan</code> 作为信号标识，sleep 时释放 lock</td>
+          <td>proc、bio、pipe</td>
+      </tr>
+  </tbody>
+</table>
+<p>XV6 的生产者-消费者实例：<code>pipe.c</code> 中的环形缓冲区 <code>pi-&gt;data</code>，用 <code>sleep</code> / <code>wakeup</code> 实现同步。</p>
 
           
           
@@ -2634,8 +2199,10 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        Part 6:
-        This Article
+        <a href="/os/study_notes/6-virtual_memory_management/">
+          Part 6:
+          操作系统笔记6：虚拟内存管理
+        </a>
       </div>
     
   
@@ -2652,10 +2219,8 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/os/study_notes/8-async_mechanism/">
-          Part 8:
-          操作系统笔记8：同步机制
-        </a>
+        Part 8:
+        This Article
       </div>
     
   
@@ -2683,8 +2248,8 @@
           type="text/javascript"
           src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
           integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
-          data-oid="views_os/study_notes/6-virtual_memory_management/index.md"
-          data-oid-likes="likes_os/study_notes/6-virtual_memory_management/index.md"></script>
+          data-oid="views_os/study_notes/8-async_mechanism/index.md"
+          data-oid-likes="likes_os/study_notes/8-async_mechanism/index.md"></script>
       
     </section>
 
@@ -2703,32 +2268,19 @@
       <div class="flex justify-between pt-3">
         <span class="flex flex-col">
           
-            <a
-              class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-              href="/os/study_notes/7-file_system/">
-              <span class="leading-6">
-                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;操作系统笔记7：文件系统
-              </span>
-            </a>
-            
-              <span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
-                <time datetime="2026-05-07T00:00:00&#43;00:00">2026/05/07</time>
-              </span>
-            
-          
         </span>
         <span class="flex flex-col items-end">
           
             <a
               class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-              href="/os/study_notes/5-memory_management/">
+              href="/os/study_notes/7-file_system/">
               <span class="leading-6">
-                操作系统笔记5：内存管理&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+                操作系统笔记7：文件系统&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
               </span>
             </a>
             
               <span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
-                <time datetime="2026-04-16T00:00:00&#43;00:00">2026/04/16</time>
+                <time datetime="2026-05-07T00:00:00&#43;00:00">2026/05/07</time>
               </span>
             
           

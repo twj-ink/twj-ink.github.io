@@ -64,14 +64,14 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="os">
     <meta property="article:published_time" content="2026-05-07T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-11T00:54:08+08:00">
+    <meta property="article:modified_time" content="2026-05-16T16:48:41+08:00">
     <meta property="article:tag" content="OS">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/4-scheduling/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/3-process_thread/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/2-runtime_env/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/1-intro/">
 
   
   <meta name="twitter:card" content="summary">
@@ -253,12 +253,12 @@
     "dateCreated": "2026-05-07T00:00:00\u002b00:00",
     "datePublished": "2026-05-07T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-11T00:54:08\u002b08:00",
+    "dateModified": "2026-05-16T16:48:41\u002b08:00",
     
     "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1116"
+    "wordCount": "1224"
   }]
   </script>
 
@@ -941,7 +941,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-05-07T00:00:00&#43;00:00">2026/05/07</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-11T00:54:08&#43;08:00">Updated: 2026/05/11</time><span class="px-2 text-primary-500">&middot;</span><span>8316 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">42 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-05-07T00:00:00&#43;00:00">2026/05/07</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-16T16:48:41&#43;08:00">Updated: 2026/05/16</time><span class="px-2 text-primary-500">&middot;</span><span>9916 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">50 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1247,6 +1247,8 @@
       </ul>
     </li>
     <li><a href="#九其他常用文件系统">九、其他常用文件系统</a></li>
+    <li><a href="#十文件系统的管理">十、文件系统的管理</a></li>
+    <li><a href="#十一文件系统的性能">十一、文件系统的性能</a></li>
   </ul>
 </nav>
   </div>
@@ -1348,6 +1350,8 @@
       </ul>
     </li>
     <li><a href="#九其他常用文件系统">九、其他常用文件系统</a></li>
+    <li><a href="#十文件系统的管理">十、文件系统的管理</a></li>
+    <li><a href="#十一文件系统的性能">十一、文件系统的性能</a></li>
   </ul>
 </nav>
   </div>
@@ -1538,6 +1542,16 @@
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
         Part 7:
         This Article
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/8-async_mechanism/">
+          Part 8:
+          操作系统笔记8：同步机制
+        </a>
       </div>
     
   
@@ -1808,7 +1822,7 @@
 <li><strong>写</strong>：OS 发出 LBA + 数据 → 控制器先写 DRAM → FTL 更新映射 → 异步刷入 NAND</li>
 </ul>
 <ol>
-<li>最小写入单位是<strong>页</strong>（4KB<del>16KB），只能写空页或擦除后重写；最小擦除单位是<strong>块</strong>（通常 64</del>256 页），远大于写入单位。这里的块是SSD中的擦写概念的，与LBA无关。</li>
+<li>最小写入单位是<strong>页</strong>（<code>4KB~16KB</code>），只能写空页或擦除后重写；最小擦除单位是<strong>块</strong>（通常 <code>64~256</code> 页），远大于写入单位。这里的块是SSD中的擦写概念的，与LBA无关。</li>
 <li>闪存物理存储单元（块、页）离散分布，无法直接对应操作系统的连续逻辑地址。</li>
 <li>块有擦除寿命限制，需要<strong>磨损均衡</strong>（Wear Leveling）延长寿命。</li>
 <li>FTL（Flash Translation Layer）在底层完成逻辑地址到物理地址的映射，操作系统只需使用 LBA（Logical Block Address）访问，无需关心内部细节。</li>
@@ -2939,7 +2953,7 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
   <tbody>
       <tr>
           <td><strong>ext4</strong></td>
-          <td>Linux 默认，extents 分配、延迟分配、兼容 ext3/ext2</td>
+          <td>Linux 默认，extents 分配（取代传统块映射，连续存储大文件时减少碎片，提升读写效率）、延迟分配、兼容 ext3/ext2</td>
       </tr>
       <tr>
           <td><strong>XFS</strong></td>
@@ -2947,7 +2961,7 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
       </tr>
       <tr>
           <td><strong>Btrfs</strong></td>
-          <td>写时复制、快照、数据压缩、RAID、子卷管理</td>
+          <td>基于b-tree，写时复制、快照、数据压缩、RAID、子卷管理</td>
       </tr>
       <tr>
           <td><strong>ZFS / OpenZFS</strong></td>
@@ -2967,6 +2981,130 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
       </tr>
   </tbody>
 </table>
+
+<h2 class="relative group">十、文件系统的管理
+    <div id="十文件系统的管理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8d%81%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%ae%a1%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<ul>
+<li>文件系统的可靠性</li>
+</ul>
+<p>可靠性：抵御和预防各种物理性破坏和人为性破坏的能力</p>
+<p>策略？备份：</p>
+<ol>
+<li>全量转储：定期将所有文件拷贝到后援存储器</li>
+<li>增量转储：只转储修改过的文件，即两次备份之间的修改，减少系统开销</li>
+<li>物理转储：从磁盘第0块开始，将所有磁盘块按序输出到磁带</li>
+<li>逻辑转储：从一个或几个指定目录开始，递归地转储自给定日期后所有更改的文件和目录</li>
+</ol>
+<ul>
+<li>文件系统一致性</li>
+</ul>
+<p>这里强调的点是<strong>元数据</strong>的一致性，比如目录文件，其是元数据（因为是由目录项组成的）。</p>
+<p>一致性问题产生的原因是，文件内容从磁盘块读入内存后，修改了内存中的数据，但还没有来得及写回磁盘，如果此时系统崩溃了，那么磁盘上的数据就不一致了。此时造成了不一致性。</p>
+<p>解决方案：设计一个实用程序，当系统再次启动时，运行该程序，<strong>检查磁盘块和目录系统</strong>。</p>
+<p>例子：UNIX一致性检查工作过程：两张表，每块对应一个表中的计数器，初值为0。表1：记录了每个磁盘块在文件中出现的次数；表2：记录了每个磁盘块在空闲块表中出现的次数。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-%e4%b8%80%e8%87%b4%e6%80%a7.png"
+    ><figcaption>左上角是正常情况，对于每一个LBA都应该要么处于被占用，要么处于空闲状态</figcaption></figure>
+<p>现在考虑写入方式：</p>
+<ol>
+<li>通写(write-through)：每次修改都立即直接写回磁盘，性能较差，但数据一致性好。如<code>FAT</code>文件系统。</li>
+<li>延迟写(delayed write/lazy write)/回写(write back)：修改先在内存中进行，定期或条件满足时批量写回磁盘，性能较好，但可能导致数据丢失，可恢复性较差。如<code>UNIX</code>文件系统。</li>
+<li>可恢复写(transaction log)：为了考虑文件系统一致性和性能，引入了事务日志来实现文件系统的写入，既考虑安全性，又考虑速度性能，例：<code>NTFS</code></li>
+</ol>
+<ul>
+<li>文件系统的安全性</li>
+</ul>
+<p>安全性：保护文件系统免受未经授权访问和恶意攻击的能力。要提防数据丢失和入侵者。</p>
+<p>如何实现？一是用户身份验证，二是访问控制（权限管理）。UNIX的权限模型是基于用户和组的读写执行权限（二级存取控制，一级是对用户分类，二级是对操作分类）；NTFS则提供了更细粒度的访问控制列表（ACLs），支持复杂的权限设置。保证文件数据不能随意被访问。</p>
+<ul>
+<li>数据恢复技术</li>
+</ul>
+<p>数据恢复：从损坏或丢失的文件系统中恢复数据的技术。常用方法包括：</p>
+<ol>
+<li>文件系统检查工具（如<code>fsck</code>）修复文件系统结构</li>
+<li>数据恢复软件扫描磁盘块，重建文件结构</li>
+<li>备份恢复：从定期备份中恢复数据</li>
+</ol>
+
+<h2 class="relative group">十一、文件系统的性能
+    <div id="十一文件系统的性能" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8d%81%e4%b8%80%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%80%a7%e8%83%bd" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>磁盘服务 → 其速度和可靠性成为系统性能和可靠性的主要瓶颈，设计文件系统应尽可能<strong>减少磁盘访问次数</strong>。提高文件系统性能的方法：</p>
+<p>目录项(FCB)分解、当前目录、磁盘碎片整理、磁盘(块)高速缓存、磁盘调度、提前读取、合理分配磁盘空间、信息的优化分布、RAID技术… …</p>
+<ul>
+<li>磁盘高速缓存</li>
+</ul>
+<p>内存中为磁盘块设置的一个缓冲区，保存了磁盘中某些块的副本——磁盘高速缓存。</p>
+<p>磁盘高速缓存（page cache）就是主存的一部分，位于内核地址空间。进程 <code>read(fd, buf, n)</code> → 内核查 page cache</p>
+<ol>
+<li>命中 → 直接从 DRAM 拷到用户 buf → 不阻塞，立即返回</li>
+<li>未中 → 进程 BLOCKED，发起磁盘 DMA 磁盘 → DRAM（page cache）→ 拷到用户 buf 中断通知，进程READY</li>
+</ol>
+<p>所以 read() 不一定阻塞——数据恰好在 page cache 里就直接返回（比如刚被另一个进程读过、或者之前预读进来的），等磁盘的代价只有在 cache miss 。这和<code>mmap()</code>的原理类似，都是利用内存映射来实现文件访问的优化，mmap省了一层缓存。</p>
+<blockquote><p>目前学过的cache有：TLB, Block Cache, Web Page Cache等等</p>
+</blockquote><ul>
+<li>Windows的文件访问方式</li>
+</ul>
+<ol>
+<li>不使用文件缓冲:普通的方式，通过Windows提供的FlushFileBuffer函数实现</li>
+<li>使用文件缓冲(Default):预读取。每次读取的块大小、缓冲区大小、置换方式；写回。写回时机选择、一致性问题，会定期更新磁盘上的数据（1s）。</li>
+<li>异步模式:不再等待磁盘操作的完成，使处理器和I/O并发工作</li>
+</ol>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-cache.png"
+    ></figure>
+<ul>
+<li>合理分配磁盘空间</li>
+</ul>
+<p>在UNIX中查找文件需要在inode和目录项之间多次访问，在磁盘上分配文件时，尽量将文件的inode和目录项放在一起，减少磁盘臂的移动次数。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/7-%e7%a3%81%e7%9b%98.png"
+    ></figure>
+<ul>
+<li>磁盘调度</li>
+</ul>
+<p>比较合理的有：对于柱面采用最短寻道时间优先；对于同一个柱面用旋转调度算法</p>
+<p>？？？？？？？？？？？
+1243/1342</p>
+<p>621435</p>
+<ul>
+<li>RAID技术</li>
+</ul>
+<p>设计时要考虑的是：磁盘存储系统 的 速度、容量、容错、数据灾难发生后的数据恢复。</p>
+<p>解决方案：RAID（独立磁盘冗余阵列）(Redundant Arrays of Independent Disks)多块磁盘按照一定要求构成，操作系统则将它们看成一个独立的存储设备，这是<strong>高性能、容错、高可靠性</strong>的存储技术。</p>
+<p>数据是如何组织存储的？通过把多个磁盘组织在一起，作为一个逻辑卷提供磁盘跨越功能。</p>
+<ol>
+<li>通过<strong>把数据分成多个数据块</strong>，<strong>并行</strong>写入/读出多个磁盘，以提高数据传输率（<strong>数据分条stripe</strong>）（比如原来是100个块，现在分成10个块，分别写入10个磁盘，理论上速度提升10倍）</li>
+<li>通过<strong>镜像</strong>（mirroring）或<strong>数据校验</strong>（data parity）操作，提高容错能力（冗余）和扩展性</li>
+</ol>
 <blockquote><p>参考文章：</p>
 <ol>
 <li>
@@ -3063,6 +3201,16 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
       </div>
     
   
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/8-async_mechanism/">
+          Part 8:
+          操作系统笔记8：同步机制
+        </a>
+      </div>
+    
+  
 
 
   </details>
@@ -3106,6 +3254,19 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
       <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
       <div class="flex justify-between pt-3">
         <span class="flex flex-col">
+          
+            <a
+              class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/os/study_notes/8-async_mechanism/">
+              <span class="leading-6">
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;操作系统笔记8：同步机制
+              </span>
+            </a>
+            
+              <span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2026-05-28T00:00:00&#43;00:00">2026/05/28</time>
+              </span>
+            
           
         </span>
         <span class="flex flex-col items-end">

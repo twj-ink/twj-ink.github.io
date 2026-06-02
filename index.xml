@@ -12,6 +12,26 @@
     <atom:link href="https://twj-ink.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>面试算法题刷题</title>
+      <link>https://twj-ink.github.io/intern/algo/</link>
+      <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/intern/algo/</guid>
+      <description>leetcode热题100</description>
+      
+    </item>
+    
+    <item>
+      <title>操作系统笔记8：同步机制</title>
+      <link>https://twj-ink.github.io/os/study_notes/8-async_mechanism/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/8-async_mechanism/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>数组与链表之我见</title>
       <link>https://twj-ink.github.io/blogs/my_view_of_list/</link>
       <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
@@ -38,26 +58,6 @@
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/blogs/hugo-music-player/</guid>
       <description>在 Hugo + Blowfish 主题中手写一个悬浮音乐播放器，不依赖第三方服务</description>
-      
-    </item>
-    
-    <item>
-      <title>“AGI 方向实习学习路线图&#34;</title>
-      <link>https://twj-ink.github.io/intern/agi-learning-roadmap/</link>
-      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/intern/agi-learning-roadmap/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>实习岗位汇总</title>
-      <link>https://twj-ink.github.io/intern/internship-list/</link>
-      <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/intern/internship-list/</guid>
-      <description></description>
       
     </item>
     

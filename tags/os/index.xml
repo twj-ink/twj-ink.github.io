@@ -9,7 +9,17 @@
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Thu, 14 May 2026 13:09:20 +0800</lastBuildDate><atom:link href="https://twj-ink.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>操作系统笔记8：同步机制</title>
+      <link>https://twj-ink.github.io/os/study_notes/8-async_mechanism/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/8-async_mechanism/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>操作系统笔记7：文件系统</title>

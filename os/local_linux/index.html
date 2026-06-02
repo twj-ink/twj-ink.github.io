@@ -256,7 +256,7 @@
     "keywords": ["Linux","OS","boot"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "242"
+    "wordCount": "267"
   }]
   </script>
 
@@ -939,7 +939,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-04-07T00:00:00&#43;00:00">2026/04/07</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-04-10T18:53:16&#43;08:00">Updated: 2026/04/10</time><span class="px-2 text-primary-500">&middot;</span><span>2959 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-04-07T00:00:00&#43;00:00">2026/04/07</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-04-10T18:53:16&#43;08:00">Updated: 2026/04/10</time><span class="px-2 text-primary-500">&middot;</span><span>3109 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">16 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1563,10 +1563,15 @@
 <li>现代：UEFI（Unified Extensible Firmware Interface）</li>
 </ul>
 <p>这些固件的作用类似于“启动引导程序的引导程序”，也就是<code>bootstraps</code>。从CPU的角度来看，它只是做了很简单的事情：从某个地址取指令然后执行，再取下一条，但在硬件层面，这个地址会映射到固件的芯片中，从ROM中读取指令，再返回给CPU执行。</p>
-<p>BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做&quot;硬件自检&quot;（Power-On Self-Test），缩写为POST。如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。</p>
+<p>BIOS程序首先检查，计算机硬件能否满足运行的基本条件，这叫做&quot;<strong>硬件自检</strong>&quot;（Power-On Self-Test），缩写为POST。如果硬件出现问题，主板会发出不同含义的蜂鸣，启动中止。如果没有问题，屏幕就会显示出CPU、内存、硬盘等信息。</p>
 <p><strong>二、从固件到操作系统</strong></p>
 <p>固件并不会启动操作系统，而是会去找谁来启动操作系统，也就是去<strong>选择启动设备</strong>。固件需要知道&quot;下一阶段的启动程序&quot;具体存放在哪一个设备。BIOS需要有一个外部储存设备的排序，排在前面的设备就是优先转交控制权的设备。这种排序叫做&quot;启动顺序&quot;。（可以查看上面的图3）</p>
-<p>固件会按照这个启动顺序，依次尝试设备。固件会加载该设备上的<strong>引导程序Bootloader</strong>（这里是简略的描述，具体请查看开头的参考来源）。常见的Linux引导程序是GNU-GRUB，其作用是提供系统选择菜单，并把控制器交给内核。</p>
+<p>固件会按照这个启动顺序，依次尝试设备。固件会读取该设备的第一个扇区（<strong>MBR</strong>，512 字节），检查末尾两个字节是否为 <code>0x55 0xAA</code>（启动签名）。如果匹配，就把这 512 字节加载到内存中并跳转执行——这 446 字节的引导代码就是第一阶段的<strong>引导程序（Bootloader）</strong>。常见的Linux引导程序是GNU-GRUB，其作用是提供系统选择菜单，并把控制器交给内核。</p>
+<p>磁盘是一种常见的外部储存设备，其分区结构是：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">+-------+-----------+-----------+-----------+-------+
+</span></span><span class="line"><span class="cl">| MBR   | 文件系统1  | 文件系统2   |  文件系统3 | 其他分区 |
+</span></span><span class="line"><span class="cl">+-------+-----------+-----------+-----------+-------+</span></span></code></pre></div></div>
+<p><code>MBR</code>（主引导记录，LBA 0）是磁盘分区表的载体，跟文件系统无关——它告诉你磁盘分了几个区、每个区从哪开始到哪结束，负责引导 BIOS 找到活动分区并加载该分区的引导扇区。</p>
 <p>当控制器交给操作系统之后，内核会被首先加载进内存。</p>
 <blockquote><p>以Linux系统为例，先载入/boot目录下面的kernel。内核加载成功后，第一个运行的程序是/sbin/init。它根据配置文件（Debian系统是/etc/initab）产生init进程。这是Linux启动后的第一个进程，pid进程编号为1，其他进程都是它的后代。
 然后，init线程加载系统的各个模块，比如窗口程序和网络程序，直至执行/bin/login程序，跳出登录界面，等待用户输入用户名和密码。</p>

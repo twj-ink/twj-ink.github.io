@@ -9,7 +9,17 @@
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Tue, 02 Jun 2026 18:29:05 +0800</lastBuildDate><atom:link href="https://twj-ink.github.io/series/operating-systemsnotes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/series/operating-systemsnotes/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>操作系统笔记9：进程间通信</title>
+      <link>https://twj-ink.github.io/os/study_notes/9-ipc/</link>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/os/study_notes/9-ipc/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>操作系统笔记8：同步机制</title>

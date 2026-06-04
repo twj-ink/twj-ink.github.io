@@ -252,7 +252,7 @@
     "keywords": ["算法"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "2249"
+    "wordCount": "2971"
   }]
   </script>
 
@@ -935,7 +935,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-05-31T00:00:00&#43;00:00">2026/05/31</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-06-02T18:29:05&#43;08:00">Updated: 2026/06/02</time><span class="px-2 text-primary-500">&middot;</span><span>2598 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">13 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-05-31T00:00:00&#43;00:00">2026/05/31</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-06-02T18:29:05&#43;08:00">Updated: 2026/06/02</time><span class="px-2 text-primary-500">&middot;</span><span>3562 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1178,6 +1178,15 @@
         <li><a href="#146lru缓存">146.LRU缓存</a></li>
       </ul>
     </li>
+    <li><a href="#二叉树">二叉树</a>
+      <ul>
+        <li><a href="#94二叉树的中序遍历">94.二叉树的中序遍历</a></li>
+        <li><a href="#104二叉树的最大深度">104.二叉树的最大深度</a></li>
+        <li><a href="#226翻转二叉树">226.翻转二叉树</a></li>
+        <li><a href="#101对称二叉树">101.对称二叉树</a></li>
+        <li><a href="#543二叉树的直径">543.二叉树的直径</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -1214,6 +1223,15 @@
         <li><a href="#138随机链表的复制">138.随机链表的复制</a></li>
         <li><a href="#148排序链表">148.排序链表</a></li>
         <li><a href="#146lru缓存">146.LRU缓存</a></li>
+      </ul>
+    </li>
+    <li><a href="#二叉树">二叉树</a>
+      <ul>
+        <li><a href="#94二叉树的中序遍历">94.二叉树的中序遍历</a></li>
+        <li><a href="#104二叉树的最大深度">104.二叉树的最大深度</a></li>
+        <li><a href="#226翻转二叉树">226.翻转二叉树</a></li>
+        <li><a href="#101对称二叉树">101.对称二叉树</a></li>
+        <li><a href="#543二叉树的直径">543.二叉树的直径</a></li>
       </ul>
     </li>
   </ul>
@@ -2094,7 +2112,8 @@
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="o">*</span> <span class="n">getmid</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">node</span><span class="p">,</span> <span class="o">*</span><span class="n">fast</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 偏向左侧的中点
+</span></span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
@@ -2220,6 +2239,292 @@
 </span></span></span><span class="line"><span class="cl"><span class="cm"> * obj-&gt;put(key,value);
 </span></span></span><span class="line"><span class="cl"><span class="cm"> */</span></span></span></code></pre></div></div>
 
+<h2 class="relative group">二叉树
+    <div id="二叉树" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%8c%e5%8f%89%e6%a0%91" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">94.二叉树的中序遍历
+    <div id="94二叉树的中序遍历" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#94%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e4%b8%ad%e5%ba%8f%e9%81%8d%e5%8e%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>color等于0的三行代码在写的时候倒着写，倒过来就是dfs的遍历顺序。前序-中左右，中序-左中右，后序-左右中，中的位置会改变，左右的相对位置不会变。</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct TreeNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *left;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *right;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">inorder_dfs</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">ans</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="n">inorder_dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="n">inorder_dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">inorder_color</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">ans</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stack</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*&gt;&gt;</span> <span class="n">stk</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">root</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="n">color</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="n">node</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">color</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">node</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">inorderTraversal</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inorder_color</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">ans</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">preorder_color</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">node</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">ans</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*&gt;&gt;</span> <span class="n">stk</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">color</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">node</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">color</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">node</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">inorder_color</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">node</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">ans</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*&gt;&gt;</span> <span class="n">stk</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">color</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">node</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">color</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">node</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">postorder_color</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">node</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">ans</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stack</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*&gt;&gt;</span> <span class="n">stk</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">color</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">node</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">color</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">node</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+
+<h3 class="relative group">104.二叉树的最大深度
+    <div id="104二叉树的最大深度" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#104%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e5%a4%a7%e6%b7%b1%e5%ba%a6" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct TreeNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *left;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *right;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">maxDepth</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">max</span><span class="p">(</span><span class="n">maxDepth</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">),</span> <span class="n">maxDepth</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+
+<h3 class="relative group">226.翻转二叉树
+    <div id="226翻转二叉树" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#226%e7%bf%bb%e8%bd%ac%e4%ba%8c%e5%8f%89%e6%a0%91" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct TreeNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *left;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *right;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">invertTree</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">||</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">TreeNode</span><span class="o">*</span> <span class="n">l</span> <span class="o">=</span> <span class="n">invertTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">TreeNode</span><span class="o">*</span> <span class="n">r</span> <span class="o">=</span> <span class="n">invertTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+
+<h3 class="relative group">101.对称二叉树
+    <div id="101对称二叉树" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#101%e5%af%b9%e7%a7%b0%e4%ba%8c%e5%8f%89%e6%a0%91" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct TreeNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *left;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *right;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isMirrored</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">l</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">||</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">r</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">==</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">                    <span class="o">&amp;&amp;</span> <span class="n">isMirrored</span><span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">&amp;&amp;</span> <span class="n">isMirrored</span><span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">isMirrored_iter</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">l</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stack</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">*&gt;</span> <span class="n">stk</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">l</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">l</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">r</span> <span class="o">=</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">r</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">((</span><span class="o">!</span><span class="n">l</span> <span class="o">||</span> <span class="o">!</span><span class="n">r</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">!=</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">))</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">isSymmetric</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">isMirrored</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+
+<h3 class="relative group">543.二叉树的直径
+    <div id="543二叉树的直径" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#543%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e7%9b%b4%e5%be%84" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct TreeNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *left;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *right;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// int height(TreeNode* node) {
+</span></span></span><span class="line"><span class="cl">    <span class="c1">//     if (!node) return 0;
+</span></span></span><span class="line"><span class="cl">    <span class="c1">//     return max(height(node-&gt;left), height(node-&gt;right)) + 1; 
+</span></span></span><span class="line"><span class="cl">    <span class="c1">// }
+</span></span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 在求树的高度的递归过程中更新答案，O(n)
+</span></span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">height</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">node</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 左右递归的值其实是线段的长度，就是length
+</span></span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">l_len</span> <span class="o">=</span> <span class="n">height</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">r_len</span> <span class="o">=</span> <span class="n">height</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">l_len</span> <span class="o">+</span> <span class="n">r_len</span><span class="p">);</span> <span class="c1">// l_len+r_len是一条直径
+</span></span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">max</span><span class="p">(</span><span class="n">l_len</span><span class="p">,</span> <span class="n">r_len</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">diameterOfBinaryTree</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">height</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+
           
           
           
@@ -2254,6 +2559,34 @@
     
     <footer class="pt-8 max-w-prose print:hidden">
       
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span class="flex flex-col">
+          
+        </span>
+        <span class="flex flex-col items-end">
+          
+            <a
+              class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/intern/cpp/">
+              <span class="leading-6">
+                C++八股&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+              </span>
+            </a>
+            
+              <span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2026-06-03T00:00:00&#43;00:00">2026/06/03</time>
+              </span>
+            
+          
+        </span>
+      </div>
+    </div>
   
 
 

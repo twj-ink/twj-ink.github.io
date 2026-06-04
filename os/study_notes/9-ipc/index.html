@@ -15,18 +15,20 @@
 
   
   
-    <title>Gallery &middot; GaleInk&#39;s blog</title>
-    <meta name="title" content="Gallery &middot; GaleInk&#39;s blog">
+    <title>操作系统笔记9：进程间通信 &middot; GaleInk&#39;s blog</title>
+    <meta name="title" content="操作系统笔记9：进程间通信 &middot; GaleInk&#39;s blog">
   
 
   
   
-    <meta name="description" content="我的临摹画作/原创画作/游戏截图/日常😝">
+    <meta name="description" content="GaleInk&#39;s marvelous website">
+  
+  
+    <meta name="keywords" content="OS,">
   
   
   
-  
-  <link rel="canonical" href="https://twj-ink.github.io/gallery/">
+  <link rel="canonical" href="https://twj-ink.github.io/os/study_notes/9-ipc/">
   
 
   
@@ -54,20 +56,27 @@
   
 
   
-  <meta property="og:url" content="https://twj-ink.github.io/gallery/">
+  <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
   <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="Gallery">
-  <meta property="og:description" content="我的临摹画作/原创画作/游戏截图/日常😝">
+  <meta property="og:title" content="操作系统笔记9：进程间通信">
+  <meta property="og:description" content="GaleInk&#39;s marvelous website">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
-    <meta property="article:modified_time" content="2026-06-02T18:29:05+08:00">
-    <meta property="og:image" content="https://twj-ink.github.io/gallery/feature_draw.jpg">
+    <meta property="article:section" content="os">
+    <meta property="article:published_time" content="2026-06-04T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-06-04T00:00:00+00:00">
+    <meta property="article:tag" content="OS">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/4-scheduling/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/3-process_thread/">
 
   
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://twj-ink.github.io/gallery/feature_draw.jpg">
-  <meta name="twitter:title" content="Gallery">
-  <meta name="twitter:description" content="我的临摹画作/原创画作/游戏截图/日常😝">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="操作系统笔记9：进程间通信">
+  <meta name="twitter:description" content="GaleInk&#39;s marvelous website">
 
   
   
@@ -189,45 +198,8 @@
 
 
 
-  
-  
-  <link
-    type="text/css"
-    rel="stylesheet"
-    href="/css/components/gallery.a340929bbb811e8e4d4a0f98c05ad907342e2adef8546efa14cc42546f8a8b87827e0e981916da043c388dfc064eeaa0812a210e6cf70be45e22cd385a560ba1.css"
-    integrity="sha512-o0CSm7uBHo5NSg&#43;YwFrZBzQuKt74VG76FMxCVG&#43;Ki4eCfg6YGRbaBDw4jfwGTuqggSohDmz3C&#43;ReIs04WlYLoQ==">
-  
-  
-  <script
-    defer
-    type="text/javascript"
-    src="/lib/packery/packery.pkgd.min.8b0cbb30a72acb6a0188f690a3768e9c531f056dcf18df8d739ececb994387d28137ed684b2f23da6df5a0c416eb4f8818d5db4493419a9b97c7452ac602fbd4.js"
-    integrity="sha512-iwy7MKcqy2oBiPaQo3aOnFMfBW3PGN&#43;Nc57Oy5lDh9KBN&#43;1oSy8j2m31oMQW60&#43;IGNXbRJNBmpuXx0UqxgL71A=="></script>
-
-  
-  
-  <script
-    type="text/javascript"
-    src="/js/shortcodes/gallery.min.066f04f8dacc3930df93010e4f91004c55c8971379324510b9703d5f02dcb9c0379e0d9be24c4da79e2a004cdf006f5d2990ef8899c528459515d1833b5c9459.js"
-    integrity="sha512-Bm8E&#43;NrMOTDfkwEOT5EATFXIlxN5MkUQuXA9XwLcucA3ng2b4kxNp54qAEzfAG9dKZDviJnFKEWVFdGDO1yUWQ=="></script>
 
 
-
-
-  
-  
-  <link
-    type="text/css"
-    rel="stylesheet"
-    href="/css/components/carousel.8e65f2c27285218feed8ca2a6e12a80ec2fb4be8f774b7c74d9642f1bc528a3352288a700a64a0e1e3c38a40b74c978b5dbbeb38346202b5f7613d8fc023e3c9.css"
-    integrity="sha512-jmXywnKFIY/u2MoqbhKoDsL7S&#43;j3dLfHTZZC8bxSijNSKIpwCmSg4ePDikC3TJeLXbvrODRiArX3YT2PwCPjyQ==">
-  
-  
-  <script
-    defer
-    type="text/javascript"
-    src="/lib/tw-elements/index.min.5ffccf337b773ee831515cdde152c8039e972dd479f7dffb0532a79de9a6de5926154ae2587f181ed6c06a99aee25667096bcf6495da5aa86e235d98baee5943.js"
-    integrity="sha512-X/zPM3t3PugxUVzd4VLIA56XLdR599/7BTKnnemm3lkmFUriWH8YHtbAapmu4lZnCWvPZJXaWqhuI12Yuu5ZQw=="></script>
 
 
 
@@ -267,26 +239,26 @@
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Home",
-    "name": "Gallery",
-    "headline": "Gallery",
-    "description": "我的临摹画作\/原创画作\/游戏截图\/日常😝",
+    "articleSection": "Operating Systems",
+    "name": "操作系统笔记9：进程间通信",
+    "headline": "操作系统笔记9：进程间通信",
+    
     "inLanguage": "en",
-    "url" : "https://twj-ink.github.io/gallery/",
+    "url" : "https://twj-ink.github.io/os/study_notes/9-ipc/",
     "author" : {
       "@type": "Person",
       "name": "GaleInk"
     },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-06-04T00:00:00\u002b00:00",
+    "datePublished": "2026-06-04T00:00:00\u002b00:00",
     
+    "dateModified": "2026-06-04T00:00:00\u002b00:00",
     
-    
-    
-    "dateModified": "2026-06-02T18:29:05\u002b08:00",
-    
-    
+    "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "7"
+    "wordCount": "260"
   }]
   </script>
 
@@ -907,7 +879,7 @@
     <header id="single_header" class="mt-5 max-w-prose">
       
       <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-        Gallery
+        操作系统笔记9：进程间通信
       </h1>
       <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
         
@@ -932,9 +904,9 @@
   
 
   
-
-  
     
+  
+
   
 
   
@@ -967,7 +939,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-06-02T18:29:05&#43;08:00">Updated: 2026/06/02</time><span class="px-2 text-primary-500">&middot;</span><span>30 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-06-04T00:00:00&#43;00:00">2026/06/04</time><span class="px-2 text-primary-500">&middot;</span><span>3535 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">18 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -981,7 +953,7 @@
     
   
   <span
-    id="views_gallery/index.md"
+    id="views_os/study_notes/9-ipc/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="views"
     >loading</span
@@ -1003,7 +975,7 @@
     
   
   <span
-    id="likes_gallery/index.md"
+    id="likes_os/study_notes/9-ipc/index.md"
     class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
     title="likes"
     >loading</span
@@ -1185,9 +1157,16 @@
     class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#我的头像">我的头像</a></li>
-    <li><a href="#我的临摹原创画作">我的临摹&amp;原创画作</a></li>
-    <li><a href="#我的小成就">我的小成就</a></li>
+    <li><a href="#一linux的ipc机制">一、Linux的IPC机制</a></li>
+    <li><a href="#二linux内核同步机制">二、Linux内核同步机制</a>
+      <ul>
+        <li><a href="#1-原子操作">1. 原子操作</a></li>
+        <li><a href="#2-自旋锁">2. 自旋锁</a></li>
+        <li><a href="#3-rcu机制">3. RCU机制</a></li>
+        <li><a href="#4-其他内核同步机制">4. 其他内核同步机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#三死锁">三、死锁</a></li>
   </ul>
 </nav>
   </div>
@@ -1201,9 +1180,16 @@
     class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#我的头像">我的头像</a></li>
-    <li><a href="#我的临摹原创画作">我的临摹&amp;原创画作</a></li>
-    <li><a href="#我的小成就">我的小成就</a></li>
+    <li><a href="#一linux的ipc机制">一、Linux的IPC机制</a></li>
+    <li><a href="#二linux内核同步机制">二、Linux内核同步机制</a>
+      <ul>
+        <li><a href="#1-原子操作">1. 原子操作</a></li>
+        <li><a href="#2-自旋锁">2. 自旋锁</a></li>
+        <li><a href="#3-rcu机制">3. RCU机制</a></li>
+        <li><a href="#4-其他内核同步机制">4. 其他内核同步机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#三死锁">三、死锁</a></li>
   </ul>
 </nav>
   </div>
@@ -1318,314 +1304,452 @@
 
       <div class="min-w-0 min-h-0 max-w-fit">
         
+  <details
+    class="mt-2 mb-5 overflow-hidden rounded-lg ms-0 ps-5"
+    >
+    
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
+    Operating Systems::Notes -
+    This article is part of a series.
+  </summary>
+  
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/1-intro/">
+          Part 1:
+          操作系统笔记1：操作系统概述
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/2-runtime_env/">
+          Part 2:
+          操作系统笔记2：操作系统运行环境与运行机制
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/3-process_thread/">
+          Part 3:
+          操作系统笔记3：进程与线程模型
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/4-scheduling/">
+          Part 4:
+          操作系统笔记4：进程与线程调度
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/5-memory_management/">
+          Part 5:
+          操作系统笔记5：内存管理
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/6-virtual_memory_management/">
+          Part 6:
+          操作系统笔记6：虚拟内存管理
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/7-file_system/">
+          Part 7:
+          操作系统笔记7：文件系统
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/8-async_mechanism/">
+          Part 8:
+          操作系统笔记8：同步机制
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        Part 9:
+        This Article
+      </div>
+    
+  
+
+
+  </details>
+
 
         <div class="article-content max-w-prose mb-20">
-          <div class="lead text-neutral-500 dark:text-neutral-400 !mb-9 text-xl">
-  我的临摹画作/原创画作/日常😝
-</div>
-
-<!-- ## 我的王者荣耀高光时刻
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    
-  
-
-
-
-<div class="width-patch"></div>
-<div
-  id="carousel-20406e29dd4525d81fd0de50fa9605b5-1780580580139949196"
-  class="relative"
-  data-twe-carousel-init
-  data-twe-ride="carousel"
-  data-twe-interval="2500">
-  <div
-    class="absolute right-0 bottom-0 left-0 z-2 mx-[15%] mb-10 flex list-none justify-center p-0"
-    data-twe-carousel-indicators>
-    
-    
-      <button
-        type="button"
-        data-twe-target="#carousel-20406e29dd4525d81fd0de50fa9605b5-1780580580139949196"
-        data-twe-slide-to="0"
-        data-twe-carousel-active aria-current="true"
-        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-neutral bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-        aria-label="Slide 0"></button>
-      
-    
-      <button
-        type="button"
-        data-twe-target="#carousel-20406e29dd4525d81fd0de50fa9605b5-1780580580139949196"
-        data-twe-slide-to="1"
-        
-        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-neutral bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-        aria-label="Slide 1"></button>
-      
-    
-      <button
-        type="button"
-        data-twe-target="#carousel-20406e29dd4525d81fd0de50fa9605b5-1780580580139949196"
-        data-twe-slide-to="2"
-        
-        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-neutral bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-        aria-label="Slide 2"></button>
-      
-    
-      <button
-        type="button"
-        data-twe-target="#carousel-20406e29dd4525d81fd0de50fa9605b5-1780580580139949196"
-        data-twe-slide-to="3"
-        
-        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-neutral bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-        aria-label="Slide 3"></button>
-      
-    
-      <button
-        type="button"
-        data-twe-target="#carousel-20406e29dd4525d81fd0de50fa9605b5-1780580580139949196"
-        data-twe-slide-to="4"
-        
-        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-neutral bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-        aria-label="Slide 4"></button>
-      
-    
-      <button
-        type="button"
-        data-twe-target="#carousel-20406e29dd4525d81fd0de50fa9605b5-1780580580139949196"
-        data-twe-slide-to="5"
-        
-        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-neutral bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-        aria-label="Slide 5"></button>
-      
-    
-  </div>
-
-  <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
-    
-      
-      <div
-        class="relative float-left -mr-[100%]  w-full transition-transform ease-in-out motion-reduce:transition-none"
-        data-twe-carousel-item
-        style="transition-duration: 2500ms;"
-        data-twe-carousel-active>
-        <div class="single_hero_background" style="aspect-ratio: 21 / 9;">
-          <img
-            src="/gallery/pictures/game/01.jpg"
-            class="block absolute top-0 object-cover w-full h-full not-prose nozoom"
-            alt="carousel image 1">
-        </div>
-      </div>
-    
-      
-      <div
-        class="relative float-left -mr-[100%] hidden w-full transition-transform ease-in-out motion-reduce:transition-none"
-        data-twe-carousel-item
-        style="transition-duration: 2500ms;"
-        >
-        <div class="single_hero_background" style="aspect-ratio: 21 / 9;">
-          <img
-            src="/gallery/pictures/game/2.jpg"
-            class="block absolute top-0 object-cover w-full h-full not-prose nozoom"
-            alt="carousel image 2">
-        </div>
-      </div>
-    
-      
-      <div
-        class="relative float-left -mr-[100%] hidden w-full transition-transform ease-in-out motion-reduce:transition-none"
-        data-twe-carousel-item
-        style="transition-duration: 2500ms;"
-        >
-        <div class="single_hero_background" style="aspect-ratio: 21 / 9;">
-          <img
-            src="/gallery/pictures/game/3.jpg"
-            class="block absolute top-0 object-cover w-full h-full not-prose nozoom"
-            alt="carousel image 3">
-        </div>
-      </div>
-    
-      
-      <div
-        class="relative float-left -mr-[100%] hidden w-full transition-transform ease-in-out motion-reduce:transition-none"
-        data-twe-carousel-item
-        style="transition-duration: 2500ms;"
-        >
-        <div class="single_hero_background" style="aspect-ratio: 21 / 9;">
-          <img
-            src="/gallery/pictures/game/4.jpg"
-            class="block absolute top-0 object-cover w-full h-full not-prose nozoom"
-            alt="carousel image 4">
-        </div>
-      </div>
-    
-      
-      <div
-        class="relative float-left -mr-[100%] hidden w-full transition-transform ease-in-out motion-reduce:transition-none"
-        data-twe-carousel-item
-        style="transition-duration: 2500ms;"
-        >
-        <div class="single_hero_background" style="aspect-ratio: 21 / 9;">
-          <img
-            src="/gallery/pictures/game/8.jpg"
-            class="block absolute top-0 object-cover w-full h-full not-prose nozoom"
-            alt="carousel image 5">
-        </div>
-      </div>
-    
-      
-      <div
-        class="relative float-left -mr-[100%] hidden w-full transition-transform ease-in-out motion-reduce:transition-none"
-        data-twe-carousel-item
-        style="transition-duration: 2500ms;"
-        >
-        <div class="single_hero_background" style="aspect-ratio: 21 / 9;">
-          <img
-            src="/gallery/pictures/game/9.jpg"
-            class="block absolute top-0 object-cover w-full h-full not-prose nozoom"
-            alt="carousel image 6">
-        </div>
-      </div>
-    
-  </div>
-
-  <button
-    class="absolute top-0 bottom-0 left-0 z-2 flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:no-underline hover:opacity-90 hover:outline-none focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
-    type="button"
-    data-twe-target="#carousel-20406e29dd4525d81fd0de50fa9605b5-1780580580139949196"
-    data-twe-slide="prev">
-    <span class="inline-block h-8 w-8">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="4.5"
-        stroke="currentColor"
-        class="h-6 w-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-      </svg>
-    </span>
-    <span
-      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-      >Previous</span
-    >
-  </button>
-
-  <button
-    class="absolute top-0 bottom-0 right-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:no-underline hover:opacity-90 hover:outline-none focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
-    type="button"
-    data-twe-target="#carousel-20406e29dd4525d81fd0de50fa9605b5-1780580580139949196"
-    data-twe-slide="next">
-    <span class="inline-block h-8 w-8">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="4.5"
-        stroke="currentColor"
-        class="h-6 w-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-      </svg>
-    </span>
-    <span
-      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-      >Next</span
-    >
-  </button>
-</div>
- -->
-
-<h2 class="relative group">我的头像
-    <div id="我的头像" class="anchor"></div>
+          
+<h2 class="relative group">一、Linux的IPC机制
+    <div id="一linux的ipc机制" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%88%91%e7%9a%84%e5%a4%b4%e5%83%8f" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80linux%e7%9a%84ipc%e6%9c%ba%e5%88%b6" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Linux提供了多种进程间通信（IPC）机制，主要包括：原子操作、信号、管道、命名管道（FIFO）、消息队列、共享内存、Futex、套接字和信号量等。这些机制各有特点，适用于不同的场景。</p>
+<ul>
+<li>消息传递</li>
+</ul>
+<p>消息传递是指一个进程将数据发送给另一个进程，接收进程通过某种方式获取这些数据。发送进程通过系统调用<code>send</code>将数据发送到内核，内核将数据存储在一个消息队列中，接收进程通过<strong>阻塞</strong>在系统调用<code>recv</code>从消息队列中获取数据。消息传递机制适用于需要频繁交换数据的场景，如客户端-服务器通信。</p>
+<p>消息缓冲区结构：消息头（类型、接收方 PID、发送方 PID、长度、控制信息）+ 消息体。</p>
+<p>用 PV 操作实现 send 原语：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">buf-empty（初值 n），buf-full（初值 0），mutex1, mutex2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">send(dest, &amp;msg):
+</span></span><span class="line"><span class="cl">    P(buf-empty); P(mutex1); 取空缓冲区; V(mutex1);
+</span></span><span class="line"><span class="cl">    将消息复制到缓冲区;
+</span></span><span class="line"><span class="cl">    P(mutex2); 挂到接收进程消息队列; V(mutex2); V(buf-full);</span></span></code></pre></div></div>
+<p>用 send/receive 实现生产者-消费者：不需要信号量——send/recv 本身提供同步语义，消费者 recv 阻塞等消息，生产者 send 发消息，缓冲区满时 send 也可阻塞等消费者腾空间。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../imgs/9-send.png"
+    ></figure>
+<p>通过send和receive也可以用来实现生产者-消费者。</p>
+<ul>
+<li>共享内存</li>
+</ul>
+<p>通过系统调用<code>mmap()</code>，多个进程可以将同一块物理内存映射到它们的虚拟地址空间中，从而实现数据共享。共享内存机制适用于需要高效数据交换的场景，如多线程程序中的数据共享。</p>
+<p>通过<code>MAP_SHARED</code>标志，多个进程可以共享同一块内存区域。进程可以通过读写共享内存来交换数据，而不需要经过内核的中转，从而提高了通信效率。比如A进程和B进程都映射了同一块共享内存区域，A进程写入数据后，B进程可以直接读取这些数据。后续修改的脏页由内核写回文件。</p>
+<ul>
+<li>管道通信 Pipe</li>
+</ul>
+<p>利用一个缓冲传输介质——内存或文件连接两个相互通信的进程。字符流方式写入读出；先进先出顺序；管道通信机制必须提供的协调能力：互斥、同步、判断对方进程是否存在。</p>
+<p>父子进程之间的通信可以使用<strong>无名管道</strong>，逻辑上是管道文件，物理上是利用高速缓冲区，与外设无关，创建在内存中临时存在，用文件描述符存取。父进程创建一个管道后，子进程继承该管道的文件描述符，从而实现通信。其他进程之间的通信可以使用<strong>命名管道</strong>（FIFO），逻辑上是管道文件，物理上是利用文件系统实现，是特殊文件，存在于文件系统，
+？？？？？？？？？？？
+创建在内存中临时存在，用文件描述符存取。通过文件系统中的一个特殊文件进行通信。</p>
+<ul>
+<li>套接字</li>
+</ul>
+<p>服务器端创建一个套接字，绑定到一个特定的地址和端口上，并监听来自客户端的连接请求。客户端创建一个套接字，并连接到服务器的地址和端口。连接建立后，双方可以通过套接字进行数据交换。</p>
+<ul>
+<li>RPC（Remote Procedure Call）</li>
+</ul>
+<p>RPC是一种技术思想，屏蔽网络编程细节，像调用本地方法一样调用远程方法。</p>
+<p>什么时候使用RPC？应用访问量增加和业务增加时，单机无法承受，可以根据不同的业务拆分成互不关联的应用，分别部署在不同的机器上，应用与应用相互调用，此时需要用到RPC。解耦服务、扩展性强、部署灵活，主要解决分布式系统中，服务与服务之间的调用问题。</p>
+<p>RPC 流程：Client 调用 → Client Stub 序列化 → Socket 发送 → Server Stub 反序列化 → 本地服务执行 → 序列化结果返回 → Client 反序列化得到结果。应用场景：电商微服务拆分（用户/商品/订单/支付服务）、车载 SOME/IP 协议。</p>
+<ul>
+<li>管道模式（Pipeline）</li>
+</ul>
+<p>管道不仅仅是一种 IPC 机制，也是一种链式编程模型——通过 <code>|</code> 串联多个程序，形成工作流：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat words <span class="p">|</span> grep purple <span class="p">|</span> awk <span class="s1">&#39;{print length($1), $1}&#39;</span> <span class="p">|</span> sort -n <span class="p">|</span> tail -n <span class="m">1</span></span></span></code></pre></div></div>
+<p>核心设计思想：高内聚、低耦合。每个程序只做一件事，管道将它们串成一条处理链。</p>
+<ul>
+<li>信号 signal</li>
+</ul>
+<p>信号（软中断信号）是一种异步通信机制，用于通知进程发生了某些事件。进程可以通过系统调用<code>signal</code>或<code>sigaction</code>来设置信号处理函数，当特定的信号发生时，内核会调用相应的处理函数。信号机制适用于需要异步通知的场景，如处理外部事件或异常情况。</p>
+<p>信号的产生来源：异常（除零、非法指令、段错误）、其他进程（<code>kill</code> / <code>sigsend</code>）、作业控制（Shell 管理前后台进程）、定时器（<code>alarm</code> / <code>setitimer</code>）、设备 I/O 就绪等。</p>
+<p>收到信号后三种处理方式：自定义处理函数、忽略、系统默认。检测时机在进程从内核返回用户空间前（系统调用返回、被调度选中时）。</p>
+<p>信号生命周期：触发事件 → 信号加入未决信号集 → 目标进程被选中时检测 → 执行处理函数 → 注销。信号本质上是在软件层面上对中断机制的一种模拟。</p>
+<p>实现调用链（用户态 → 内核态）：<code>signal()</code> → <code>__sigaction</code> → <code>rt_sigaction</code> 系统调用 → <code>do_sigaction()</code>。返回用户态前 <code>do_signal()</code> 设置栈帧，<code>iret/sysret</code> 返回用户态执行 handler，完成后 <code>rt_sigreturn</code> 回到内核。定时器信号：<code>alarm()</code> → <code>setitimer</code> 系统调用 → 内核计时，到期后 <code>it_real_fn</code> 回调 → <code>send_signal</code> 发送 SIGALRM。</p>
+<p>在进程被选中、出内核之前，系统会对信号进行处理。</p>
+
+<h2 class="relative group">二、Linux内核同步机制
+    <div id="二linux内核同步机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%8clinux%e5%86%85%e6%a0%b8%e5%90%8c%e6%ad%a5%e6%9c%ba%e5%88%b6" aria-label="Anchor">#</a>
     </span>
     
 </h2>
 
-
-  
-  <div class="width-patch"></div>
-<div id="gallery-f9f48f03d8277e212b72f8da531be44b" class="gallery">
-  
-  <img src="/gallery/pictures/avatar/me.jpg" class="grid-w50" />
-  <img src="/gallery/pictures/avatar/me_merry.jpg" class="grid-w50" />
-</div>
-
-
-<h2 class="relative group">我的临摹&amp;原创画作
-    <div id="我的临摹原创画作" class="anchor"></div>
+<h3 class="relative group">1. 原子操作
+    <div id="1-原子操作" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%88%91%e7%9a%84%e4%b8%b4%e6%91%b9%e5%8e%9f%e5%88%9b%e7%94%bb%e4%bd%9c" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e5%8e%9f%e5%ad%90%e6%93%8d%e4%bd%9c" aria-label="Anchor">#</a>
     </span>
     
-</h2>
+</h3>
+<p>原子操作是指在执行过程中不可被中断的操作，保证了数据的一致性和完整性。Linux内核提供了多种原子操作，如原子变量、原子位操作等。这些操作通过特殊的指令实现，确保在多处理器环境下的正确性。常常用于实现资源的引用计数。</p>
 
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="width-patch"></div>
-<div id="gallery-90c3e2f3f4bad30eb6304f691dc7bc89" class="gallery">
-  
-  <img src="/gallery/pictures/draw/0.png" class="grid-w50" />
-  <img src="/gallery/pictures/draw/1.jpg" class="grid-w50" />
-  <img src="/gallery/pictures/draw/2.jpg" class="grid-w50" />
-  <img src="/gallery/pictures/draw/3.jpg" class="grid-w50" />
-  <img src="/gallery/pictures/draw/4.jpg" class="grid-w50" />
-  <img src="/gallery/pictures/draw/5.jpg" class="grid-w50" />
-  <img src="/gallery/pictures/draw/6.jpg" class="grid-w50" />
-  <img src="/gallery/pictures/draw/7.jpg" class="grid-w50" />
-  <img src="/gallery/pictures/draw/8.jpg" class="grid-w50" />
-  <img src="/gallery/pictures/draw/9.jpg" class="grid-w50" />
-</div>
-
-
-<h2 class="relative group">我的小成就
-    <div id="我的小成就" class="anchor"></div>
+<h3 class="relative group">2. 自旋锁
+    <div id="2-自旋锁" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%88%91%e7%9a%84%e5%b0%8f%e6%88%90%e5%b0%b1" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e8%87%aa%e6%97%8b%e9%94%81" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>自旋锁是为了防止多处理器并发而引入的一种锁，是一种“忙等”，在内核中大量应用于中断处理等部分。</p>
+<p>自旋锁 vs 信号量：</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>自旋锁</th>
+          <th>信号量</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>等待方式</td>
+          <td>忙等（spin）</td>
+          <td>睡眠（sleep）</td>
+      </tr>
+      <tr>
+          <td>临界区长度</td>
+          <td>短</td>
+          <td>长</td>
+      </tr>
+      <tr>
+          <td>持有期间可否睡眠</td>
+          <td>否</td>
+          <td>可</td>
+      </tr>
+      <tr>
+          <td>适用场景</td>
+          <td>中断处理、短临界区</td>
+          <td>可能阻塞的操作</td>
+      </tr>
+  </tbody>
+</table>
+<p>传统自旋锁用 <code>LOCK decb</code> + <code>rep;nop</code> 自旋，改进版<strong>排队自旋锁</strong>（类似银行叫号系统）消除惊群问题。</p>
+
+<h3 class="relative group">3. RCU机制
+    <div id="3-rcu机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#3-rcu%e6%9c%ba%e5%88%b6" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Linux 2.6之后，一种数据一致性访问机制，是 Linux 内核性能最高的同步机制，专门针对<strong>读极多、写极少</strong>场景。</p>
+<ul>
+<li><strong>读者</strong>：完全无锁，零开销，直接访问共享数据</li>
+<li><strong>写者</strong>：复制旧数据 → 修改副本 → 原子指针替换 → 宽限期后释放旧内存（等所有读者读完）</li>
+<li>多个写者仍需锁互斥</li>
+</ul>
+<p>对于读操作：直接对共享资源进行访问（需要CPU支持访存操作的原子性），采用read_rcu_lock()，RCU的读操作上下文是不可抢占的。</p>
+<p>对于写操作：复制一份旧数据、修改副本、原子指针替换【rcu_assign_pointer()宏】，让大家访问新数据、旧数据暂时保留给还在读取的读者、延迟回收（Grace Period 宽限期）：等到所有读者都读完旧数据后，才释放旧内存</p>
+<p>采用数据备份的方法可以实现读者与写者之间的并发操作，但是不能解决多个写者之间的同步，所以当存在多个写者时，需要通过锁机制对其进行互斥，也就是<strong>在同一时刻只能存在一个写者</strong>。</p>
+<p>应用场景：推理引擎 KV Cache、RAG 向量索引、GPU 资源池元数据、分布式参数服务器。</p>
+
+<h3 class="relative group">4. 其他内核同步机制
+    <div id="4-其他内核同步机制" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#4-%e5%85%b6%e4%bb%96%e5%86%85%e6%a0%b8%e5%90%8c%e6%ad%a5%e6%9c%ba%e5%88%b6" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>机制</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>完成变量（completion）</td>
+          <td>简单事件通知，<code>wait_for_completion</code> / <code>complete</code>，用于 vfork 等</td>
+      </tr>
+      <tr>
+          <td>顺序锁（seqlock）</td>
+          <td>写优先于读，靠序列计数器，读者读前读后比较序列值，若相同则成功读</td>
+      </tr>
+      <tr>
+          <td>读写锁（rwlock）</td>
+          <td>读共享、写互斥，适合读多写少（如 IPX 路由表）</td>
+      </tr>
+      <tr>
+          <td>屏障（Barrier）</td>
+          <td>一组线程到达汇合点后一起推进（矩阵运算等）</td>
+      </tr>
+  </tbody>
+</table>
+
+<h2 class="relative group">三、死锁
+    <div id="三死锁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%89%e6%ad%bb%e9%94%81" aria-label="Anchor">#</a>
     </span>
     
 </h2>
-
-
-  <div class="width-patch"></div>
-<div id="gallery-7e23592ef9d9a95761739d6384bb3018" class="gallery">
-  
-  <img src="/gallery/pictures/award/zhihu.jpg" class="grid-w50" />
-</div>
-
-
+<p>并发编程会带来很多困难，要保证安全、性能、可调式。</p>
+<p>死锁的定义：一组进程中，每个进程都无限等待被该组进程中另一进程所占有的资源，因而永远无法得到的资源，这种现象称为进程死锁，这一组进程就称为死锁进程。如果死锁发生，会浪费大量系统资源，甚至导致系统崩溃。</p>
+<p>为什么会出现死锁？资源竞争、设计不当、缺乏适当的同步机制等都可能导致死锁的发生。大型代码库中，组件之间有复杂的依赖关系在设计锁机制时，要避免循环依赖导致的死锁；封装：模块化隐藏实现细节，开发更容易模块化和锁不是很契合，某些看起来没有关系的接口可能会导致死锁。</p>
+<p>例如，在信号处理函数中尽量不要使用<code>printf</code>等可能阻塞的函数，避免死锁。因为信号处理函数可能在任何时候被调用，如果它尝试获取一个已经被其他线程持有的锁，就会导致死锁。</p>
+<p><strong>死锁必要条件</strong>：</p>
+<ol>
+<li><strong>互斥使用</strong>条件（Mutual Exclusion）：一个资源在同一时间只能被一个线程或进程占用。</li>
+<li><strong>占有且等待</strong>条件（Hold and Wait）：一个线程或进程在持有至少一个资源的同时，仍然尝试获取其他线程或进程所持有的资源。</li>
+<li><strong>不可抢占</strong>条件（No Preemption）：资源不能被强行从一个线程或进程中抢占，只能由占有它的线程或进程主动释放。</li>
+<li><strong>循环等待</strong>条件（Circular Wait）：存在一个线程/进程等待序列，其中每个线程/进程都在等待下一个线程/进程所持有的资源，形成一个等待环路。</li>
+</ol>
+<p>破坏其中一个条件即可避免死锁。<strong>解决办法</strong>：</p>
+<ol>
+<li>不考虑，鸵鸟算法</li>
+<li>不让死锁发生：
+<ol>
+<li>死锁预防：静态策略，设计合适的资源分配算法，破坏死锁必要条件之一，不让死锁发生。</li>
+<li>死锁避免：动态策略，以不让死锁发生为目标，跟踪并评估资源分配过程，根据评估结果决策是否分配。</li>
+</ol>
+</li>
+<li>让死锁发生：死锁检测与恢复：动态策略，允许死锁发生，但系统会定期检测死锁状态，并采取措施恢复，如终止进程或回滚操作。</li>
+</ol>
+<p>死锁预防针对四种必要条件设计的算法：</p>
+<ol>
+<li>互斥使用：采用资源转换技术，把独占资源变为共享资源，如SPOOLing技术，设计一个<code>deamon</code>进程管理打印机资源，用户进程将打印任务发送给<code>deamon</code>，<code>deamon</code>负责调度打印任务，避免了直接访问打印机资源的互斥条件。</li>
+<li>占有且等待：实现方案1：要求每个进程在运行前<strong>必须一次性申请它所要求的所有资源</strong>，且<strong>仅当该进程所要资源均可满足时才给予一次性分配</strong>。但是问题是资源利用率低，且会造成饥饿。实现方案2：在允许进程动态申请资源前提下规定，一个进程在申请新的资源不能立即得到满足而变为等待状态之前，<strong>必须释放已占有的全部资源</strong>，若需要再重新申请。但是实现困难。</li>
+<li>不可抢占：实现方案：虚拟化资源：当一个进程申请的资源被其他进程占用时，可以通过操作系统抢占这一资源(两个进程优先级不同)。局限性：适用于状态易于保存和恢复的资源，如CPU、内存。</li>
+<li>循环等待：通过定义资源类型的线性顺序实现。实施方案：<strong>资源有序分配法</strong>，把系统中所有资源编号，进程在申请资源时必须严格按资源编号的<strong>递增</strong>次序进行，否则操作系统不予分配。可以证明是正确的。</li>
+</ol>
+<p>死锁避免</p>
+<blockquote><p>活锁是指线程或进程虽然没有被阻塞，但由于相互之间的干扰，导致无法继续执行下去的状态。与死锁不同，活锁中的线程或进程仍然在运行，但它们无法完成任何有意义的工作。例如，在一个多线程环境中，如果两个线程同时尝试获取同一资源，并且在获取失败后都选择了重试，那么它们可能会不断地相互干扰，导致活锁的发生。</p>
+<p>饥饿是指某个线程或进程由于资源分配不公平，长时间无法获得所需的资源，从而无法继续执行的状态。例如，在一个多线程环境中，如果一个线程优先级较低，而其他线程优先级较高且频繁地获取资源，那么这个低优先级的线程可能会一直得不到资源，导致饥饿的发生。</p>
+</blockquote>
           
           
           
         </div>
         
         
+  <details class="mt-2 mb-5 overflow-hidden rounded-lg ms-0 ps-5">
+    
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
+    Operating Systems::Notes -
+    This article is part of a series.
+  </summary>
+  
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/1-intro/">
+          Part 1:
+          操作系统笔记1：操作系统概述
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/2-runtime_env/">
+          Part 2:
+          操作系统笔记2：操作系统运行环境与运行机制
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/3-process_thread/">
+          Part 3:
+          操作系统笔记3：进程与线程模型
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/4-scheduling/">
+          Part 4:
+          操作系统笔记4：进程与线程调度
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/5-memory_management/">
+          Part 5:
+          操作系统笔记5：内存管理
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/6-virtual_memory_management/">
+          Part 6:
+          操作系统笔记6：虚拟内存管理
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/7-file_system/">
+          Part 7:
+          操作系统笔记7：文件系统
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/8-async_mechanism/">
+          Part 8:
+          操作系统笔记8：同步机制
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        Part 9:
+        This Article
+      </div>
+    
+  
+
+
+  </details>
+
 
         
 
@@ -1646,14 +1770,45 @@
           type="text/javascript"
           src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
           integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
-          data-oid="views_gallery/index.md"
-          data-oid-likes="likes_gallery/index.md"></script>
+          data-oid="views_os/study_notes/9-ipc/index.md"
+          data-oid-likes="likes_os/study_notes/9-ipc/index.md"></script>
       
     </section>
 
     
     <footer class="pt-8 max-w-prose print:hidden">
       
+  
+    
+    
+    
+      
+      
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span class="flex flex-col">
+          
+        </span>
+        <span class="flex flex-col items-end">
+          
+            <a
+              class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/os/study_notes/8-async_mechanism/">
+              <span class="leading-6">
+                操作系统笔记8：同步机制&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+              </span>
+            </a>
+            
+              <span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2026-05-28T00:00:00&#43;00:00">2026/05/28</time>
+              </span>
+            
+          
+        </span>
+      </div>
+    </div>
   
 
 

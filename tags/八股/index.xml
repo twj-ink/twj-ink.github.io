@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>实习 on GaleInk&#39;s blog</title>
-    <link>https://twj-ink.github.io/intern/</link>
-    <description>Recent content in 实习 on GaleInk&#39;s blog</description>
+    <title>八股 on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/tags/%E5%85%AB%E8%82%A1/</link>
+    <description>Recent content in 八股 on GaleInk&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/intern/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/tags/%E5%85%AB%E8%82%A1/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>C&#43;&#43;八股</title>
@@ -18,16 +18,6 @@
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/intern/cpp/</guid>
       <description></description>
-      
-    </item>
-    
-    <item>
-      <title>面试算法题刷题</title>
-      <link>https://twj-ink.github.io/intern/algo/</link>
-      <pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/intern/algo/</guid>
-      <description>leetcode热题100</description>
       
     </item>
     

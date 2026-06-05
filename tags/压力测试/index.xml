@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>压力测试 on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/tags/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/</link>
+    <description>Recent content in 压力测试 on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Fri, 05 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/tags/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Webbench 压力测试与性能调优实战</title>
+      <link>https://twj-ink.github.io/blogs/webbench-benchmark/</link>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/blogs/webbench-benchmark/</guid>
+      <description>测试方法、ulimit/listen backlog 调优、WSL vs 裸 Linux 差异、瓶颈分析</description>
+      
+    </item>
+    
+  </channel>
+</rss>

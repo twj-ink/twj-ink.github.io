@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Epoll on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/tags/epoll/</link>
+    <description>Recent content in Epoll on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Fri, 05 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/tags/epoll/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>epoll LT/ET 深入对比 — 从原理到实践</title>
+      <link>https://twj-ink.github.io/blogs/epoll-lt-et/</link>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/blogs/epoll-lt-et/</guid>
+      <description>水平触发与边缘触发的区别、非阻塞 I/O 的必要性、ONESHOT 与线程安全</description>
+      
+    </item>
+    
+  </channel>
+</rss>

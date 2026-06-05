@@ -3,14 +3,80 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://twj-ink.github.io/blogs/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/cpp-raii-lock/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/epoll-lt-et/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/http-state-machine/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/webbench-benchmark/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/web-server-basic/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/webserver-from-scratch/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/async-log/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/threadpool-proactor/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/projects/galewebserver/</loc>
+    <lastmod>2026-06-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://twj-ink.github.io/os/study_notes/9-ipc/</loc>
+    <lastmod>2026-06-04T21:45:09+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/projects/</loc>
     <lastmod>2026-06-04T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/intern/cpp/</loc>
-    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-04T21:45:09+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -22,19 +88,13 @@
   </url>
   <url>
     <loc>https://twj-ink.github.io/intern/algo/</loc>
-    <lastmod>2026-06-02T18:29:05+08:00</lastmod>
+    <lastmod>2026-06-04T21:45:09+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/study_notes/8-async_mechanism/</loc>
     <lastmod>2026-06-02T18:29:05+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://twj-ink.github.io/blogs/</loc>
-    <lastmod>2026-05-14T13:09:20+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>项目 on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/projects/</link>
+    <description>Recent content in 项目 on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://twj-ink.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>GaleWebServer</title>
+      <link>https://twj-ink.github.io/projects/galewebserver/</link>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/projects/galewebserver/</guid>
+      <description>🔥Linux下C++轻量级Web服务器</description>
+      
+    </item>
+    
+  </channel>
+</rss>

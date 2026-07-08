@@ -53,11 +53,21 @@
     
     <item>
       <title>WebServer 01: 网络编程基础</title>
-      <link>https://twj-ink.github.io/blogs/web-server-basic/</link>
+      <link>https://twj-ink.github.io/blogs/ws0-web-server-basic/</link>
       <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/blogs/web-server-basic/</guid>
+      <guid>https://twj-ink.github.io/blogs/ws0-web-server-basic/</guid>
       <description>Web编程的基础知识</description>
+      
+    </item>
+    
+    <item>
+      <title>WebServer 02: 并发模型1：线程池 &#43; 模拟Proactor</title>
+      <link>https://twj-ink.github.io/blogs/threadpool-proactor/</link>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/blogs/threadpool-proactor/</guid>
+      <description>线程池设计、Reactor 与 Proactor 的区别、为何模拟 Proactor</description>
       
     </item>
     
@@ -78,16 +88,6 @@
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/blogs/async-log/</guid>
       <description>环形队列实现、strdup/free 配对、管程语义、同步 vs 异步的取舍</description>
-      
-    </item>
-    
-    <item>
-      <title>并发模型1：线程池 &#43; 模拟Proactor</title>
-      <link>https://twj-ink.github.io/blogs/threadpool-proactor/</link>
-      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/blogs/threadpool-proactor/</guid>
-      <description>线程池设计、Reactor 与 Proactor 的区别、为何模拟 Proactor</description>
       
     </item>
     

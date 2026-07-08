@@ -252,7 +252,7 @@
     "keywords": ["WebServer"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "477"
+    "wordCount": "493"
   }]
   </script>
 
@@ -1009,7 +1009,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-06-04T00:00:00&#43;00:00">2026/06/04</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-06-06T02:09:30&#43;08:00">Updated: 2026/06/06</time><span class="px-2 text-primary-500">&middot;</span><span>1466 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-06-04T00:00:00&#43;00:00">2026/06/04</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-06-06T02:09:30&#43;08:00">Updated: 2026/06/06</time><span class="px-2 text-primary-500">&middot;</span><span>1499 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1236,6 +1236,7 @@
         <li><a href="#模拟-proactor">模拟 Proactor</a></li>
         <li><a href="#epoll--非阻塞-io">epoll + 非阻塞 I/O</a></li>
         <li><a href="#http-状态机">HTTP 状态机</a></li>
+        <li><a href="#http-状态机-1">HTTP 状态机</a></li>
         <li><a href="#线程池">线程池</a></li>
         <li><a href="#定时器">定时器</a></li>
         <li><a href="#日志系统">日志系统</a></li>
@@ -1265,6 +1266,7 @@
         <li><a href="#模拟-proactor">模拟 Proactor</a></li>
         <li><a href="#epoll--非阻塞-io">epoll + 非阻塞 I/O</a></li>
         <li><a href="#http-状态机">HTTP 状态机</a></li>
+        <li><a href="#http-状态机-1">HTTP 状态机</a></li>
         <li><a href="#线程池">线程池</a></li>
         <li><a href="#定时器">定时器</a></li>
         <li><a href="#日志系统">日志系统</a></li>
@@ -1682,6 +1684,17 @@
     
 </h3>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">PARSE_REQUESTLINE → PARSE_HEADER → PARSE_BODY → GET_REQUEST</span></span></code></pre></div></div>
+
+<h3 class="relative group">HTTP 状态机
+    <div id="http-状态机-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#http-%e7%8a%b6%e6%80%81%e6%9c%ba-1" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">PARSE_REQUESTLINE → PARSE_HEADER → PARSE_BODY → GET_REQUEST</span></span></code></pre></div></div>
 <p>TCP 是字节流，一次 <code>recv</code> 可能只收到半个请求。状态机按 <code>\r\n</code> 逐行取、分阶段解析，数据不全就返回 <code>NO_REQUEST</code> 等下一轮。</p>
 
 <h3 class="relative group">线程池
@@ -1759,7 +1772,11 @@
   </thead>
   <tbody>
       <tr>
-          <td><a href="https://twj-ink.github.io/blogs/threadpool-proactor/"  target="_blank" rel="noreferrer">并发模型1：线程池 + 模拟Proactor</a></td>
+          <td><a href="https://twj-ink.github.io/blogs/web-server-basic/"  target="_blank" rel="noreferrer">WebServer 01: 网络编程基础</a></td>
+          <td>简要介绍客户端-服务器模型、Web基础</td>
+      </tr>
+      <tr>
+          <td><a href="https://twj-ink.github.io/blogs/threadpool-proactor/"  target="_blank" rel="noreferrer">WebServer 02: 并发模型1：线程池 + 模拟Proactor</a></td>
           <td>线程池解析、本项目为何模拟 Proactor</td>
       </tr>
       <tr>

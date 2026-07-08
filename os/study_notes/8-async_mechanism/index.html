@@ -66,12 +66,12 @@
     <meta property="article:published_time" content="2026-05-28T00:00:00+00:00">
     <meta property="article:modified_time" content="2026-06-02T18:29:05+08:00">
     <meta property="article:tag" content="OS">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
+      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
       <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/4-scheduling/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/3-process_thread/">
 
   
   <meta name="twitter:card" content="summary">
@@ -258,7 +258,7 @@
     "keywords": ["OS"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "695"
+    "wordCount": "941"
   }]
   </script>
 
@@ -1015,7 +1015,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-05-28T00:00:00&#43;00:00">2026/05/28</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-06-02T18:29:05&#43;08:00">Updated: 2026/06/02</time><span class="px-2 text-primary-500">&middot;</span><span>2832 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-05-28T00:00:00&#43;00:00">2026/05/28</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-06-02T18:29:05&#43;08:00">Updated: 2026/06/02</time><span class="px-2 text-primary-500">&middot;</span><span>3794 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">19 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1260,6 +1260,7 @@
         <li><a href="#43-用-pv-解决互斥">4.3 用 PV 解决互斥</a></li>
         <li><a href="#44-用-pv-解决生产者-消费者问题">4.4 用 PV 解决生产者-消费者问题</a></li>
         <li><a href="#45-用-pv-解决读者-写者问题">4.5 用 PV 解决读者-写者问题</a></li>
+        <li><a href="#46-睡眠理发师问题">4.6 睡眠理发师问题</a></li>
       </ul>
     </li>
     <li><a href="#五管程monitor">五、管程（Monitor）</a>
@@ -1322,6 +1323,7 @@
         <li><a href="#43-用-pv-解决互斥">4.3 用 PV 解决互斥</a></li>
         <li><a href="#44-用-pv-解决生产者-消费者问题">4.4 用 PV 解决生产者-消费者问题</a></li>
         <li><a href="#45-用-pv-解决读者-写者问题">4.5 用 PV 解决读者-写者问题</a></li>
+        <li><a href="#46-睡眠理发师问题">4.6 睡眠理发师问题</a></li>
       </ul>
     </li>
     <li><a href="#五管程monitor">五、管程（Monitor）</a>
@@ -1557,13 +1559,34 @@
       </div>
     
   
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/10-io_management/">
+          Part 10:
+          操作系统笔记10：I/O管理
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/11-cheatsheet/">
+          Part 11:
+          操作系统速查
+        </a>
+      </div>
+    
+  
 
 
   </details>
 
 
         <div class="article-content max-w-prose mb-20">
-          
+          <blockquote><p>**<a href="https://en.wikipedia.org/wiki/Concurrency_%28computer_science%29"  target="_blank" rel="noreferrer">并发</a>**指的是系统通过同时执行或分时（上下文切换）、共享资源和管理交互来执行多个任务的能力。并发提升了现代计算中的响应性、吞吐量和可扩展性，</p>
+</blockquote>
 <h2 class="relative group">一、并发执行带来的问题
     <div id="一并发执行带来的问题" class="anchor"></div>
     
@@ -1573,7 +1596,13 @@
     </span>
     
 </h2>
-<p>进程/线程并发执行的基本特征：执行过程是间断的、相对速度不可预测、结果取决于精确时序（不确定性）。</p>
+<p>进程/线程并发执行的基本特征，同时也带来对应的挑战：</p>
+<ul>
+<li>执行过程是间断的：会被操作系统调度中断，切换到其他执行单元</li>
+<li>相对速度不可预测：各个执行单元的相对执行速度无法预知，取决于调度策略、系统负载等多种因素</li>
+<li>不确定性：由于执行速度的不可预测性，程序的执行结果可能是不确定的，这会导致与时间有关的错误</li>
+<li>共享: 多个执行单元可能会访问和操作共同的资源或数据</li>
+</ul>
 <p>并发是所有问题的基础，也是操作系统设计的基础。</p>
 
 <h3 class="relative group">1.1 竞态条件（Race Condition）
@@ -1753,6 +1782,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1">// critical section
 </span></span></span><span class="line"><span class="cl"><span class="nf">enable_interrupts</span><span class="p">();</span></span></span></code></pre></div></div>
 <p>简单高效，但不适用于多处理器；适用于 OS 内核，不适于用户进程。</p>
+<p><strong>硬件解法——关中断</strong>：关中断 → 临界区 → 开中断。符合&quot;有空让进&quot;和&quot;无空等待&quot;，但<strong>不符合&quot;有限等待&quot;和&quot;让权等待&quot;</strong>：中断关闭期间调度器无法抢占，其他进程连 CPU 都得不到。仅限内核使用（保证临界区极短），不能暴露给用户进程。</p>
 
 <h3 class="relative group">3.2 TSL（Test and Set Lock）指令
     <div id="32-tsltest-and-set-lock指令" class="anchor"></div>
@@ -1773,6 +1803,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">mov</span> <span class="no">lock</span><span class="p">,</span> <span class="c1">#0
 </span></span></span><span class="line"><span class="cl">    <span class="nf">ret</span></span></span></code></pre></div></div>
 <p>TSL 是原子的&quot;读-改-写&quot;指令，多处理器有效，但忙等待形成<strong>自旋锁（Spin Lock）</strong>。</p>
+<p><strong>硬件解法——TSL 指令</strong>：原子&quot;读-改-写&quot;。对多处理器<strong>有效</strong>——TSL 靠总线锁保证原子性，执行时锁住内存总线，所有 CPU 都无法同时访问同一地址。关中断只锁本 CPU 所以多核失效，TSL 用总线锁替代，对所有 CPU 一视同仁。但忙等待形成自旋锁，且存在优先级反转问题。</p>
 <blockquote><p>硬件方法存在<strong>优先级反转</strong>问题：高优先级进程自旋等待低优先级进程释放锁。</p>
 </blockquote><hr>
 
@@ -1886,26 +1917,149 @@
 <ul>
 <li>读者优先</li>
 </ul>
-<p>描述：</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>              <span class="c1">// 读者计数
-</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">mutex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>     <span class="c1">// 保护 rc
-</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>         <span class="c1">// 写者/第一个读者的互斥
+<p>读者优先：只要有读者在读，新来的读者可以立即进入，写者必须等所有读者离开。</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">reader_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>            <span class="c1">// 当前正在读的读者数
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">rcount_lock</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>       <span class="c1">// 保护 reader_count
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">write_lock</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>        <span class="c1">// 写者互斥 &amp; 第一个读者抢占写者
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 读者
-</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">rc</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>     <span class="c1">// 第一个读者锁住写者
-</span></span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">reader_count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">reader_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>           <span class="c1">// 第一个读者：锁住写者
+</span></span></span><span class="line"><span class="cl">    <span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">write_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cm">/* 读操作 */</span>
-</span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">rc</span><span class="o">--</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>     <span class="c1">// 最后一个读者释放写者
-</span></span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">reader_count</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">reader_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>           <span class="c1">// 最后一个读者：释放写者
+</span></span></span><span class="line"><span class="cl">    <span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">write_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">-------</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 写者
-</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">write_lock</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="cm">/* 写操作 */</span>
-</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span></span></span></code></pre></div></div>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">write_lock</span><span class="p">);</span></span></span></code></pre></div></div>
+<ul>
+<li>写者优先</li>
+</ul>
+<p>写者优先：只要有写者在等，新来的读者不能插队，先让写者写完。</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">reader_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>            <span class="c1">// 当前正在读的读者数
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">writer_waiting</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>          <span class="c1">// 正在等待的写者数
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">rcount_lock</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>       <span class="c1">// 保护 reader_count
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">wcount_lock</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>       <span class="c1">// 保护 writer_waiting
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">read_gate</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>         <span class="c1">// 读者入口（写者等待时锁住）
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">write_lock</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>        <span class="c1">// 写者互斥
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 读者
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">read_gate</span><span class="p">);</span>                   <span class="c1">// 如果写者在等，读者在此阻塞
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">reader_count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">reader_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">write_lock</span><span class="p">);</span>              <span class="c1">// 第一个读者锁住写者
+</span></span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">read_gate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* 读操作 */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">reader_count</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">reader_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">write_lock</span><span class="p">);</span>              <span class="c1">// 最后一个读者释放写者
+</span></span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">-------</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 写者
+</span></span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">writer_waiting</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">writer_waiting</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">read_gate</span><span class="p">);</span>               <span class="c1">// 第一个在等的写者锁住读者入口
+</span></span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">write_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 写操作 */</span>
+</span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">write_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wcount_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">writer_waiting</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">writer_waiting</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">read_gate</span><span class="p">);</span>               <span class="c1">// 最后一个写者释放读者入口
+</span></span></span><span class="line"><span class="cl"><span class="nf">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wcount_lock</span><span class="p">);</span></span></span></code></pre></div></div>
+
+<h3 class="relative group">4.6 睡眠理发师问题
+    <div id="46-睡眠理发师问题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#46-%e7%9d%a1%e7%9c%a0%e7%90%86%e5%8f%91%e5%b8%88%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">waiting</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//等候理发顾客坐的椅子数
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">CHAIRS</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span><span class="c1">//为顾客准备的椅子数
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">customers</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//顾客数量
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">barbers</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//理发师初始状态为睡着状态，故初始化为0
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">mutex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//理发师进程
+</span></span></span><span class="line"><span class="cl"><span class="n">process</span> <span class="nf">barber</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">P</span><span class="p">(</span><span class="n">customers</span><span class="p">);</span><span class="c1">//有顾客吗？若无顾客，理发师睡眠
+</span></span></span><span class="line"><span class="cl">        <span class="nf">P</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="c1">//若有顾客时，进入临界区
+</span></span></span><span class="line"><span class="cl">        <span class="n">waiting</span><span class="o">--</span><span class="p">;</span><span class="c1">//等候顾客数少一个
+</span></span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">barbers</span><span class="p">);</span><span class="c1">//理发师准备为顾客理发
+</span></span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="c1">//退出临界区
+</span></span></span><span class="line"><span class="cl">        <span class="nf">cut_hair</span><span class="p">();</span><span class="c1">//理发师正在理发（非临界区）
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//顾客进程
+</span></span></span><span class="line"><span class="cl"><span class="n">process</span> <span class="nf">customer_i</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">P</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="c1">//进入临界区
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">waiting</span> <span class="o">&lt;</span> <span class="n">CHAIRS</span><span class="p">){</span><span class="c1">//有空椅子吗
+</span></span></span><span class="line"><span class="cl">        <span class="n">waiting</span><span class="o">++</span><span class="p">;</span><span class="c1">//等候顾客数加1
+</span></span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">customers</span><span class="p">);</span><span class="c1">//唤醒理发师
+</span></span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="c1">//退出临界区
+</span></span></span><span class="line"><span class="cl">        <span class="nf">P</span><span class="p">(</span><span class="n">barbers</span><span class="p">);</span><span class="c1">//理发师忙，顾客坐下等待
+</span></span></span><span class="line"><span class="cl">        <span class="nf">get_haircut</span><span class="p">();</span><span class="c1">//否则顾客坐下理发
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="c1">//人满了，走吧！
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p><strong>扩展为 n 个理发师</strong>：把 <code>barbers</code> 从二元信号量改为计数信号量，初值 <code>n</code>。剪完后 <code>V</code> 标记空闲， n 个理发师可并发。</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">waiting</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">CHAIRS</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">customers</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>          <span class="c1">// 等待的顾客数
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">barbers_available</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// 当前有理发师准备好吗
+</span></span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">mutex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">process</span> <span class="nf">barber</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">P</span><span class="p">(</span><span class="n">customers</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">P</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">waiting</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">barbers_available</span><span class="p">);</span>     <span class="c1">// 准备好，可以剪了
+</span></span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">cut_hair</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">process</span> <span class="nf">customer</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">P</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">waiting</span> <span class="o">&lt;</span> <span class="n">CHAIRS</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">waiting</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">customers</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">P</span><span class="p">(</span><span class="n">barbers_available</span><span class="p">);</span>     <span class="c1">// 等空闲理发师
+</span></span></span><span class="line"><span class="cl">        <span class="nf">get_haircut</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">V</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <hr>
 
 <h2 class="relative group">五、管程（Monitor）
@@ -2316,6 +2470,26 @@
         <a href="/os/study_notes/9-ipc/">
           Part 9:
           操作系统笔记9：进程间通信
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/10-io_management/">
+          Part 10:
+          操作系统笔记10：I/O管理
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/os/study_notes/11-cheatsheet/">
+          Part 11:
+          操作系统速查
         </a>
       </div>
     

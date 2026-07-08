@@ -4,7 +4,7 @@
   dir="ltr"
   class="scroll-smooth"
   data-default-appearance="light"
-  data-auto-appearance="true"><head>
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   
     <meta http-equiv="content-language" content="en">
@@ -28,7 +28,7 @@
   
   
   
-  <link rel="canonical" href="https://twj-ink.github.io/blogs/web-server-basic/">
+  <link rel="canonical" href="http://localhost:1313/blogs/web-server-basic/">
   
 
   
@@ -56,7 +56,7 @@
   
 
   
-  <meta property="og:url" content="https://twj-ink.github.io/blogs/web-server-basic/">
+  <meta property="og:url" content="http://localhost:1313/blogs/web-server-basic/">
   <meta property="og:site_name" content="GaleInk&#39;s blog">
   <meta property="og:title" content="WebServer 01: 网络编程基础">
   <meta property="og:description" content="Web编程的基础知识">
@@ -66,12 +66,12 @@
     <meta property="article:published_time" content="2026-06-05T00:00:00+00:00">
     <meta property="article:modified_time" content="2026-06-06T02:09:30+08:00">
     <meta property="article:tag" content="WebServer">
-      <meta property="og:see_also" content="https://twj-ink.github.io/blogs/cpp-raii-lock/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/blogs/http-state-machine/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/blogs/webbench-benchmark/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/blogs/webserver-from-scratch/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/blogs/async-log/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/blogs/threadpool-proactor/">
+      <meta property="og:see_also" content="http://localhost:1313/blogs/cpp-raii-lock/">
+      <meta property="og:see_also" content="http://localhost:1313/blogs/http-state-machine/">
+      <meta property="og:see_also" content="http://localhost:1313/blogs/webbench-benchmark/">
+      <meta property="og:see_also" content="http://localhost:1313/blogs/threadpool-proactor/">
+      <meta property="og:see_also" content="http://localhost:1313/blogs/webserver-from-scratch/">
+      <meta property="og:see_also" content="http://localhost:1313/blogs/async-log/">
 
   
   <meta name="twitter:card" content="summary">
@@ -244,7 +244,7 @@
     "headline": "WebServer 01: 网络编程基础",
     
     "inLanguage": "en",
-    "url" : "https://twj-ink.github.io/blogs/web-server-basic/",
+    "url" : "http://localhost:1313/blogs/web-server-basic/",
     "author" : {
       "@type": "Person",
       "name": "GaleInk"
@@ -265,12 +265,6 @@
 
 
   
-  
-    
-
-
-
-
   
 
   
@@ -1438,6 +1432,16 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/blogs/threadpool-proactor/">
+          Part 1:
+          WebServer 02: 并发模型1：线程池 &#43; 模拟Proactor
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
         <a href="/blogs/webserver-from-scratch/">
           Part :
           从零构建 C&#43;&#43; Web 服务器的经验与踩坑
@@ -1451,16 +1455,6 @@
         <a href="/blogs/async-log/">
           Part :
           双缓冲异步日志 — 不让磁盘 I/O 拖慢请求
-        </a>
-      </div>
-    
-  
-    
-      <div
-        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/blogs/threadpool-proactor/">
-          Part 1:
-          并发模型1：线程池 &#43; 模拟Proactor
         </a>
       </div>
     
@@ -1708,6 +1702,16 @@
     
       <div
         class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        <a href="/blogs/threadpool-proactor/">
+          Part 1:
+          WebServer 02: 并发模型1：线程池 &#43; 模拟Proactor
+        </a>
+      </div>
+    
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
         <a href="/blogs/webserver-from-scratch/">
           Part :
           从零构建 C&#43;&#43; Web 服务器的经验与踩坑
@@ -1721,16 +1725,6 @@
         <a href="/blogs/async-log/">
           Part :
           双缓冲异步日志 — 不让磁盘 I/O 拖慢请求
-        </a>
-      </div>
-    
-  
-    
-      <div
-        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
-        <a href="/blogs/threadpool-proactor/">
-          Part 1:
-          并发模型1：线程池 &#43; 模拟Proactor
         </a>
       </div>
     
@@ -1778,9 +1772,9 @@
           
             <a
               class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-              href="/blogs/webserver-from-scratch/">
+              href="/blogs/threadpool-proactor/">
               <span class="leading-6">
-                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;从零构建 C++ Web 服务器的经验与踩坑
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;WebServer 02: 并发模型1：线程池 + 模拟Proactor
               </span>
             </a>
             
@@ -1939,7 +1933,7 @@
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
-  data-url="https://twj-ink.github.io/">
+  data-url="http://localhost:1313/">
   <div
     id="search-modal"
     class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">

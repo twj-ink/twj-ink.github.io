@@ -12,6 +12,16 @@
     <atom:link href="https://twj-ink.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>在字节跳动</title>
+      <link>https://twj-ink.github.io/intern/bytedance/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/intern/bytedance/</guid>
+      <description>的个人体验</description>
+      
+    </item>
+    
+    <item>
       <title>操作系统速查</title>
       <link>https://twj-ink.github.io/os/study_notes/11-cheatsheet/</link>
       <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>

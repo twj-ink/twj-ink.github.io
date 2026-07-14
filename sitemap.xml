@@ -3,6 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://twj-ink.github.io/intern/bytedance/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://twj-ink.github.io/os/study_notes/11-cheatsheet/</loc>
     <lastmod>2026-07-09T00:31:20+08:00</lastmod>
     <changefreq>daily</changefreq>

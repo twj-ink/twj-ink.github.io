@@ -57,26 +57,26 @@
 
   
   <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
-  <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="操作系统笔记8：同步机制">
-  <meta property="og:description" content="GaleInk&#39;s marvelous website">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="os">
-    <meta property="article:published_time" content="2026-05-28T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-07-09T00:31:20+08:00">
-    <meta property="article:tag" content="OS">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
+	<meta property="og:site_name" content="GaleInk&#39;s blog">
+	<meta property="og:title" content="操作系统笔记8：同步机制">
+	<meta property="og:description" content="GaleInk&#39;s marvelous website">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="os">
+		<meta property="article:published_time" content="2026-05-28T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-07-09T00:31:20+08:00">
+		<meta property="article:tag" content="OS">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="操作系统笔记8：同步机制">
-  <meta name="twitter:description" content="GaleInk&#39;s marvelous website">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="操作系统笔记8：同步机制">
+	<meta name="twitter:description" content="GaleInk&#39;s marvelous website">
 
   
   
@@ -127,8 +127,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.b5368c8f64c443a2db3640baffb642b259c300b1b22c920ca173c246129a987e618d2ce489d86098e3470c351836906c95f0e0b44fd3514bb75ca118f8652640.css"
-    integrity="sha512-tTaMj2TEQ6LbNkC6/7ZCslnDALGyLJIMoXPCRhKamH5hjSzkidhgmONHDDUYNpBslfDgtE/TUUu3XKEY&#43;GUmQA==">
+    href="/css/main.bundle.min.ab019b470a037de88534469a63d83f2ae827f1a4f6cc1652eb35e9cfb8ee0b755fb78707ef83dad4c389ff60bccc0bf2b16a8f86a7fca77fb6b5a2a36e9b266a.css"
+    integrity="sha512-qwGbRwoDfeiFNEaaY9g/Kugn8aT2zBZS6zXpz7juC3Vft4cH74Pa1MOJ/2C8zAvysWqPhqf8p3&#43;2taKjbpsmag==">
 
   
   
@@ -1136,8 +1136,8 @@
         width="96"
         height="96"
         alt="GaleInk"
-        src="/img/avatar_hu_d682264e76c772b8.jpg"
-        data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
+        src="/img/avatar_hu_fd19e2102814dddd.jpg"
+        data-zoom-src="/img/avatar_hu_60898f5dd3b3acc4.jpg">
     
   
   <div class="place-self-center">
@@ -1622,7 +1622,7 @@
 <p><strong>例子2：cnt++ 的汇编级竞态</strong></p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">movq</span> <span class="no">cnt</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span> <span class="nv">%rdx</span>   <span class="c1">; Load
 </span></span></span><span class="line"><span class="cl"><span class="nf">addq</span> <span class="no">$1</span><span class="p">,</span> <span class="nv">%rdx</span>           <span class="c1">; Update
-</span></span></span><span class="line"><span class="cl"><span class="nf">movq</span> <span class="nv">%rdx</span><span class="p">,</span> <span class="no">cnt</span><span class="p">(</span><span class="nv">%rip</span><span class="p">)</span>    <span class="err">;</span> <span class="no">Store</span></span></span></code></pre></div></div>
+</span></span></span><span class="line"><span class="cl"><span class="nf">movq</span> <span class="nv">%rdx</span><span class="p">,</span> <span class="no">cnt</span><span class="p">(</span><span class="nv">%rip</span><span class="p">)</span>    <span class="c1">; Store</span></span></span></code></pre></div></div>
 <p>两个线程同时 Load 到旧值 → 两次 <code>cnt++</code> 的结果可能只加了一次。</p>
 
 <h3 class="relative group">1.2 临界区（Critical Section）
@@ -1655,25 +1655,25 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th></th>
-          <th>互斥（Mutual Exclusion）</th>
-          <th>同步（Synchronization）</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>关系</td>
-          <td>竞争共享资源，排他性使用</td>
-          <td>协作完成任务，存在时序关系</td>
-      </tr>
-      <tr>
-          <td>场景</td>
-          <td>写同一变量、同一文件</td>
-          <td>生产者-消费者、读者-写者</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th></th>
+					<th>互斥（Mutual Exclusion）</th>
+					<th>同步（Synchronization）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>关系</td>
+					<td>竞争共享资源，排他性使用</td>
+					<td>协作完成任务，存在时序关系</td>
+			</tr>
+			<tr>
+					<td>场景</td>
+					<td>写同一变量、同一文件</td>
+					<td>生产者-消费者、读者-写者</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 
@@ -1697,30 +1697,30 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>方案</th>
-          <th>思路</th>
-          <th>问题</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>方案1</td>
-          <td><code>while(free); free=true;</code> — 临界区 — <code>free=false</code></td>
-          <td>lock() 不原子</td>
-      </tr>
-      <tr>
-          <td>方案2</td>
-          <td><code>while(not turn);</code> — 临界区 — <code>turn=other</code></td>
-          <td>强制轮流，无空不让进</td>
-      </tr>
-      <tr>
-          <td>方案3</td>
-          <td><code>pturn=true; while(qturn);</code> — <code>pturn=false</code></td>
-          <td>After you 死锁</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方案</th>
+					<th>思路</th>
+					<th>问题</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>方案1</td>
+					<td><code>while(free); free=true;</code> — 临界区 — <code>free=false</code></td>
+					<td>lock() 不原子</td>
+			</tr>
+			<tr>
+					<td>方案2</td>
+					<td><code>while(not turn);</code> — 临界区 — <code>turn=other</code></td>
+					<td>强制轮流，无空不让进</td>
+			</tr>
+			<tr>
+					<td>方案3</td>
+					<td><code>pturn=true; while(qturn);</code> — <code>pturn=false</code></td>
+					<td>After you 死锁</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">2.2 Dekker 算法（1965）
@@ -2114,26 +2114,26 @@
 <p><strong>条件变量</strong>：管程内用于同步的特殊变量，每个条件变量关联一个等待队列。</p>
 <p>这里有一个问题是，当一个进程在管程中执行 wait 后，应当释放管程互斥权；但后续 signal 唤醒时，<strong>管程中存在两个活跃进程</strong>。有三种解决方案：</p>
 <table>
-  <thead>
-      <tr>
-          <th>方案</th>
-          <th>signal 后的处理</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Hoare</strong></td>
-          <td>唤醒者进入紧急队列等待，<strong>被唤醒者立即执行</strong></td>
-      </tr>
-      <tr>
-          <td><strong>Hansen</strong> (Concurrent Pascal)</td>
-          <td>signal 必须是管程最后一个操作</td>
-      </tr>
-      <tr>
-          <td><strong>Mesa</strong></td>
-          <td>signal → notify，唤醒者继续执行，被唤醒者将来恢复</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方案</th>
+					<th>signal 后的处理</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Hoare</strong></td>
+					<td>唤醒者进入紧急队列等待，<strong>被唤醒者立即执行</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Hansen</strong> (Concurrent Pascal)</td>
+					<td>signal 必须是管程最后一个操作</td>
+			</tr>
+			<tr>
+					<td><strong>Mesa</strong></td>
+					<td>signal → notify，唤醒者继续执行，被唤醒者将来恢复</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">5.4 Hoare 管程
@@ -2232,26 +2232,26 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>方式</th>
-          <th>特点</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>关闭中断</td>
-          <td>单 CPU 有效，忙等待</td>
-      </tr>
-      <tr>
-          <td>TSL / XCHG 指令</td>
-          <td>多 CPU 有效，自旋锁</td>
-      </tr>
-      <tr>
-          <td>睡眠/唤醒 + 关中断</td>
-          <td>无忙等待，保护等待队列</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方式</th>
+					<th>特点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>关闭中断</td>
+					<td>单 CPU 有效，忙等待</td>
+			</tr>
+			<tr>
+					<td>TSL / XCHG 指令</td>
+					<td>多 CPU 有效，自旋锁</td>
+			</tr>
+			<tr>
+					<td>睡眠/唤醒 + 关中断</td>
+					<td>无忙等待，保护等待队列</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">6.2 锁的基本结构
@@ -2291,25 +2291,25 @@
     
 </h2>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>API</th>
-          <th>用途</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>互斥锁</td>
-          <td><code>pthread_mutex_lock</code> / <code>unlock</code></td>
-          <td>保护临界区</td>
-      </tr>
-      <tr>
-          <td>条件变量</td>
-          <td><code>pthread_cond_wait</code> / <code>signal</code> / <code>broadcast</code></td>
-          <td>线程间同步</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>API</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>互斥锁</td>
+					<td><code>pthread_mutex_lock</code> / <code>unlock</code></td>
+					<td>保护临界区</td>
+			</tr>
+			<tr>
+					<td>条件变量</td>
+					<td><code>pthread_cond_wait</code> / <code>signal</code> / <code>broadcast</code></td>
+					<td>线程间同步</td>
+			</tr>
+	</tbody>
 </table>
 <p><code>pthread_cond_wait</code> 的三个原子动作：<strong>解锁 → 等待信号 → 收到信号后重新上锁</strong>。被唤醒后必须用 <code>while</code> 重新检查条件。</p>
 <hr>
@@ -2344,30 +2344,30 @@
     
 </h2>
 <table>
-  <thead>
-      <tr>
-          <th>机制</th>
-          <th>实现</th>
-          <th>应用场景</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>spinlock</strong></td>
-          <td><code>acquire()</code> / <code>release()</code>，忙等待</td>
-          <td>proc、kmem、log、console</td>
-      </tr>
-      <tr>
-          <td><strong>sleeplock</strong></td>
-          <td>用 spinlock 保护内部结构，阻塞等待</td>
-          <td>inode 操作（fs.c, bio.c）</td>
-      </tr>
-      <tr>
-          <td><strong>sleep / wakeup</strong></td>
-          <td>等效 P / V，<code>chan</code> 作为信号标识，sleep 时释放 lock</td>
-          <td>proc、bio、pipe</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>机制</th>
+					<th>实现</th>
+					<th>应用场景</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>spinlock</strong></td>
+					<td><code>acquire()</code> / <code>release()</code>，忙等待</td>
+					<td>proc、kmem、log、console</td>
+			</tr>
+			<tr>
+					<td><strong>sleeplock</strong></td>
+					<td>用 spinlock 保护内部结构，阻塞等待</td>
+					<td>inode 操作（fs.c, bio.c）</td>
+			</tr>
+			<tr>
+					<td><strong>sleep / wakeup</strong></td>
+					<td>等效 P / V，<code>chan</code> 作为信号标识，sleep 时释放 lock</td>
+					<td>proc、bio、pipe</td>
+			</tr>
+	</tbody>
 </table>
 <p>XV6 的生产者-消费者实例：<code>pipe.c</code> 中的环形缓冲区 <code>pi-&gt;data</code>，用 <code>sleep</code> / <code>wakeup</code> 实现同步。</p>
 

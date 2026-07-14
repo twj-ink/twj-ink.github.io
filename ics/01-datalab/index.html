@@ -57,27 +57,27 @@
 
   
   <meta property="og:url" content="https://twj-ink.github.io/ics/01-datalab/">
-  <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="01-DataLab">
-  <meta property="og:description" content="位运算与浮点数">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ics">
-    <meta property="article:modified_time" content="2026-03-31T12:39:18+08:00">
-    <meta property="article:tag" content="位运算">
-    <meta property="og:image" content="https://twj-ink.github.io/ics/01-datalab/feature_bit.png">
-      <meta property="og:see_also" content="https://twj-ink.github.io/ics/02-bomblab/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/ics/03-attacklab/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/ics/04-archlab/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/ics/05-cachelab/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/ics/06-shelllab/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/ics/07-malloclab/">
+	<meta property="og:site_name" content="GaleInk&#39;s blog">
+	<meta property="og:title" content="01-DataLab">
+	<meta property="og:description" content="位运算与浮点数">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="ics">
+		<meta property="article:modified_time" content="2026-03-31T12:39:18+08:00">
+		<meta property="article:tag" content="位运算">
+		<meta property="og:image" content="https://twj-ink.github.io/ics/01-datalab/feature_bit.png">
+			<meta property="og:see_also" content="https://twj-ink.github.io/ics/02-bomblab/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/ics/03-attacklab/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/ics/04-archlab/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/ics/05-cachelab/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/ics/06-shelllab/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/ics/07-malloclab/">
 
   
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://twj-ink.github.io/ics/01-datalab/feature_bit.png">
-  <meta name="twitter:title" content="01-DataLab">
-  <meta name="twitter:description" content="位运算与浮点数">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="https://twj-ink.github.io/ics/01-datalab/feature_bit.png">
+	<meta name="twitter:title" content="01-DataLab">
+	<meta name="twitter:description" content="位运算与浮点数">
 
   
   
@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.b5368c8f64c443a2db3640baffb642b259c300b1b22c920ca173c246129a987e618d2ce489d86098e3470c351836906c95f0e0b44fd3514bb75ca118f8652640.css"
-    integrity="sha512-tTaMj2TEQ6LbNkC6/7ZCslnDALGyLJIMoXPCRhKamH5hjSzkidhgmONHDDUYNpBslfDgtE/TUUu3XKEY&#43;GUmQA==">
+    href="/css/main.bundle.min.ab019b470a037de88534469a63d83f2ae827f1a4f6cc1652eb35e9cfb8ee0b755fb78707ef83dad4c389ff60bccc0bf2b16a8f86a7fca77fb6b5a2a36e9b266a.css"
+    integrity="sha512-qwGbRwoDfeiFNEaaY9g/Kugn8aT2zBZS6zXpz7juC3Vft4cH74Pa1MOJ/2C8zAvysWqPhqf8p3&#43;2taKjbpsmag==">
 
   
   
@@ -1135,8 +1135,8 @@
         width="96"
         height="96"
         alt="GaleInk"
-        src="/img/avatar_hu_d682264e76c772b8.jpg"
-        data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
+        src="/img/avatar_hu_fd19e2102814dddd.jpg"
+        data-zoom-src="/img/avatar_hu_60898f5dd3b3acc4.jpg">
     
   
   <div class="place-self-center">
@@ -1524,142 +1524,142 @@
 <li>位级操作函数</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th>函数名</th>
-          <th>描述</th>
-          <th>难度 (Rating)</th>
-          <th>最大操作数 (Max Ops)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>bitOr(x,y)</td>
-          <td>仅使用 ~ 和 &amp; 实现 x|y</td>
-          <td>1</td>
-          <td>8</td>
-      </tr>
-      <tr>
-          <td>upperBits(n)</td>
-          <td>将高 n 位填充为 1</td>
-          <td>1</td>
-          <td>10</td>
-      </tr>
-      <tr>
-          <td>fullAdd(x,y)</td>
-          <td>仅使用位操作实现 4 位加法</td>
-          <td>2</td>
-          <td>30</td>
-      </tr>
-      <tr>
-          <td>rotateLeft(x,n)</td>
-          <td>将 x 向左循环移位 n 位</td>
-          <td>3</td>
-          <td>25</td>
-      </tr>
-      <tr>
-          <td>bitParity(x)</td>
-          <td>如果 x 包含奇数个 0 则返回 1</td>
-          <td>4</td>
-          <td>20</td>
-      </tr>
-      <tr>
-          <td>palindrome(x)</td>
-          <td>如果 x 的二进制形式是回文数则返回 1</td>
-          <td>4</td>
-          <td>40</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>函数名</th>
+					<th>描述</th>
+					<th>难度 (Rating)</th>
+					<th>最大操作数 (Max Ops)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>bitOr(x,y)</td>
+					<td>仅使用 ~ 和 &amp; 实现 x|y</td>
+					<td>1</td>
+					<td>8</td>
+			</tr>
+			<tr>
+					<td>upperBits(n)</td>
+					<td>将高 n 位填充为 1</td>
+					<td>1</td>
+					<td>10</td>
+			</tr>
+			<tr>
+					<td>fullAdd(x,y)</td>
+					<td>仅使用位操作实现 4 位加法</td>
+					<td>2</td>
+					<td>30</td>
+			</tr>
+			<tr>
+					<td>rotateLeft(x,n)</td>
+					<td>将 x 向左循环移位 n 位</td>
+					<td>3</td>
+					<td>25</td>
+			</tr>
+			<tr>
+					<td>bitParity(x)</td>
+					<td>如果 x 包含奇数个 0 则返回 1</td>
+					<td>4</td>
+					<td>20</td>
+			</tr>
+			<tr>
+					<td>palindrome(x)</td>
+					<td>如果 x 的二进制形式是回文数则返回 1</td>
+					<td>4</td>
+					<td>40</td>
+			</tr>
+	</tbody>
 </table>
 <ul>
 <li>算术函数</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th>函数名</th>
-          <th>描述</th>
-          <th>难度 (Rating)</th>
-          <th>最大操作数 (Max Ops)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>negate(x)</td>
-          <td>计算 -x</td>
-          <td>2</td>
-          <td>5</td>
-      </tr>
-      <tr>
-          <td>oneMoreThan(x,y)</td>
-          <td>如果 y 比 x 大 1 则返回 1，否则返回 0</td>
-          <td>2</td>
-          <td>15</td>
-      </tr>
-      <tr>
-          <td>ezThreeFourths(x)</td>
-          <td>计算 x 乘以 3/4，并向 0 取整</td>
-          <td>3</td>
-          <td>12</td>
-      </tr>
-      <tr>
-          <td>isLess(x, y)</td>
-          <td>如果 x &lt; y 则返回 1，否则返回 0</td>
-          <td>3</td>
-          <td>24</td>
-      </tr>
-      <tr>
-          <td>satMu12(x)</td>
-          <td>将 x 乘以 2，如果溢出则饱和到 T_min 或 T_max</td>
-          <td>3</td>
-          <td>20</td>
-      </tr>
-      <tr>
-          <td>modThree(x)</td>
-          <td>不使用 % 计算 x mod 3</td>
-          <td>4</td>
-          <td>60</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>函数名</th>
+					<th>描述</th>
+					<th>难度 (Rating)</th>
+					<th>最大操作数 (Max Ops)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>negate(x)</td>
+					<td>计算 -x</td>
+					<td>2</td>
+					<td>5</td>
+			</tr>
+			<tr>
+					<td>oneMoreThan(x,y)</td>
+					<td>如果 y 比 x 大 1 则返回 1，否则返回 0</td>
+					<td>2</td>
+					<td>15</td>
+			</tr>
+			<tr>
+					<td>ezThreeFourths(x)</td>
+					<td>计算 x 乘以 3/4，并向 0 取整</td>
+					<td>3</td>
+					<td>12</td>
+			</tr>
+			<tr>
+					<td>isLess(x, y)</td>
+					<td>如果 x &lt; y 则返回 1，否则返回 0</td>
+					<td>3</td>
+					<td>24</td>
+			</tr>
+			<tr>
+					<td>satMu12(x)</td>
+					<td>将 x 乘以 2，如果溢出则饱和到 T_min 或 T_max</td>
+					<td>3</td>
+					<td>20</td>
+			</tr>
+			<tr>
+					<td>modThree(x)</td>
+					<td>不使用 % 计算 x mod 3</td>
+					<td>4</td>
+					<td>60</td>
+			</tr>
+	</tbody>
 </table>
 <ul>
 <li>浮点函数</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th>函数名</th>
-          <th>描述</th>
-          <th>难度 (Rating)</th>
-          <th>最大操作数 (Max Ops)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>float_half(x)</td>
-          <td>计算 x/2</td>
-          <td>4</td>
-          <td>30</td>
-      </tr>
-      <tr>
-          <td>float_i2f(x)</td>
-          <td>将整数 x 转换为浮点数</td>
-          <td>4</td>
-          <td>30</td>
-      </tr>
-      <tr>
-          <td>float64_f2i(x)</td>
-          <td>将双精度浮点数 x 转换为整数</td>
-          <td>4</td>
-          <td>20</td>
-      </tr>
-      <tr>
-          <td>float_pwr2(x)</td>
-          <td>计算 2^x</td>
-          <td>4</td>
-          <td>30</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>函数名</th>
+					<th>描述</th>
+					<th>难度 (Rating)</th>
+					<th>最大操作数 (Max Ops)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>float_half(x)</td>
+					<td>计算 x/2</td>
+					<td>4</td>
+					<td>30</td>
+			</tr>
+			<tr>
+					<td>float_i2f(x)</td>
+					<td>将整数 x 转换为浮点数</td>
+					<td>4</td>
+					<td>30</td>
+			</tr>
+			<tr>
+					<td>float64_f2i(x)</td>
+					<td>将双精度浮点数 x 转换为整数</td>
+					<td>4</td>
+					<td>20</td>
+			</tr>
+			<tr>
+					<td>float_pwr2(x)</td>
+					<td>计算 2^x</td>
+					<td>4</td>
+					<td>30</td>
+			</tr>
+	</tbody>
 </table>
 
 <h2 class="relative group">写前须知

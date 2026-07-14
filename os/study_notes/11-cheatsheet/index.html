@@ -57,26 +57,26 @@
 
   
   <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
-  <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="操作系统速查">
-  <meta property="og:description" content="期末复习速查手册">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="os">
-    <meta property="article:published_time" content="2026-06-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-07-09T00:31:20+08:00">
-    <meta property="article:tag" content="OS">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
+	<meta property="og:site_name" content="GaleInk&#39;s blog">
+	<meta property="og:title" content="操作系统速查">
+	<meta property="og:description" content="期末复习速查手册">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="os">
+		<meta property="article:published_time" content="2026-06-13T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-07-09T00:31:20+08:00">
+		<meta property="article:tag" content="OS">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="操作系统速查">
-  <meta name="twitter:description" content="期末复习速查手册">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="操作系统速查">
+	<meta name="twitter:description" content="期末复习速查手册">
 
   
   
@@ -127,8 +127,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.b5368c8f64c443a2db3640baffb642b259c300b1b22c920ca173c246129a987e618d2ce489d86098e3470c351836906c95f0e0b44fd3514bb75ca118f8652640.css"
-    integrity="sha512-tTaMj2TEQ6LbNkC6/7ZCslnDALGyLJIMoXPCRhKamH5hjSzkidhgmONHDDUYNpBslfDgtE/TUUu3XKEY&#43;GUmQA==">
+    href="/css/main.bundle.min.ab019b470a037de88534469a63d83f2ae827f1a4f6cc1652eb35e9cfb8ee0b755fb78707ef83dad4c389ff60bccc0bf2b16a8f86a7fca77fb6b5a2a36e9b266a.css"
+    integrity="sha512-qwGbRwoDfeiFNEaaY9g/Kugn8aT2zBZS6zXpz7juC3Vft4cH74Pa1MOJ/2C8zAvysWqPhqf8p3&#43;2taKjbpsmag==">
 
   
   
@@ -1136,8 +1136,8 @@
         width="96"
         height="96"
         alt="GaleInk"
-        src="/img/avatar_hu_d682264e76c772b8.jpg"
-        data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
+        src="/img/avatar_hu_fd19e2102814dddd.jpg"
+        data-zoom-src="/img/avatar_hu_60898f5dd3b3acc4.jpg">
     
   
   <div class="place-self-center">
@@ -1877,35 +1877,35 @@
 </h2>
 <p><strong>目的</strong>：按名存取——文件名 → FCB/inode 的映射。</p>
 <table>
-  <thead>
-      <tr>
-          <th>结构</th>
-          <th>特点</th>
-          <th>局限</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>单级</td>
-          <td>所有文件一个目录，简单</td>
-          <td>重名冲突，查找遍历全部</td>
-      </tr>
-      <tr>
-          <td>两级</td>
-          <td>每个用户一个目录</td>
-          <td>不能共享</td>
-      </tr>
-      <tr>
-          <td>树形</td>
-          <td>多级嵌套，绝对/相对路径</td>
-          <td>需处理路径解析</td>
-      </tr>
-      <tr>
-          <td>无环图</td>
-          <td>树 + 硬链接/软链接</td>
-          <td>删除需引用计数防悬空指针</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>结构</th>
+					<th>特点</th>
+					<th>局限</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>单级</td>
+					<td>所有文件一个目录，简单</td>
+					<td>重名冲突，查找遍历全部</td>
+			</tr>
+			<tr>
+					<td>两级</td>
+					<td>每个用户一个目录</td>
+					<td>不能共享</td>
+			</tr>
+			<tr>
+					<td>树形</td>
+					<td>多级嵌套，绝对/相对路径</td>
+					<td>需处理路径解析</td>
+			</tr>
+			<tr>
+					<td>无环图</td>
+					<td>树 + 硬链接/软链接</td>
+					<td>删除需引用计数防悬空指针</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 
@@ -1938,40 +1938,40 @@
 </h2>
 <p><strong>软件解法</strong>：</p>
 <table>
-  <thead>
-      <tr>
-          <th>方案</th>
-          <th>思路</th>
-          <th>问题</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>方案1</td>
-          <td>while(free); free=true; — free=false</td>
-          <td>lock() 不原子</td>
-      </tr>
-      <tr>
-          <td>方案2</td>
-          <td>while(not turn); — turn=other</td>
-          <td>强制轮流，无空不让进</td>
-      </tr>
-      <tr>
-          <td>方案3</td>
-          <td>pturn=true; while(qturn); — pturn=false</td>
-          <td>After you 死锁</td>
-      </tr>
-      <tr>
-          <td>Dekker(1965)</td>
-          <td>pturn/qturn + turn 裁决</td>
-          <td>首个正确解决</td>
-      </tr>
-      <tr>
-          <td>Peterson(1981)</td>
-          <td>interested[2] + turn</td>
-          <td>更简洁，替代 Dekker</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方案</th>
+					<th>思路</th>
+					<th>问题</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>方案1</td>
+					<td>while(free); free=true; — free=false</td>
+					<td>lock() 不原子</td>
+			</tr>
+			<tr>
+					<td>方案2</td>
+					<td>while(not turn); — turn=other</td>
+					<td>强制轮流，无空不让进</td>
+			</tr>
+			<tr>
+					<td>方案3</td>
+					<td>pturn=true; while(qturn); — pturn=false</td>
+					<td>After you 死锁</td>
+			</tr>
+			<tr>
+					<td>Dekker(1965)</td>
+					<td>pturn/qturn + turn 裁决</td>
+					<td>首个正确解决</td>
+			</tr>
+			<tr>
+					<td>Peterson(1981)</td>
+					<td>interested[2] + turn</td>
+					<td>更简洁，替代 Dekker</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>硬件解法——关中断</strong>：关中断 → 临界区 → 开中断。符合&quot;有空让进&quot;和&quot;无空等待&quot;，但<strong>不符合&quot;有限等待&quot;和&quot;让权等待&quot;</strong>：中断关闭期间调度器无法抢占，其他进程连 CPU 都得不到。仅限内核使用（保证临界区极短），不能暴露给用户进程。</p>
 <p><strong>硬件解法——TSL 指令</strong>：原子&quot;读-改-写&quot;。对多处理器<strong>有效</strong>——TSL 靠总线锁保证原子性，执行时锁住内存总线，所有 CPU 都无法同时访问同一地址。关中断只锁本 CPU 所以多核失效，TSL 用总线锁替代，对所有 CPU 一视同仁。但忙等待形成自旋锁，且存在优先级反转问题。</p>
@@ -1998,34 +1998,34 @@
 </h3>
 <p>三种方式从主动到被动：</p>
 <table>
-  <thead>
-      <tr>
-          <th>方式</th>
-          <th>原理</th>
-          <th style="text-align: center">CPU开销</th>
-          <th>适用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>轮询</strong></td>
-          <td>CPU 循环读状态寄存器，检测 ready/busy 位</td>
-          <td style="text-align: center">高（空转）</td>
-          <td>简单低速设备</td>
-      </tr>
-      <tr>
-          <td><strong>中断</strong></td>
-          <td>设备完成操作后发中断信号，CPU 响应后读状态</td>
-          <td style="text-align: center">低（只响应时参与）</td>
-          <td>大多数设备</td>
-      </tr>
-      <tr>
-          <td><strong>DMA 完成中断</strong></td>
-          <td>DMA 控制器传输完一块数据后发中断</td>
-          <td style="text-align: center">最低</td>
-          <td>磁盘、网卡</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方式</th>
+					<th>原理</th>
+					<th style="text-align: center">CPU开销</th>
+					<th>适用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>轮询</strong></td>
+					<td>CPU 循环读状态寄存器，检测 ready/busy 位</td>
+					<td style="text-align: center">高（空转）</td>
+					<td>简单低速设备</td>
+			</tr>
+			<tr>
+					<td><strong>中断</strong></td>
+					<td>设备完成操作后发中断信号，CPU 响应后读状态</td>
+					<td style="text-align: center">低（只响应时参与）</td>
+					<td>大多数设备</td>
+			</tr>
+			<tr>
+					<td><strong>DMA 完成中断</strong></td>
+					<td>DMA 控制器传输完一块数据后发中断</td>
+					<td style="text-align: center">最低</td>
+					<td>磁盘、网卡</td>
+			</tr>
+	</tbody>
 </table>
 <p>设备状态信息存储在<strong>设备控制器</strong>的寄存器中：控制寄存器（CPU 写命令）、状态寄存器（CPU 读 busy/ready/error）、数据寄存器（读写数据）。</p>
 
@@ -2055,35 +2055,35 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>策略</th>
-          <th>说明</th>
-          <th>适用设备</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>静态分配</td>
-          <td>进程创建时分配，结束时回收</td>
-          <td>独占设备</td>
-      </tr>
-      <tr>
-          <td>动态分配</td>
-          <td>请求时分配，用完立即回收</td>
-          <td>独占设备</td>
-      </tr>
-      <tr>
-          <td>共享/分时</td>
-          <td>请求排队，分时轮流服务</td>
-          <td>磁盘等共享设备</td>
-      </tr>
-      <tr>
-          <td>虚拟分配(SPOOLing)</td>
-          <td>用磁盘模拟独占设备，请求排队</td>
-          <td>打印机</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>策略</th>
+					<th>说明</th>
+					<th>适用设备</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>静态分配</td>
+					<td>进程创建时分配，结束时回收</td>
+					<td>独占设备</td>
+			</tr>
+			<tr>
+					<td>动态分配</td>
+					<td>请求时分配，用完立即回收</td>
+					<td>独占设备</td>
+			</tr>
+			<tr>
+					<td>共享/分时</td>
+					<td>请求排队，分时轮流服务</td>
+					<td>磁盘等共享设备</td>
+			</tr>
+			<tr>
+					<td>虚拟分配(SPOOLing)</td>
+					<td>用磁盘模拟独占设备，请求排队</td>
+					<td>打印机</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">4. 设备驱动与中断处理协同
@@ -2149,30 +2149,30 @@
 </h3>
 <p>将设备归为三大类，每类一个统一接口：</p>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>统一接口</th>
-          <th>底层差异在哪</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>字符设备</td>
-          <td><code>read/write/ioctl</code>（字节流）</td>
-          <td>键盘/鼠标/串口各不同，驱动实现各自的 <code>read</code></td>
-      </tr>
-      <tr>
-          <td>块设备</td>
-          <td><code>read/write</code>（块为单位）+ 文件系统</td>
-          <td>HDD/SSD/NVMe 寻址方式不同，驱动翻译 LBA</td>
-      </tr>
-      <tr>
-          <td>网络设备</td>
-          <td><code>send/recv</code>（报文）</td>
-          <td>以太网/WiFi/蓝牙协议栈不同</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>统一接口</th>
+					<th>底层差异在哪</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>字符设备</td>
+					<td><code>read/write/ioctl</code>（字节流）</td>
+					<td>键盘/鼠标/串口各不同，驱动实现各自的 <code>read</code></td>
+			</tr>
+			<tr>
+					<td>块设备</td>
+					<td><code>read/write</code>（块为单位）+ 文件系统</td>
+					<td>HDD/SSD/NVMe 寻址方式不同，驱动翻译 LBA</td>
+			</tr>
+			<tr>
+					<td>网络设备</td>
+					<td><code>send/recv</code>（报文）</td>
+					<td>以太网/WiFi/蓝牙协议栈不同</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">2. 设备驱动的多态实现
@@ -2352,34 +2352,34 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>方案</th>
-          <th>原理</th>
-          <th style="text-align: center">并行度</th>
-          <th style="text-align: center">开销</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>单缓冲</td>
-          <td>1 个缓冲区，CPU 和设备串行</td>
-          <td style="text-align: center">低</td>
-          <td style="text-align: center">最小</td>
-      </tr>
-      <tr>
-          <td>双缓冲</td>
-          <td>2 个缓冲区交替使用</td>
-          <td style="text-align: center">中</td>
-          <td style="text-align: center">中</td>
-      </tr>
-      <tr>
-          <td>缓冲池</td>
-          <td>N 个缓冲区，生产者-消费者模型</td>
-          <td style="text-align: center">高</td>
-          <td style="text-align: center">管理复杂</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方案</th>
+					<th>原理</th>
+					<th style="text-align: center">并行度</th>
+					<th style="text-align: center">开销</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>单缓冲</td>
+					<td>1 个缓冲区，CPU 和设备串行</td>
+					<td style="text-align: center">低</td>
+					<td style="text-align: center">最小</td>
+			</tr>
+			<tr>
+					<td>双缓冲</td>
+					<td>2 个缓冲区交替使用</td>
+					<td style="text-align: center">中</td>
+					<td style="text-align: center">中</td>
+			</tr>
+			<tr>
+					<td>缓冲池</td>
+					<td>N 个缓冲区，生产者-消费者模型</td>
+					<td style="text-align: center">高</td>
+					<td style="text-align: center">管理复杂</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">5. 实际案例：UNIX 缓冲池
@@ -2414,35 +2414,35 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>技术</th>
-          <th>原理</th>
-          <th>效果</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>中断驱动 I/O</strong></td>
-          <td>发起 I/O 后 CPU 切去干别的事，设备完成时中断通知</td>
-          <td>CPU 无需轮询等待</td>
-      </tr>
-      <tr>
-          <td><strong>DMA</strong></td>
-          <td>设备控制器直接访问总线，数据在内存和外设间搬运，CPU 只参与传输开始和结束</td>
-          <td>CPU 彻底摆脱数据搬运</td>
-      </tr>
-      <tr>
-          <td><strong>异步 I/O</strong></td>
-          <td>发起 I/O 后立即返回，CPU 继续执行，I/O 完成后回调通知</td>
-          <td>I/O 和计算完全重叠</td>
-      </tr>
-      <tr>
-          <td><strong>I/O 通道</strong></td>
-          <td>专用的 I/O 协处理器，有自己的指令集和局部内存</td>
-          <td>CPU 只需发高级指令</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>技术</th>
+					<th>原理</th>
+					<th>效果</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>中断驱动 I/O</strong></td>
+					<td>发起 I/O 后 CPU 切去干别的事，设备完成时中断通知</td>
+					<td>CPU 无需轮询等待</td>
+			</tr>
+			<tr>
+					<td><strong>DMA</strong></td>
+					<td>设备控制器直接访问总线，数据在内存和外设间搬运，CPU 只参与传输开始和结束</td>
+					<td>CPU 彻底摆脱数据搬运</td>
+			</tr>
+			<tr>
+					<td><strong>异步 I/O</strong></td>
+					<td>发起 I/O 后立即返回，CPU 继续执行，I/O 完成后回调通知</td>
+					<td>I/O 和计算完全重叠</td>
+			</tr>
+			<tr>
+					<td><strong>I/O 通道</strong></td>
+					<td>专用的 I/O 协处理器，有自己的指令集和局部内存</td>
+					<td>CPU 只需发高级指令</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">2. 减少 I/O 频率
@@ -2455,35 +2455,35 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>技术</th>
-          <th>原理</th>
-          <th>例</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>缓冲/缓存</strong></td>
-          <td>内存中保留热数据，读命中直接返回</td>
-          <td>page cache、buffer pool</td>
-      </tr>
-      <tr>
-          <td><strong>预读</strong></td>
-          <td>空间局部性——顺序读时提前把后续块调入</td>
-          <td>一次读 4KB → 预取后 64KB</td>
-      </tr>
-      <tr>
-          <td><strong>批处理</strong></td>
-          <td>多个小 I/O 合并为一个大 I/O</td>
-          <td>elevator 算法合并相邻请求</td>
-      </tr>
-      <tr>
-          <td><strong>延迟写</strong></td>
-          <td>多次写合并到缓冲区，到期一次写回</td>
-          <td>写磁盘攒够一批再刷</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>技术</th>
+					<th>原理</th>
+					<th>例</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>缓冲/缓存</strong></td>
+					<td>内存中保留热数据，读命中直接返回</td>
+					<td>page cache、buffer pool</td>
+			</tr>
+			<tr>
+					<td><strong>预读</strong></td>
+					<td>空间局部性——顺序读时提前把后续块调入</td>
+					<td>一次读 4KB → 预取后 64KB</td>
+			</tr>
+			<tr>
+					<td><strong>批处理</strong></td>
+					<td>多个小 I/O 合并为一个大 I/O</td>
+					<td>elevator 算法合并相邻请求</td>
+			</tr>
+			<tr>
+					<td><strong>延迟写</strong></td>
+					<td>多次写合并到缓冲区，到期一次写回</td>
+					<td>写磁盘攒够一批再刷</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">3. 提高设备端效率
@@ -2496,30 +2496,30 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>技术</th>
-          <th>原理</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>磁盘调度算法</strong></td>
-          <td>SSTF → SCAN → C-SCAN，减少寻道时间</td>
-      </tr>
-      <tr>
-          <td><strong>电梯算法</strong></td>
-          <td>磁头来回扫，沿途处理所有请求，减少平均寻道</td>
-      </tr>
-      <tr>
-          <td><strong>I/O 请求重排</strong></td>
-          <td>块层将请求按 LBA 排序后下发，减少机械运动</td>
-      </tr>
-      <tr>
-          <td><strong>多队列</strong></td>
-          <td>NVMe 多队列并行处理，每个 CPU 核一个提交队列</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>技术</th>
+					<th>原理</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>磁盘调度算法</strong></td>
+					<td>SSTF → SCAN → C-SCAN，减少寻道时间</td>
+			</tr>
+			<tr>
+					<td><strong>电梯算法</strong></td>
+					<td>磁头来回扫，沿途处理所有请求，减少平均寻道</td>
+			</tr>
+			<tr>
+					<td><strong>I/O 请求重排</strong></td>
+					<td>块层将请求按 LBA 排序后下发，减少机械运动</td>
+			</tr>
+			<tr>
+					<td><strong>多队列</strong></td>
+					<td>NVMe 多队列并行处理，每个 CPU 核一个提交队列</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">4. 演进路径
@@ -2570,35 +2570,35 @@
 <p>进程访问了一个不在工作集中但仍在 Standby 链表中的页，不需要任何磁盘 I/O，直接取回即用。物理内存本身被当作<strong>磁盘的缓存</strong>——被移出的页面不立即丢弃，而是保留内容挂在 Standby 链表，作为&quot;可能还会用的缓存&quot;。这和 CPU 的 L1/L2/L3 缓存层级在本质上是一个思想：<strong>用空间换时间，用上层缓存避免下层慢速访问。</strong></p>
 <p><strong>2. 生产者-消费者分工</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>系统线程</th>
-          <th>角色</th>
-          <th>负责的状态转换</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>工作集管理器</td>
-          <td>决策者</td>
-          <td>Active → Standby/Modified（修剪）</td>
-      </tr>
-      <tr>
-          <td>Modified Page Writer</td>
-          <td>写回者</td>
-          <td>Modified → Standby（写回脏页）</td>
-      </tr>
-      <tr>
-          <td>零页线程</td>
-          <td>准备者</td>
-          <td>Free → Zeroed（清零备用）</td>
-      </tr>
-      <tr>
-          <td>平衡集管理器</td>
-          <td>调节者</td>
-          <td>全局并发度控制</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>系统线程</th>
+					<th>角色</th>
+					<th>负责的状态转换</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>工作集管理器</td>
+					<td>决策者</td>
+					<td>Active → Standby/Modified（修剪）</td>
+			</tr>
+			<tr>
+					<td>Modified Page Writer</td>
+					<td>写回者</td>
+					<td>Modified → Standby（写回脏页）</td>
+			</tr>
+			<tr>
+					<td>零页线程</td>
+					<td>准备者</td>
+					<td>Free → Zeroed（清零备用）</td>
+			</tr>
+			<tr>
+					<td>平衡集管理器</td>
+					<td>调节者</td>
+					<td>全局并发度控制</td>
+			</tr>
+	</tbody>
 </table>
 <p>每个线程干一件专一的事，通过状态机的约束自然协同——不需要复杂的锁协议，各自改各自负责的链表。</p>
 <p><strong>3. 懒惰策略（Lazy）</strong></p>
@@ -2653,35 +2653,35 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>缓存类型</th>
-          <th>缓存什么</th>
-          <th>命中效果</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>page cache</strong></td>
-          <td>文件数据页</td>
-          <td>读写在内存完成，零磁盘 I/O</td>
-      </tr>
-      <tr>
-          <td><strong>dentry cache</strong></td>
-          <td>目录项（文件名→inode）</td>
-          <td>路径解析不走磁盘</td>
-      </tr>
-      <tr>
-          <td><strong>inode cache</strong></td>
-          <td>文件的 inode 信息</td>
-          <td>省去读 inode 区的磁盘访问</td>
-      </tr>
-      <tr>
-          <td><strong>buffer cache</strong></td>
-          <td>磁盘块原始数据</td>
-          <td>老 UNIX 的块级缓存</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>缓存类型</th>
+					<th>缓存什么</th>
+					<th>命中效果</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>page cache</strong></td>
+					<td>文件数据页</td>
+					<td>读写在内存完成，零磁盘 I/O</td>
+			</tr>
+			<tr>
+					<td><strong>dentry cache</strong></td>
+					<td>目录项（文件名→inode）</td>
+					<td>路径解析不走磁盘</td>
+			</tr>
+			<tr>
+					<td><strong>inode cache</strong></td>
+					<td>文件的 inode 信息</td>
+					<td>省去读 inode 区的磁盘访问</td>
+			</tr>
+			<tr>
+					<td><strong>buffer cache</strong></td>
+					<td>磁盘块原始数据</td>
+					<td>老 UNIX 的块级缓存</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">2. 预读与延迟写——减少 I/O 次数
@@ -2694,30 +2694,30 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>技术</th>
-          <th>原理</th>
-          <th>效果</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>预读</strong></td>
-          <td>顺序读时提前把后续块读入 page cache</td>
-          <td>读文件时大部分命中缓存</td>
-      </tr>
-      <tr>
-          <td><strong>延迟写</strong></td>
-          <td>修改先写缓存，后台定期批量写回</td>
-          <td>多次写合并为一次磁盘写</td>
-      </tr>
-      <tr>
-          <td><strong>预分配</strong></td>
-          <td>创建文件时一次分配多个连续块</td>
-          <td>减少后续扩展时的分配开销</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>技术</th>
+					<th>原理</th>
+					<th>效果</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>预读</strong></td>
+					<td>顺序读时提前把后续块读入 page cache</td>
+					<td>读文件时大部分命中缓存</td>
+			</tr>
+			<tr>
+					<td><strong>延迟写</strong></td>
+					<td>修改先写缓存，后台定期批量写回</td>
+					<td>多次写合并为一次磁盘写</td>
+			</tr>
+			<tr>
+					<td><strong>预分配</strong></td>
+					<td>创建文件时一次分配多个连续块</td>
+					<td>减少后续扩展时的分配开销</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">3. 磁盘布局优化
@@ -2730,35 +2730,35 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>技术</th>
-          <th>原理</th>
-          <th>代表</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>块组</strong></td>
-          <td>数据块和 inode 放在同一块组，减少寻道</td>
-          <td>ext2/ext4</td>
-      </tr>
-      <tr>
-          <td><strong>extent（区段）</strong></td>
-          <td>用&quot;起始块+连续长度&quot;代替逐个块号，减少元数据</td>
-          <td>ext4、NTFS</td>
-      </tr>
-      <tr>
-          <td><strong>延迟分配</strong></td>
-          <td>写入缓存时不立即分配磁盘块，写回时一次分配连续块</td>
-          <td>ext4、XFS</td>
-      </tr>
-      <tr>
-          <td><strong>碎片整理</strong></td>
-          <td>后台重组文件数据为连续块</td>
-          <td>Windows 碎片整理</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>技术</th>
+					<th>原理</th>
+					<th>代表</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>块组</strong></td>
+					<td>数据块和 inode 放在同一块组，减少寻道</td>
+					<td>ext2/ext4</td>
+			</tr>
+			<tr>
+					<td><strong>extent（区段）</strong></td>
+					<td>用&quot;起始块+连续长度&quot;代替逐个块号，减少元数据</td>
+					<td>ext4、NTFS</td>
+			</tr>
+			<tr>
+					<td><strong>延迟分配</strong></td>
+					<td>写入缓存时不立即分配磁盘块，写回时一次分配连续块</td>
+					<td>ext4、XFS</td>
+			</tr>
+			<tr>
+					<td><strong>碎片整理</strong></td>
+					<td>后台重组文件数据为连续块</td>
+					<td>Windows 碎片整理</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">4. 目录查找加速
@@ -2771,26 +2771,26 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>技术</th>
-          <th>原理</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>目录项索引</strong></td>
-          <td>B 树代替线性表，大目录查找 O(log N)</td>
-      </tr>
-      <tr>
-          <td><strong>散列 dentry</strong></td>
-          <td>文件名 hash 直接定位，O(1)</td>
-      </tr>
-      <tr>
-          <td><strong>目录项缓存</strong></td>
-          <td>常用目录项在内存中，不走磁盘</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>技术</th>
+					<th>原理</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>目录项索引</strong></td>
+					<td>B 树代替线性表，大目录查找 O(log N)</td>
+			</tr>
+			<tr>
+					<td><strong>散列 dentry</strong></td>
+					<td>文件名 hash 直接定位，O(1)</td>
+			</tr>
+			<tr>
+					<td><strong>目录项缓存</strong></td>
+					<td>常用目录项在内存中，不走磁盘</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">5. 磁盘调度
@@ -2803,30 +2803,30 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>算法</th>
-          <th>原理</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>SSTF</td>
-          <td>选寻道距离最近的请求先服务</td>
-      </tr>
-      <tr>
-          <td>SCAN/电梯</td>
-          <td>磁头来回扫，沿途处理所有请求</td>
-      </tr>
-      <tr>
-          <td>C-SCAN</td>
-          <td>单向扫描到底，减少最远端的等待方差</td>
-      </tr>
-      <tr>
-          <td>Deadline</td>
-          <td>SCAN + 超时强制处理，防饥饿</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>算法</th>
+					<th>原理</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>SSTF</td>
+					<td>选寻道距离最近的请求先服务</td>
+			</tr>
+			<tr>
+					<td>SCAN/电梯</td>
+					<td>磁头来回扫，沿途处理所有请求</td>
+			</tr>
+			<tr>
+					<td>C-SCAN</td>
+					<td>单向扫描到底，减少最远端的等待方差</td>
+			</tr>
+			<tr>
+					<td>Deadline</td>
+					<td>SCAN + 超时强制处理，防饥饿</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">6. 日志/写时复制——原子性换性能
@@ -2839,22 +2839,22 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>技术</th>
-          <th>原理</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>日志（journal）</strong></td>
-          <td>元数据修改先记日志，crash 后 replay，避免 fsck 慢扫全盘</td>
-      </tr>
-      <tr>
-          <td><strong>写时复制（COW）</strong></td>
-          <td>修改时写新位置，不原地覆盖，写入集中为连续写</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>技术</th>
+					<th>原理</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>日志（journal）</strong></td>
+					<td>元数据修改先记日志，crash 后 replay，避免 fsck 慢扫全盘</td>
+			</tr>
+			<tr>
+					<td><strong>写时复制（COW）</strong></td>
+					<td>修改时写新位置，不原地覆盖，写入集中为连续写</td>
+			</tr>
+	</tbody>
 </table>
 
           

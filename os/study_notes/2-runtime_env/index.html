@@ -57,27 +57,27 @@
 
   
   <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/2-runtime_env/">
-  <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="操作系统笔记2：操作系统运行环境与运行机制">
-  <meta property="og:description" content="GaleInk&#39;s marvelous website">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="os">
-    <meta property="article:published_time" content="2026-03-22T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-04-10T18:53:16+08:00">
-    <meta property="article:tag" content="OS">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
+	<meta property="og:site_name" content="GaleInk&#39;s blog">
+	<meta property="og:title" content="操作系统笔记2：操作系统运行环境与运行机制">
+	<meta property="og:description" content="GaleInk&#39;s marvelous website">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="os">
+		<meta property="article:published_time" content="2026-03-22T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-04-10T18:53:16+08:00">
+		<meta property="article:tag" content="OS">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="操作系统笔记2：操作系统运行环境与运行机制">
-  <meta name="twitter:description" content="GaleInk&#39;s marvelous website">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="操作系统笔记2：操作系统运行环境与运行机制">
+	<meta name="twitter:description" content="GaleInk&#39;s marvelous website">
 
   
   
@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.b5368c8f64c443a2db3640baffb642b259c300b1b22c920ca173c246129a987e618d2ce489d86098e3470c351836906c95f0e0b44fd3514bb75ca118f8652640.css"
-    integrity="sha512-tTaMj2TEQ6LbNkC6/7ZCslnDALGyLJIMoXPCRhKamH5hjSzkidhgmONHDDUYNpBslfDgtE/TUUu3XKEY&#43;GUmQA==">
+    href="/css/main.bundle.min.ab019b470a037de88534469a63d83f2ae827f1a4f6cc1652eb35e9cfb8ee0b755fb78707ef83dad4c389ff60bccc0bf2b16a8f86a7fca77fb6b5a2a36e9b266a.css"
+    integrity="sha512-qwGbRwoDfeiFNEaaY9g/Kugn8aT2zBZS6zXpz7juC3Vft4cH74Pa1MOJ/2C8zAvysWqPhqf8p3&#43;2taKjbpsmag==">
 
   
   
@@ -1137,8 +1137,8 @@
         width="96"
         height="96"
         alt="GaleInk"
-        src="/img/avatar_hu_d682264e76c772b8.jpg"
-        data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
+        src="/img/avatar_hu_fd19e2102814dddd.jpg"
+        data-zoom-src="/img/avatar_hu_60898f5dd3b3acc4.jpg">
     
   
   <div class="place-self-center">
@@ -1573,40 +1573,40 @@
 <li>异常的引入：表示CPU执行指令时本身出现的问题</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">类别</th>
-          <th style="text-align: left">原因</th>
-          <th style="text-align: left">异步/同步</th>
-          <th style="text-align: left">返回行为</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>中断</strong></td>
-          <td style="text-align: left">来自 I/O 设备、其他硬件部件</td>
-          <td style="text-align: left">异步</td>
-          <td style="text-align: left">总是返回到下一条指令</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>陷入</strong></td>
-          <td style="text-align: left">有意识安排的</td>
-          <td style="text-align: left">同步</td>
-          <td style="text-align: left">返回到下一条指令</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>故障</strong></td>
-          <td style="text-align: left">可恢复的错误</td>
-          <td style="text-align: left">同步</td>
-          <td style="text-align: left">返回到当前指令</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>终止</strong></td>
-          <td style="text-align: left">不可恢复的错误</td>
-          <td style="text-align: left">同步</td>
-          <td style="text-align: left">不会返回</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">类别</th>
+					<th style="text-align: left">原因</th>
+					<th style="text-align: left">异步/同步</th>
+					<th style="text-align: left">返回行为</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>中断</strong></td>
+					<td style="text-align: left">来自 I/O 设备、其他硬件部件</td>
+					<td style="text-align: left">异步</td>
+					<td style="text-align: left">总是返回到下一条指令</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>陷入</strong></td>
+					<td style="text-align: left">有意识安排的</td>
+					<td style="text-align: left">同步</td>
+					<td style="text-align: left">返回到下一条指令</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>故障</strong></td>
+					<td style="text-align: left">可恢复的错误</td>
+					<td style="text-align: left">同步</td>
+					<td style="text-align: left">返回到当前指令</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>终止</strong></td>
+					<td style="text-align: left">不可恢复的错误</td>
+					<td style="text-align: left">同步</td>
+					<td style="text-align: left">不会返回</td>
+			</tr>
+	</tbody>
 </table>
 <p>对于硬件来说会在每条指令<strong>执行结束后</strong>检测是否有中断信号，若有，</p>
 <ol>
@@ -1764,88 +1764,88 @@ kernelvec:
 <p>系统调用是操作系统内核提供给用户程序的一组特殊接口，它允许运行在用户态的程序请求内核提供的特权服务。当应用程序需要执行某些受保护的操作时（如读写文件、创建进程、分配内存等），必须通过系统调用陷入内核，由内核代表应用程序完成这些操作。</p>
 <p>从本质上讲，系统调用是用户空间与内核空间之间的唯一合法入口，也是操作系统为上层应用程序提供服务的桥梁。</p>
 <table>
-  <thead>
-      <tr>
-          <th></th>
-          <th><strong>系统调用</strong></th>
-          <th><strong>C函数</strong></th>
-          <th><strong>库函数</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>定义</strong></td>
-          <td>操作系统内核提供的接口，允许用户程序请求内核服务</td>
-          <td>C语言标准定义的函数，属于语言本身的一部分</td>
-          <td>一组预先编写好的函数的集合，可能<strong>封装</strong>多个系统调用和C函数</td>
-      </tr>
-      <tr>
-          <td><strong>执行空间</strong></td>
-          <td>内核空间</td>
-          <td>用户空间</td>
-          <td>用户空间</td>
-      </tr>
-      <tr>
-          <td><strong>特权级别</strong></td>
-          <td>内核态（Ring 0）</td>
-          <td>用户态（Ring 3）</td>
-          <td>用户态（Ring 3）</td>
-      </tr>
-      <tr>
-          <td><strong>调用方式</strong></td>
-          <td>软中断（int 0x80）或专用指令（syscall/sysenter）</td>
-          <td>普通函数调用指令（call）</td>
-          <td>普通函数调用指令（call）</td>
-      </tr>
-      <tr>
-          <td><strong>参数传递</strong></td>
-          <td>通过寄存器传递</td>
-          <td>通过栈或寄存器传递</td>
-          <td>通过栈或寄存器传递</td>
-      </tr>
-      <tr>
-          <td><strong>上下文切换</strong></td>
-          <td>需要，用户态↔内核态切换</td>
-          <td>不需要</td>
-          <td>不需要</td>
-      </tr>
-      <tr>
-          <td><strong>性能开销</strong></td>
-          <td>大（数百到数千CPU周期）</td>
-          <td>小（几个到几十个CPU周期）</td>
-          <td>小到中等（取决于内部实现）</td>
-      </tr>
-      <tr>
-          <td><strong>可移植性</strong></td>
-          <td>差，依赖特定操作系统</td>
-          <td>好，遵循C语言标准</td>
-          <td>较好，但不同平台实现可能不同</td>
-      </tr>
-      <tr>
-          <td><strong>错误处理</strong></td>
-          <td>返回-1，通过errno指示错误</td>
-          <td>返回值或特定错误码</td>
-          <td>多样化，可能使用errno或返回值</td>
-      </tr>
-      <tr>
-          <td><strong>访问权限</strong></td>
-          <td>可访问硬件和内核数据结构</td>
-          <td>只能访问进程用户空间</td>
-          <td>只能访问进程用户空间</td>
-      </tr>
-      <tr>
-          <td><strong>典型示例</strong></td>
-          <td>open(), read(), fork(), brk()</td>
-          <td>strlen(), memcpy(), sin()</td>
-          <td>printf(), malloc()</td>
-      </tr>
-      <tr>
-          <td><strong>依赖关系</strong></td>
-          <td>直接依赖操作系统内核</td>
-          <td>依赖C编译器</td>
-          <td>可能依赖系统调用和其他库函数</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th></th>
+					<th><strong>系统调用</strong></th>
+					<th><strong>C函数</strong></th>
+					<th><strong>库函数</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>定义</strong></td>
+					<td>操作系统内核提供的接口，允许用户程序请求内核服务</td>
+					<td>C语言标准定义的函数，属于语言本身的一部分</td>
+					<td>一组预先编写好的函数的集合，可能<strong>封装</strong>多个系统调用和C函数</td>
+			</tr>
+			<tr>
+					<td><strong>执行空间</strong></td>
+					<td>内核空间</td>
+					<td>用户空间</td>
+					<td>用户空间</td>
+			</tr>
+			<tr>
+					<td><strong>特权级别</strong></td>
+					<td>内核态（Ring 0）</td>
+					<td>用户态（Ring 3）</td>
+					<td>用户态（Ring 3）</td>
+			</tr>
+			<tr>
+					<td><strong>调用方式</strong></td>
+					<td>软中断（int 0x80）或专用指令（syscall/sysenter）</td>
+					<td>普通函数调用指令（call）</td>
+					<td>普通函数调用指令（call）</td>
+			</tr>
+			<tr>
+					<td><strong>参数传递</strong></td>
+					<td>通过寄存器传递</td>
+					<td>通过栈或寄存器传递</td>
+					<td>通过栈或寄存器传递</td>
+			</tr>
+			<tr>
+					<td><strong>上下文切换</strong></td>
+					<td>需要，用户态↔内核态切换</td>
+					<td>不需要</td>
+					<td>不需要</td>
+			</tr>
+			<tr>
+					<td><strong>性能开销</strong></td>
+					<td>大（数百到数千CPU周期）</td>
+					<td>小（几个到几十个CPU周期）</td>
+					<td>小到中等（取决于内部实现）</td>
+			</tr>
+			<tr>
+					<td><strong>可移植性</strong></td>
+					<td>差，依赖特定操作系统</td>
+					<td>好，遵循C语言标准</td>
+					<td>较好，但不同平台实现可能不同</td>
+			</tr>
+			<tr>
+					<td><strong>错误处理</strong></td>
+					<td>返回-1，通过errno指示错误</td>
+					<td>返回值或特定错误码</td>
+					<td>多样化，可能使用errno或返回值</td>
+			</tr>
+			<tr>
+					<td><strong>访问权限</strong></td>
+					<td>可访问硬件和内核数据结构</td>
+					<td>只能访问进程用户空间</td>
+					<td>只能访问进程用户空间</td>
+			</tr>
+			<tr>
+					<td><strong>典型示例</strong></td>
+					<td>open(), read(), fork(), brk()</td>
+					<td>strlen(), memcpy(), sin()</td>
+					<td>printf(), malloc()</td>
+			</tr>
+			<tr>
+					<td><strong>依赖关系</strong></td>
+					<td>直接依赖操作系统内核</td>
+					<td>依赖C编译器</td>
+					<td>可能依赖系统调用和其他库函数</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote><p>注：printf、malloc等库函数内部通常会封装系统调用（如write、brk/sbrk、read），但对外提供更友好的编程接口。</p>
 </blockquote><p>注意，在中断向量表中添加系统调用的中断向量，<strong>只需要添加一项</strong>即可，这一项作为所有系统调用的统一入口，使得CPU进入内核态，进入中断处理程序；然后在这里面会利用系统调用的系统调用号和使用系统调用表来确定应当对应哪一个特定的系统调用。</p>

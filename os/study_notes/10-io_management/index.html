@@ -57,26 +57,26 @@
 
   
   <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
-  <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="操作系统笔记10：I/O管理">
-  <meta property="og:description" content="GaleInk&#39;s marvelous website">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="os">
-    <meta property="article:published_time" content="2026-06-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-07-09T00:31:20+08:00">
-    <meta property="article:tag" content="OS">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
+	<meta property="og:site_name" content="GaleInk&#39;s blog">
+	<meta property="og:title" content="操作系统笔记10：I/O管理">
+	<meta property="og:description" content="GaleInk&#39;s marvelous website">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="os">
+		<meta property="article:published_time" content="2026-06-11T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-07-09T00:31:20+08:00">
+		<meta property="article:tag" content="OS">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="操作系统笔记10：I/O管理">
-  <meta name="twitter:description" content="GaleInk&#39;s marvelous website">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="操作系统笔记10：I/O管理">
+	<meta name="twitter:description" content="GaleInk&#39;s marvelous website">
 
   
   
@@ -127,8 +127,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.b5368c8f64c443a2db3640baffb642b259c300b1b22c920ca173c246129a987e618d2ce489d86098e3470c351836906c95f0e0b44fd3514bb75ca118f8652640.css"
-    integrity="sha512-tTaMj2TEQ6LbNkC6/7ZCslnDALGyLJIMoXPCRhKamH5hjSzkidhgmONHDDUYNpBslfDgtE/TUUu3XKEY&#43;GUmQA==">
+    href="/css/main.bundle.min.ab019b470a037de88534469a63d83f2ae827f1a4f6cc1652eb35e9cfb8ee0b755fb78707ef83dad4c389ff60bccc0bf2b16a8f86a7fca77fb6b5a2a36e9b266a.css"
+    integrity="sha512-qwGbRwoDfeiFNEaaY9g/Kugn8aT2zBZS6zXpz7juC3Vft4cH74Pa1MOJ/2C8zAvysWqPhqf8p3&#43;2taKjbpsmag==">
 
   
   
@@ -1136,8 +1136,8 @@
         width="96"
         height="96"
         alt="GaleInk"
-        src="/img/avatar_hu_d682264e76c772b8.jpg"
-        data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
+        src="/img/avatar_hu_fd19e2102814dddd.jpg"
+        data-zoom-src="/img/avatar_hu_60898f5dd3b3acc4.jpg">
     
   
   <div class="place-self-center">
@@ -1615,61 +1615,61 @@
 </h3>
 <p><strong>按数据特征分</strong>：</p>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>特点</th>
-          <th>例子</th>
-          <th>I/O 方式</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>字符设备</td>
-          <td>字节为单位，不可寻址，传输速率低</td>
-          <td>键盘、鼠标、串口</td>
-          <td><code>get()</code> / <code>put()</code></td>
-      </tr>
-      <tr>
-          <td>块设备</td>
-          <td>数据块为单位，可随机寻址</td>
-          <td>磁盘、磁带</td>
-          <td>文件系统接口或 mmap</td>
-      </tr>
-      <tr>
-          <td>网络设备</td>
-          <td>格式化报文交换</td>
-          <td>以太网、无线、蓝牙</td>
-          <td><code>send()</code> / <code>recv()</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>特点</th>
+					<th>例子</th>
+					<th>I/O 方式</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>字符设备</td>
+					<td>字节为单位，不可寻址，传输速率低</td>
+					<td>键盘、鼠标、串口</td>
+					<td><code>get()</code> / <code>put()</code></td>
+			</tr>
+			<tr>
+					<td>块设备</td>
+					<td>数据块为单位，可随机寻址</td>
+					<td>磁盘、磁带</td>
+					<td>文件系统接口或 mmap</td>
+			</tr>
+			<tr>
+					<td>网络设备</td>
+					<td>格式化报文交换</td>
+					<td>以太网、无线、蓝牙</td>
+					<td><code>send()</code> / <code>recv()</code></td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>按资源分配角度分</strong>：</p>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>说明</th>
-          <th>例子</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>独占设备</td>
-          <td>一段时间内只能一个进程使用</td>
-          <td>打印机</td>
-      </tr>
-      <tr>
-          <td>共享设备</td>
-          <td>多个进程交叉使用</td>
-          <td>磁盘</td>
-      </tr>
-      <tr>
-          <td>虚设备</td>
-          <td>用共享设备模拟独占设备，SPOOLing</td>
-          <td>用硬盘模拟打印机输入输出</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>说明</th>
+					<th>例子</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>独占设备</td>
+					<td>一段时间内只能一个进程使用</td>
+					<td>打印机</td>
+			</tr>
+			<tr>
+					<td>共享设备</td>
+					<td>多个进程交叉使用</td>
+					<td>磁盘</td>
+			</tr>
+			<tr>
+					<td>虚设备</td>
+					<td>用共享设备模拟独占设备，SPOOLing</td>
+					<td>用硬盘模拟打印机输入输出</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">1.3 I/O 管理的目标
@@ -1737,35 +1737,35 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th></th>
-          <th>内存映射编址（MMIO）</th>
-          <th>I/O 独立编址（PMIO）</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>地址空间</td>
-          <td>与内存统一编址</td>
-          <td>独立于内存</td>
-      </tr>
-      <tr>
-          <td>操作指令</td>
-          <td>可用所有内存指令（load/store）</td>
-          <td>专用 <code>in</code>/<code>out</code> 指令</td>
-      </tr>
-      <tr>
-          <td>优点</td>
-          <td>指令丰富、不需专用指令</td>
-          <td>不占内存空间、易区分</td>
-      </tr>
-      <tr>
-          <td>缺点</td>
-          <td>占用内存空间、需要禁用控制寄存器缓存</td>
-          <td>指令类型少、操作不灵活</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th></th>
+					<th>内存映射编址（MMIO）</th>
+					<th>I/O 独立编址（PMIO）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>地址空间</td>
+					<td>与内存统一编址</td>
+					<td>独立于内存</td>
+			</tr>
+			<tr>
+					<td>操作指令</td>
+					<td>可用所有内存指令（load/store）</td>
+					<td>专用 <code>in</code>/<code>out</code> 指令</td>
+			</tr>
+			<tr>
+					<td>优点</td>
+					<td>指令丰富、不需专用指令</td>
+					<td>不占内存空间、易区分</td>
+			</tr>
+			<tr>
+					<td>缺点</td>
+					<td>占用内存空间、需要禁用控制寄存器缓存</td>
+					<td>指令类型少、操作不灵活</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote><p>MMIO 的关键问题：控制寄存器<strong>不能进行高速缓存</strong>，否则轮询循环会只读缓存而错过设备状态变化。硬件必须支持逐页选择性禁用缓存。</p>
 </blockquote><hr>
@@ -1790,34 +1790,34 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>方式</th>
-          <th>原理</th>
-          <th>CPU角色</th>
-          <th>适用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>可编程 I/O（轮询）</td>
-          <td>由CPU代表进程给I/O模块发I/O命令，进程进入忙等待，直到操作完成才继续执行</td>
-          <td>CPU 全程参与</td>
-          <td>简单低速设备</td>
-      </tr>
-      <tr>
-          <td>中断驱动 I/O</td>
-          <td>操作完成后控制器发中断通知 CPU</td>
-          <td>发起后切走，中断后处理</td>
-          <td>较复杂设备</td>
-      </tr>
-      <tr>
-          <td>DMA</td>
-          <td>控制器直接访问总线，在内存和外设间搬运数据</td>
-          <td>只参与开始和结束</td>
-          <td>高吞吐量设备</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方式</th>
+					<th>原理</th>
+					<th>CPU角色</th>
+					<th>适用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>可编程 I/O（轮询）</td>
+					<td>由CPU代表进程给I/O模块发I/O命令，进程进入忙等待，直到操作完成才继续执行</td>
+					<td>CPU 全程参与</td>
+					<td>简单低速设备</td>
+			</tr>
+			<tr>
+					<td>中断驱动 I/O</td>
+					<td>操作完成后控制器发中断通知 CPU</td>
+					<td>发起后切走，中断后处理</td>
+					<td>较复杂设备</td>
+			</tr>
+			<tr>
+					<td>DMA</td>
+					<td>控制器直接访问总线，在内存和外设间搬运数据</td>
+					<td>只参与开始和结束</td>
+					<td>高吞吐量设备</td>
+			</tr>
+	</tbody>
 </table>
 <p><figure><img
     class="my-0 rounded-md"
@@ -1955,30 +1955,30 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>硬缓冲</td>
-          <td>设备中硬件寄存器实现</td>
-      </tr>
-      <tr>
-          <td>软缓冲</td>
-          <td>内存中开辟空间</td>
-      </tr>
-      <tr>
-          <td>单/双缓冲</td>
-          <td>基本形式</td>
-      </tr>
-      <tr>
-          <td>缓冲池</td>
-          <td>多个缓冲区，循环使用，生产者-消费者模型</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>硬缓冲</td>
+					<td>设备中硬件寄存器实现</td>
+			</tr>
+			<tr>
+					<td>软缓冲</td>
+					<td>内存中开辟空间</td>
+			</tr>
+			<tr>
+					<td>单/双缓冲</td>
+					<td>基本形式</td>
+			</tr>
+			<tr>
+					<td>缓冲池</td>
+					<td>多个缓冲区，循环使用，生产者-消费者模型</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">5.3 UNIX System V 缓冲池
@@ -1996,22 +1996,22 @@
 </ul>
 <p>每个缓冲区同时在两条链中：</p>
 <table>
-  <thead>
-      <tr>
-          <th>链</th>
-          <th>用途</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>av 链</strong>（空闲队列）</td>
-          <td>空闲缓冲区，头 <code>bfreelist</code>，按近似 LRU 分配</td>
-      </tr>
-      <tr>
-          <td><strong>b 链</strong>（设备队列）</td>
-          <td>分配给具体设备的缓冲区，散列组织，64 个队列</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>链</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>av 链</strong>（空闲队列）</td>
+					<td>空闲缓冲区，头 <code>bfreelist</code>，按近似 LRU 分配</td>
+			</tr>
+			<tr>
+					<td><strong>b 链</strong>（设备队列）</td>
+					<td>分配给具体设备的缓冲区，散列组织，64 个队列</td>
+			</tr>
+	</tbody>
 </table>
 <p>散列公式：<code>i = (b_dev + block) mod 64</code></p>
 <p><strong>访问流程</strong>：根据盘块号在 b 链查找 → 找到则标记&quot;忙&quot;并从 av 链取下 → 传送数据 → 释放回 av 链尾 → 保留在 b 链中（数据有效可复用）→ 长期未用从 av 链头被置换。</p>
@@ -2037,25 +2037,25 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>方式</th>
-          <th>说明</th>
-          <th>优缺点</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>静态分配</td>
-          <td>进程运行前分配，结束时回收</td>
-          <td>设备利用率低，但不会死锁</td>
-      </tr>
-      <tr>
-          <td>动态分配</td>
-          <td>进程提出申请时分配，停止使用时收回</td>
-          <td>效率好，但可能死锁</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方式</th>
+					<th>说明</th>
+					<th>优缺点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>静态分配</td>
+					<td>进程运行前分配，结束时回收</td>
+					<td>设备利用率低，但不会死锁</td>
+			</tr>
+			<tr>
+					<td>动态分配</td>
+					<td>进程提出申请时分配，停止使用时收回</td>
+					<td>效率好，但可能死锁</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">6.2 分时共享设备
@@ -2091,35 +2091,35 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th></th>
-          <th>同步 I/O</th>
-          <th>异步 I/O</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>进程状态</td>
-          <td>阻塞直到操作完成</td>
-          <td>发起后继续执行</td>
-      </tr>
-      <tr>
-          <td>CPU 利用</td>
-          <td>I/O 期间 CPU 空闲</td>
-          <td>I/O 期间 CPU 可做其他事</td>
-      </tr>
-      <tr>
-          <td>实现</td>
-          <td>简单</td>
-          <td>通过线程切换或用户态分段发请求</td>
-      </tr>
-      <tr>
-          <td>例子</td>
-          <td>默认 <code>read()</code></td>
-          <td>Windows Overlapped I/O、<code>aio_read</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th></th>
+					<th>同步 I/O</th>
+					<th>异步 I/O</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>进程状态</td>
+					<td>阻塞直到操作完成</td>
+					<td>发起后继续执行</td>
+			</tr>
+			<tr>
+					<td>CPU 利用</td>
+					<td>I/O 期间 CPU 空闲</td>
+					<td>I/O 期间 CPU 可做其他事</td>
+			</tr>
+			<tr>
+					<td>实现</td>
+					<td>简单</td>
+					<td>通过线程切换或用户态分段发请求</td>
+			</tr>
+			<tr>
+					<td>例子</td>
+					<td>默认 <code>read()</code></td>
+					<td>Windows Overlapped I/O、<code>aio_read</code></td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">7.2 性能优化措施

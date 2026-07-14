@@ -57,26 +57,26 @@
 
   
   <meta property="og:url" content="https://twj-ink.github.io/os/study_notes/7-file_system/">
-  <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="操作系统笔记7：文件系统">
-  <meta property="og:description" content="GaleInk&#39;s marvelous website">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="os">
-    <meta property="article:published_time" content="2026-05-07T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-02T18:29:05+08:00">
-    <meta property="article:tag" content="OS">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
-      <meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
+	<meta property="og:site_name" content="GaleInk&#39;s blog">
+	<meta property="og:title" content="操作系统笔记7：文件系统">
+	<meta property="og:description" content="GaleInk&#39;s marvelous website">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="os">
+		<meta property="article:published_time" content="2026-05-07T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-06-02T18:29:05+08:00">
+		<meta property="article:tag" content="OS">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/11-cheatsheet/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/10-io_management/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/9-ipc/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/8-async_mechanism/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/6-virtual_memory_management/">
+			<meta property="og:see_also" content="https://twj-ink.github.io/os/study_notes/5-memory_management/">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="操作系统笔记7：文件系统">
-  <meta name="twitter:description" content="GaleInk&#39;s marvelous website">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="操作系统笔记7：文件系统">
+	<meta name="twitter:description" content="GaleInk&#39;s marvelous website">
 
   
   
@@ -127,8 +127,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.b5368c8f64c443a2db3640baffb642b259c300b1b22c920ca173c246129a987e618d2ce489d86098e3470c351836906c95f0e0b44fd3514bb75ca118f8652640.css"
-    integrity="sha512-tTaMj2TEQ6LbNkC6/7ZCslnDALGyLJIMoXPCRhKamH5hjSzkidhgmONHDDUYNpBslfDgtE/TUUu3XKEY&#43;GUmQA==">
+    href="/css/main.bundle.min.ab019b470a037de88534469a63d83f2ae827f1a4f6cc1652eb35e9cfb8ee0b755fb78707ef83dad4c389ff60bccc0bf2b16a8f86a7fca77fb6b5a2a36e9b266a.css"
+    integrity="sha512-qwGbRwoDfeiFNEaaY9g/Kugn8aT2zBZS6zXpz7juC3Vft4cH74Pa1MOJ/2C8zAvysWqPhqf8p3&#43;2taKjbpsmag==">
 
   
   
@@ -1136,8 +1136,8 @@
         width="96"
         height="96"
         alt="GaleInk"
-        src="/img/avatar_hu_d682264e76c772b8.jpg"
-        data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
+        src="/img/avatar_hu_fd19e2102814dddd.jpg"
+        data-zoom-src="/img/avatar_hu_60898f5dd3b3acc4.jpg">
     
   
   <div class="place-self-center">
@@ -1707,30 +1707,30 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>普通文件（regular）</strong></td>
-          <td>用户信息，ASCII 或二进制</td>
-      </tr>
-      <tr>
-          <td><strong>目录文件（directory）</strong></td>
-          <td>管理文件系统的系统文件</td>
-      </tr>
-      <tr>
-          <td><strong>特殊文件（special）</strong></td>
-          <td>字符设备文件（串行 I/O）、块设备文件（磁盘）</td>
-      </tr>
-      <tr>
-          <td>管道文件、套接字、符号链接文件</td>
-          <td>进程间通信等</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>普通文件（regular）</strong></td>
+					<td>用户信息，ASCII 或二进制</td>
+			</tr>
+			<tr>
+					<td><strong>目录文件（directory）</strong></td>
+					<td>管理文件系统的系统文件</td>
+			</tr>
+			<tr>
+					<td><strong>特殊文件（special）</strong></td>
+					<td>字符设备文件（串行 I/O）、块设备文件（磁盘）</td>
+			</tr>
+			<tr>
+					<td>管道文件、套接字、符号链接文件</td>
+					<td>进程间通信等</td>
+			</tr>
+	</tbody>
 </table>
 
 <h3 class="relative group">1.3 文件系统
@@ -1789,25 +1789,25 @@
 </h3>
 <p>从用户角度看文件，由用户的访问方式确定：</p>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>特点</th>
-          <th>适用场景</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>流式文件</strong></td>
-          <td><strong>字节序列</strong>，无结构</td>
-          <td>源程序、可执行文件</td>
-      </tr>
-      <tr>
-          <td><strong>记录式文件</strong></td>
-          <td>由<strong>记录序列</strong>组成，每个记录内部有结构</td>
-          <td>数据库、信息管理系统</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>特点</th>
+					<th>适用场景</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>流式文件</strong></td>
+					<td><strong>字节序列</strong>，无结构</td>
+					<td>源程序、可执行文件</td>
+			</tr>
+			<tr>
+					<td><strong>记录式文件</strong></td>
+					<td>由<strong>记录序列</strong>组成，每个记录内部有结构</td>
+					<td>数据库、信息管理系统</td>
+			</tr>
+	</tbody>
 </table>
 <p>除了看成字节序列、记录序列外还有树、堆、索引等等方式。</p>
 
@@ -1846,38 +1846,38 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>术语</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>扇区（Sector）</strong></td>
-          <td>磁盘的物理存储单元，通常 512B，一般保证扇区写入的原子性</td>
-      </tr>
-      <tr>
-          <td><strong>物理块 / 磁盘块 / 数据块 / 块 / 簇</strong></td>
-          <td>信息存储、传输、分配的基本单位，由若干扇区组成</td>
-      </tr>
-      <tr>
-          <td><strong>分区（Partition）</strong></td>
-          <td>把一个物理磁盘的存储空间划分为几个相互</td>
-      </tr>
-      <tr>
-          <td>独立的部分，每个分区是独立的文件系统</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>卷（Volume）</strong></td>
-          <td>逻辑分区，一个文件卷上包含文件系统信息、文件、未分配空间</td>
-      </tr>
-      <tr>
-          <td><strong>格式化（Format）</strong></td>
-          <td>在卷上建立文件系统的过程</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>术语</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>扇区（Sector）</strong></td>
+					<td>磁盘的物理存储单元，通常 512B，一般保证扇区写入的原子性</td>
+			</tr>
+			<tr>
+					<td><strong>物理块 / 磁盘块 / 数据块 / 块 / 簇</strong></td>
+					<td>信息存储、传输、分配的基本单位，由若干扇区组成</td>
+			</tr>
+			<tr>
+					<td><strong>分区（Partition）</strong></td>
+					<td>把一个物理磁盘的存储空间划分为几个相互</td>
+			</tr>
+			<tr>
+					<td>独立的部分，每个分区是独立的文件系统</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><strong>卷（Volume）</strong></td>
+					<td>逻辑分区，一个文件卷上包含文件系统信息、文件、未分配空间</td>
+			</tr>
+			<tr>
+					<td><strong>格式化（Format）</strong></td>
+					<td>在卷上建立文件系统的过程</td>
+			</tr>
+	</tbody>
 </table>
 <figure><img
     class="my-0 rounded-md"
@@ -1943,40 +1943,40 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th></th>
-          <th>LBA（Logical Block Address）</th>
-          <th>PBA（Physical Block Address）</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>定义</strong></td>
-          <td>逻辑块地址，OS 眼中磁盘的&quot;线性连续地址&quot;</td>
-          <td>物理块地址，NAND 闪存中实际的存储位置</td>
-      </tr>
-      <tr>
-          <td><strong>发出方</strong></td>
-          <td>操作系统（文件系统/块层）</td>
-          <td>SSD 控制器内部，经过 FTL 映射后得到</td>
-      </tr>
-      <tr>
-          <td><strong>特性</strong></td>
-          <td>连续的、线性的；OS 认为磁盘就是一串 0, 1, 2, … 号块</td>
-          <td>离散的、非线性的；受限于 NAND 的物理布局和状态</td>
-      </tr>
-      <tr>
-          <td><strong>是否可见</strong></td>
-          <td>操作系统可见</td>
-          <td>操作系统不可见，完全由 FTL 内部管理</td>
-      </tr>
-      <tr>
-          <td><strong>映射关系</strong></td>
-          <td>LBA →(FTL 转换)→ PBA</td>
-          <td>PBA 可能随写时重定向而变化（同一个 LBA 可映射到不同 PBA）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th></th>
+					<th>LBA（Logical Block Address）</th>
+					<th>PBA（Physical Block Address）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>定义</strong></td>
+					<td>逻辑块地址，OS 眼中磁盘的&quot;线性连续地址&quot;</td>
+					<td>物理块地址，NAND 闪存中实际的存储位置</td>
+			</tr>
+			<tr>
+					<td><strong>发出方</strong></td>
+					<td>操作系统（文件系统/块层）</td>
+					<td>SSD 控制器内部，经过 FTL 映射后得到</td>
+			</tr>
+			<tr>
+					<td><strong>特性</strong></td>
+					<td>连续的、线性的；OS 认为磁盘就是一串 0, 1, 2, … 号块</td>
+					<td>离散的、非线性的；受限于 NAND 的物理布局和状态</td>
+			</tr>
+			<tr>
+					<td><strong>是否可见</strong></td>
+					<td>操作系统可见</td>
+					<td>操作系统不可见，完全由 FTL 内部管理</td>
+			</tr>
+			<tr>
+					<td><strong>映射关系</strong></td>
+					<td>LBA →(FTL 转换)→ PBA</td>
+					<td>PBA 可能随写时重定向而变化（同一个 LBA 可映射到不同 PBA）</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>核心思想</strong>：LBA 是对 OS 的抽象承诺——&ldquo;我就给你一串块号，你随便读写&rdquo;，这是OS对于文件系统读写的接口；PBA 是 SSD 内部实现——受限于 NAND 不能原地覆盖、有擦除寿命等物理约束。FTL 在中间做翻译，使得 OS 可以用简单的线性块号访问，而 SSD 底层可以做写时重定向、垃圾回收、磨损均衡等优化，OS 完全不用关心。</p>
 <p>在SSD中，由FTL来进行二者的映射，并通过磨损优化、垃圾回收来优化寿命；在HHD中，由硬件的固件管理来进行简单的映射得到CHS（磁头柱面扇区）。</p>
@@ -2022,38 +2022,38 @@
     
 </h3>
 <table>
-  <thead>
-      <tr>
-          <th>操作</th>
-          <th>说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>create / delete</td>
-          <td>建立 / 删除文件</td>
-      </tr>
-      <tr>
-          <td>open / close</td>
-          <td>打开 / 关闭文件（访问前必须打开）</td>
-      </tr>
-      <tr>
-          <td>read / write</td>
-          <td>读写文件</td>
-      </tr>
-      <tr>
-          <td>append / seek</td>
-          <td>追加数据 / 定位读写指针</td>
-      </tr>
-      <tr>
-          <td>get/set attributes</td>
-          <td>读取/设置文件属性</td>
-      </tr>
-      <tr>
-          <td>rename</td>
-          <td>重命名</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>操作</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>create / delete</td>
+					<td>建立 / 删除文件</td>
+			</tr>
+			<tr>
+					<td>open / close</td>
+					<td>打开 / 关闭文件（访问前必须打开）</td>
+			</tr>
+			<tr>
+					<td>read / write</td>
+					<td>读写文件</td>
+			</tr>
+			<tr>
+					<td>append / seek</td>
+					<td>追加数据 / 定位读写指针</td>
+			</tr>
+			<tr>
+					<td>get/set attributes</td>
+					<td>读取/设置文件属性</td>
+			</tr>
+			<tr>
+					<td>rename</td>
+					<td>重命名</td>
+			</tr>
+	</tbody>
 </table>
 <ol>
 <li>创建文件：建立文件的FCB（目录项），分配存储空间</li>
@@ -2148,22 +2148,22 @@
 </h3>
 <p>将 FCB 分成两部分：</p>
 <table>
-  <thead>
-      <tr>
-          <th>部分</th>
-          <th>内容</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>符号目录项</strong></td>
-          <td>文件名 + 文件号（i 节点号）</td>
-      </tr>
-      <tr>
-          <td><strong>基本目录项</strong></td>
-          <td>除文件名外的所有字段</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>部分</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>符号目录项</strong></td>
+					<td>文件名 + 文件号（i 节点号）</td>
+			</tr>
+			<tr>
+					<td><strong>基本目录项</strong></td>
+					<td>除文件名外的所有字段</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>例子</strong>：FCB 48 字节，物理块 512 字节，128 个目录项</p>
 <ul>
@@ -2265,26 +2265,26 @@
 </h4>
 <p>文件信息存放在若干<strong>连续</strong>的LBA中。</p>
 <table>
-  <thead>
-      <tr>
-          <th>优点</th>
-          <th>缺点</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>简单、高效</td>
-          <td>文件不能动态增长（需预留空间）</td>
-      </tr>
-      <tr>
-          <td>支持顺序和随机存取</td>
-          <td>不利于插入和删除</td>
-      </tr>
-      <tr>
-          <td>寻道次数最少</td>
-          <td><strong>外部碎片</strong>问题</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>优点</th>
+					<th>缺点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>简单、高效</td>
+					<td>文件不能动态增长（需预留空间）</td>
+			</tr>
+			<tr>
+					<td>支持顺序和随机存取</td>
+					<td>不利于插入和删除</td>
+			</tr>
+			<tr>
+					<td>寻道次数最少</td>
+					<td><strong>外部碎片</strong>问题</td>
+			</tr>
+	</tbody>
 </table>
 <p>FCB 中记录文件地址的LBA：起始LBA块号 + 文件长度（块数）。</p>
 
@@ -2299,26 +2299,26 @@
 </h4>
 <p>文件信息存放在若干<strong>不连续</strong>的LBA中，各块之间通过<strong>指针</strong>连接。</p>
 <table>
-  <thead>
-      <tr>
-          <th>优点</th>
-          <th>缺点</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>无外部碎片</td>
-          <td>存取速度慢，不适于随机存取</td>
-      </tr>
-      <tr>
-          <td>利于文件插入删除和动态扩充</td>
-          <td>可靠性问题（链接指针出错）</td>
-      </tr>
-      <tr>
-          <td>-</td>
-          <td>链接指针占用空间、更多寻道</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>优点</th>
+					<th>缺点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>无外部碎片</td>
+					<td>存取速度慢，不适于随机存取</td>
+			</tr>
+			<tr>
+					<td>利于文件插入删除和动态扩充</td>
+					<td>可靠性问题（链接指针出错）</td>
+			</tr>
+			<tr>
+					<td>-</td>
+					<td>链接指针占用空间、更多寻道</td>
+			</tr>
+	</tbody>
 </table>
 <p>FCB 中记录：首块 LBA 块号。（虽然是一个链表，但是也不需要遍历全部的块：下一个 LBA 的位置已经在该 LBA 中存了）</p>
 <figure><img
@@ -2370,22 +2370,22 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
 <p>系统为每个文件建立一个<strong>索引表</strong>，将文件占用的块号存放在一个索引表中。一个索引表就是磁盘块地址数组，其中第i个条目指
 向文件的第i块。</p>
 <table>
-  <thead>
-      <tr>
-          <th>优点</th>
-          <th>缺点</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>保持链接结构的优点，又解决随机存取问题</td>
-          <td>较多寻道</td>
-      </tr>
-      <tr>
-          <td>支持动态增长、插入删除</td>
-          <td>索引表本身占用空间</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>优点</th>
+					<th>缺点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>保持链接结构的优点，又解决随机存取问题</td>
+					<td>较多寻道</td>
+			</tr>
+			<tr>
+					<td>支持动态增长、插入删除</td>
+					<td>索引表本身占用空间</td>
+			</tr>
+	</tbody>
 </table>
 <p>FCB 中记录：索引表所在块号。</p>
 <p>索引表过大的解决方案：</p>
@@ -2457,25 +2457,25 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
 </h3>
 <p>文件共享是指一个文件被多个用户或进程使用。多用户系统中的文件共享是很必要的。一种实现方式是<strong>文件别名</strong>：</p>
 <table>
-  <thead>
-      <tr>
-          <th>方式</th>
-          <th>原理</th>
-          <th>特点</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>硬链接</strong></td>
-          <td>多个目录项指向同一个 i 节点</td>
-          <td>共享计数归零才删除文件；不能跨文件系统</td>
-      </tr>
-      <tr>
-          <td><strong>软链接（符号链接）</strong></td>
-          <td>建立特殊类型文件，内容为共享文件路径名</td>
-          <td>可跨文件系统甚至跨网络；系统开销大</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方式</th>
+					<th>原理</th>
+					<th>特点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>硬链接</strong></td>
+					<td>多个目录项指向同一个 i 节点</td>
+					<td>共享计数归零才删除文件；不能跨文件系统</td>
+			</tr>
+			<tr>
+					<td><strong>软链接（符号链接）</strong></td>
+					<td>建立特殊类型文件，内容为共享文件路径名</td>
+					<td>可跨文件系统甚至跨网络；系统开销大</td>
+			</tr>
+	</tbody>
 </table>
 <p>硬链接的实现：</p>
 <ol>
@@ -2505,30 +2505,30 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
     
 </h4>
 <table>
-  <thead>
-      <tr>
-          <th>方法</th>
-          <th>说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>空闲块位图</strong></td>
-          <td>每块对应一位，0=空闲/1=已分配；<code>块号 = 字号×字长 + 位号</code></td>
-      </tr>
-      <tr>
-          <td><strong>空闲块表</strong></td>
-          <td>所有空闲块号记录在一个表中</td>
-      </tr>
-      <tr>
-          <td><strong>空闲块链表</strong></td>
-          <td>所有空闲块链成链表</td>
-      </tr>
-      <tr>
-          <td><strong>成组链接法</strong></td>
-          <td>UNIX 采用——将空闲块分组，每组首块记录下一组信息</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方法</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>空闲块位图</strong></td>
+					<td>每块对应一位，0=空闲/1=已分配；<code>块号 = 字号×字长 + 位号</code></td>
+			</tr>
+			<tr>
+					<td><strong>空闲块表</strong></td>
+					<td>所有空闲块号记录在一个表中</td>
+			</tr>
+			<tr>
+					<td><strong>空闲块链表</strong></td>
+					<td>所有空闲块链成链表</td>
+			</tr>
+			<tr>
+					<td><strong>成组链接法</strong></td>
+					<td>UNIX 采用——将空闲块分组，每组首块记录下一组信息</td>
+			</tr>
+	</tbody>
 </table>
 
 <h4 class="relative group">UNIX 成组链接法
@@ -2578,25 +2578,25 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
     
 </h4>
 <table>
-  <thead>
-      <tr>
-          <th>结构</th>
-          <th>范围</th>
-          <th>内容</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>用户打开文件表</strong></td>
-          <td>每个进程一个</td>
-          <td>文件描述符、读写指针、i 节点指针、打开方式 → 位于 PCB 中</td>
-      </tr>
-      <tr>
-          <td><strong>系统打开文件表</strong></td>
-          <td>整个系统一个</td>
-          <td>FCB(i 节点) 信息、引用计数、修改标志</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>结构</th>
+					<th>范围</th>
+					<th>内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>用户打开文件表</strong></td>
+					<td>每个进程一个</td>
+					<td>文件描述符、读写指针、i 节点指针、打开方式 → 位于 PCB 中</td>
+			</tr>
+			<tr>
+					<td><strong>系统打开文件表</strong></td>
+					<td>整个系统一个</td>
+					<td>FCB(i 节点) 信息、引用计数、修改标志</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>打开文件流程</strong>：</p>
 <ol>
@@ -2927,42 +2927,42 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
     
 </h4>
 <table>
-  <thead>
-      <tr>
-          <th>概念</th>
-          <th>说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>MFT（主控文件表）</strong></td>
-          <td>NTFS 核心，以文件记录数组实现，每个文件/目录至少一个 MFT 项</td>
-      </tr>
-      <tr>
-          <td><strong>文件引用号</strong></td>
-          <td>64 位，文件号（48 位）+ 顺序号</td>
-      </tr>
-      <tr>
-          <td><strong>属性</strong></td>
-          <td>所有信息都是属性，文件内容是&quot;未命名数据属性流&rdquo;</td>
-      </tr>
-      <tr>
-          <td><strong>常驻属性</strong></td>
-          <td>直接存放在 MFT 项中（标准信息、文件名等）</td>
-      </tr>
-      <tr>
-          <td><strong>非常驻属性</strong></td>
-          <td>数据超出 MFT 项空间，存储在卷中其他簇</td>
-      </tr>
-      <tr>
-          <td><strong>VCN / LCN</strong></td>
-          <td>VCN（虚拟簇号）用于文件内引用，LCN（逻辑簇号）用于卷内定位</td>
-      </tr>
-      <tr>
-          <td><strong>Run / Extent</strong></td>
-          <td>非常驻属性中的连续簇组，记录（VCN 起始, LCN 起始, 簇数）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>概念</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>MFT（主控文件表）</strong></td>
+					<td>NTFS 核心，以文件记录数组实现，每个文件/目录至少一个 MFT 项</td>
+			</tr>
+			<tr>
+					<td><strong>文件引用号</strong></td>
+					<td>64 位，文件号（48 位）+ 顺序号</td>
+			</tr>
+			<tr>
+					<td><strong>属性</strong></td>
+					<td>所有信息都是属性，文件内容是&quot;未命名数据属性流&rdquo;</td>
+			</tr>
+			<tr>
+					<td><strong>常驻属性</strong></td>
+					<td>直接存放在 MFT 项中（标准信息、文件名等）</td>
+			</tr>
+			<tr>
+					<td><strong>非常驻属性</strong></td>
+					<td>数据超出 MFT 项空间，存储在卷中其他簇</td>
+			</tr>
+			<tr>
+					<td><strong>VCN / LCN</strong></td>
+					<td>VCN（虚拟簇号）用于文件内引用，LCN（逻辑簇号）用于卷内定位</td>
+			</tr>
+			<tr>
+					<td><strong>Run / Extent</strong></td>
+					<td>非常驻属性中的连续簇组，记录（VCN 起始, LCN 起始, 簇数）</td>
+			</tr>
+	</tbody>
 </table>
 
 <h4 class="relative group">目录组织
@@ -3048,42 +3048,42 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
     
 </h2>
 <table>
-  <thead>
-      <tr>
-          <th>文件系统</th>
-          <th>特点</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>ext4</strong></td>
-          <td>Linux 默认，extents 分配（取代传统块映射，连续存储大文件时减少碎片，提升读写效率）、延迟分配、兼容 ext3/ext2</td>
-      </tr>
-      <tr>
-          <td><strong>XFS</strong></td>
-          <td>高性能日志文件系统，B+ 树元数据，大文件顺序读写优秀</td>
-      </tr>
-      <tr>
-          <td><strong>Btrfs</strong></td>
-          <td>基于b-tree，写时复制、快照、数据压缩、RAID、子卷管理</td>
-      </tr>
-      <tr>
-          <td><strong>ZFS / OpenZFS</strong></td>
-          <td>集文件系统与卷管理于一体，数据完整性校验、单卷最大 256ZB</td>
-      </tr>
-      <tr>
-          <td><strong>APFS</strong></td>
-          <td>Apple 为 SSD 优化的现代文件系统</td>
-      </tr>
-      <tr>
-          <td><strong>exFAT</strong></td>
-          <td>跨平台轻量，突破 FAT32 单文件 4GB 限制</td>
-      </tr>
-      <tr>
-          <td><strong>F2FS</strong></td>
-          <td>闪存友好，日志结构文件系统，为 NAND 闪存设计</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>文件系统</th>
+					<th>特点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>ext4</strong></td>
+					<td>Linux 默认，extents 分配（取代传统块映射，连续存储大文件时减少碎片，提升读写效率）、延迟分配、兼容 ext3/ext2</td>
+			</tr>
+			<tr>
+					<td><strong>XFS</strong></td>
+					<td>高性能日志文件系统，B+ 树元数据，大文件顺序读写优秀</td>
+			</tr>
+			<tr>
+					<td><strong>Btrfs</strong></td>
+					<td>基于b-tree，写时复制、快照、数据压缩、RAID、子卷管理</td>
+			</tr>
+			<tr>
+					<td><strong>ZFS / OpenZFS</strong></td>
+					<td>集文件系统与卷管理于一体，数据完整性校验、单卷最大 256ZB</td>
+			</tr>
+			<tr>
+					<td><strong>APFS</strong></td>
+					<td>Apple 为 SSD 优化的现代文件系统</td>
+			</tr>
+			<tr>
+					<td><strong>exFAT</strong></td>
+					<td>跨平台轻量，突破 FAT32 单文件 4GB 限制</td>
+			</tr>
+			<tr>
+					<td><strong>F2FS</strong></td>
+					<td>闪存友好，日志结构文件系统，为 NAND 闪存设计</td>
+			</tr>
+	</tbody>
 </table>
 
 <h2 class="relative group">十、文件系统的管理

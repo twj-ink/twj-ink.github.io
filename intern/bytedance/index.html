@@ -64,7 +64,7 @@
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="intern">
 		<meta property="article:published_time" content="2026-07-14T00:00:00+00:00">
-		<meta property="article:modified_time" content="2026-07-14T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-07-14T10:33:15+08:00">
 		<meta property="article:tag" content="实习">
 
   
@@ -247,12 +247,12 @@
     "dateCreated": "2026-07-14T00:00:00\u002b00:00",
     "datePublished": "2026-07-14T00:00:00\u002b00:00",
     
-    "dateModified": "2026-07-14T00:00:00\u002b00:00",
+    "dateModified": "2026-07-14T10:33:15\u002b08:00",
     
     "keywords": ["实习"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "3"
+    "wordCount": "39"
   }]
   </script>
 
@@ -1007,7 +1007,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-07-14T00:00:00&#43;00:00">2026/07/14</time><span class="px-2 text-primary-500">&middot;</span><span>513 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-07-14T00:00:00&#43;00:00">2026/07/14</time><span class="px-2 text-primary-500">&middot;</span><span>2022 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">11 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1211,15 +1211,276 @@
       
       
       
+        <div class="order-first lg:ms-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-[140px]">
+            <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain bf-scrollbar rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#面试">面试</a></li>
+    <li><a href="#通勤">通勤</a></li>
+    <li><a href="#入职">入职</a></li>
+    <li><a href="#工具">工具</a></li>
+    <li><a href="#社交">社交</a></li>
+    <li><a href="#出差">出差</a></li>
+    <li><a href="#个人提升">个人提升</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#面试">面试</a></li>
+    <li><a href="#通勤">通勤</a></li>
+    <li><a href="#入职">入职</a></li>
+    <li><a href="#工具">工具</a></li>
+    <li><a href="#社交">社交</a></li>
+    <li><a href="#出差">出差</a></li>
+    <li><a href="#个人提升">个人提升</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+<script>
+  (function () {
+    'use strict'
+
+    const SCROLL_OFFSET_RATIO = 0.33
+    const TOC_SELECTOR = '#TableOfContents'
+    const ANCHOR_SELECTOR = '.anchor'
+    const TOC_LINK_SELECTOR = 'a[href^="#"]'
+    const NESTED_LIST_SELECTOR = 'li ul'
+    const ACTIVE_CLASS = 'active'
+    let isJumpingToAnchor = false
+
+    function getActiveAnchorId(anchors, offsetRatio) {
+      const threshold = window.scrollY + window.innerHeight * offsetRatio
+      const tocLinks = [...document.querySelectorAll('#TableOfContents a[href^="#"]')]
+      const tocIds = new Set(tocLinks.map(link => link.getAttribute('href').substring(1)))
+
+      if (isJumpingToAnchor) {
+        for (let i = 0; i < anchors.length; i++) {
+          const anchor = anchors[i]
+          if (!tocIds.has(anchor.id)) continue
+          const top = anchor.getBoundingClientRect().top + window.scrollY
+          if (Math.abs(window.scrollY - top) < 100) {
+            return anchor.id
+          }
+        }
+      }
+
+      for (let i = anchors.length - 1; i >= 0; i--) {
+        const top = anchors[i].getBoundingClientRect().top + window.scrollY
+        if (top <= threshold && tocIds.has(anchors[i].id)) {
+          return anchors[i].id
+        }
+      }
+      return anchors.find(anchor => tocIds.has(anchor.id))?.id || ''
+    }
+
+    function updateTOC({ toc, anchors, links, scrollOffset, collapseInactive }) {
+      const activeId = getActiveAnchorId(anchors, scrollOffset)
+      if (!activeId) return
+
+      links.forEach(link => {
+        const isActive = link.getAttribute('href') === `#${activeId}`
+        link.classList.toggle(ACTIVE_CLASS, isActive)
+
+        if (collapseInactive) {
+          const ul = link.closest('li')?.querySelector('ul')
+          if (ul) ul.style.display = isActive ? '' : 'none'
+        }
+      })
+
+      if (collapseInactive) {
+        const activeLink = toc.querySelector(`a[href="#${CSS.escape(activeId)}"]`)
+        let el = activeLink
+        while (el && el !== toc) {
+          if (el.tagName === 'UL') el.style.display = ''
+          if (el.tagName === 'LI') el.querySelector('ul')?.style.setProperty('display', '')
+          el = el.parentElement
+        }
+      }
+    }
+
+    function initTOC() {
+      const toc = document.querySelector(TOC_SELECTOR)
+      if (!toc) return
+
+      const collapseInactive = false
+      const anchors = [...document.querySelectorAll(ANCHOR_SELECTOR)]
+      const links = [...toc.querySelectorAll(TOC_LINK_SELECTOR)]
+
+      if (collapseInactive) {
+        toc.querySelectorAll(NESTED_LIST_SELECTOR).forEach(ul => ul.style.display = 'none')
+      }
+
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          isJumpingToAnchor = true
+        })
+      })
+
+      const config = {
+        toc,
+        anchors,
+        links,
+        scrollOffset: SCROLL_OFFSET_RATIO,
+        collapseInactive
+      }
+
+      window.addEventListener('scroll', () => updateTOC(config), { passive: true })
+      window.addEventListener('hashchange', () => updateTOC(config), { passive: true })
+
+      updateTOC(config)
+    }
+
+    document.readyState === 'loading'
+      ? document.addEventListener('DOMContentLoaded', initTOC)
+      : initTOC()
+  })()
+</script>
+
+
+          </div>
+        </div>
+      
 
 
       <div class="min-w-0 min-h-0 max-w-fit">
         
 
         <div class="article-content max-w-prose mb-20">
-          <p>入职是在周三，这个小组在北京只有我一个人，我的mentor下下周才会来，所以就一直在看文档，感觉好多东西都需要学。</p>
-<p>第二周来到上海出差，和组里的其他同学以及leader见面。上海的工区环境真好呀！听身边同学说这几栋楼是这几年新建的，怪不得在里面办公这么舒服。比如在办公室，过道非常宽敞；地面铺的是静音地毯，走起来相当舒服；墙壁粉刷的颜色很舒缓，比如是淡黄色加上一些漫画。电梯也比北京的要好，至少楼层显示的数字9和数字8不是倒置的数字6和数字8了。除了办公楼，在办公楼周边也有很多的奶茶店、小吃店，我刚来的第一天临时带我的同学在晚饭后请了我一杯果茶，并坐在店里面交谈了一个半小时。他是已经工作几年了的正式员工，对业务相当熟悉，对我的问题也是可以回答地相当通俗。虽然可能会说到一些专业性的词语，我听不懂，就直接笑着说，“诶xxx是啥意思？”，他也会停下来想一个通俗、简单的例子来解释。比如，他告诉我一个需求处理的完整流程，在代码开发后有联调、测试，我不知道联调是啥，他就会停下来给我解释，说开发的时候每个人开发自己的部分，所以需要大家一起调试互相改动的模块之间能否跑通，这就是联调。还有开发环境的解释，如线下的BOE和线上的PPE，对于PPE后续在实操测试的时候等我真正体验了再来补充吧。</p>
-<p>有关go语言的学习，语法不是很难，但是有些设计思想是第一次见（第一次用），比如反射、接口。</p>
+          
+<h2 class="relative group">面试
+    <div id="面试" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%9d%a2%e8%af%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<blockquote><p>todo</p>
+</blockquote>
+<h2 class="relative group">通勤
+    <div id="通勤" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%80%9a%e5%8b%a4" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>办公地点是在中兴大厦，离学校不算很远，骑共享单车40分钟，打车12分钟。打车的话单程需要15元左右，晚上在九点半后打车有报销。</p>
+
+<h2 class="relative group">入职
+    <div id="入职" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%a5%e8%81%8c" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>入职是在周三，到达通知上说的地点（大钟寺一层前台）后会有hr带队前往一个会议室集体培训。说是培训其实是介绍一下企业的文化，比如字节范、领导力原则等等；并会在现场领取办公电脑并进行初始的配置。</p>
+<p>之后就是拿着自己的东西（除了电脑外，还有新人的礼包，里面有一个背包、一个大蓝色帆布袋、一个笔记本、一支笔）去工位上了，我的工区不在大钟寺，可以坐穿梭车去另外的工区，很方便。</p>
+<p>总体来说入职体验还是比较好的，全程都有指引。</p>
+
+<h2 class="relative group">工具
+    <div id="工具" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%b7%a5%e5%85%b7" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>使用的办公软件是飞书，功能包括但不限于聊天、共享文档、共享表格、线上会议、服务咨询等等，下面介绍一些比较好用的功能：</p>
+<ul>
+<li>聊天</li>
+</ul>
+<p>可以查看发出的消息他人是否已读，包括私聊和群聊。大家似乎都更喜欢用表情回复消息（直接右键消息，表情回复），可能是因为这样不会给对方新添一个未读消息。</p>
+<ul>
+<li>共享文档</li>
+</ul>
+<p>具体名称是“云文档”，编辑时自动保存。编辑语法和markdown类似，不过可以输入<code>/</code>来弹出可选关键词如标题、任务、表格等等。还可以嵌入画板、流程图。每个文档分为4种保密等级，低等级的文档可以供全部内部员工查看，高等级的文档需要向文档所有者申请查看权限。</p>
+<p>提供按关键词的文档检索，可以在有权限的文档中按关键词搜索，这是一个很有用的功能，比如想了解某个平台/工具的使用/经验，就可以直接全局搜索文档。</p>
+<p>文档有文中评论功能，大家都可以对某一句/某一段文字划线评论，且是所有浏览者都可见的。这样可以在文档对疑惑的地方直接提问，可能会有其他人进行回答；或者对内容进行补充，比如在环境配置的文档中评论会有很大的用处，大家会描述报错信息，也会提供可能的可行办法。如果问题解决了，提出者可以隐藏该评论。</p>
+<p>在网上会有很多说字节的新人文档是“文档套文档”，一个文档中会有非常多的链接。我觉得这个有利有弊吧，虽然网络上大多是</p>
+<ul>
+<li>知识问答</li>
+</ul>
+<p>AI搜索文档并回答问题。用处之一是替代上面的手动检索，用处之二是一些非工作相关的问题也可以询问，比如，怎么坐穿梭车、怎么申请一个鼠标、怎么查询自己的工资卡申请进度、今天工区的晚餐有什么等等。这个在我入职第一天帮助很大，几乎什么问题都可以尝试去问一问，大概率能提供相关文档/回答。</p>
+<ul>
+<li>线上会议</li>
+</ul>
+<p>大家都是在工位上直接打电话/开会交流，一般一个需求都会把相关的人“拉”进一个群，有问题了也会把相关人“拉”进一个电话，这样效率确实很高，但是需要人全程待命。一般拉人的方式是没有预知的情况下直接打电话。我还记得第一天我在工位上根本不敢打电话和师兄交流，感觉身边的同事都会听到很不好意思&hellip;在经过一周之后就已经无所谓了，直接打电话/接电话，厚脸皮练成了。除了在工位上直接打电话外，我发现大家在上下班坐电梯的时候大部分一直都在低头看手机，感觉很麻木。</p>
+<ul>
+<li>服务咨询</li>
+</ul>
+<p>会有很多的值班号，如HR值班号、IT值班号等等，默认是AI回复，会有很多提问频次高的问题，可直接回答；也可以转为人工，会直接把对应的人工同学“拉”进群聊，一对一服务。</p>
+<p>飞书这个工具我觉得在办公效率上还是非常高的，同时也是在不断进步更新的，这也很符合字节的风格，只看数据。那飞书的使用体验上怎么获得数据呢？填问卷。问卷怎么给用户发送呢？一般会想到的是发送邮件，但是这种方式很明显缺点很大，要么很少人会填，要么内容太多准确性不足。飞书采用的是：每结束一个流程，就顺势在聊天界面中以对话的方式发送一个问卷调查。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../img/%e9%97%ae%e5%8d%b7.png"
+    ></figure>
+<p>甚至在食堂就餐后也会有一个餐饮服务的号弹出一个问卷，只需要点击一次即可获得是否满意的用户数据。很高效，也很有实效性，选择了用户体验感最新鲜的时候进行调查，用户的情绪也会直接释放出来。</p>
+
+<h2 class="relative group">社交
+    <div id="社交" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%a4%be%e4%ba%a4" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>工作上的沟通对接在上文说了，大部分一对一或者几个人的都是在工位上直接打电话，如果是周会/大型会，涉及到很多人需要到会议室。非工作上就看自己吧，想要社交就社交，我就比较懒可能没什么话说的。</p>
+
+<h2 class="relative group">出差
+    <div id="出差" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%87%ba%e5%b7%ae" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>由于一些原因我在入职后的第二周就到上海出差了一周，上海的工区环境真好呀！听身边同学说这几栋楼是这几年新建的，怪不得在里面办公这么舒服。比如在办公室，过道非常宽敞；地面铺的是静音地毯，走起来相当舒服；墙壁粉刷的颜色很舒缓，比如是淡黄色加上一些漫画。电梯也比北京的要好，至少楼层显示的数字9和数字8不是倒置的数字6和数字8了（北京电梯的显示屏显示9用的是倒过来的6.显示8用的是倒过来的8，很奇怪）。除了办公楼，在办公楼周边也有很多的奶茶店、小吃店，我刚来的第一天临时带我的同学在晚饭后请了我一杯果茶，并坐在店里面交谈了一个半小时。他是已经工作几年了的正式员工，对业务相当熟悉，对我的问题也是可以回答地相当通俗。虽然可能会说到一些专业性的词语，我听不懂，就直接笑着说，“诶xxx是啥意思？”，他也会停下来想一个通俗、简单的例子来解释。</p>
+<p>出差的申请也是在飞书里面完成的，会系统性地进行申请、预订车票/机票、预订酒店的服务，且每每进行一项就会弹出一个五度满意度问卷。同时这些都是报销的，很舒服（有报销上限）。也会提供接送车站的滴滴服务。总体来说体验还是不错的。酒店的羊毛我也是能薅就薅，我预订的是双人大床房，每天都会给洗漱用品，我住了五夜直接赚了10支牙刷和5个梳子，质量还都挺好，可以用好久了。</p>
+
+<h2 class="relative group">个人提升
+    <div id="个人提升" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%aa%e4%ba%ba%e6%8f%90%e5%8d%87" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>内部内容好像不太能放在这上面，可以说一些新学习的概念，比如，RPC框架、Hertz框架、微服务、负载均衡、Redis等等。这些后续有时间我会整理一下我的博客的结构再开一个新文章写。</p>
 
           
           

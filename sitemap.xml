@@ -231,6 +231,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://twj-ink.github.io/game/</loc>
+    <lastmod>2026-07-20T21:03:36+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://twj-ink.github.io/</loc>
     <lastmod>2026-07-09T00:31:20+08:00</lastmod>
     <changefreq>daily</changefreq>

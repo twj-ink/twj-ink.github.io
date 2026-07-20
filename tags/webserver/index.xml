@@ -32,16 +32,6 @@
     </item>
     
     <item>
-      <title>从零构建 C&#43;&#43; Web 服务器的经验与踩坑</title>
-      <link>https://twj-ink.github.io/blogs/webserver-from-scratch/</link>
-      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/blogs/webserver-from-scratch/</guid>
-      <description>完整开发流程、10 个阶段的经验总结、常见 bug 与 GDB 调试实战</description>
-      
-    </item>
-    
-    <item>
       <title>GaleWebServer</title>
       <link>https://twj-ink.github.io/projects/galewebserver/</link>
       <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>

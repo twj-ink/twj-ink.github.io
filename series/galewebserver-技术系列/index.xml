@@ -12,36 +12,6 @@
     <lastBuildDate>Thu, 09 Jul 2026 00:31:20 +0800</lastBuildDate><atom:link href="https://twj-ink.github.io/series/galewebserver-%E6%8A%80%E6%9C%AF%E7%B3%BB%E5%88%97/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>C&#43;&#43; RAII 锁与现代同步原语</title>
-      <link>https://twj-ink.github.io/blogs/cpp-raii-lock/</link>
-      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/blogs/cpp-raii-lock/</guid>
-      <description>pthread 封装、条件变量 vs 信号量、PV 操作、管程语义</description>
-      
-    </item>
-    
-    <item>
-      <title>HTTP 状态机详解 — 为什么不能一次 recv 就解析完</title>
-      <link>https://twj-ink.github.io/blogs/http-state-machine/</link>
-      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/blogs/http-state-machine/</guid>
-      <description>TCP 字节流问题、主/从状态机设计、常见边界情况与 bug</description>
-      
-    </item>
-    
-    <item>
-      <title>Webbench 压力测试与性能调优实战</title>
-      <link>https://twj-ink.github.io/blogs/webbench-benchmark/</link>
-      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/blogs/webbench-benchmark/</guid>
-      <description>测试方法、ulimit/listen backlog 调优、WSL vs 裸 Linux 差异、瓶颈分析</description>
-      
-    </item>
-    
-    <item>
       <title>WebServer 01: 网络编程基础</title>
       <link>https://twj-ink.github.io/blogs/ws0-web-server-basic/</link>
       <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
@@ -58,26 +28,6 @@
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/blogs/threadpool-proactor/</guid>
       <description>线程池设计、Reactor 与 Proactor 的区别、为何模拟 Proactor</description>
-      
-    </item>
-    
-    <item>
-      <title>从零构建 C&#43;&#43; Web 服务器的经验与踩坑</title>
-      <link>https://twj-ink.github.io/blogs/webserver-from-scratch/</link>
-      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/blogs/webserver-from-scratch/</guid>
-      <description>完整开发流程、10 个阶段的经验总结、常见 bug 与 GDB 调试实战</description>
-      
-    </item>
-    
-    <item>
-      <title>双缓冲异步日志 — 不让磁盘 I/O 拖慢请求</title>
-      <link>https://twj-ink.github.io/blogs/async-log/</link>
-      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
-      <author>298731943@qq.com (GaleInk)</author>
-      <guid>https://twj-ink.github.io/blogs/async-log/</guid>
-      <description>环形队列实现、strdup/free 配对、管程语义、同步 vs 异步的取舍</description>
       
     </item>
     

@@ -3740,27 +3740,25 @@ OS 从头到尾只跟 LBA 打交道。LBA→PBA的转换在下面由磁盘固件
 
 <script>
   
-  const discs = [
-    {
-      label: "Disc 1",
-      songs: [
-        "Angelic layer","Pure Ruby","Night Ignition","Sekirei","Jade Star",
-        "Cold Breath","ELECTRO SYLPH","BABYLON","Chariot","Sepia"
-      ]
-    },
-    {
-      label: "Disc 2",
-      songs: [
-        "AIR","IRiA","Lapis","Mercury Lamp","Qliphoth",
-        "Rose Quartz","SETSUNA (Inst.Ver)","Silent sky","Xecus","irony"
-      ]
-    }
+  
+  const musicFiles = [
+    "Toby Fox - A CYBER'S WORLD？.flac",
+    "Toby Fox - Field Of Hopes And Dreams.flac",
+    "Toby Fox - Hammer of Justice.flac",
+    "Toby Fox - Petal Dance.flac",
+    "Toby Fox - Sunset of Seven Suns.flac",
+    "Toby Fox - TV WORLD.flac",
+    "Toby Fox - The Third Sanctuary.flac",
+    "Toby Fox Itoki Hana - Dark Sanctuary.flac",
+    "Toby Fox insaneintherainmusic - Garden of Hopes and Dreams.flac",
+    "Toby Fox かめりあ - Flower Man.flac",
   ];
-  const playlist = [];
-  discs.forEach(function(d) {
-    d.songs.forEach(function(name) {
-      playlist.push({ title: name, src: "/music/" + encodeURIComponent(name) + ".mp3", disc: d.label });
-    });
+  const playlist = musicFiles.map(function(fileName) {
+    return {
+      title: fileName.replace(/\.(mp3|flac)$/i, ""),
+      src: "/music/" + encodeURIComponent(fileName),
+      disc: "Music"
+    };
   });
   
 

@@ -120,8 +120,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.310f5f3696e9f3f0511d7245c8f569a6d4d1f7ab49b0163b82ea956d71cd375e9fe79ff5d3d585ee07d14945197993b482e7445a85189495bc8d150c87bc6343.css"
-    integrity="sha512-MQ9fNpbp8/BRHXJFyPVpptTR96tJsBY7guqVbXHNN16f55/109WF7gfRSUUZeZO0gudEWoUYlJW8jRUMh7xjQw==">
+    href="/css/main.bundle.min.db026d1562ef5a70d1e60939799f38b1dd48efc84fbca9fb6b942adb116d5ac307a87b348dfe988e28de4ed5025819ff8fba9f97b96aaf50d3d11fc72e785b43.css"
+    integrity="sha512-2wJtFWLvWnDR5gk5eZ84sd1I78hPvKn7a5Qq2xFtWsMHqHs0jf6YjijeTtUCWBn/j7qfl7lqr1DT0R/HLnhbQw==">
 
   
   
@@ -240,12 +240,12 @@
     
     
     
-    "dateModified": "2026-07-20T21:03:36\u002b08:00",
+    "dateModified": "2026-09-15T21:25:56\u002b08:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "25"
+    "wordCount": "18"
   }]
   </script>
 
@@ -271,7 +271,7 @@
     
 <style>
   body {
-    font-family: 'Deltarune', 'Zpix', var(--font-sans) !important;
+    font-family: 'Determination Mono', 'Zpix', var(--font-sans) !important;
   }
 </style>
 
@@ -326,7 +326,39 @@
 
 
   
-  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar">
+  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sunset-page bf-scrollbar">
+    
+      <div class="sunset-background" aria-hidden="true">
+  <video autoplay muted loop playsinline preload="metadata" poster="/videos/home-sunset-poster.jpg">
+    <source src="/videos/home-sunset.mp4" type="video/mp4">
+  </video>
+  <div class="sunset-background__veil"></div>
+</div>
+
+<script>
+  (() => {
+    const background = document.querySelector('.sunset-background');
+    if (!background) return;
+
+    let ticking = false;
+    const updateBackground = () => {
+      const progress = Math.min(window.scrollY / 400, 1);
+      background.style.setProperty('--sunset-scroll-blur', `${(progress * 12).toFixed(2)}px`);
+      ticking = false;
+    };
+
+    const requestUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateBackground);
+    };
+
+    updateBackground();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+  })();
+</script>
+
+    
     <div id="the-top" class="absolute flex self-center">
       <a
         class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
@@ -1032,7 +1064,6 @@
     class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#about-fonts">About fonts</a></li>
     <li><a href="#deltarune">Deltarune</a></li>
   </ul>
 </nav>
@@ -1047,7 +1078,6 @@
     class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#about-fonts">About fonts</a></li>
     <li><a href="#deltarune">Deltarune</a></li>
   </ul>
 </nav>
@@ -1161,22 +1191,12 @@
     
     <div class="min-w-0 min-h-0 max-w-prose w-full">
       <div class="lead text-neutral-500 dark:text-neutral-400 !mb-9 text-xl">
-  Game collection &amp; comments.
+  一些游戏游玩体验和推荐。
 </div>
 
 <hr>
-
-<h2 class="relative group">About fonts
-    <div id="about-fonts" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#about-fonts" aria-label="Anchor">#</a>
-    </span>
-    
-</h2>
-<p>本页面使用的字体：</p>
-<table>
+<blockquote><p>本页面使用的字体：</p>
+</blockquote><table>
 	<thead>
 			<tr>
 					<th>字体</th>
@@ -1186,9 +1206,9 @@
 	</thead>
 	<tbody>
 			<tr>
-					<td><strong>Undertale &amp; Deltarune</strong></td>
+					<td><strong>Determination Mono</strong></td>
 					<td>英文 / 数字</td>
-					<td><a href="https://fontstruct.com/fontstructions/show/2008226/undertale-deltarune-extended-fixed"  target="_blank" rel="noreferrer">下载 .otf</a></td>
+					<td><a href="https://www.fontspace.com/determination-mono-web-font-f23209"  target="_blank" rel="noreferrer">下载 .ttf</a></td>
 			</tr>
 			<tr>
 					<td><strong>Zpix（最像素）</strong></td>

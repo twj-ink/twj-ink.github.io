@@ -1,0 +1,314 @@
+/*
+ * Giscus theme for GaleInk's Blowfish-based blog.
+ * Palette: Blowfish (Slate neutrals + Blue primary).
+ *
+ * Use the public HTTPS URL of this file as giscus' data-theme value.
+ * Giscus loads custom themes inside its iframe, so relative URLs will not work.
+ */
+
+:host,
+html {
+  --font-family-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --font-family-default: var(--font-family-sans);
+
+  color-scheme: light;
+  background: transparent;
+}
+
+main {
+  /* PrettyLights syntax colors */
+  --color-prettylights-syntax-comment: #64748b;
+  --color-prettylights-syntax-constant: #1d4ed8;
+  --color-prettylights-syntax-entity: #7c3aed;
+  --color-prettylights-syntax-storage-modifier-import: #334155;
+  --color-prettylights-syntax-entity-tag: #15803d;
+  --color-prettylights-syntax-keyword: #be123c;
+  --color-prettylights-syntax-string: #0369a1;
+  --color-prettylights-syntax-variable: #b45309;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #b91c1c;
+  --color-prettylights-syntax-invalid-illegal-text: #f8fafc;
+  --color-prettylights-syntax-invalid-illegal-bg: #b91c1c;
+  --color-prettylights-syntax-carriage-return-text: #f8fafc;
+  --color-prettylights-syntax-carriage-return-bg: #be123c;
+  --color-prettylights-syntax-string-regexp: #15803d;
+  --color-prettylights-syntax-markup-list: #92400e;
+  --color-prettylights-syntax-markup-heading: #1d4ed8;
+  --color-prettylights-syntax-markup-italic: #334155;
+  --color-prettylights-syntax-markup-bold: #0f172a;
+  --color-prettylights-syntax-markup-deleted-text: #991b1b;
+  --color-prettylights-syntax-markup-deleted-bg: #fee2e2;
+  --color-prettylights-syntax-markup-inserted-text: #166534;
+  --color-prettylights-syntax-markup-inserted-bg: #dcfce7;
+  --color-prettylights-syntax-markup-changed-text: #92400e;
+  --color-prettylights-syntax-markup-changed-bg: #fef3c7;
+  --color-prettylights-syntax-markup-ignored-text: #f1f5f9;
+  --color-prettylights-syntax-markup-ignored-bg: #2563eb;
+  --color-prettylights-syntax-meta-diff-range: #7c3aed;
+  --color-prettylights-syntax-brackethighlighter-angle: #64748b;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #94a3b8;
+  --color-prettylights-syntax-constant-other-reference-link: #0369a1;
+
+  /* Buttons */
+  --color-btn-text: #334155;
+  --color-btn-bg: rgb(248 250 252 / 88%);
+  --color-btn-border: rgb(148 163 184 / 48%);
+  --color-btn-shadow: 0 1px 2px rgb(15 23 42 / 6%);
+  --color-btn-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 35%);
+  --color-btn-hover-bg: #f1f5f9;
+  --color-btn-hover-border: rgb(96 165 250 / 75%);
+  --color-btn-active-bg: #e2e8f0;
+  --color-btn-active-border: #60a5fa;
+  --color-btn-selected-bg: #e2e8f0;
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: #2563eb;
+  --color-btn-primary-border: #1d4ed8;
+  --color-btn-primary-shadow: 0 1px 2px rgb(30 64 175 / 24%);
+  --color-btn-primary-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 15%);
+  --color-btn-primary-hover-bg: #1d4ed8;
+  --color-btn-primary-hover-border: #1e40af;
+  --color-btn-primary-selected-bg: #1e40af;
+  --color-btn-primary-selected-shadow: inset 0 1px 2px rgb(15 23 42 / 25%);
+  --color-btn-primary-disabled-text: rgb(255 255 255 / 76%);
+  --color-btn-primary-disabled-bg: #93c5fd;
+  --color-btn-primary-disabled-border: #bfdbfe;
+
+  /* Surfaces and text */
+  --color-action-list-item-default-hover-bg: rgb(219 234 254 / 55%);
+  --color-segmented-control-bg: rgb(226 232 240 / 72%);
+  --color-segmented-control-button-bg: rgb(255 255 255 / 82%);
+  --color-segmented-control-button-selected-border: #94a3b8;
+  --color-fg-default: #334155;
+  --color-fg-muted: #64748b;
+  --color-fg-subtle: #94a3b8;
+  --color-canvas-default: transparent;
+  --color-canvas-overlay: rgb(255 255 255 / 92%);
+  --color-canvas-inset: rgb(248 250 252 / 78%);
+  --color-canvas-subtle: rgb(241 245 249 / 72%);
+  --color-border-default: rgb(203 213 225 / 82%);
+  --color-border-muted: rgb(226 232 240 / 85%);
+  --color-neutral-muted: rgb(148 163 184 / 18%);
+  --color-accent-fg: #2563eb;
+  --color-accent-emphasis: #2563eb;
+  --color-accent-muted: rgb(96 165 250 / 38%);
+  --color-accent-subtle: rgb(219 234 254 / 76%);
+  --color-success-fg: #15803d;
+  --color-attention-fg: #a16207;
+  --color-attention-muted: rgb(234 179 8 / 35%);
+  --color-attention-subtle: rgb(254 249 195 / 75%);
+  --color-danger-fg: #dc2626;
+  --color-danger-muted: rgb(248 113 113 / 36%);
+  --color-danger-subtle: rgb(254 226 226 / 78%);
+  --color-primer-shadow-inset: inset 0 1px 0 rgb(203 213 225 / 22%);
+  --color-scale-gray-1: #e2e8f0;
+  --color-scale-blue-1: #bfdbfe;
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+
+  color: var(--color-fg-default);
+  background: transparent;
+}
+
+/* Keep the embed light and consistent with Blowfish's restrained card style. */
+.gsc-main {
+  font-family: var(--font-family-default);
+}
+
+.gsc-comment-box,
+.gsc-comment,
+.gsc-reactions {
+  overflow: hidden;
+  border-color: var(--color-border-default) !important;
+  border-radius: 0.5rem;
+  background: var(--color-canvas-overlay);
+  box-shadow: 0 8px 24px rgb(15 23 42 / 5%);
+}
+
+.gsc-comment-box-tabs {
+  border-bottom-color: var(--color-border-muted);
+}
+
+.gsc-comment-box-textarea,
+.form-control {
+  border-color: var(--color-border-default) !important;
+  border-radius: 0.4rem !important;
+  background: var(--color-canvas-inset) !important;
+  box-shadow: none !important;
+}
+
+.gsc-comment-box-textarea:focus,
+.form-control:focus {
+  border-color: var(--color-accent-emphasis) !important;
+  box-shadow: 0 0 0 3px var(--color-accent-muted) !important;
+}
+
+.btn {
+  border-radius: 0.4rem;
+  font-weight: 600;
+}
+
+.Link--primary,
+.gsc-comment-author-avatar + a {
+  color: var(--color-fg-default) !important;
+}
+
+a,
+.Link--secondary:hover {
+  color: var(--color-accent-fg);
+}
+
+.gsc-reactions-count,
+.gsc-comments-count {
+  color: var(--color-fg-muted);
+}
+
+.gsc-comment-content blockquote {
+  border-left-color: var(--color-accent-muted);
+}
+
+.gsc-comment-content code:not(pre code) {
+  border-radius: 0.25rem;
+  background: var(--color-neutral-muted);
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
+}
+
+@media (prefers-color-scheme: dark) {
+  :host,
+  html {
+    color-scheme: dark;
+  }
+
+  main {
+    --color-prettylights-syntax-comment: #94a3b8;
+    --color-prettylights-syntax-constant: #93c5fd;
+    --color-prettylights-syntax-entity: #c4b5fd;
+    --color-prettylights-syntax-storage-modifier-import: #cbd5e1;
+    --color-prettylights-syntax-entity-tag: #86efac;
+    --color-prettylights-syntax-keyword: #fda4af;
+    --color-prettylights-syntax-string: #7dd3fc;
+    --color-prettylights-syntax-variable: #fcd34d;
+    --color-prettylights-syntax-brackethighlighter-unmatched: #f87171;
+    --color-prettylights-syntax-invalid-illegal-text: #f8fafc;
+    --color-prettylights-syntax-invalid-illegal-bg: #991b1b;
+    --color-prettylights-syntax-carriage-return-text: #f8fafc;
+    --color-prettylights-syntax-carriage-return-bg: #be123c;
+    --color-prettylights-syntax-string-regexp: #86efac;
+    --color-prettylights-syntax-markup-list: #fde68a;
+    --color-prettylights-syntax-markup-heading: #60a5fa;
+    --color-prettylights-syntax-markup-italic: #cbd5e1;
+    --color-prettylights-syntax-markup-bold: #f8fafc;
+    --color-prettylights-syntax-markup-deleted-text: #fecaca;
+    --color-prettylights-syntax-markup-deleted-bg: #7f1d1d;
+    --color-prettylights-syntax-markup-inserted-text: #bbf7d0;
+    --color-prettylights-syntax-markup-inserted-bg: #14532d;
+    --color-prettylights-syntax-markup-changed-text: #fde68a;
+    --color-prettylights-syntax-markup-changed-bg: #78350f;
+    --color-prettylights-syntax-markup-ignored-text: #cbd5e1;
+    --color-prettylights-syntax-markup-ignored-bg: #1d4ed8;
+    --color-prettylights-syntax-meta-diff-range: #c4b5fd;
+    --color-prettylights-syntax-brackethighlighter-angle: #94a3b8;
+    --color-prettylights-syntax-sublimelinter-gutter-mark: #475569;
+    --color-prettylights-syntax-constant-other-reference-link: #7dd3fc;
+
+    --color-btn-text: #cbd5e1;
+    --color-btn-bg: rgb(51 65 85 / 78%);
+    --color-btn-border: rgb(100 116 139 / 58%);
+    --color-btn-shadow: 0 1px 2px rgb(0 0 0 / 15%);
+    --color-btn-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+    --color-btn-hover-bg: #475569;
+    --color-btn-hover-border: #60a5fa;
+    --color-btn-active-bg: #1e293b;
+    --color-btn-active-border: #3b82f6;
+    --color-btn-selected-bg: #1e293b;
+    --color-btn-primary-text: #fff;
+    --color-btn-primary-bg: #2563eb;
+    --color-btn-primary-border: #3b82f6;
+    --color-btn-primary-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+    --color-btn-primary-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 8%);
+    --color-btn-primary-hover-bg: #3b82f6;
+    --color-btn-primary-hover-border: #60a5fa;
+    --color-btn-primary-selected-bg: #1d4ed8;
+    --color-btn-primary-selected-shadow: inset 0 1px 2px rgb(15 23 42 / 35%);
+    --color-btn-primary-disabled-text: rgb(255 255 255 / 55%);
+    --color-btn-primary-disabled-bg: rgb(37 99 235 / 55%);
+    --color-btn-primary-disabled-border: rgb(96 165 250 / 32%);
+
+    --color-action-list-item-default-hover-bg: rgb(96 165 250 / 13%);
+    --color-segmented-control-bg: rgb(15 23 42 / 45%);
+    --color-segmented-control-button-bg: rgb(30 41 59 / 88%);
+    --color-segmented-control-button-selected-border: #64748b;
+    --color-fg-default: #e2e8f0;
+    --color-fg-muted: #94a3b8;
+    --color-fg-subtle: #64748b;
+    --color-canvas-default: transparent;
+    --color-canvas-overlay: rgb(30 41 59 / 88%);
+    --color-canvas-inset: rgb(15 23 42 / 74%);
+    --color-canvas-subtle: rgb(30 41 59 / 70%);
+    --color-border-default: rgb(71 85 105 / 86%);
+    --color-border-muted: rgb(51 65 85 / 88%);
+    --color-neutral-muted: rgb(100 116 139 / 24%);
+    --color-accent-fg: #60a5fa;
+    --color-accent-emphasis: #3b82f6;
+    --color-accent-muted: rgb(59 130 246 / 38%);
+    --color-accent-subtle: rgb(30 64 175 / 34%);
+    --color-success-fg: #4ade80;
+    --color-attention-fg: #facc15;
+    --color-attention-muted: rgb(250 204 21 / 30%);
+    --color-attention-subtle: rgb(113 63 18 / 42%);
+    --color-danger-fg: #f87171;
+    --color-danger-muted: rgb(248 113 113 / 34%);
+    --color-danger-subtle: rgb(127 29 29 / 38%);
+    --color-primer-shadow-inset: inset 0 1px 0 rgb(148 163 184 / 8%);
+    --color-scale-gray-7: #334155;
+    --color-scale-blue-8: #1e3a8a;
+    --color-social-reaction-bg-hover: var(--color-scale-gray-7);
+    --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
+  }
+
+  .gsc-comment-box,
+  .gsc-comment,
+  .gsc-reactions {
+    box-shadow: 0 8px 28px rgb(0 0 0 / 15%);
+  }
+
+  main .pagination-loader-container {
+    background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");
+  }
+
+  main .gsc-loading-image {
+    background-image: url("https://github.githubassets.com/images/mona-loading-dark.gif");
+  }
+}
+
+@media (max-width: 640px) {
+  .gsc-main {
+    font-size: 0.875rem;
+  }
+
+  .gsc-comment-box,
+  .gsc-comment,
+  .gsc-reactions {
+    border-radius: 0.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

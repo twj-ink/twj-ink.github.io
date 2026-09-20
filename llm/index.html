@@ -118,8 +118,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.db026d1562ef5a70d1e60939799f38b1dd48efc84fbca9fb6b942adb116d5ac307a87b348dfe988e28de4ed5025819ff8fba9f97b96aaf50d3d11fc72e785b43.css"
-    integrity="sha512-2wJtFWLvWnDR5gk5eZ84sd1I78hPvKn7a5Qq2xFtWsMHqHs0jf6YjijeTtUCWBn/j7qfl7lqr1DT0R/HLnhbQw==">
+    href="/css/main.bundle.min.0677847b9d0fe8f83d05e4118f393e7ae6bcbd6fd8637f970910b91e92ac172dc2fa1a1837e4d815aa6f3af1b04316c4ce6eeb214402e50c0b395550eef91404.css"
+    integrity="sha512-BneEe50P6Pg9BeQRjzk&#43;eua8vW/YY3&#43;XCRC5HpKsFy3C&#43;hoYN&#43;TYFapvOvGwQxbEzm7rIUQC5QwLOVVQ7vkUBA==">
 
   
   
@@ -324,8 +324,14 @@
 
 
   
-  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral  bf-scrollbar">
-    
+  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar">
+    <div class="sunset-background" aria-hidden="true">
+  <video muted loop playsinline preload="none" poster="/videos/home-sunset-poster.jpg">
+    <source data-src="/videos/home-sunset.mp4" type="video/mp4">
+  </video>
+  <div class="sunset-background__veil"></div>
+</div>
+
     <div id="the-top" class="absolute flex self-center">
       <a
         class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
@@ -2059,6 +2065,84 @@ $$<p>其中，pos 表示单词在句子中的位置，d 表示 PE的维度 (与�
   </svg>
   </span>
 </div>
+<button
+  id="background-toggle"
+  class="background-toggle"
+  type="button"
+  aria-pressed="false"
+  aria-label="切换为视频背景"
+  title="切换为视频背景">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 5.5h16v13H4zM4 15l4.5-4.5 3.5 3.5 2.5-2.5L20 17M16.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
+  </svg>
+  <span>切换背景</span>
+</button>
+
+<script>
+  (() => {
+    const storageKey = 'galeink-background';
+    const body = document.body;
+    const background = document.querySelector('.sunset-background');
+    const video = background?.querySelector('video');
+    const source = video?.querySelector('source');
+    const toggle = document.getElementById('background-toggle');
+    if (!background || !video || !source || !toggle) return;
+
+    let videoLoaded = false;
+    let ticking = false;
+
+    const loadVideo = () => {
+      if (videoLoaded) return;
+      source.src = source.dataset.src;
+      video.load();
+      videoLoaded = true;
+    };
+
+    const updateBlur = () => {
+      const progress = Math.min(window.scrollY / 400, 1);
+      background.style.setProperty('--sunset-scroll-blur', `${(progress * 12).toFixed(2)}px`);
+      ticking = false;
+    };
+
+    const requestBlurUpdate = () => {
+      if (ticking || !body.classList.contains('sunset-page')) return;
+      ticking = true;
+      window.requestAnimationFrame(updateBlur);
+    };
+
+    const setBackground = (useVideo, persist = true) => {
+      body.classList.toggle('sunset-page', useVideo);
+      toggle.setAttribute('aria-pressed', String(useVideo));
+      toggle.setAttribute('aria-label', useVideo ? '切换为纯色背景' : '切换为视频背景');
+      toggle.title = useVideo ? '切换为纯色背景' : '切换为视频背景';
+
+      if (useVideo) {
+        loadVideo();
+        updateBlur();
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+
+      if (persist) {
+        try {
+          localStorage.setItem(storageKey, useVideo ? 'video' : 'solid');
+        } catch (_) {}
+      }
+    };
+
+    let savedBackground = 'solid';
+    try {
+      savedBackground = localStorage.getItem(storageKey) || 'solid';
+    } catch (_) {}
+
+    setBackground(savedBackground === 'video', false);
+    toggle.addEventListener('click', () => {
+      setBackground(!body.classList.contains('sunset-page'));
+    });
+    window.addEventListener('scroll', requestBlurUpdate, { passive: true });
+  })();
+</script>
 </body>
   
 </html>

@@ -3,6 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://twj-ink.github.io/blogs/about/</loc>
+    <lastmod>2026-10-08T21:08:47+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://twj-ink.github.io/intern/bytedance-two-month-review/</loc>
     <lastmod>2026-09-20T17:04:36+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -16,12 +22,6 @@
   </url>
   <url>
     <loc>https://twj-ink.github.io/os/study_notes/10-io_management/</loc>
-    <lastmod>2026-07-09T00:31:20+08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://twj-ink.github.io/blogs/</loc>
     <lastmod>2026-07-09T00:31:20+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -225,6 +225,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://twj-ink.github.io/blogs/</loc>
+    <lastmod>2026-10-08T21:08:47+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://twj-ink.github.io/ics/readnotes/</loc>
     <lastmod>2026-05-11T00:54:08+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -244,7 +250,7 @@
   </url>
   <url>
     <loc>https://twj-ink.github.io/</loc>
-    <lastmod>2026-09-15T21:25:56+08:00</lastmod>
+    <lastmod>2026-10-08T21:08:47+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

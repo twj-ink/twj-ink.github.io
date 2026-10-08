@@ -120,8 +120,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.0224b6b4f74426f4d7c1c0013be4d2610cee05bd75e360604668177f8e67080b54e6894392b4f952b499233e032b041abebc2928b4b5cc869666d82ed95d246b.css"
-    integrity="sha512-AiS2tPdEJvTXwcABO&#43;TSYQzuBb1142BgRmgXf45nCAtU5olDkrT5UrSZIz4DKwQavrwpKLS1zIaWZtgu2V0kaw==">
+    href="/css/main.bundle.min.0926d294429ce03365937157f8f5707dd6590245daea07012b326663ce65eaf9082ec1a6d807f3cd58a1f3bbe51abedb11e404a1780613c1d21ac9ac3a265cbc.css"
+    integrity="sha512-CSbSlEKc4DNlk3FX&#43;PVwfdZZAkXa6gcBKzJmY85l6vkILsGm2AfzzVih87vlGr7bEeQEoXgGE8HSGsmsOiZcvA==">
 
   
   
@@ -378,12 +378,12 @@
       href="/castle/"
       
       class="flex items-center bf-icon-color-hover"
-      aria-label="Articles"
+      aria-label="Blog"
       title="文章归档">
       
       
         <span class="text-base font-medium break-normal">
-          Articles
+          Blog
         </span>
       
     </a>
@@ -688,12 +688,12 @@
     <div class="px-2">
       <a
         href="/castle/"
-        aria-label="Articles"
+        aria-label="Blog"
         
         class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
         
         <span title="文章归档" class="text-2xl font-bold tracking-tight">
-          Articles
+          Blog
         </span>
         
       </a>
@@ -1467,8 +1467,11 @@
   
   
   const musicFiles = [
+    "816ThreeNumbers - True Home, True World (2023 Rework).flac",
+    "Pure Ruby.mp3",
     "Toby Fox - A CYBER'S WORLD？.flac",
     "Toby Fox - Field Of Hopes And Dreams.flac",
+    "Toby Fox - Flower Castle.flac",
     "Toby Fox - Hammer of Justice.flac",
     "Toby Fox - Petal Dance.flac",
     "Toby Fox - Sunset of Seven Suns.flac",
@@ -1701,6 +1704,9 @@
 
     const setBackground = (useVideo, persist = true) => {
       body.classList.toggle('sunset-page', useVideo);
+      window.dispatchEvent(new CustomEvent('galeink:background-change', {
+        detail: { useVideo }
+      }));
       toggle.setAttribute('aria-pressed', String(useVideo));
       toggle.setAttribute('aria-label', useVideo ? '切换为纯色背景' : '切换为视频背景');
       toggle.title = useVideo ? '切换为纯色背景' : '切换为视频背景';

@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.0224b6b4f74426f4d7c1c0013be4d2610cee05bd75e360604668177f8e67080b54e6894392b4f952b499233e032b041abebc2928b4b5cc869666d82ed95d246b.css"
-    integrity="sha512-AiS2tPdEJvTXwcABO&#43;TSYQzuBb1142BgRmgXf45nCAtU5olDkrT5UrSZIz4DKwQavrwpKLS1zIaWZtgu2V0kaw==">
+    href="/css/main.bundle.min.0926d294429ce03365937157f8f5707dd6590245daea07012b326663ce65eaf9082ec1a6d807f3cd58a1f3bbe51abedb11e404a1780613c1d21ac9ac3a265cbc.css"
+    integrity="sha512-CSbSlEKc4DNlk3FX&#43;PVwfdZZAkXa6gcBKzJmY85l6vkILsGm2AfzzVih87vlGr7bEeQEoXgGE8HSGsmsOiZcvA==">
 
   
   
@@ -240,7 +240,7 @@
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Blogs",
+    "articleSection": "Blog",
     "name": "WebServer 02: 并发模型1：线程池 \u002b 模拟Proactor",
     "headline": "WebServer 02: 并发模型1：线程池 \u002b 模拟Proactor",
     
@@ -392,12 +392,12 @@
       href="/castle/"
       
       class="flex items-center bf-icon-color-hover"
-      aria-label="Articles"
+      aria-label="Blog"
       title="文章归档">
       
       
         <span class="text-base font-medium break-normal">
-          Articles
+          Blog
         </span>
       
     </a>
@@ -702,12 +702,12 @@
     <div class="px-2">
       <a
         href="/castle/"
-        aria-label="Articles"
+        aria-label="Blog"
         
         class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
         
         <span title="文章归档" class="text-2xl font-bold tracking-tight">
-          Articles
+          Blog
         </span>
         
       </a>
@@ -1951,7 +1951,8 @@
           <div class="pt-3">
             <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
             <div class="pt-3">
-              <script src="https://giscus.app/client.js"
+              
+<script src="https://giscus.app/client.js"
         data-repo="twj-ink/giscus-comments-system"
         data-repo-id="R_kgDORs0KyA"
         data-category="Announcements"
@@ -1961,10 +1962,67 @@
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="top"
-        data-theme="https://twj-ink.github.io/css/giscus-blowfish.css"
+        data-theme="light"
         data-lang="zh-CN"
         crossorigin="anonymous"
         async>
+</script>
+
+<script>
+  (() => {
+    const themes = {
+      default: 'light',
+      blue: "https://twj-ink.github.io/css/giscus-blowfish-dark.css"
+    };
+    let useSunset = document.body.classList.contains('sunset-page');
+
+    const getActiveTheme = () => {
+      if (useSunset) return themes.default;
+      return document.documentElement.classList.contains('dark')
+        ? themes.blue
+        : themes.default;
+    };
+
+    const applyTheme = () => {
+      const frame = document.querySelector('iframe.giscus-frame');
+      if (!frame?.contentWindow) return false;
+      frame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: getActiveTheme() } } },
+        'https://giscus.app'
+      );
+      return true;
+    };
+
+    window.addEventListener('galeink:background-change', (event) => {
+      useSunset = Boolean(event.detail?.useVideo);
+      applyTheme();
+    });
+
+    const appearanceObserver = new MutationObserver(applyTheme);
+    appearanceObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    const bindFrame = () => {
+      const frame = document.querySelector('iframe.giscus-frame');
+      if (!frame) return false;
+      if (!frame.dataset.galeinkThemeBound) {
+        frame.dataset.galeinkThemeBound = 'true';
+        frame.addEventListener('load', applyTheme);
+      }
+      applyTheme();
+      return true;
+    };
+
+    if (!bindFrame()) {
+      const observer = new MutationObserver(() => {
+        if (!bindFrame()) return;
+        observer.disconnect();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  })();
 </script>
 
             </div>
@@ -2222,8 +2280,11 @@
   
   
   const musicFiles = [
+    "816ThreeNumbers - True Home, True World (2023 Rework).flac",
+    "Pure Ruby.mp3",
     "Toby Fox - A CYBER'S WORLD？.flac",
     "Toby Fox - Field Of Hopes And Dreams.flac",
+    "Toby Fox - Flower Castle.flac",
     "Toby Fox - Hammer of Justice.flac",
     "Toby Fox - Petal Dance.flac",
     "Toby Fox - Sunset of Seven Suns.flac",
@@ -2456,6 +2517,9 @@
 
     const setBackground = (useVideo, persist = true) => {
       body.classList.toggle('sunset-page', useVideo);
+      window.dispatchEvent(new CustomEvent('galeink:background-change', {
+        detail: { useVideo }
+      }));
       toggle.setAttribute('aria-pressed', String(useVideo));
       toggle.setAttribute('aria-label', useVideo ? '切换为纯色背景' : '切换为视频背景');
       toggle.title = useVideo ? '切换为纯色背景' : '切换为视频背景';

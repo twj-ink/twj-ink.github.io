@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogs on GaleInk&#39;s blog</title>
+    <title>Blog on GaleInk&#39;s blog</title>
     <link>https://twj-ink.github.io/blogs/</link>
-    <description>Recent content in Blogs on GaleInk&#39;s blog</description>
+    <description>Recent content in Blog on GaleInk&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
     <webMaster>298731943@qq.com (GaleInk)</webMaster>
     <copyright>Copy, _right?_ :thinking_face:</copyright>
-    <lastBuildDate>Thu, 09 Jul 2026 00:31:20 +0800</lastBuildDate><atom:link href="https://twj-ink.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://twj-ink.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>我</title>
+      <link>https://twj-ink.github.io/blogs/about/</link>
+      <pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/blogs/about/</guid>
+      <description>关于我</description>
+      
+    </item>
     
     <item>
       <title>WebServer 01: 网络编程基础</title>

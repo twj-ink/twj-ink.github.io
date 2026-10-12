@@ -237,6 +237,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://twj-ink.github.io/focus/</loc>
+    <lastmod>2026-10-12T15:13:25+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://twj-ink.github.io/gallery/</loc>
     <lastmod>2026-06-02T18:29:05+08:00</lastmod>
     <changefreq>daily</changefreq>

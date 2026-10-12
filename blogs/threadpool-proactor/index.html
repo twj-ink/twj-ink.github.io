@@ -57,25 +57,25 @@
 
   
   <meta property="og:url" content="https://twj-ink.github.io/blogs/threadpool-proactor/">
-	<meta property="og:site_name" content="GaleInk&#39;s blog">
-	<meta property="og:title" content="WebServer 02: 并发模型1：线程池 &#43; 模拟Proactor">
-	<meta property="og:description" content="线程池设计、Reactor 与 Proactor 的区别、为何模拟 Proactor">
-	<meta property="og:locale" content="en">
-	<meta property="og:type" content="article">
-		<meta property="article:section" content="blogs">
-		<meta property="article:published_time" content="2026-06-05T00:00:00+00:00">
-		<meta property="article:modified_time" content="2026-07-09T00:31:20+08:00">
-		<meta property="article:tag" content="线程池">
-		<meta property="article:tag" content="Reactor">
-		<meta property="article:tag" content="Proactor">
-		<meta property="article:tag" content="并发">
-		<meta property="article:tag" content="WebServer">
-			<meta property="og:see_also" content="https://twj-ink.github.io/blogs/ws0-web-server-basic/">
+  <meta property="og:site_name" content="GaleInk&#39;s blog">
+  <meta property="og:title" content="WebServer 02: 并发模型1：线程池 &#43; 模拟Proactor">
+  <meta property="og:description" content="线程池设计、Reactor 与 Proactor 的区别、为何模拟 Proactor">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blogs">
+    <meta property="article:published_time" content="2026-06-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-09T00:31:20+08:00">
+    <meta property="article:tag" content="线程池">
+    <meta property="article:tag" content="Reactor">
+    <meta property="article:tag" content="Proactor">
+    <meta property="article:tag" content="并发">
+    <meta property="article:tag" content="WebServer">
+      <meta property="og:see_also" content="https://twj-ink.github.io/blogs/ws0-web-server-basic/">
 
   
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="WebServer 02: 并发模型1：线程池 &#43; 模拟Proactor">
-	<meta name="twitter:description" content="线程池设计、Reactor 与 Proactor 的区别、为何模拟 Proactor">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="WebServer 02: 并发模型1：线程池 &#43; 模拟Proactor">
+  <meta name="twitter:description" content="线程池设计、Reactor 与 Proactor 的区别、为何模拟 Proactor">
 
   
   
@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.6fbf78607f6f67f87114a465b68902683e79f44b18aa7428fcd235bcea356c3323e8dc1369f10d9a8ef2ec36ac2da3d43c7a9c57d2d125288524a0550ac6fb3b.css"
-    integrity="sha512-b794YH9vZ/hxFKRltokCaD559EsYqnQo/NI1vOo1bDMj6NwTafENmo7y7DasLaPUPHqcV9LRJSiFJKBVCsb7Ow==">
+    href="/css/main.bundle.min.7ec953a4ad1b1bc9486081c1b760583a298c85a8c235b0b2e47555b7201e8c7f8e5218898427e708163a877bcf31a4ce720996a7c1d5d0b3b3fcde4174761cf5.css"
+    integrity="sha512-fslTpK0bG8lIYIHBt2BYOimMhajCNbCy5HVVtyAejH&#43;OUhiJhCfnCBY6h3vPMaTOcgmWp8HV0LOz/N5BdHYc9Q==">
 
   
   
@@ -1212,8 +1212,8 @@
         width="96"
         height="96"
         alt="GaleInk"
-        src="/img/avatar_hu_fd19e2102814dddd.jpg"
-        data-zoom-src="/img/avatar_hu_60898f5dd3b3acc4.jpg">
+        src="/img/avatar_hu_d682264e76c772b8.jpg"
+        data-zoom-src="/img/avatar_hu_8dd73a5aa1038e7c.jpg">
     
   
   <div class="place-self-center">
@@ -1582,40 +1582,40 @@
 <p>项目中线程池是模板类 <code>threadpool&lt;T&gt;</code>，所有代码在单头文件 <code>include/threadpool.h</code> 中（模板类不能分离到 .cpp）。</p>
 <p><strong>数据结构</strong>：</p>
 <table>
-	<thead>
-			<tr>
-					<th>成员</th>
-					<th>类型</th>
-					<th>作用</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>m_workqueue</code></td>
-					<td><code>std::list&lt;T*&gt;</code></td>
-					<td>任务队列，线性链表</td>
-			</tr>
-			<tr>
-					<td><code>m_mutex</code></td>
-					<td><code>locker</code></td>
-					<td>保护队列的互斥锁</td>
-			</tr>
-			<tr>
-					<td><code>m_cond</code></td>
-					<td><code>cond</code></td>
-					<td>条件变量，通知&quot;有任务了&quot;</td>
-			</tr>
-			<tr>
-					<td><code>m_threads</code></td>
-					<td><code>pthread_t*</code></td>
-					<td>线程 ID 数组</td>
-			</tr>
-			<tr>
-					<td><code>m_stop</code></td>
-					<td><code>bool</code></td>
-					<td>关闭标志</td>
-			</tr>
-	</tbody>
+  <thead>
+      <tr>
+          <th>成员</th>
+          <th>类型</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>m_workqueue</code></td>
+          <td><code>std::list&lt;T*&gt;</code></td>
+          <td>任务队列，线性链表</td>
+      </tr>
+      <tr>
+          <td><code>m_mutex</code></td>
+          <td><code>locker</code></td>
+          <td>保护队列的互斥锁</td>
+      </tr>
+      <tr>
+          <td><code>m_cond</code></td>
+          <td><code>cond</code></td>
+          <td>条件变量，通知&quot;有任务了&quot;</td>
+      </tr>
+      <tr>
+          <td><code>m_threads</code></td>
+          <td><code>pthread_t*</code></td>
+          <td>线程 ID 数组</td>
+      </tr>
+      <tr>
+          <td><code>m_stop</code></td>
+          <td><code>bool</code></td>
+          <td>关闭标志</td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>构造线程池</strong></p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
@@ -1782,30 +1782,30 @@
 </ol>
 <p>这和真 Proactor 的区别只有一点：</p>
 <table>
-	<thead>
-			<tr>
-					<th></th>
-					<th>真 Proactor</th>
-					<th>本项目</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>I/O 谁做</td>
-					<td>内核异步 <code>aio_read</code></td>
-					<td>主线程同步 <code>recv</code></td>
-			</tr>
-			<tr>
-					<td>主线程阻塞吗</td>
-					<td>不，发起后立刻返回</td>
-					<td>短暂阻塞等 <code>recv</code>（但都是 LT 模式，数据已在缓冲区）</td>
-			</tr>
-			<tr>
-					<td>工作线程感知</td>
-					<td>拿到已读好的数据</td>
-					<td>拿到已读好的数据 ✓</td>
-			</tr>
-	</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>真 Proactor</th>
+          <th>本项目</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>I/O 谁做</td>
+          <td>内核异步 <code>aio_read</code></td>
+          <td>主线程同步 <code>recv</code></td>
+      </tr>
+      <tr>
+          <td>主线程阻塞吗</td>
+          <td>不，发起后立刻返回</td>
+          <td>短暂阻塞等 <code>recv</code>（但都是 LT 模式，数据已在缓冲区）</td>
+      </tr>
+      <tr>
+          <td>工作线程感知</td>
+          <td>拿到已读好的数据</td>
+          <td>拿到已读好的数据 ✓</td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>为什么这样设计</strong>：Linux 下真正的异步 I/O（<code>aio_read</code>）对 socket 不可用，所以&quot;内核替你 <code>recv</code>&ldquo;这条路走不通。剩下的选择是 Reactor：工作线程自己调 <code>recv</code> 读数据，然后处理。但 Reactor 有两个缺点：(1) 工作线程既要管 I/O 又要管业务，职责混杂；(2) 主线程读到不完整数据时得处理好 <code>NO_REQUEST</code> 状态并重新注册 <code>EPOLLONESHOT</code>。本项目把 <code>recv</code> 统一交给主线程做完，工作线程只拿到完整数据做 HTTP 解析和响应——主线程专管 I/O，工作线程专管业务，职责分离更清晰。</p>
 
@@ -1819,46 +1819,46 @@
     
 </h3>
 <table>
-	<thead>
-			<tr>
-					<th></th>
-					<th>Reactor</th>
-					<th>真 Proactor</th>
-					<th>本项目（模拟 Proactor）</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>事件分离</td>
-					<td>epoll（主线程）</td>
-					<td>epoll（主线程）</td>
-					<td>epoll（主线程）</td>
-			</tr>
-			<tr>
-					<td>I/O 谁做</td>
-					<td>工作线程自己 <code>recv</code></td>
-					<td>内核异步 <code>aio_read</code></td>
-					<td>主线程同步 <code>recv</code></td>
-			</tr>
-			<tr>
-					<td>业务处理谁做</td>
-					<td>工作线程</td>
-					<td>工作线程</td>
-					<td>工作线程</td>
-			</tr>
-			<tr>
-					<td>工作线程拿到什么</td>
-					<td>裸 fd</td>
-					<td>已读好的数据</td>
-					<td>已读好的数据</td>
-			</tr>
-			<tr>
-					<td>主线程阻塞</td>
-					<td>不阻塞（只分发）</td>
-					<td>不阻塞</td>
-					<td>短暂阻塞（LT 缓冲已有数据）</td>
-			</tr>
-	</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Reactor</th>
+          <th>真 Proactor</th>
+          <th>本项目（模拟 Proactor）</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>事件分离</td>
+          <td>epoll（主线程）</td>
+          <td>epoll（主线程）</td>
+          <td>epoll（主线程）</td>
+      </tr>
+      <tr>
+          <td>I/O 谁做</td>
+          <td>工作线程自己 <code>recv</code></td>
+          <td>内核异步 <code>aio_read</code></td>
+          <td>主线程同步 <code>recv</code></td>
+      </tr>
+      <tr>
+          <td>业务处理谁做</td>
+          <td>工作线程</td>
+          <td>工作线程</td>
+          <td>工作线程</td>
+      </tr>
+      <tr>
+          <td>工作线程拿到什么</td>
+          <td>裸 fd</td>
+          <td>已读好的数据</td>
+          <td>已读好的数据</td>
+      </tr>
+      <tr>
+          <td>主线程阻塞</td>
+          <td>不阻塞（只分发）</td>
+          <td>不阻塞</td>
+          <td>短暂阻塞（LT 缓冲已有数据）</td>
+      </tr>
+  </tbody>
 </table>
 <p>三种模式的共同点是<strong>事件分离器都在主线程</strong>。分歧点在 I/O 归属：Reactor 分给工作线程，Proactor 交给内核，本项目由主线程代理——把 I/O 和业务处理在逻辑上分离，同时规避了 Linux AIO 的限制。</p>
 

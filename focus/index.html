@@ -58,16 +58,16 @@
 
   
   <meta property="og:url" content="https://twj-ink.github.io/focus/">
-  <meta property="og:site_name" content="GaleInk&#39;s blog">
-  <meta property="og:title" content="Focus">
-  <meta property="og:description" content="GaleInk 的工作计时与专注记录">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+	<meta property="og:site_name" content="GaleInk&#39;s blog">
+	<meta property="og:title" content="Focus">
+	<meta property="og:description" content="GaleInk 的工作计时与专注记录">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Focus">
-  <meta name="twitter:description" content="GaleInk 的工作计时与专注记录">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Focus">
+	<meta name="twitter:description" content="GaleInk 的工作计时与专注记录">
 
   
   
@@ -120,8 +120,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.7ec953a4ad1b1bc9486081c1b760583a298c85a8c235b0b2e47555b7201e8c7f8e5218898427e708163a877bcf31a4ce720996a7c1d5d0b3b3fcde4174761cf5.css"
-    integrity="sha512-fslTpK0bG8lIYIHBt2BYOimMhajCNbCy5HVVtyAejH&#43;OUhiJhCfnCBY6h3vPMaTOcgmWp8HV0LOz/N5BdHYc9Q==">
+    href="/css/main.bundle.min.ca6dbb914738546ea6169f84c4cf30009081ecbfd58f1737e2b839b7b4f9293d9f9e08693d391009a96d1048e8121f99a42bc93f8fcc7d8cb1ce408d0b5bd035.css"
+    integrity="sha512-ym27kUc4VG6mFp&#43;ExM8wAJCB7L/Vjxc34rg5t7T5KT2fnghpPTkQCaltEEjoEh&#43;ZpCvJP4/MfYyxzkCNC1vQNQ==">
 
   
   
@@ -1053,10 +1053,16 @@
               <option value="其他">其他</option>
             </select>
           </label>
-          <button id="focus-toggle" class="focus-primary-button" type="submit" disabled>
-            <span class="focus-primary-button__icon" aria-hidden="true"></span>
-            <span id="focus-toggle-label">仅主人可开始</span>
-          </button>
+          <div id="focus-actions" class="focus-actions">
+            <button id="focus-pause" class="focus-secondary-button" type="button" disabled hidden>
+              <span class="focus-secondary-button__icon" aria-hidden="true"></span>
+              <span id="focus-pause-label">暂停计时</span>
+            </button>
+            <button id="focus-toggle" class="focus-primary-button" type="submit" disabled>
+              <span class="focus-primary-button__icon" aria-hidden="true"></span>
+              <span id="focus-toggle-label">访客只读</span>
+            </button>
+          </div>
         </form>
 
         <div class="focus-today">
@@ -1103,7 +1109,7 @@
         <button class="focus-login__close" type="button" data-close-login aria-label="关闭">×</button>
         <p class="focus-card-kicker">OWNER ACCESS</p>
         <h2 id="focus-login-title">主人登录</h2>
-        <p>登录后才可以开始或结束计时，访客始终只有查看权限。</p>
+        <p>登录后才可以开始、暂停或结束计时，访客始终只有查看权限。</p>
         <form id="focus-login-form">
           <label>
             <span>邮箱</span>
@@ -1121,7 +1127,7 @@
   </section>
 
   
-  <script defer src="/js/focus-timer.min.0c3c82b38a2d1f626fa2e7df1ebc9c135d718277a92984cba33cab3cd8f1f49f.js" integrity="sha256-DDyCs4otH2JvouffHrycE11xgnepKYTLozyrPNjx9J8="></script>
+  <script defer src="/js/focus-timer.min.903f415c7bc9b852f170d6ee4f75ca0205bb4875384e47aa276c0aadc5debdbe.js" integrity="sha256-kD9BXHvJuFLxcNbuT3XKAgW7SHU4TkeqJ2wKrcXevb4="></script>
 
         
 

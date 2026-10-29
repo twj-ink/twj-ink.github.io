@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logics on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/logic/</link>
+    <description>Recent content in Logics on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Fri, 30 Oct 2026 02:00:55 +0800</lastBuildDate><atom:link href="https://twj-ink.github.io/logic/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>数理逻辑1: 命题逻辑</title>
+      <link>https://twj-ink.github.io/logic/propositional_logic/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/logic/propositional_logic/</guid>
+      <description>命题、联结词、命题形式</description>
+      
+    </item>
+    
+  </channel>
+</rss>

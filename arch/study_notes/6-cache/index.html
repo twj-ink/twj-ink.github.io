@@ -1,0 +1,4660 @@
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="en">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  
+    <title>计算机体系结构笔记6：Cache与存储层次 &middot; GaleInk&#39;s blog</title>
+    <meta name="title" content="计算机体系结构笔记6：Cache与存储层次 &middot; GaleInk&#39;s blog">
+  
+
+  
+  
+    <meta name="description" content="从局部性出发，整理Cache的映射、替换与写策略，以及AMAT、多级缓存、MSHR和预取等优化方法">
+  
+  
+    <meta name="keywords" content="arch,Cache,Memory Hierarchy,">
+  
+  
+  
+  <link rel="canonical" href="https://twj-ink.github.io/arch/study_notes/6-cache/">
+  
+
+  
+  
+    <meta name="author" content="GaleInk">
+  
+  
+    
+      
+        
+          <link href="https://github.com/twj-ink" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://www.zhihu.com/people/GaleInk" rel="me">
+        
+      
+    
+      
+        
+      
+    
+  
+
+  
+  <meta property="og:url" content="https://twj-ink.github.io/arch/study_notes/6-cache/">
+	<meta property="og:site_name" content="GaleInk&#39;s blog">
+	<meta property="og:title" content="计算机体系结构笔记6：Cache与存储层次">
+	<meta property="og:description" content="从局部性出发，整理Cache的映射、替换与写策略，以及AMAT、多级缓存、MSHR和预取等优化方法">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="arch">
+		<meta property="article:published_time" content="2026-10-22T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-10-30T02:00:55+08:00">
+		<meta property="article:tag" content="Arch">
+		<meta property="article:tag" content="Cache">
+		<meta property="article:tag" content="Memory Hierarchy">
+
+  
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="计算机体系结构笔记6：Cache与存储层次">
+	<meta name="twitter:description" content="从局部性出发，整理Cache的映射、替换与写策略，以及AMAT、多级缓存、MSHR和预取等优化方法">
+
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+  
+    
+      
+      
+        
+      
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.edddb5ef5ee6f7df581eb7b2a61360124e8c421d6be3951331b2c3788e1fc62625e183ef660b7c2adf8a354295e5c75d8d7d18f5684523dfd29424e4323e0887.css"
+    integrity="sha512-7d21717m999YHreyphNgEk6MQh1r45UTMbLDeI4fxiYl4YPvZgt8Kt&#43;KNUKV5cddjX0Y9WhFI9/SlCTkMj4Ihw==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.6f41174b3a05b680820fe08cadbfa5fb7a7ca347b76a0955cdc68b9d8aca1ce24f0547e138cea33bcc7904d551a90afcb1cc7f2d9fe8557075d501419046c08c.js"
+    integrity="sha512-b0EXSzoFtoCCD&#43;CMrb&#43;l&#43;3p8o0e3aglVzcaLnYrKHOJPBUfhOM6jO8x5BNVRqQr8scx/LZ/oVXB11QFBkEbAjA=="></script>
+  
+  
+  
+  
+  
+    
+    <script
+      type="text/javascript"
+      src="/js/zen-mode.min.9814dee9614d32aeb56239d118edfe20acd6231424f9b19c2dd48835038414130a5e946c0d1c9087d60e60e31840c9babfd217e3d4b95643dc8d651a71ccdf4a.js"
+      integrity="sha512-mBTe6WFNMq61YjnRGO3&#43;IKzWIxQk&#43;bGcLdSINQOEFBMKXpRsDRyQh9YOYOMYQMm6v9IX49S5VkPcjWUacczfSg=="></script>
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.0e2e7ce1e319db5369cd4badb8265de52c78d08df54617521bdac9c8cd335eea6133a82c83f9cb19baf67b8133335130e7e8ff7cfeaf7171016648dbf5a0578a.js"
+      integrity="sha512-Di584eMZ21NpzUutuCZd5Sx40I31RhdSG9rJyM0zXuphM6gsg/nLGbr2e4EzM1Ew5&#43;j/fP6vcXEBZkjb9aBXig=="
+      data-copy="Copy"
+      data-copied="Copied"></script>
+  
+
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/lib/katex/katex.min.d2ee85d2418f4d482ca2af2a3dad30d370b1c66133dea61f97d7933c92fc0cae10244f7f5cbd524a8897a1886f0d70ab04c0555ad680216b16a028354e42726c.css"
+    integrity="sha512-0u6F0kGPTUgsoq8qPa0w03CxxmEz3qYfl9eTPJL8DK4QJE9/XL1SSoiXoYhvDXCrBMBVWtaAIWsWoCg1TkJybA==">
+  
+  
+  
+  <script
+    defer
+    type="text/javascript"
+    src="/js/katex.bundle.30c179d64bdee5ed56cf63adf7227f13507841aa61a91a492e45b333d618bc901f2b196d2effcfe6716a23e01416a572441480d511b13320dba26d58e1246178.js"
+    integrity="sha512-MMF51kve5e1Wz2Ot9yJ/E1B4QaphqRpJLkWzM9YYvJAfKxltLv/P5nFqI&#43;AUFqVyRBSA1RGxMyDbom1Y4SRheA=="
+    id="katex-render"></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Arches",
+    "name": "计算机体系结构笔记6：Cache与存储层次",
+    "headline": "计算机体系结构笔记6：Cache与存储层次",
+    
+    "inLanguage": "en",
+    "url" : "https://twj-ink.github.io/arch/study_notes/6-cache/",
+    "author" : {
+      "@type": "Person",
+      "name": "GaleInk"
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-10-22T00:00:00\u002b00:00",
+    "datePublished": "2026-10-22T00:00:00\u002b00:00",
+    
+    "dateModified": "2026-10-30T02:00:55\u002b08:00",
+    
+    "keywords": ["arch","Cache","Memory Hierarchy"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2158"
+  }]
+  </script>
+
+
+
+  
+  
+    
+
+
+
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    
+
+
+
+  
+
+  
+  
+    
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+      <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCuWmwe8cR2YHXYAc5I-Z194igWTf4P7uc",
+      authDomain: "ink-site-b44a5.firebaseapp.com",
+      projectId: "ink-site-b44a5",
+      storageBucket: "ink-site-b44a5.firebasestorage.app",
+      messagingSenderId: "30175690030",
+      appId: "1:30175690030:web:1de6f2d3ad3c3e28d58ebf",
+      measurementId:  null 
+    };
+
+        var app = firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+        var auth = firebase.auth();
+
+      </script>
+    
+  
+
+  
+  
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <body
+    class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar"
+    data-default-background="solid">
+    <div class="sunset-background" aria-hidden="true">
+  <video
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    disablepictureinpicture
+    disableremoteplayback
+    controlslist="nodownload nofullscreen noremoteplayback"
+    x-webkit-airplay="deny"
+    x5-playsinline
+    x5-video-player-type="h5-page"
+    x5-video-player-fullscreen="false"
+    preload="none"
+    tabindex="-1"
+    poster="/videos/home-sunset-poster.jpg">
+    <source data-src="/videos/home-sunset.mp4" type="video/mp4">
+  </video>
+  <div class="sunset-background__veil"></div>
+</div>
+
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        Skip to main content
+      </a>
+    </div>
+    
+    
+      <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 z-100">
+  <div
+    id="menu-blur"
+    class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl bg-neutral/25 dark:bg-neutral-800/25"></div>
+  <div class="relative m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32">
+    <div class="main-menu flex items-center w-full gap-2 p-1 pl-0">
+  
+  
+    <a href="/" class="text-base font-medium truncate min-w-0 shrink">
+      GaleInk&rsquo;s blog
+    </a>
+  
+  <div class="flex items-center ms-auto">
+    <div class="hidden md:flex">
+      <nav class="flex items-center gap-x-5 h-12">
+  
+    
+      
+  
+    <a
+      href="/castle/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Blog"
+      title="文章归档">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Blog
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <div class="nested-menu">
+      <div class="cursor-pointer flex items-center">
+        <a
+          
+            tabindex="0"
+          
+          aria-label="Topics"
+          class="flex items-center text-base font-medium bf-icon-color-hover"
+          title="">
+          
+          <span class="text-bg font-bg break-normal" title="">
+            Topics
+          </span>
+          <span>
+            <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+          </span>
+        </a>
+      </div>
+      <div class="menuhide">
+        <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl bg-neutral/25 dark:bg-neutral-800/25">
+          <div class="flex flex-col space-y-3">
+            
+              <a
+                href="/ics/"
+                
+                aria-label="ICS"
+                class="flex items-center bf-icon-color-hover">
+                
+                <span class="text-sm font-sm" title="ICS">
+                  ICS
+                </span>
+              </a>
+            
+              <a
+                href="/os/"
+                
+                aria-label="OS"
+                class="flex items-center bf-icon-color-hover">
+                
+                <span class="text-sm font-sm" title="Operating Systems">
+                  OS
+                </span>
+              </a>
+            
+              <a
+                href="/arch/"
+                
+                aria-label="Arch"
+                class="flex items-center bf-icon-color-hover">
+                
+                <span class="text-sm font-sm" title="Arches">
+                  Arch
+                </span>
+              </a>
+            
+              <a
+                href="/logic/"
+                
+                aria-label="Logic"
+                class="flex items-center bf-icon-color-hover">
+                
+                <span class="text-sm font-sm" title="Logics">
+                  Logic
+                </span>
+              </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+    
+      
+  
+    <a
+      href="/projects/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Projects"
+      title="项目">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Projects
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <a
+      href="/focus/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="Focus"
+      title="Focus">
+      
+      
+        <span class="text-base font-medium break-normal">
+          Focus
+        </span>
+      
+    </a>
+  
+
+    
+      
+  
+    <div class="nested-menu">
+      <div class="cursor-pointer flex items-center">
+        <a
+          
+            tabindex="0"
+          
+          aria-label="Life"
+          class="flex items-center text-base font-medium bf-icon-color-hover"
+          title="">
+          
+          <span class="text-bg font-bg break-normal" title="">
+            Life
+          </span>
+          <span>
+            <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+          </span>
+        </a>
+      </div>
+      <div class="menuhide">
+        <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl bg-neutral/25 dark:bg-neutral-800/25">
+          <div class="flex flex-col space-y-3">
+            
+              <a
+                href="/intern/"
+                
+                aria-label="Intern"
+                class="flex items-center bf-icon-color-hover">
+                
+                <span class="text-sm font-sm" title="实习">
+                  Intern
+                </span>
+              </a>
+            
+              <a
+                href="/game/"
+                
+                aria-label="Game"
+                class="flex items-center bf-icon-color-hover">
+                
+                <span class="text-sm font-sm" title="GAME">
+                  Game
+                </span>
+              </a>
+            
+              <a
+                href="/gallery/"
+                
+                aria-label="Gallery"
+                class="flex items-center bf-icon-color-hover">
+                
+                <span class="text-sm font-sm" title="Gallery">
+                  Gallery
+                </span>
+              </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+    
+      
+  
+    <a
+      href="https://github.com/twj-ink/"
+      
+        target="_blank"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="github"
+      title="">
+      
+        <span >
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+        </span>
+      
+      
+    </a>
+  
+
+    
+      
+  
+    <a
+      href="https://www.zhihu.com/people/GaleInk"
+      
+        target="_blank"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="zhihu"
+      title="">
+      
+        <span >
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M5.721 0C2.251 0 0 2.25 0 5.719V18.28C0 21.751 2.252 24 5.721 24h12.56C21.751 24 24 21.75 24 18.281V5.72C24 2.249 21.75 0 18.281 0zm1.964 4.078c-.271.73-.5 1.434-.68 2.11h4.587c.545-.006.445 1.168.445 1.171H9.384a58.104 58.104 0 01-.112 3.797h2.712c.388.023.393 1.251.393 1.266H9.183a9.223 9.223 0 01-.408 2.102l.757-.604c.452.456 1.512 1.712 1.906 2.177.473.681.063 2.081.063 2.081l-2.794-3.382c-.653 2.518-1.845 3.607-1.845 3.607-.523.468-1.58.82-2.64.516 2.218-1.73 3.44-3.917 3.667-6.497H4.491c0-.015.197-1.243.806-1.266h2.71c.024-.32.086-3.254.086-3.797H6.598c-.136.406-.158.447-.268.753-.594 1.095-1.603 1.122-1.907 1.155.906-1.821 1.416-3.6 1.591-4.064.425-1.124 1.671-1.125 1.671-1.125zM13.078 6h6.377v11.33h-2.573l-2.184 1.373-.401-1.373h-1.219zm1.313 1.219v8.86h.623l.263.937 1.455-.938h1.456v-8.86z"/>
+</svg></span>
+        </span>
+      
+      
+    </a>
+  
+
+    
+  
+
+  
+
+  
+
+  
+    <button
+      id="search-button"
+      aria-label="Search"
+      class="text-base bf-icon-color-hover"
+      title="Search (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+    <div class="flex items-center">
+      <button
+        id="appearance-switcher"
+        aria-label="Dark mode switcher"
+        type="button"
+        class="text-base bf-icon-color-hover">
+        <div class="flex items-center justify-center dark:hidden">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+        </div>
+        <div class="items-center justify-center hidden dark:flex">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+        </div>
+      </button>
+    </div>
+  
+</nav>
+
+
+
+    </div>
+    <div class="flex md:hidden">
+      <div class="flex items-center h-14 gap-4">
+  
+    <button
+      id="search-button-mobile"
+      aria-label="Search"
+      class="flex items-center justify-center bf-icon-color-hover"
+      title="Search (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+    <button
+      id="appearance-switcher-mobile"
+      type="button"
+      aria-label="Dark mode switcher"
+      class="flex items-center justify-center text-neutral-900 hover:text-primary-600 dark:text-neutral-200 dark:hover:text-primary-400">
+      <div class="dark:hidden">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+      </div>
+      <div class="hidden dark:block">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+      </div>
+    </button>
+  
+
+  
+    <input type="checkbox" id="mobile-menu-toggle" autocomplete="off" class="hidden peer">
+    <label for="mobile-menu-toggle" class="flex items-center justify-center cursor-pointer bf-icon-color-hover">
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+    </label>
+
+    <div
+      role="dialog"
+      aria-modal="true"
+      style="scrollbar-gutter: stable;"
+      class="fixed inset-0 z-50 invisible overflow-y-auto px-6 py-20 opacity-0 transition-[opacity,visibility] duration-300 peer-checked:visible peer-checked:opacity-100 bg-neutral-50/97 dark:bg-neutral-900/99
+      bf-scrollbar">
+      <label
+        for="mobile-menu-toggle"
+        class="fixed end-8 top-5 flex items-center justify-center z-50 h-12 w-12 cursor-pointer select-none rounded-full bf-icon-color-hover border bf-border-color bf-border-color-hover bg-neutral-50 dark:bg-neutral-900">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </label>
+      <nav class="mx-auto max-w-md space-y-6">
+        
+  
+    
+    <div class="px-2">
+      <a
+        href="/castle/"
+        aria-label="Blog"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="文章归档" class="text-2xl font-bold tracking-tight">
+          Blog
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href=""
+        aria-label="Topics"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          Topics
+        </span>
+        
+          <label
+            for="fullscreen-submenu-topics"
+            class="ms-auto flex items-center justify-center h-10 w-10 cursor-pointer rounded-lg bf-icon-color-hover border bf-border-color bf-border-color-hover">
+            <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+          </label>
+        
+      </a>
+
+      
+        <input checked type="checkbox" id="fullscreen-submenu-topics" autocomplete="off" class="hidden peer/full">
+
+        <div
+          class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 peer-checked/full:grid-rows-[1fr]">
+          <div class="overflow-hidden">
+            <div class="ms-7 mt-4">
+              
+                <a
+                  href="/ics/"
+                  aria-label="ICS"
+                  
+                  class="flex items-center gap-3 p-2 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+                  
+                  <span title="ICS" class="text-lg">
+                    ICS
+                  </span>
+                </a>
+              
+                <a
+                  href="/os/"
+                  aria-label="OS"
+                  
+                  class="flex items-center gap-3 p-2 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+                  
+                  <span title="Operating Systems" class="text-lg">
+                    OS
+                  </span>
+                </a>
+              
+                <a
+                  href="/arch/"
+                  aria-label="Arch"
+                  
+                  class="flex items-center gap-3 p-2 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+                  
+                  <span title="Arches" class="text-lg">
+                    Arch
+                  </span>
+                </a>
+              
+                <a
+                  href="/logic/"
+                  aria-label="Logic"
+                  
+                  class="flex items-center gap-3 p-2 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+                  
+                  <span title="Logics" class="text-lg">
+                    Logic
+                  </span>
+                </a>
+              
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="/projects/"
+        aria-label="Projects"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="项目" class="text-2xl font-bold tracking-tight">
+          Projects
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="/focus/"
+        aria-label="Focus"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="Focus" class="text-2xl font-bold tracking-tight">
+          Focus
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href=""
+        aria-label="Life"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          Life
+        </span>
+        
+          <label
+            for="fullscreen-submenu-life"
+            class="ms-auto flex items-center justify-center h-10 w-10 cursor-pointer rounded-lg bf-icon-color-hover border bf-border-color bf-border-color-hover">
+            <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+          </label>
+        
+      </a>
+
+      
+        <input checked type="checkbox" id="fullscreen-submenu-life" autocomplete="off" class="hidden peer/full">
+
+        <div
+          class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 peer-checked/full:grid-rows-[1fr]">
+          <div class="overflow-hidden">
+            <div class="ms-7 mt-4">
+              
+                <a
+                  href="/intern/"
+                  aria-label="Intern"
+                  
+                  class="flex items-center gap-3 p-2 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+                  
+                  <span title="实习" class="text-lg">
+                    Intern
+                  </span>
+                </a>
+              
+                <a
+                  href="/game/"
+                  aria-label="Game"
+                  
+                  class="flex items-center gap-3 p-2 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+                  
+                  <span title="GAME" class="text-lg">
+                    Game
+                  </span>
+                </a>
+              
+                <a
+                  href="/gallery/"
+                  aria-label="Gallery"
+                  
+                  class="flex items-center gap-3 p-2 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+                  
+                  <span title="Gallery" class="text-lg">
+                    Gallery
+                  </span>
+                </a>
+              
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="https://github.com/twj-ink/"
+        aria-label="github"
+        
+          target="_blank"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+          <span class="flex items-center justify-center h-8 w-8 text-2xl">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+          </span>
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+    
+    <div class="px-2">
+      <a
+        href="https://www.zhihu.com/people/GaleInk"
+        aria-label="zhihu"
+        
+          target="_blank"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+          <span class="flex items-center justify-center h-8 w-8 text-2xl">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M5.721 0C2.251 0 0 2.25 0 5.719V18.28C0 21.751 2.252 24 5.721 24h12.56C21.751 24 24 21.75 24 18.281V5.72C24 2.249 21.75 0 18.281 0zm1.964 4.078c-.271.73-.5 1.434-.68 2.11h4.587c.545-.006.445 1.168.445 1.171H9.384a58.104 58.104 0 01-.112 3.797h2.712c.388.023.393 1.251.393 1.266H9.183a9.223 9.223 0 01-.408 2.102l.757-.604c.452.456 1.512 1.712 1.906 2.177.473.681.063 2.081.063 2.081l-2.794-3.382c-.653 2.518-1.845 3.607-1.845 3.607-.523.468-1.58.82-2.64.516 2.218-1.73 3.44-3.917 3.667-6.497H4.491c0-.015.197-1.243.806-1.266h2.71c.024-.32.086-3.254.086-3.797H6.598c-.136.406-.158.447-.268.753-.594 1.095-1.603 1.122-1.907 1.155.906-1.821 1.416-3.6 1.591-4.064.425-1.124 1.671-1.125 1.671-1.125zM13.078 6h6.377v11.33h-2.573l-2.184 1.373-.401-1.373h-1.219zm1.313 1.219v8.86h.623l.263.937 1.455-.938h1.456v-8.86z"/>
+</svg></span>
+          </span>
+        
+        <span title="" class="text-2xl font-bold tracking-tight">
+          
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+
+        
+  
+
+        
+  
+
+      </nav>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+  <script>
+    (function () {
+      var mainmenu = document.querySelector(".main-menu");
+      if (!mainmenu) return;
+
+      var path = window.location.pathname;
+      var links = mainmenu.querySelectorAll('a[href="' + path + '"]');
+
+      links.forEach(function (link) {
+        var targets = link.querySelectorAll("span");
+        targets.forEach(function (el) {
+          el.classList.add("active");
+        });
+      });
+    })();
+  </script>
+
+
+  </div>
+</div>
+
+
+<script
+  type="text/javascript"
+  src="/js/background-blur.min.605b3b942818f0ab5a717ae446135ec46b8ee5a2ad12ae56fb90dc2a76ce30c388f9fec8bcc18db15bd47e3fa8a09d779fa12aa9c184cf614a315bc72c6c163d.js"
+  integrity="sha512-YFs7lCgY8KtacXrkRhNexGuO5aKtEq5W&#43;5DcKnbOMMOI&#43;f7IvMGNsVvUfj&#43;ooJ13n6EqqcGEz2FKMVvHLGwWPQ=="
+  data-blur-id="menu-blur"></script>
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        计算机体系结构笔记6：Cache与存储层次
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-10-22T00:00:00&#43;00:00">2026/10/22</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-10-30T02:00:55&#43;08:00">Updated: 2026/10/30</time><span class="px-2 text-primary-500">&middot;</span><span>11854 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">60 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
+    
+    
+      
+      
+        
+        
+      
+      
+    
+  
+  <span
+    id="views_arch/study_notes/6-cache/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="views"
+    >loading</span
+  >
+  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+<path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></span>
+</span>
+<span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
+    
+    
+      
+      
+        
+        
+      
+      
+    
+  
+  <span
+    id="likes_arch/study_notes/6-cache/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes"
+    >loading</span
+  >
+  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></span></span>
+</span>
+<span class="px-2 text-primary-500">&middot;</span><span>
+  <button
+    id="button_likes"
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    <span id="button_likes_heart" class="inline-block align-text-bottom hidden"
+      ><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></span>
+    </span>
+    <span id="button_likes_emtpty_heart" class="inline-block align-text-bottom"
+      ><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/></svg></span></span
+    >
+    <span id="button_likes_text">&nbsp;Like</span>
+  </button>
+</span><span class="px-2 text-primary-500">&middot;</span><span class="mb-[2px]">
+  <span
+    id="zen-mode-button"
+    class="text-lg hover:text-primary-500"
+    title="Enable zen mode"
+    data-title-i18n-disable="Enable zen mode"
+    data-title-i18n-enable="Disable zen mode">
+    <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+    <path fill="currentColor" d="M 12.980469 4 C 9.1204688 4 5.9804688 7.14 5.9804688 11 L 6 26 L 9.9804688 26 L 9.9804688 11 C 9.9804688 9.35 11.320469 8 12.980469 8 L 40.019531 8 C 41.679531 8 43.019531 9.35 43.019531 11 L 43.019531 39 C 43.019531 40.65 41.679531 42 40.019531 42 L 29 42 C 29 43.54 28.420938 44.94 27.460938 46 L 40.019531 46 C 43.879531 46 47.019531 42.86 47.019531 39 L 47.019531 11 C 47.019531 7.14 43.879531 4 40.019531 4 L 12.980469 4 z M 7 28 C 4.794 28 3 29.794 3 32 L 3 42 C 3 44.206 4.794 46 7 46 L 23 46 C 25.206 46 27 44.206 27 42 L 27 32 C 27 29.794 25.206 28 23 28 L 7 28 z M 7 32 L 23 32 L 23.001953 42 L 7 42 L 7 32 z"/>
+</svg></span></span>
+  </span>
+</span>
+
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+      
+      
+        
+        
+        
+      
+      <img
+        class="!mt-0 !mb-0 h-24 w-24 rounded-full me-4"
+        width="96"
+        height="96"
+        alt="GaleInk"
+        src="/img/avatar_hu_fd19e2102814dddd.jpg"
+        data-zoom-src="/img/avatar_hu_60898f5dd3b3acc4.jpg">
+    
+  
+  <div class="place-self-center">
+    
+      <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+        Author
+      </div>
+      <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+        GaleInk
+      </div>
+    
+    
+      <div class="text-sm text-neutral-700 dark:text-neutral-400">A Breezing Gale ~</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/twj-ink"
+          target="_blank"
+          aria-label="Github"
+          title="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.zhihu.com/people/GaleInk"
+          target="_blank"
+          aria-label="Zhihu"
+          title="Zhihu"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M5.721 0C2.251 0 0 2.25 0 5.719V18.28C0 21.751 2.252 24 5.721 24h12.56C21.751 24 24 21.75 24 18.281V5.72C24 2.249 21.75 0 18.281 0zm1.964 4.078c-.271.73-.5 1.434-.68 2.11h4.587c.545-.006.445 1.168.445 1.171H9.384a58.104 58.104 0 01-.112 3.797h2.712c.388.023.393 1.251.393 1.266H9.183a9.223 9.223 0 01-.408 2.102l.757-.604c.452.456 1.512 1.712 1.906 2.177.473.681.063 2.081.063 2.081l-2.794-3.382c-.653 2.518-1.845 3.607-1.845 3.607-.523.468-1.58.82-2.64.516 2.218-1.73 3.44-3.917 3.667-6.497H4.491c0-.015.197-1.243.806-1.266h2.71c.024-.32.086-3.254.086-3.797H6.598c-.136.406-.158.447-.268.753-.594 1.095-1.603 1.122-1.907 1.155.906-1.821 1.416-3.6 1.591-4.064.425-1.124 1.671-1.125 1.671-1.125zM13.078 6h6.377v11.33h-2.573l-2.184 1.373-.401-1.373h-1.219zm1.313 1.219v8.86h.623l.263.937 1.455-.938h1.456v-8.86z"/>
+</svg></span></span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:298731943@qq.com"
+          target="_blank"
+          aria-label="Email"
+          title="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-5"></div>
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+        <div class="order-first lg:ms-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-[140px]">
+            <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain bf-scrollbar rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一为什么需要-cachememory-wall-与存储层次">一、为什么需要 Cache：Memory Wall 与存储层次</a>
+      <ul>
+        <li><a href="#11-处理器与主存的速度差距">1.1 处理器与主存的速度差距</a></li>
+      </ul>
+    </li>
+    <li><a href="#二存储器技术sram-与-dram">二、存储器技术：SRAM 与 DRAM</a>
+      <ul>
+        <li><a href="#21-两种易失性存储器">2.1 两种易失性存储器</a></li>
+        <li><a href="#22-识图存储单元wlbl-与-pn-晶体管">2.2 识图：存储单元、WL、BL 与 P/N 晶体管</a></li>
+        <li><a href="#23-sram两个反相器怎样记住-1-bit">2.3 SRAM：两个反相器怎样记住 1 bit</a></li>
+        <li><a href="#24-dram用电容保存数据">2.4 DRAM：用电容保存数据</a></li>
+        <li><a href="#25--面积速度与功耗的取舍">2.5 ⭐ 面积、速度与功耗的取舍</a></li>
+        <li><a href="#26-阵列组织与行列寻址">2.6 阵列组织与行列寻址</a></li>
+      </ul>
+    </li>
+    <li><a href="#三cache-的工作原理与设计问题">三、Cache 的工作原理与设计问题</a>
+      <ul>
+        <li><a href="#31-局部性cache-为什么有效">3.1 局部性：Cache 为什么有效</a></li>
+        <li><a href="#32-工作集cache-需要保留哪些数据">3.2 工作集：Cache 需要保留哪些数据</a></li>
+        <li><a href="#33-基本单位blocklinesetway">3.3 基本单位：Block、Line、Set、Way</a></li>
+        <li><a href="#34-访问结果hit-与-miss">3.4 访问结果：Hit 与 Miss</a></li>
+        <li><a href="#35-cache-性能的衡量">3.5 Cache 性能的衡量</a></li>
+        <li><a href="#36-四个设计问题放置查找替换与写入">3.6 四个设计问题：放置、查找、替换与写入</a></li>
+      </ul>
+    </li>
+    <li><a href="#四设计问题-12块放在哪里怎样找到它">四、设计问题 1、2：块放在哪里，怎样找到它</a>
+      <ul>
+        <li><a href="#41-统一参数与公式">4.1 统一参数与公式</a></li>
+        <li><a href="#42-直接映射-direct-mappeddm">4.2 直接映射 Direct Mapped(DM)</a></li>
+        <li><a href="#43-组相联-set-associativesa">4.3 组相联 Set Associative(SA)</a></li>
+        <li><a href="#44-全相联-fully-associativefa">4.4 全相联 Fully Associative(FA)</a></li>
+      </ul>
+    </li>
+    <li><a href="#五回看-cache-miss三类失效3c">五、回看 Cache Miss：三类失效（3C）</a></li>
+    <li><a href="#六设计问题-3cache-满了替换谁">六、设计问题 3：Cache 满了替换谁</a>
+      <ul>
+        <li><a href="#61-替换范围与基本策略randomfifolrunru">6.1 替换范围与基本策略：Random、FIFO、LRU、NRU</a></li>
+        <li><a href="#62-lru-的近似pseudo-lruplru">6.2 LRU 的近似：Pseudo-LRU（PLRU）</a></li>
+        <li><a href="#63-clock--second-chance">6.3 Clock / Second Chance</a></li>
+      </ul>
+    </li>
+    <li><a href="#七设计问题-4写入时怎么办">七、设计问题 4：写入时怎么办</a>
+      <ul>
+        <li><a href="#71-写命中write-through-与-write-back">7.1 写命中：Write-through 与 Write-back</a></li>
+        <li><a href="#72-写失效write-allocate-与-no-write-allocate">7.2 写失效：Write-allocate 与 No-write-allocate</a></li>
+        <li><a href="#73-补充例题连续写同一行">7.3 补充例题：连续写同一行</a></li>
+      </ul>
+    </li>
+    <li><a href="#八从性能衡量到-cache-优化amat-与-cpi">八、从性能衡量到 Cache 优化：AMAT 与 CPI</a>
+      <ul>
+        <li><a href="#81-单级-amat">8.1 单级 AMAT</a></li>
+        <li><a href="#82-amat-与-cpi">8.2 AMAT 与 CPI</a></li>
+        <li><a href="#83-例题cpu-变快内存等待占比反而增大">8.3 例题：CPU 变快，内存等待占比反而增大</a></li>
+        <li><a href="#84-从-amat-出发组织优化方法">8.4 从 AMAT 出发组织优化方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#九goal-1降低-miss-penalty">九、Goal 1：降低 Miss Penalty</a>
+      <ul>
+        <li><a href="#91-方案一多级-cache">9.1 方案一：多级 Cache</a>
+          <ul>
+            <li><a href="#911-多级-cache-的作用">9.1.1 多级 Cache 的作用</a></li>
+            <li><a href="#912-多级-cache-的组织inclusiveexclusivenon-inclusive">9.1.2 多级 Cache 的组织：Inclusive、Exclusive、Non-inclusive</a></li>
+          </ul>
+        </li>
+        <li><a href="#92-方案二early-restart-与-critical-word-first">9.2 方案二：Early Restart 与 Critical Word First</a></li>
+        <li><a href="#93-方案三写合并write-combining">9.3 方案三：写合并（Write Combining）</a></li>
+        <li><a href="#94-方案四非阻塞-cache">9.4 方案四：非阻塞 Cache</a>
+          <ul>
+            <li><a href="#941-blockinghit-under-miss-与-miss-under-miss">9.4.1 Blocking、Hit under Miss 与 Miss under Miss</a></li>
+            <li><a href="#942-实现机制mshr-跟踪未完成的-miss">9.4.2 实现机制：MSHR 跟踪未完成的 Miss</a></li>
+            <li><a href="#943-性能效果隐藏等待不一定减少-miss">9.4.3 性能效果：隐藏等待，不一定减少 Miss</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#十goal-2降低-miss-rate">十、Goal 2：降低 Miss Rate</a>
+      <ul>
+        <li><a href="#优化方向概览联系-3c-miss">优化方向概览：联系 3C Miss</a></li>
+        <li><a href="#101-方案一硬件预取hardware-prefetching">10.1 方案一：硬件预取（Hardware Prefetching）</a></li>
+        <li><a href="#102-方案二cache-友好的编译器优化">10.2 方案二：Cache 友好的编译器优化</a>
+          <ul>
+            <li><a href="#1021-loop-interchange循环交换">10.2.1 Loop Interchange：循环交换</a></li>
+            <li><a href="#1022-loop-fusion循环融合">10.2.2 Loop Fusion：循环融合</a></li>
+            <li><a href="#1023-数据布局合并数组">10.2.3 数据布局：合并数组</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#十一goal-3降低-hit-time">十一、Goal 3：降低 Hit Time</a>
+      <ul>
+        <li><a href="#111-方案一虚拟索引virtually-indexed-cache">11.1 方案一：虚拟索引（Virtually Indexed Cache）</a>
+          <ul>
+            <li><a href="#1111-先把地址翻译和查-cache-连起来">11.1.1 先把地址翻译和查 Cache 连起来</a></li>
+            <li><a href="#1112-优化不等翻译完成就先选-cache-组">11.1.2 优化：不等翻译完成，就先选 Cache 组</a></li>
+            <li><a href="#1113-为什么又提到进程切换和别名">11.1.3 为什么又提到进程切换和别名？</a></li>
+          </ul>
+        </li>
+        <li><a href="#112-方案二trace-cache">11.2 方案二：Trace Cache</a></li>
+      </ul>
+    </li>
+    <li><a href="#十二优化总结miss-ratemiss-penalty-与-hit-time-的取舍">十二、优化总结：Miss Rate、Miss Penalty 与 Hit Time 的取舍</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一为什么需要-cachememory-wall-与存储层次">一、为什么需要 Cache：Memory Wall 与存储层次</a>
+      <ul>
+        <li><a href="#11-处理器与主存的速度差距">1.1 处理器与主存的速度差距</a></li>
+      </ul>
+    </li>
+    <li><a href="#二存储器技术sram-与-dram">二、存储器技术：SRAM 与 DRAM</a>
+      <ul>
+        <li><a href="#21-两种易失性存储器">2.1 两种易失性存储器</a></li>
+        <li><a href="#22-识图存储单元wlbl-与-pn-晶体管">2.2 识图：存储单元、WL、BL 与 P/N 晶体管</a></li>
+        <li><a href="#23-sram两个反相器怎样记住-1-bit">2.3 SRAM：两个反相器怎样记住 1 bit</a></li>
+        <li><a href="#24-dram用电容保存数据">2.4 DRAM：用电容保存数据</a></li>
+        <li><a href="#25--面积速度与功耗的取舍">2.5 ⭐ 面积、速度与功耗的取舍</a></li>
+        <li><a href="#26-阵列组织与行列寻址">2.6 阵列组织与行列寻址</a></li>
+      </ul>
+    </li>
+    <li><a href="#三cache-的工作原理与设计问题">三、Cache 的工作原理与设计问题</a>
+      <ul>
+        <li><a href="#31-局部性cache-为什么有效">3.1 局部性：Cache 为什么有效</a></li>
+        <li><a href="#32-工作集cache-需要保留哪些数据">3.2 工作集：Cache 需要保留哪些数据</a></li>
+        <li><a href="#33-基本单位blocklinesetway">3.3 基本单位：Block、Line、Set、Way</a></li>
+        <li><a href="#34-访问结果hit-与-miss">3.4 访问结果：Hit 与 Miss</a></li>
+        <li><a href="#35-cache-性能的衡量">3.5 Cache 性能的衡量</a></li>
+        <li><a href="#36-四个设计问题放置查找替换与写入">3.6 四个设计问题：放置、查找、替换与写入</a></li>
+      </ul>
+    </li>
+    <li><a href="#四设计问题-12块放在哪里怎样找到它">四、设计问题 1、2：块放在哪里，怎样找到它</a>
+      <ul>
+        <li><a href="#41-统一参数与公式">4.1 统一参数与公式</a></li>
+        <li><a href="#42-直接映射-direct-mappeddm">4.2 直接映射 Direct Mapped(DM)</a></li>
+        <li><a href="#43-组相联-set-associativesa">4.3 组相联 Set Associative(SA)</a></li>
+        <li><a href="#44-全相联-fully-associativefa">4.4 全相联 Fully Associative(FA)</a></li>
+      </ul>
+    </li>
+    <li><a href="#五回看-cache-miss三类失效3c">五、回看 Cache Miss：三类失效（3C）</a></li>
+    <li><a href="#六设计问题-3cache-满了替换谁">六、设计问题 3：Cache 满了替换谁</a>
+      <ul>
+        <li><a href="#61-替换范围与基本策略randomfifolrunru">6.1 替换范围与基本策略：Random、FIFO、LRU、NRU</a></li>
+        <li><a href="#62-lru-的近似pseudo-lruplru">6.2 LRU 的近似：Pseudo-LRU（PLRU）</a></li>
+        <li><a href="#63-clock--second-chance">6.3 Clock / Second Chance</a></li>
+      </ul>
+    </li>
+    <li><a href="#七设计问题-4写入时怎么办">七、设计问题 4：写入时怎么办</a>
+      <ul>
+        <li><a href="#71-写命中write-through-与-write-back">7.1 写命中：Write-through 与 Write-back</a></li>
+        <li><a href="#72-写失效write-allocate-与-no-write-allocate">7.2 写失效：Write-allocate 与 No-write-allocate</a></li>
+        <li><a href="#73-补充例题连续写同一行">7.3 补充例题：连续写同一行</a></li>
+      </ul>
+    </li>
+    <li><a href="#八从性能衡量到-cache-优化amat-与-cpi">八、从性能衡量到 Cache 优化：AMAT 与 CPI</a>
+      <ul>
+        <li><a href="#81-单级-amat">8.1 单级 AMAT</a></li>
+        <li><a href="#82-amat-与-cpi">8.2 AMAT 与 CPI</a></li>
+        <li><a href="#83-例题cpu-变快内存等待占比反而增大">8.3 例题：CPU 变快，内存等待占比反而增大</a></li>
+        <li><a href="#84-从-amat-出发组织优化方法">8.4 从 AMAT 出发组织优化方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#九goal-1降低-miss-penalty">九、Goal 1：降低 Miss Penalty</a>
+      <ul>
+        <li><a href="#91-方案一多级-cache">9.1 方案一：多级 Cache</a>
+          <ul>
+            <li><a href="#911-多级-cache-的作用">9.1.1 多级 Cache 的作用</a></li>
+            <li><a href="#912-多级-cache-的组织inclusiveexclusivenon-inclusive">9.1.2 多级 Cache 的组织：Inclusive、Exclusive、Non-inclusive</a></li>
+          </ul>
+        </li>
+        <li><a href="#92-方案二early-restart-与-critical-word-first">9.2 方案二：Early Restart 与 Critical Word First</a></li>
+        <li><a href="#93-方案三写合并write-combining">9.3 方案三：写合并（Write Combining）</a></li>
+        <li><a href="#94-方案四非阻塞-cache">9.4 方案四：非阻塞 Cache</a>
+          <ul>
+            <li><a href="#941-blockinghit-under-miss-与-miss-under-miss">9.4.1 Blocking、Hit under Miss 与 Miss under Miss</a></li>
+            <li><a href="#942-实现机制mshr-跟踪未完成的-miss">9.4.2 实现机制：MSHR 跟踪未完成的 Miss</a></li>
+            <li><a href="#943-性能效果隐藏等待不一定减少-miss">9.4.3 性能效果：隐藏等待，不一定减少 Miss</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#十goal-2降低-miss-rate">十、Goal 2：降低 Miss Rate</a>
+      <ul>
+        <li><a href="#优化方向概览联系-3c-miss">优化方向概览：联系 3C Miss</a></li>
+        <li><a href="#101-方案一硬件预取hardware-prefetching">10.1 方案一：硬件预取（Hardware Prefetching）</a></li>
+        <li><a href="#102-方案二cache-友好的编译器优化">10.2 方案二：Cache 友好的编译器优化</a>
+          <ul>
+            <li><a href="#1021-loop-interchange循环交换">10.2.1 Loop Interchange：循环交换</a></li>
+            <li><a href="#1022-loop-fusion循环融合">10.2.2 Loop Fusion：循环融合</a></li>
+            <li><a href="#1023-数据布局合并数组">10.2.3 数据布局：合并数组</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#十一goal-3降低-hit-time">十一、Goal 3：降低 Hit Time</a>
+      <ul>
+        <li><a href="#111-方案一虚拟索引virtually-indexed-cache">11.1 方案一：虚拟索引（Virtually Indexed Cache）</a>
+          <ul>
+            <li><a href="#1111-先把地址翻译和查-cache-连起来">11.1.1 先把地址翻译和查 Cache 连起来</a></li>
+            <li><a href="#1112-优化不等翻译完成就先选-cache-组">11.1.2 优化：不等翻译完成，就先选 Cache 组</a></li>
+            <li><a href="#1113-为什么又提到进程切换和别名">11.1.3 为什么又提到进程切换和别名？</a></li>
+          </ul>
+        </li>
+        <li><a href="#112-方案二trace-cache">11.2 方案二：Trace Cache</a></li>
+      </ul>
+    </li>
+    <li><a href="#十二优化总结miss-ratemiss-penalty-与-hit-time-的取舍">十二、优化总结：Miss Rate、Miss Penalty 与 Hit Time 的取舍</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+<script>
+  (function () {
+    'use strict'
+
+    const SCROLL_OFFSET_RATIO = 0.33
+    const TOC_SELECTOR = '#TableOfContents'
+    const ANCHOR_SELECTOR = '.anchor'
+    const TOC_LINK_SELECTOR = 'a[href^="#"]'
+    const NESTED_LIST_SELECTOR = 'li ul'
+    const ACTIVE_CLASS = 'active'
+    let isJumpingToAnchor = false
+
+    function getActiveAnchorId(anchors, offsetRatio) {
+      const threshold = window.scrollY + window.innerHeight * offsetRatio
+      const tocLinks = [...document.querySelectorAll('#TableOfContents a[href^="#"]')]
+      const tocIds = new Set(tocLinks.map(link => link.getAttribute('href').substring(1)))
+
+      if (isJumpingToAnchor) {
+        for (let i = 0; i < anchors.length; i++) {
+          const anchor = anchors[i]
+          if (!tocIds.has(anchor.id)) continue
+          const top = anchor.getBoundingClientRect().top + window.scrollY
+          if (Math.abs(window.scrollY - top) < 100) {
+            return anchor.id
+          }
+        }
+      }
+
+      for (let i = anchors.length - 1; i >= 0; i--) {
+        const top = anchors[i].getBoundingClientRect().top + window.scrollY
+        if (top <= threshold && tocIds.has(anchors[i].id)) {
+          return anchors[i].id
+        }
+      }
+      return anchors.find(anchor => tocIds.has(anchor.id))?.id || ''
+    }
+
+    function updateTOC({ toc, anchors, links, scrollOffset, collapseInactive }) {
+      const activeId = getActiveAnchorId(anchors, scrollOffset)
+      if (!activeId) return
+
+      links.forEach(link => {
+        const isActive = link.getAttribute('href') === `#${activeId}`
+        link.classList.toggle(ACTIVE_CLASS, isActive)
+
+        if (collapseInactive) {
+          const ul = link.closest('li')?.querySelector('ul')
+          if (ul) ul.style.display = isActive ? '' : 'none'
+        }
+      })
+
+      if (collapseInactive) {
+        const activeLink = toc.querySelector(`a[href="#${CSS.escape(activeId)}"]`)
+        let el = activeLink
+        while (el && el !== toc) {
+          if (el.tagName === 'UL') el.style.display = ''
+          if (el.tagName === 'LI') el.querySelector('ul')?.style.setProperty('display', '')
+          el = el.parentElement
+        }
+      }
+    }
+
+    function initTOC() {
+      const toc = document.querySelector(TOC_SELECTOR)
+      if (!toc) return
+
+      const collapseInactive = false
+      const anchors = [...document.querySelectorAll(ANCHOR_SELECTOR)]
+      const links = [...toc.querySelectorAll(TOC_LINK_SELECTOR)]
+
+      if (collapseInactive) {
+        toc.querySelectorAll(NESTED_LIST_SELECTOR).forEach(ul => ul.style.display = 'none')
+      }
+
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          isJumpingToAnchor = true
+        })
+      })
+
+      const config = {
+        toc,
+        anchors,
+        links,
+        scrollOffset: SCROLL_OFFSET_RATIO,
+        collapseInactive
+      }
+
+      window.addEventListener('scroll', () => updateTOC(config), { passive: true })
+      window.addEventListener('hashchange', () => updateTOC(config), { passive: true })
+
+      updateTOC(config)
+    }
+
+    document.readyState === 'loading'
+      ? document.addEventListener('DOMContentLoaded', initTOC)
+      : initTOC()
+  })()
+</script>
+
+
+          </div>
+        </div>
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+  <details
+    class="mt-2 mb-5 overflow-hidden rounded-lg ms-0 ps-5"
+    >
+    
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
+    Computer Architecture::Notes -
+    This article is part of a series.
+  </summary>
+  
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        Part 6:
+        This Article
+      </div>
+    
+  
+
+
+  </details>
+
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          本讲要回答的问题
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>CPU 比主存快得多，怎样利用少量快速存储，让大部分访问都足够快？设计 Cache 时，需要依次考虑：<strong>放在哪里、怎样确认命中、替换谁、写入时怎么办</strong>。最后用 <strong>AMAT 与 CPU 执行时间</strong>衡量这些选择。</p></div></div>
+<h2 class="relative group">一、为什么需要 Cache：Memory Wall 与存储层次
+    <div id="一为什么需要-cachememory-wall-与存储层次" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81-cachememory-wall-%e4%b8%8e%e5%ad%98%e5%82%a8%e5%b1%82%e6%ac%a1" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">1.1 处理器与主存的速度差距
+    <div id="11-处理器与主存的速度差距" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#11-%e5%a4%84%e7%90%86%e5%99%a8%e4%b8%8e%e4%b8%bb%e5%ad%98%e7%9a%84%e9%80%9f%e5%ba%a6%e5%b7%ae%e8%b7%9d" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>处理器运算速度与 DRAM 访问速度之间存在差距。如果每次取指和读写数据都等待主存，CPU 会花大量时间停顿。随着处理器周期缩短，同样一次主存访问会占用更多 CPU 周期，这就是 **Memory Wall（存储墙）**问题。</p>
+<p>常见存储层次可以写成：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">寄存器 → L1 Cache → L2 Cache → LLC（末级缓存）→ 主存 DRAM → SSD / 磁盘</span></span></code></pre></div></div>
+<p>越靠近 CPU，通常越快、容量越小、单位容量成本越高。层次化设计的目标是：以较低成本提供较大容量，同时让大部分访问接近上层存储器的速度。</p>
+
+<h2 class="relative group">二、存储器技术：SRAM 与 DRAM
+    <div id="二存储器技术sram-与-dram" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%8c%e5%ad%98%e5%82%a8%e5%99%a8%e6%8a%80%e6%9c%afsram-%e4%b8%8e-dram" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>课件：第 9—16、19 页。</p>
+<p>RAM 中的 **Random Access（随机访问）**指可以按地址直接访问任意位置，无须先顺序扫描前面的数据。“随机”不是访问结果不确定，也不表示真实器件的每种访问都严格等时；例如 DRAM 的行命中与行未命中就可能有不同延迟。</p>
+
+<h3 class="relative group">2.1 两种易失性存储器
+    <div id="21-两种易失性存储器" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#21-%e4%b8%a4%e7%a7%8d%e6%98%93%e5%a4%b1%e6%80%a7%e5%ad%98%e5%82%a8%e5%99%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+	<thead>
+			<tr>
+					<th>比较项</th>
+					<th>SRAM</th>
+					<th>DRAM</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>全称</td>
+					<td>Static Random Access Memory</td>
+					<td>Dynamic Random Access Memory</td>
+			</tr>
+			<tr>
+					<td>典型存储单元</td>
+					<td>6 个晶体管，6T</td>
+					<td>1 个晶体管和 1 个电容，1T1C</td>
+			</tr>
+			<tr>
+					<td>保存数据的方式</td>
+					<td>交叉耦合反相器形成稳定状态</td>
+					<td>电容上的不同电荷状态</td>
+			</tr>
+			<tr>
+					<td>是否需要刷新</td>
+					<td>供电期间不需要周期性刷新</td>
+					<td>需要周期性刷新</td>
+			</tr>
+			<tr>
+					<td>正常读出后是否需要恢复单元数据</td>
+					<td>不需要专门回写恢复</td>
+					<td>需要由内部电路恢复电荷</td>
+			</tr>
+			<tr>
+					<td>速度与密度</td>
+					<td><strong>较快</strong>、<strong>密度较低</strong>、<strong>单位容量成本高</strong></td>
+					<td><strong>较慢</strong>、<strong>密度较高</strong>、<strong>单位容量成本低</strong></td>
+			</tr>
+			<tr>
+					<td>典型用途</td>
+					<td>Cache</td>
+					<td>主存 Main Memory</td>
+			</tr>
+			<tr>
+					<td>整体组织</td>
+					<td>存储单元阵列</td>
+					<td>存储单元阵列</td>
+			</tr>
+	</tbody>
+</table>
+<p>**Static / Dynamic 区分的是保存数据是否依赖周期性刷新。**Dynamic RAM需要周期性刷新，SRAM不需要，SRAM直到断电都不会丢失数据。两者都是 volatile（易失性）存储器，断电后都无法持续保留数据。SRAM 的“静态”不代表断电后仍然保存，也不代表零功耗。</p>
+<p>缓存用SRAM来追求高频率、低延迟（speed）和较高访问吞吐量。而主存（Main Memory）用DRAM来追求高密度、低单位容量成本。因此主存可以做的很大，而缓存应该做的很小，来提供一种“很大、很便宜、很快”的错觉。</p>
+<p>课件还给了第三个理由：<strong>technology compatibility（工艺兼容）</strong>。Cache 与处理器都用 CMOS 逻辑工艺，可以放在同一颗芯片上；DRAM 依赖电容工艺，通常做成独立芯片，要经片外接口访问。片上集成省掉了片外往返，Cache 才可能“贴”在 CPU 旁边。</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="note">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          课件给的量级
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>单元面积 <strong>SRAM / DRAM 约 4—16 倍</strong>；周期时间 <strong>DRAM / SRAM 约 8—16 倍</strong>；DRAM 需要约 <strong>每 64 ms 刷新一次</strong>，刷新开销约占其活跃周期的 <strong>1%—2%</strong>。记这些数字是为了有量级感，不同工艺差别很大。</p></div></div>
+<h3 class="relative group">2.2 识图：存储单元、WL、BL 与 P/N 晶体管
+    <div id="22-识图存储单元wlbl-与-pn-晶体管" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#22-%e8%af%86%e5%9b%be%e5%ad%98%e5%82%a8%e5%8d%95%e5%85%83wlbl-%e4%b8%8e-pn-%e6%99%b6%e4%bd%93%e7%ae%a1" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="SRAM 6T 与 DRAM 1T1C 存储单元电路"
+    src="./img/sram-dram-cell.png"
+    ><figcaption>课程课件：SRAM 与 DRAM 单元，以及相关问题</figcaption></figure>
+<p>上图画的是各自保存 <strong>1 bit</strong> 的单元电路，并非整片存储器。SRAM 右侧图是左侧六晶体管电路的简化表示。</p>
+<ul>
+<li>WL 与 BL</li>
+</ul>
+<table>
+	<thead>
+			<tr>
+					<th>标记</th>
+					<th>名称</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>WL</strong></td>
+					<td>Word Line，字线</td>
+					<td>由行译码结果控制，打开一行单元的接入晶体管</td>
+			</tr>
+			<tr>
+					<td><strong>BL</strong></td>
+					<td>Bit Line，位线</td>
+					<td>在单元与外围读写电路之间传递数据</td>
+			</tr>
+	</tbody>
+</table>
+<p>对图中的 NMOS 接入晶体管：</p>
+<ul>
+<li><strong>WL = 0</strong>：接入晶体管关闭，内部存储节点与位线隔离。</li>
+<li><strong>WL = 1</strong>：接入晶体管打开，可以通过位线读写。</li>
+</ul>
+<p>SRAM 简化图两侧的 WL 是同一字线信号，控制两个接入晶体管。两条配对位线在读之前可以都预充为高电平，不能把“互补位线”理解为它们在所有时刻都必须一高一低。</p>
+<ul>
+<li>PMOS、NMOS 与 CMOS 反相器</li>
+</ul>
+<p>晶体管可以先看成由栅极电压控制的开关。对图中的普通 CMOS 反相器：上方 PMOS 将输出连接到电源，下方 NMOS 将输出连接到地。</p>
+<table>
+	<thead>
+			<tr>
+					<th>输入</th>
+					<th>PMOS</th>
+					<th>NMOS</th>
+					<th>输出</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>0</td>
+					<td>导通，连接电源</td>
+					<td>关闭</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>1</td>
+					<td>关闭</td>
+					<td>导通，连接地</td>
+					<td>0</td>
+			</tr>
+	</tbody>
+</table>
+<p>因此，<strong>一个 PMOS 加一个 NMOS 可以组成一个 NOT（反相器）</strong>，输出与输入相反。图中 <code>M2、M4</code> 为 PMOS，<code>M1、M3</code> 为 NMOS；它们组成两个反相器。<code>M5、M6</code> 是由 WL 控制的 NMOS 接入晶体管。</p>
+<p>这里的“高电平导通 / 低电平导通”是针对图中连接方式的逻辑化描述；实际是否导通取决于栅源电压与阈值电压。</p>
+
+<h3 class="relative group">2.3 SRAM：两个反相器怎样记住 1 bit
+    <div id="23-sram两个反相器怎样记住-1-bit" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#23-sram%e4%b8%a4%e4%b8%aa%e5%8f%8d%e7%9b%b8%e5%99%a8%e6%80%8e%e6%a0%b7%e8%ae%b0%e4%bd%8f-1-bit" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>交叉耦合与两种稳定状态</li>
+</ul>
+<p>SRAM 把两个反相器交叉连接：<strong>每个反相器的输出，都是另一个反相器的输入</strong>，形成正反馈环。</p>
+<p>设两个内部节点为 \(Q\) 与 \(\overline Q\)，其稳定状态有两种：</p>
+<table>
+	<thead>
+			<tr>
+					<th>保存的值（以 Q 为准）</th>
+					<th>Q</th>
+					<th>互补节点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>0</td>
+					<td>0</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>0</td>
+			</tr>
+	</tbody>
+</table>
+<p>例如 \(Q=1\)、\(\overline Q=0\) 时：输入为 1 的反相器输出 0，输入为 0 的反相器输出 1，两边相互支持当前状态。只要持续供电，电路就能在正常工作条件下<strong>维持</strong>这一状态。</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          正反馈保持状态，不是反复翻转
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>两个反相器会<strong>稳定</strong>在“一边为 0、另一边为 1”的状态，不会不停地互相取反。两个互补节点共同保存 <strong>一个 bit</strong>，不是两个彼此独立的 bit。</p></div></div><ul>
+<li>保持、写入与读取</li>
+</ul>
+<ol>
+<li><strong>保持</strong>：WL 为 0，接入晶体管关闭；反馈环与位线隔离，自行保持数据，不需要周期性刷新。</li>
+<li><strong>写入</strong>：写驱动电路在两条位线上提供互补值，随后打开 WL，使内部节点改变到所需状态，再关闭 WL。</li>
+<li><strong>读取</strong>：先将两条位线预充到高电平，再打开 WL。内部保存 0 的一侧使对应位线略微放电，另一侧保持较高电压，由感应放大器检测电压差并输出数据。</li>
+</ol>
+<p>正常设计下，读操作不会翻转保存的 bit，因此不需要像 DRAM 那样在读出后恢复存储单元。这里的预充位线是为读操作准备线路，不是对 SRAM 保存的数据做周期性刷新。在后文中DRAM读取时，由于读出后需要恢复存储单元，还有漏电等问题，导致读取的时间会比SRAM要长，所以SRAM要更快一些。</p>
+
+<h3 class="relative group">2.4 DRAM：用电容保存数据
+    <div id="24-dram用电容保存数据" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#24-dram%e7%94%a8%e7%94%b5%e5%ae%b9%e4%bf%9d%e5%ad%98%e6%95%b0%e6%8d%ae" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>DRAM 的典型单元为 <strong>1T1C</strong>：一个接入晶体管、一个存储电容。电容的不同电荷状态表示 0 或 1。</p>
+<ul>
+<li><strong>写入</strong>：打开 WL，通过 BL 给电容充电或放电，达到目标状态，再关闭 WL。</li>
+<li><strong>暂时保持</strong>：关闭 WL，将电容与 BL 隔离；但电容电荷会因漏电逐渐变化，不能无限期保持。</li>
+<li><strong>读取</strong>：打开 WL，电容与预充的位线共享电荷，产生微小电压变化，由感应放大器检测、放大，并恢复单元中的电荷。</li>
+<li><strong>周期性刷新</strong>：即使没有需求访问，也要在数据失效前定期恢复各行中的电荷。</li>
+</ul>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="important">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg></span></div>
+        <div class="grow">
+          读后恢复与周期性刷新
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p><strong>读后恢复</strong>处理的是读出扰动了电容电荷；<strong>周期性刷新</strong>处理的是电荷随时间泄漏。二者相关，但触发原因不同。DRAM 读出通常称为破坏性读出，恢复由内部电路完成，程序不需要每次读取后再执行一次 Store。</p></div></div>
+<h3 class="relative group">2.5 ⭐ 面积、速度与功耗的取舍
+    <div id="25--面积速度与功耗的取舍" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#25--%e9%9d%a2%e7%a7%af%e9%80%9f%e5%ba%a6%e4%b8%8e%e5%8a%9f%e8%80%97%e7%9a%84%e5%8f%96%e8%88%8d" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>为什么 SRAM 单位容量的面积更大</li>
+</ul>
+<p>SRAM 每 bit 需要 6 个晶体管及相应连线，DRAM 每 bit 使用 1T1C；DRAM 还可以利用立体电容结构提高密度，因此单位容量通常更紧凑。同样面积下，DRAM 通常能提供更大的容量。</p>
+<p>但 <strong>6T 与 1T1C 不是面积比公式</strong>，不能据此断言 SRAM 面积恰好是 DRAM 的 6 倍。具体面积还受工艺、连线和外围电路影响。</p>
+<ul>
+<li>为什么 SRAM 通常更快</li>
+</ul>
+<p>SRAM 内部已经存在由反馈电路维持的逻辑状态，选中单元后可以驱动位线读出。DRAM 则需要检测小电容与位线共享电荷产生的微小变化，并完成放大、恢复，以及相应的行访问控制。</p>
+<p>两者读取都可能使用感应放大器，区别不是“SRAM 不需要放大、DRAM 需要放大”。实际延迟还与阵列大小、连线、外围电路和接口有关。</p>
+<p>DRAM <strong>首次打开一行</strong>的访问通常较慢；如果所需数据已经在打开的行缓冲中，后续列访问可以更快。因此不能把每次 DRAM 访问都看成完整重复一次行激活。</p>
+<ul>
+<li>为什么课件常说 SRAM 更耗电</li>
+</ul>
+<p>虽然直觉上SRAM是6个晶体管，似乎看起来确实更耗电，但是严谨一点比较，主要是同容量下较多器件带来的漏电，以及高速读写的电路开销。</p>
+<p>第一，保持数据时，实际晶体管会漏电：SRAM 每 bit 通常需要 6 个晶体管；而 DRAM 每 bit 通常只需要 1 个晶体管和 1 个电容。在相近工艺下，SRAM 每 bit 使用更多器件，通常会有较大的漏电开销。单个单元的漏电很小，但几百万、几千万个单元累加起来，就会形成明显的待机功耗。</p>
+<p>第二，读写时，字线、位线和外围电路要充放电。SRAM 用作 Cache，通常追求高频率、低延迟和较高访问吞吐量。这些高速读写活动会产生动态功耗。</p>
+
+<h3 class="relative group">2.6 阵列组织与行列寻址
+    <div id="26-阵列组织与行列寻址" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#26-%e9%98%b5%e5%88%97%e7%bb%84%e7%bb%87%e4%b8%8e%e8%a1%8c%e5%88%97%e5%af%bb%e5%9d%80" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>SRAM 和 DRAM 都可以组织成二维存储单元阵列。</strong> 6T / 1T1C 描述单元内部结构，阵列描述大量单元怎样排列，这两个层次要分开。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="./img/ram-org.png"
+    ><figcaption>SRAM 阵列组织</figcaption></figure>
+<ul>
+<li><strong>Row Decoder（行译码器）</strong>：根据行地址激活相应 WL。</li>
+<li><strong>WL（字线）</strong>：沿一行连接多个单元，控制这些单元的接入晶体管。</li>
+<li><strong>BL（位线）</strong>：沿列连接单元与感应放大器、写驱动等外围电路。</li>
+<li><strong>Column Selector（列选择器）</strong>：选择所需的位、字或输出数据。</li>
+</ul>
+<p>DRAM 的经典接口还会将行地址与列地址分阶段传递，以复用地址引脚：</p>
+<ul>
+<li><strong>RAS（Row Address Strobe）</strong>：用于行地址的选通 / 锁存，触发行选择。</li>
+<li><strong>CAS（Column Address Strobe）</strong>：用于列地址的选通 / 锁存，触发列选择。</li>
+</ul>
+<p>这些名称体现经典 DRAM 接口的原理；现代 SDRAM / DDR 通过时钟与命令编码完成相应操作，不能把它们简单理解为两根信号分别独立地“直接读取行和列”。</p>
+<p>延伸阅读：<a href="https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/resources/sram-6-58-/"  target="_blank" rel="noreferrer">MIT SRAM 单元与读写</a>、<a href="https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/resources/dram-5-10-/"  target="_blank" rel="noreferrer">MIT DRAM 单元与刷新</a>、<a href="https://www.ti.com/video/6276930091001"  target="_blank" rel="noreferrer">TI CMOS 反相器</a>、<a href="https://www.ti.com/lit/pdf/scaa035"  target="_blank" rel="noreferrer">TI CMOS 功耗</a>。</p>
+
+<h2 class="relative group">三、Cache 的工作原理与设计问题
+    <div id="三cache-的工作原理与设计问题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%89cache-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86%e4%b8%8e%e8%ae%be%e8%ae%a1%e9%97%ae%e9%a2%98" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">3.1 局部性：Cache 为什么有效
+    <div id="31-局部性cache-为什么有效" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#31-%e5%b1%80%e9%83%a8%e6%80%a7cache-%e4%b8%ba%e4%bb%80%e4%b9%88%e6%9c%89%e6%95%88" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+	<thead>
+			<tr>
+					<th>局部性</th>
+					<th>含义</th>
+					<th>例子</th>
+					<th>对 Cache 的启发</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>时间局部性 Temporal Locality</strong></td>
+					<td>最近访问过的内容，很可能再次访问</td>
+					<td>循环体指令、反复读取的变量</td>
+					<td>将近期使用的数据保留在靠近 CPU 的位置</td>
+			</tr>
+			<tr>
+					<td><strong>空间局部性 Spatial Locality</strong></td>
+					<td>访问某个地址后，很可能访问附近地址</td>
+					<td>顺序遍历数组、顺序取指</td>
+					<td>每次搬入连续的一块数据，而非单个字节</td>
+			</tr>
+	</tbody>
+</table>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>对 <code>a[i]</code> 的连续读取体现空间局部性；循环体指令反复执行体现时间局部性（这里说的是<strong>指令</strong>）。<code>sum</code> 在源代码中反复使用，但编译后可能一直放在寄存器中，未必每次都访问数据 Cache。</p>
+
+<h3 class="relative group">3.2 工作集：Cache 需要保留哪些数据
+    <div id="32-工作集cache-需要保留哪些数据" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#32-%e5%b7%a5%e4%bd%9c%e9%9b%86cache-%e9%9c%80%e8%a6%81%e4%bf%9d%e7%95%99%e5%93%aa%e4%ba%9b%e6%95%b0%e6%8d%ae" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>程序在一段时间内，往往只集中访问整个地址空间的一小部分，即当前的 <strong>工作集 Working Set</strong>。只要上层 Cache 能保留当前经常使用的块，就可能用有限容量服务大量访问。</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="tip">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          工作集 Working Set
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>在当时的OS课程中（见下方文章链接），工作集 <code>W(t, Δ)</code> 定义为：在当前<code>t</code>时刻，进程在过去的<code>Δ</code>个虚拟时间单位中使用的虚拟页面集合；并设计出一种算法，估计应保留哪些页面，减少缺页和抖动。
+工作集虽然以页面定义，但可以推广到其他命名的信息单位，所以应用到 Cache 块是自然的推广。比如统计单位从页面推广到 Cache 块；虽然没有明确的统计时间窗口，但可以泛指某一个执行时间段；用途也差不多，用于估计哪些块能够被缓存，减少失效。</p></div></div>
+
+
+
+
+  
+
+
+  <section class="space-y-10 w-full">
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+
+    
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+      
+      
+    
+
+    
+    
+      
+    
+  
+
+
+
+<article class="article-link--shortcode flex flex-col md:flex-row relative overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
+  
+  <div class=" p-4 pt-2">
+    <header class="items-center text-start text-xl font-semibold">
+      <a
+        
+          href="/os/study_notes/6-virtual_memory_management/"
+        
+        class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
+        <h2>
+          操作系统笔记6：虚拟内存管理
+          
+        </h2>
+      </a>
+      
+      
+    </header>
+    <div class="text-sm text-neutral-500 dark:text-neutral-400">
+      
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-04-21T00:00:00&#43;00:00">2026/04/21</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-14T13:09:20&#43;08:00">Updated: 2026/05/14</time><span class="px-2 text-primary-500">&middot;</span><span>8354 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">42 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
+    
+    
+      
+      
+        
+        
+      
+      
+    
+  
+  <span
+    id="views_os/study_notes/6-virtual_memory_management/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="views"
+    >loading</span
+  >
+  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+<path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></span>
+</span>
+<span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
+    
+    
+      
+      
+        
+        
+      
+      
+    
+  
+  <span
+    id="likes_os/study_notes/6-virtual_memory_management/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes"
+    >loading</span
+  >
+  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></span></span>
+</span>
+
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+
+
+
+    </div>
+    
+      
+      <div
+        class="article-link__summary prose dark:prose-invert max-w-fit mt-1 line-clamp-3">
+        
+      </div>
+    
+  </div>
+</article>
+
+  </section>
+
+
+
+<h3 class="relative group">3.3 基本单位：Block、Line、Set、Way
+    <div id="33-基本单位blocklinesetway" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#33-%e5%9f%ba%e6%9c%ac%e5%8d%95%e4%bd%8dblocklinesetway" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+	<thead>
+			<tr>
+					<th>术语</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Block，块</strong></td>
+					<td>在相邻存储层次之间搬运数据的基本单位</td>
+			</tr>
+			<tr>
+					<td><strong>Cache Line，缓存行</strong></td>
+					<td>Cache 中容纳一个块的位置，并配有 Tag、Valid 等元数据</td>
+			</tr>
+			<tr>
+					<td><strong>Set，组</strong></td>
+					<td>按 Index 选中的候选行集合</td>
+			</tr>
+			<tr>
+					<td><strong>Way，路</strong></td>
+					<td>一组中的一个候选位置；A 路组相联表示每组有 A 行</td>
+			</tr>
+			<tr>
+					<td><strong>Tag，标记</strong></td>
+					<td>区分映射到同一组的不同内存块</td>
+			</tr>
+			<tr>
+					<td><strong>Valid，有效位</strong></td>
+					<td>表示该行当前是否保存有效数据</td>
+			</tr>
+			<tr>
+					<td><strong>Dirty，脏位</strong></td>
+					<td>在写回策略下，表示该行是否包含尚未写入下一级的修改</td>
+			</tr>
+	</tbody>
+</table>
+<p>“缓存行大小”通常指其 <strong>数据块大小</strong>，不包含 Tag、Valid、Dirty 等元数据。做容量题时要先确认题目统计的是数据容量，还是硬件总存储开销。</p>
+
+<h3 class="relative group">3.4 访问结果：Hit 与 Miss
+    <div id="34-访问结果hit-与-miss" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#34-%e8%ae%bf%e9%97%ae%e7%bb%93%e6%9e%9chit-%e4%b8%8e-miss" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li><strong>Hit</strong>：访问的块在 Cache 中，且该行有效。</li>
+<li><strong>Miss</strong>：无法在本级 Cache 获得所需数据，需要请求下一级。</li>
+<li><strong>Hit Rate</strong>：命中次数 / 总访问次数。</li>
+<li><strong>Miss Rate</strong>：失效次数 / 总访问次数，等于 <code>1 - Hit Rate</code>。</li>
+<li><strong>Hit Time</strong>：查找本级 Cache 的时间 + 判断命中并获得数据所需的时间。</li>
+<li><strong>Miss Penalty</strong>：失效后，更换上级 Cache 的块的时间 + 获取所需数据并将数据传递给处理器的时间。</li>
+</ul>
+<p>缓存未命中有几种情况：</p>
+<ol>
+<li>Compulsory Miss: 冷启动：Cache 为空，所有块都失效。</li>
+<li>Conflict Miss: 冲突，由映射位置导致。</li>
+<li>Capacity Miss: 缓存满了，由容量不足导致。</li>
+</ol>
+
+<h3 class="relative group">3.5 Cache 性能的衡量
+    <div id="35-cache-性能的衡量" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#35-cache-%e6%80%a7%e8%83%bd%e7%9a%84%e8%a1%a1%e9%87%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>这里采用一个基本模型：<strong>Cache 命中的开销已经计入正常执行周期，只额外计算失效和写缓冲造成的停顿</strong>，暂不考虑多个访存请求之间的重叠。</p>
+<p><strong>AMAT（Average Memory Access Time，平均访存时间）</strong>：</p>
+<p>$ AMAT=\text{Hit Time}+\text{Miss Rate}\times \text{Miss Penalty} $</p>
+<ul>
+<li><strong>Hit Time</strong>：查找本级 Cache、判断命中并获得数据的时间。</li>
+<li><strong>Miss Rate</strong>：本级失效次数占本级访问次数的比例。</li>
+<li><strong>Miss Penalty</strong>：本级失效后，获取数据所需的额外时间，不包含已经计入的本级查找时间。</li>
+</ul>
+<p>若命中耗时为 \(H\)，失效率为 \(r\)，失效的额外代价为 \(P\)，则：</p>
+$$
+AMAT=(1-r)H+r(H+P)=H+rP
+$$<p>计算时，各项时间单位必须统一，例如全部使用 ns，或全部使用同一时钟下的周期数。</p>
+<p><strong>AMAT 衡量每次访存的平均代价；CPI 衡量每条指令的平均周期数；CPU 执行时间衡量整个程序的运行时间。</strong></p>
+
+<h3 class="relative group">3.6 四个设计问题：放置、查找、替换与写入
+    <div id="36-四个设计问题放置查找替换与写入" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#36-%e5%9b%9b%e4%b8%aa%e8%ae%be%e8%ae%a1%e9%97%ae%e9%a2%98%e6%94%be%e7%bd%ae%e6%9f%a5%e6%89%be%e6%9b%bf%e6%8d%a2%e4%b8%8e%e5%86%99%e5%85%a5" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+	<thead>
+			<tr>
+					<th>设计问题</th>
+					<th>对应策略</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>一个内存块能放在 Cache 的哪些位置？</td>
+					<td>Placement：直接映射、组相联、全相联</td>
+			</tr>
+			<tr>
+					<td>怎样判断需要的块是否在 Cache？</td>
+					<td>Identification：Index 选组，Valid 与 Tag 判断命中</td>
+			</tr>
+			<tr>
+					<td>空间不足时替换哪个块？</td>
+					<td>Replacement：LRU、FIFO、Random、PLRU 等</td>
+			</tr>
+			<tr>
+					<td>CPU 写数据时如何更新各层？</td>
+					<td>Write policy：写直达 / 写回，写分配 / 不写分配</td>
+			</tr>
+	</tbody>
+</table>
+
+<h2 class="relative group">四、设计问题 1、2：块放在哪里，怎样找到它
+    <div id="四设计问题-12块放在哪里怎样找到它" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9b%9b%e8%ae%be%e8%ae%a1%e9%97%ae%e9%a2%98-12%e5%9d%97%e6%94%be%e5%9c%a8%e5%93%aa%e9%87%8c%e6%80%8e%e6%a0%b7%e6%89%be%e5%88%b0%e5%ae%83" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">4.1 统一参数与公式
+    <div id="41-统一参数与公式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#41-%e7%bb%9f%e4%b8%80%e5%8f%82%e6%95%b0%e4%b8%8e%e5%85%ac%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>以下假设：<strong>按字节寻址</strong>，容量、块大小与组数为 2 的幂，采用课件中的普通位选取映射。定义：</p>
+<ul>
+<li>地址宽度为 \(m\) 位。</li>
+<li>Cache 数据容量为 \(C\) 字节。</li>
+<li>每块大小为 \(B\) 字节。</li>
+<li>相联度为 \(A\)，即每组 \(A\) 行。</li>
+<li>Cache 总行数为 \(N\)，组数为 \(S\)。</li>
+</ul>
+$$
+N=\frac{C}{B},\qquad S=\frac{C}{BA}
+$$$$
+b=\log_2 B,\qquad s=\log_2 S,\qquad t=m-s-b
+$$<p>对于地址 \(x\)：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">地址高位                                      地址低位
+</span></span><span class="line"><span class="cl">+--------------------+--------------+------------------+
+</span></span><span class="line"><span class="cl">|       Tag          |  Set Index   |   Block Offset   |
+</span></span><span class="line"><span class="cl">|       t 位         |    s 位      |       b 位       |
+</span></span><span class="line"><span class="cl">+--------------------+--------------+------------------+</span></span></code></pre></div></div>
+
+<h3 class="relative group">4.2 直接映射 Direct Mapped(DM)
+    <div id="42-直接映射-direct-mappeddm" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#42-%e7%9b%b4%e6%8e%a5%e6%98%a0%e5%b0%84-direct-mappeddm" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>每个内存块只有一个可能的位置，相当于 <strong>1 路组相联</strong>：</p>
+$$
+A=1,\qquad S=N
+$$<p>查找时用 Index 定位唯一候选行，检查 <code>Valid == 1</code> 且 Tag 相同。</p>
+<p>优点是结构简单、比较器少、命中路径较短。缺点是不同内存块可能反复争抢同一行，产生 <strong>Ping-pong Effect（乒乓效应）</strong>。即使其他行空着，也不能随意放过去。</p>
+<p>为了解决这一问题，一个方法是，减少组的数量。<strong>假设每一个组仍然是一路</strong>，组的数量减少了，一个组中的一路的块数就可以增加了。比如，刚刚的直接映射中，组数减少一半，那么虚拟地址可以多腾出一位用来给组内的块当作一个偏移。这样，一组的一路就可以容纳更大的相邻地址了。（这里说的是Multiword Direct Mapped Cache，一组仍然是一路，但是该路内有多个块，虚拟地址需要拿出几位用来作为Block Offset，分割起来就是<code>Tag | Index of Set | Block Offset | Blocks</code>）。</p>
+<p>那<strong>假设每个组可以是多路呢</strong>？就引出了下面的组相联映射。</p>
+
+<h3 class="relative group">4.3 组相联 Set Associative(SA)
+    <div id="43-组相联-set-associativesa" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#43-%e7%bb%84%e7%9b%b8%e8%81%94-set-associativesa" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>一个块只能映射到一个组，但可以放在该组的<strong>任意一路</strong>。查找时：</p>
+<ol>
+<li>Index 选中一个组。</li>
+<li><strong>并行比较该组各路的 Valid 与 Tag</strong>。</li>
+<li>若某一路命中，用多路选择器选择对应数据。</li>
+</ol>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="1208"
+    height="722"
+    src="/arch/study_notes/6-cache/img/sac_hu_5f3d7dfc0a88cf9e.png"
+    srcset="/arch/study_notes/6-cache/img/sac_hu_5f3d7dfc0a88cf9e.png 800w, /arch/study_notes/6-cache/img/sac.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/arch/study_notes/6-cache/img/sac.png"><figcaption>图1：组相联映射</figcaption></figure>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="1402"
+    height="1144"
+    src="/arch/study_notes/6-cache/img/csapp-sac_hu_fdf414bb8e83b632.png"
+    srcset="/arch/study_notes/6-cache/img/csapp-sac_hu_fdf414bb8e83b632.png 800w, /arch/study_notes/6-cache/img/csapp-sac_hu_b2a2a2988515b94.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/arch/study_notes/6-cache/img/csapp-sac.png"><figcaption>图2：csapp中的示例图</figcaption></figure>
+<blockquote><p>我第一次看到课件上的图1示例的时候硬是没看懂咋画的，感觉和印象中csapp的图不太一样，很奇怪。后来想了想感觉也是有道理的：</p>
+<p>图1和csapp中的图2可能看起来不太一样。图2更方便理解；图1更方便呈现利用Tag的并行比较。在图2中，一个Set里面有多个Way；在图1中，一个Set是一整行，每一行分成了4个Way。然后在比较的时候，通过Index选中了一个Set后，就将4个Way的Tag与地址中的Tag并行比较。图2在理解概念的时候比较好，图1在理解过程的时候比较好。</p>
+</blockquote><p>相联度增加，通常能减少冲突失效，但需要更多比较器和选择逻辑，可能增加面积、功耗与 Hit Time。</p>
+
+<h3 class="relative group">4.4 全相联 Fully Associative(FA)
+    <div id="44-全相联-fully-associativefa" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#44-%e5%85%a8%e7%9b%b8%e8%81%94-fully-associativefa" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>一个块可以放在 Cache 任意位置，相当于 <strong>只有一组，组内包含全部行</strong>，没有 Set Index，地址只需拆成 Tag 和 Offset。全相联消除了固定组映射导致的冲突，但比较硬件昂贵，容量失效和冷失效仍然存在。</p>
+<table>
+	<thead>
+			<tr>
+					<th>映射方式</th>
+					<th>组数</th>
+					<th>每组行数</th>
+					<th>普通并行查找时的 Tag 比较数量</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>直接映射</td>
+					<td>\(N\)</td>
+					<td>1</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>A 路组相联</td>
+					<td>\(N/A\)</td>
+					<td>\(A\)</td>
+					<td>\(A\)</td>
+			</tr>
+			<tr>
+					<td>全相联</td>
+					<td>1</td>
+					<td>\(N\)</td>
+					<td>\(N\)</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>对于全相连来说，每个地址可以映射在任意一行，所以不会出现Conflict Miss。</strong></p>
+
+<h2 class="relative group">五、回看 Cache Miss：三类失效（3C）
+    <div id="五回看-cache-miss三类失效3c" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%94%e5%9b%9e%e7%9c%8b-cache-miss%e4%b8%89%e7%b1%bb%e5%a4%b1%e6%95%883c" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<table>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>原因</th>
+					<th>常见改善方向</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Compulsory Miss，冷失效 / 首次访问失效</strong></td>
+					<td>第一次需求访问一个尚未载入的块</td>
+					<td>利用空间局部性，或提前预取</td>
+			</tr>
+			<tr>
+					<td><strong>Capacity Miss，容量失效</strong></td>
+					<td>Cache 容量无法保留需要重用的全部块</td>
+					<td>增大容量，分块计算，缩小工作集</td>
+			</tr>
+			<tr>
+					<td><strong>Conflict Miss，冲突失效</strong></td>
+					<td>固定映射使一些块争抢少数组</td>
+					<td>增加相联度，调整布局，使用 Victim Cache</td>
+			</tr>
+	</tbody>
+</table>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="课件用一个写 0x1234 的例子区分 3C"
+    src="./img/three-cs.webp"
+    ><figcaption>只有 4 条 cacheline 时，三种失效的直观区别</figcaption></figure>
+<p>上图把三种失效放回同一个场景：写 <code>0x1234</code> 时，块从未载入就是 <strong>Compulsory</strong>；多个地址抢同一个 cacheline 是 <strong>Conflict</strong>；即使允许放到任意位置、Cache 也装不下全部数据，是 <strong>Capacity</strong>。</p>
+<blockquote><p>怎样区分容量失效与冲突失效？</p>
+<p>在常见的 LRU 3C 分析口径下，可以维护一个<strong>数据容量与块大小相同的全相联 LRU Cache 作为参照</strong>：</p>
+<ol>
+<li>如果这个块从未访问过，归为 Compulsory。</li>
+<li>不是首次访问，<em>参照 Cache</em> 也 Miss，归为 Capacity。</li>
+<li><em>参照 Cache</em> Hit，而实际 Cache Miss，归为 Conflict。</li>
+</ol>
+</blockquote>
+<h2 class="relative group">六、设计问题 3：Cache 满了替换谁
+    <div id="六设计问题-3cache-满了替换谁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ad%e8%ae%be%e8%ae%a1%e9%97%ae%e9%a2%98-3cache-%e6%bb%a1%e4%ba%86%e6%9b%bf%e6%8d%a2%e8%b0%81" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">6.1 替换范围与基本策略：Random、FIFO、LRU、NRU
+    <div id="61-替换范围与基本策略randomfifolrunru" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#61-%e6%9b%bf%e6%8d%a2%e8%8c%83%e5%9b%b4%e4%b8%8e%e5%9f%ba%e6%9c%ac%e7%ad%96%e7%95%a5randomfifolrunru" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Miss 后，先确定目标组。如果存在无效行，优先使用它；只有目标组没有可用位置时，才在该组内选择victim。直接映射只有一个候选位置，无须在多路中选择。</p>
+<table>
+	<thead>
+			<tr>
+					<th>策略</th>
+					<th>选择规则</th>
+					<th>特点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Random</td>
+					<td>随机选一行</td>
+					<td>实现简单</td>
+			</tr>
+			<tr>
+					<td>FIFO</td>
+					<td>替换最早进入的一行</td>
+					<td>命中通常不改变进入顺序</td>
+			</tr>
+			<tr>
+					<td>LRU</td>
+					<td>替换最久没有访问的一行</td>
+					<td>利用时间局部性，命中也更新顺序</td>
+			</tr>
+			<tr>
+					<td>NRU / NMRU</td>
+					<td>依据近期访问标记，或避免替换最近使用者</td>
+					<td>对 LRU 的近似</td>
+			</tr>
+			<tr>
+					<td>Tree-PLRU</td>
+					<td>用二叉树方向位近似记录新旧关系</td>
+					<td>元数据少，但不保证与真正 LRU 相同</td>
+			</tr>
+	</tbody>
+</table>
+<p>补充两点：</p>
+<ul>
+<li><strong>LRU 要淘汰的是 reuse distance（重用距离）最长的块</strong>，也就是“下一次再被访问间隔最久”的那一行；实现上才退化成时间戳或访问顺序。</li>
+<li><strong>课件的硬件实例</strong>：Itanium 2 的 L1、L2、L3 都用 NRU，而不是精确 LRU。路数一多，精确 LRU 的更新与比较代价就下不来。</li>
+</ul>
+
+<h3 class="relative group">6.2 LRU 的近似：Pseudo-LRU（PLRU）
+    <div id="62-lru-的近似pseudo-lruplru" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#62-lru-%e7%9a%84%e8%bf%91%e4%bc%bcpseudo-lruplru" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>进一步阅读：<a href="https://en.wikipedia.org/wiki/Pseudo-LRU"  target="_blank" rel="noreferrer">Pseudo-LRU</a>。</p>
+<p>对于相联度较高（通常超过四路）的 CPU Cache，LRU 的实现成本会高到难以接受。在许多 CPU Cache 中，只要算法几乎总能淘汰那些最久未使用的条目中的一个，就已经足够了；许多 CPU 设计者因此选择 PLRU 算法，它只需要为每个缓存条目使用一个比特即可工作。与 LRU 相比，PLRU 的失效率通常略高，延迟略低，功耗略低，实现开销也更低。</p>
+<p>这些比特构成一棵由单比特指针组成的二叉树，每个指针都指向较久未使用的子树。沿着指针链走到叶节点，就能确定待替换的候选项。每次访问时，从被访问路的叶节点到根节点这条路径上的所有指针，都会被设置为指向不包含此次访问路径的子树。下面例子中的访问序列是 <code>A B C D E</code>：</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="Pseudo-LRU 示例：依次访问 A、B、C、D、E 时，缓存内容与二叉树方向指针的变化"
+    src="./img/plru-wikipedia.png"
+    ></figure>
+<p>当访问某个值（例如 A），而它不在 Cache 中时，就从内存中加载它，并放入示例中箭头所指向的块。放入之后，箭头就会翻转，指向相反方向。A、B、C、D 依次被放入；Cache 已满时，E 会替换 A，因为箭头当时指向 A。原先通向 A 的箭头随后翻转，指向相反方向（即指向 B，B 将是下一次 Cache Miss 时被替换的块）。</p>
+<blockquote><p>译文来源：维基百科贡献者，<a href="https://en.wikipedia.org/w/index.php?title=Cache_replacement_policies&amp;oldid=1376205644#Pseudo-LRU_%28PLRU%29"  target="_blank" rel="noreferrer">《Cache replacement policies》“Pseudo-LRU (PLRU)”一节</a>。以上三段正文为中文翻译，译文沿用 <a href="https://creativecommons.org/licenses/by-sa/4.0/"  target="_blank" rel="noreferrer">CC BY-SA 4.0</a> 许可。</p>
+</blockquote>
+<h3 class="relative group">6.3 Clock / Second Chance
+    <div id="63-clock--second-chance" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#63-clock--second-chance" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>每个候选项保存引用位 R，另有一个循环扫描的指针：</p>
+<ol>
+<li>访问某项时，设置 <code>R = 1</code>。</li>
+<li>替换时，若指针所指项 <code>R = 0</code>，选中它。</li>
+<li>若 <code>R = 1</code>，清为 0，指针继续前进，给它一次机会。</li>
+</ol>
+<p>这里与下文中的页面置换思想相通，但 Cache 行与虚拟内存页的大小、管理者和访问代价不同。</p>
+
+
+
+
+
+  
+
+
+  <section class="space-y-10 w-full">
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+
+    
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+      
+      
+    
+
+    
+    
+      
+    
+  
+
+
+
+<article class="article-link--shortcode flex flex-col md:flex-row relative overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
+  
+  <div class=" p-4 pt-2">
+    <header class="items-center text-start text-xl font-semibold">
+      <a
+        
+          href="/os/study_notes/6-virtual_memory_management/"
+        
+        class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
+        <h2>
+          操作系统笔记6：虚拟内存管理
+          
+        </h2>
+      </a>
+      
+      
+    </header>
+    <div class="text-sm text-neutral-500 dark:text-neutral-400">
+      
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-04-21T00:00:00&#43;00:00">2026/04/21</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-05-14T13:09:20&#43;08:00">Updated: 2026/05/14</time><span class="px-2 text-primary-500">&middot;</span><span>8354 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">42 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
+    
+    
+      
+      
+        
+        
+      
+      
+    
+  
+  <span
+    id="views_os/study_notes/6-virtual_memory_management/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="views"
+    >loading</span
+  >
+  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+<path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></span>
+</span>
+<span class="px-2 text-primary-500">&middot;</span><span>
+  
+  
+    
+    
+      
+      
+        
+        
+      
+      
+    
+  
+  <span
+    id="likes_os/study_notes/6-virtual_memory_management/index.md"
+    class="animate-pulse inline-block text-transparent max-h-3 rounded-full -mt-[2px] align-middle bg-neutral-300 dark:bg-neutral-400"
+    title="likes"
+    >loading</span
+  >
+  <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg></span></span>
+</span>
+
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+
+
+
+    </div>
+    
+      
+      <div
+        class="article-link__summary prose dark:prose-invert max-w-fit mt-1 line-clamp-3">
+        
+      </div>
+    
+  </div>
+</article>
+
+  </section>
+
+
+
+<h2 class="relative group">七、设计问题 4：写入时怎么办
+    <div id="七设计问题-4写入时怎么办" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%83%e8%ae%be%e8%ae%a1%e9%97%ae%e9%a2%98-4%e5%86%99%e5%85%a5%e6%97%b6%e6%80%8e%e4%b9%88%e5%8a%9e" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">7.1 写命中：Write-through 与 Write-back
+    <div id="71-写命中write-through-与-write-back" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#71-%e5%86%99%e5%91%bd%e4%b8%adwrite-through-%e4%b8%8e-write-back" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+	<thead>
+			<tr>
+					<th>策略</th>
+					<th>写命中时做什么</th>
+					<th>代价与配套机制</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Write-through，写直达</strong></td>
+					<td>更新本级，同时将写操作发送到下一级</td>
+					<td>下级写流量较多，通常配 Write Buffer</td>
+			</tr>
+			<tr>
+					<td><strong>Write-back，写回</strong></td>
+					<td>先只更新本级，设置 Dirty</td>
+					<td><strong>驱逐脏块时才写回</strong>，减少重复写流量，但控制更复杂</td>
+			</tr>
+	</tbody>
+</table>
+<p>Write Buffer 可以暂存对下一级的写请求，让 CPU 不必等待每一次下级写入完成；缓冲区满、存在相关读请求等情况仍可能造成等待。</p>
+<p>Write-back 中，干净块可以直接丢弃；脏块被驱逐时，需要将最新数据交给下一级，保证数据一致性。这里的“下一级”可能是 L2 或 L3，不一定直接是 DRAM。</p>
+
+<h3 class="relative group">7.2 写失效：Write-allocate 与 No-write-allocate
+    <div id="72-写失效write-allocate-与-no-write-allocate" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#72-%e5%86%99%e5%a4%b1%e6%95%88write-allocate-%e4%b8%8e-no-write-allocate" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+	<thead>
+			<tr>
+					<th>策略</th>
+					<th>写失效时做什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Write-allocate，写分配</strong></td>
+					<td>分配缓存行，通常先从下一级取回块，再修改目标字节或字</td>
+			</tr>
+			<tr>
+					<td><strong>No-write-allocate，不写分配</strong></td>
+					<td>不为本次写失效在本级分配行，将写请求发送到下一级</td>
+			</tr>
+	</tbody>
+</table>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="warning">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          课件“不必检查命中、不必停顿”的说法
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>第 59 页对 write allocate 写的是：直接把字写进 Cache、同时更新 tag 和 data，不必检查是否命中，也不必让流水线停顿。这只在<strong>整个块被完整覆盖</strong>时成立：此时不需要旧数据，可以不先取回整块（write-validate）。普通的部分写入仍需要块中其余字节的旧值，必须先取回整块，否则会把同块的其他数据写坏。</p></div></div><p>常见组合是 <strong>Write-back + Write-allocate</strong> 与 <strong>Write-through + No-write-allocate</strong>。这两组问题相互独立，常见组合并非唯一可能的组合。</p>
+
+<h3 class="relative group">7.3 补充例题：连续写同一行
+    <div id="73-补充例题连续写同一行" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#73-%e8%a1%a5%e5%85%85%e4%be%8b%e9%a2%98%e8%bf%9e%e7%bb%ad%e5%86%99%e5%90%8c%e4%b8%80%e8%a1%8c" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>假设 Cache 初始为空，<code>x</code>、<code>y</code> 位于同一块，依次执行 <code>store x</code>、<code>store y</code>、<code>store x</code>：</p>
+<ul>
+<li><strong>WB + WA</strong>：第一次写失效时取回块，随后三次修改都在 Cache 内完成；最终驱逐时统一写回脏块。</li>
+<li><strong>WT + NWA</strong>：本级始终没有载入该块，三次写都发送到下一级；能否在缓冲区中合并，取决于额外机制。</li>
+</ul>
+
+<h2 class="relative group">八、从性能衡量到 Cache 优化：AMAT 与 CPI
+    <div id="八从性能衡量到-cache-优化amat-与-cpi" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ab%e4%bb%8e%e6%80%a7%e8%83%bd%e8%a1%a1%e9%87%8f%e5%88%b0-cache-%e4%bc%98%e5%8c%96amat-%e4%b8%8e-cpi" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>AMAT: Average Memory Access Time</p>
+<p>可以通过降低AMAT来提高访存效率。</p>
+
+<h3 class="relative group">8.1 单级 AMAT
+    <div id="81-单级-amat" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#81-%e5%8d%95%e7%ba%a7-amat" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+$$
+AMAT=HitTime+MissRate\times MissPenalty
+$$<p>在本文的口径下，命中耗时 \(H\)，失效耗时 \(H+P\)，所以：</p>
+$$
+AMAT=(1-r)H+r(H+P)=H+rP
+$$<p>补充例子：Hit Time 为 1 ns，Miss Rate 为 5%，额外 Miss Penalty 为 50 ns：</p>
+$$
+AMAT=1+0.05\times50=3.5\text{ ns}
+$$
+<h3 class="relative group">8.2 AMAT 与 CPI
+    <div id="82-amat-与-cpi" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#82-amat-%e4%b8%8e-cpi" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>AMAT 是每次访存的平均耗时；CPI 是每条指令的平均周期数。</strong> 把 Cache Miss 的额外等待分摊到每条指令上，可得：</p>
+$$
+CPI=CPI_{base}+CPI_{stall},\qquad T_{CPU}=IC\times CPI\times T_{clk}
+$$<p>其中，\(IC\) 是执行的指令条数，\(T_{clk}\) 是一个周期的时长；\(CPI_{base}\) 已包含正常命中成本，\(CPI_{stall}\) 只计算 Miss 的额外停顿。</p>
+<p>在每条指令取指一次、每条 Load / Store 访问数据一次，且 Miss 等待不重叠的简化模型下：</p>
+$$
+CPI_{stall}=\underbrace{r_I P_I}_{\text{取指停顿}}+\underbrace{f_{LD/ST}\,r_D P_D}_{\text{数据访问停顿}}
+$$<p>\(r_I,r_D\) 是指令、数据 Cache 的失效率，\(P_I,P_D\) 是每次 Miss 的额外周期数。<strong>所有指令都要取指，但只有 Load / Store 访问数据，所以数据项要乘它们所占的比例 \(f_{LD/ST}\)。</strong></p>
+
+<h3 class="relative group">8.3 例题：CPU 变快，内存等待占比反而增大
+    <div id="83-例题cpu-变快内存等待占比反而增大" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#83-%e4%be%8b%e9%a2%98cpu-%e5%8f%98%e5%bf%ab%e5%86%85%e5%ad%98%e7%ad%89%e5%be%85%e5%8d%a0%e6%af%94%e5%8f%8d%e8%80%8c%e5%a2%9e%e5%a4%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>已知基础 CPI 为 2，I-Cache 失效率 2%，D-Cache 失效率 4%，Load / Store 占 36%，每次 Miss 额外等待 100 周期：</p>
+$$
+CPI_{stall}=2\%\times100+36\%\times4\%\times100=3.44
+$$<p>因此总 CPI 为 \(2+3.44=5.44\)，等待占比为 \(3.44/5.44\approx63\%\)。下面分别考虑两个独立改进，假设原时钟周期为 1 ns，失效率和内存的实际等待时间不变：</p>
+<table>
+	<thead>
+			<tr>
+					<th>指标</th>
+					<th>原配置</th>
+					<th>只把基础 CPI 降到 1</th>
+					<th>只把主频翻倍</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>时钟周期</td>
+					<td>1 ns</td>
+					<td>1 ns</td>
+					<td>0.5 ns</td>
+			</tr>
+			<tr>
+					<td>基础 CPI</td>
+					<td>2</td>
+					<td>1</td>
+					<td>2</td>
+			</tr>
+			<tr>
+					<td>每次 Miss 的代价</td>
+					<td>100 周期</td>
+					<td>100 周期</td>
+					<td>200 周期</td>
+			</tr>
+			<tr>
+					<td>停顿 CPI</td>
+					<td>3.44</td>
+					<td>3.44</td>
+					<td>6.88</td>
+			</tr>
+			<tr>
+					<td>总 CPI</td>
+					<td>5.44</td>
+					<td>4.44</td>
+					<td>8.88</td>
+			</tr>
+			<tr>
+					<td>平均每条指令耗时：CPI × 周期时长</td>
+					<td>5.44 ns</td>
+					<td>4.44 ns</td>
+					<td>4.44 ns</td>
+			</tr>
+			<tr>
+					<td>等待时间占比</td>
+					<td>63%</td>
+					<td>77%</td>
+					<td>77%</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>主频翻倍后，同样的内存等待时间跨越了两倍的 CPU 周期，所以 Miss Penalty 从 100 变成 200 周期；实际等待并没有变长。</strong></p>
+<p>两种改进都只缩短正常执行时间，没有缩短内存等待，因此加速比只有 \(5.44/4.44\approx1.23\)，达不到 2 倍。这就是需要继续优化 Cache 的原因。</p>
+<blockquote><p>课件部分公式把总 CPI 误标为 \(CPI_{stall}\)：原配置中，3.44 是停顿 CPI，5.44 才是总 CPI。</p>
+</blockquote>
+<h3 class="relative group">8.4 从 AMAT 出发组织优化方法
+    <div id="84-从-amat-出发组织优化方法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#84-%e4%bb%8e-amat-%e5%87%ba%e5%8f%91%e7%bb%84%e7%bb%87%e4%bc%98%e5%8c%96%e6%96%b9%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+$$
+AMAT=HitTime+MissRate\times MissPenalty
+$$<p>后面的优化围绕两个主要目标展开：</p>
+<table>
+	<thead>
+			<tr>
+					<th>目标</th>
+					<th>要解决的问题</th>
+					<th>对应内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Goal 1：Miss Penalty ↓</strong></td>
+					<td>已经 Miss 了，怎样减少等待？</td>
+					<td>第九章：多级 Cache、Early Restart / Critical Word First、写缓冲与写合并、非阻塞 Cache 与 MSHR</td>
+			</tr>
+			<tr>
+					<td><strong>Goal 2：Miss Rate ↓</strong></td>
+					<td>怎样让需求访问更少发生 Miss？</td>
+					<td>第十章：Cache 组织调整、预取、循环与数据布局优化</td>
+			</tr>
+	</tbody>
+</table>
+<p>第十一章补充 Hit Time 的优化，第十二章综合比较三项指标之间的取舍。阅读每种技术时，先问“它主要改变哪一项”，再看实现方法与代价。</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="note">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          区分访问延迟与 CPU 停顿
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>对简单串行访问模型，可以直接使用上面的 AMAT 公式。非阻塞 Cache 等技术允许访存重叠，主要隐藏等待；它们可能既不减少 Miss 次数，也不缩短单个请求的完成时间，却仍能加快程序执行。</p></div></div>
+<h2 class="relative group">九、Goal 1：降低 Miss Penalty
+    <div id="九goal-1降低-miss-penalty" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b9%9dgoal-1%e9%99%8d%e4%bd%8e-miss-penalty" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>目标是：<strong>Miss 已经发生时，让 CPU 少等一会儿。</strong> 可以让请求在更近的下级 Cache 中得到满足，也可以优先返回所需数据，或者用缓冲与并行执行隐藏等待。</p>
+<p>本章按“多级 Cache → 优先返回关键字 → 写缓冲与写合并 → 非阻塞 Cache 与 MSHR”的顺序展开。其中，多级 Cache 直接降低上一级失效后的平均访问代价；非阻塞等技术主要减少 CPU 实际承受的停顿，不一定缩短单个 Miss 的服务时间。</p>
+
+<h3 class="relative group">9.1 方案一：多级 Cache
+    <div id="91-方案一多级-cache" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#91-%e6%96%b9%e6%a1%88%e4%b8%80%e5%a4%9a%e7%ba%a7-cache" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+
+<h4 class="relative group">9.1.1 多级 Cache 的作用
+    <div id="911-多级-cache-的作用" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#911-%e5%a4%9a%e7%ba%a7-cache-%e7%9a%84%e4%bd%9c%e7%94%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>L1 主要追求低延迟，容量较小；更低层的 Cache 用较大容量减少昂贵的主存访问。L1 失效后，如果 L2 命中，就不必一直访问到 DRAM。</p>
+<p>补充：对按层次串行查找的两级模型：</p>
+$$
+AMAT=H_1+r_1\left(H_2+r_{2,local}P_{mem}\right)
+$$<p>其中 \(H_2\) 是进入 L2 后的查找时间，\(P_{mem}\) 是 L2 失效后的额外主存代价。若计时起止点不同，需要相应调整公式。</p>
+
+<h4 class="relative group">9.1.2 多级 Cache 的组织：Inclusive、Exclusive、Non-inclusive
+    <div id="912-多级-cache-的组织inclusiveexclusivenon-inclusive" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#912-%e5%a4%9a%e7%ba%a7-cache-%e7%9a%84%e7%bb%84%e7%bb%87inclusiveexclusivenon-inclusive" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<table>
+	<thead>
+			<tr>
+					<th>组织方式</th>
+					<th>上下级块的关系</th>
+					<th>需要注意</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Inclusive，包含式</strong></td>
+					<td>上层存在的块也必须存在于相应下层</td>
+					<td>下层驱逐某块时，可能需要使上层对应副本失效，即 Back-invalidation</td>
+			</tr>
+			<tr>
+					<td><strong>Exclusive，互斥式</strong></td>
+					<td>所讨论的上下两层不同时保留同一块</td>
+					<td>可以提高合计有效容量，但块在层间迁移需要管理</td>
+			</tr>
+			<tr>
+					<td><strong>Non-inclusive，非包含式</strong></td>
+					<td>不要求包含，也不要求互斥</td>
+					<td>上下层可能保留重复块，也可能没有重复</td>
+			</tr>
+	</tbody>
+</table>
+<p>Inclusive 约束的是块的存在关系，不表示在 Write-back 情况下两层数据每时每刻都完全相同。Non-inclusive 也不能直接等同于 Exclusive。</p>
+
+<h3 class="relative group">9.2 方案二：Early Restart 与 Critical Word First
+    <div id="92-方案二early-restart-与-critical-word-first" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#92-%e6%96%b9%e6%a1%88%e4%ba%8cearly-restart-%e4%b8%8e-critical-word-first" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>CPU 当前可能只需要整个块中的一个字，不必等全部字都到齐才继续。</p>
+<ul>
+<li><strong>Early Restart</strong>：仍按既定顺序取块，所需字一到达就恢复 CPU。</li>
+<li><strong>Critical Word First</strong>：优先请求当前最需要的字，到达后立即交给 CPU，其余字随后填充。</li>
+</ul>
+<p>二者都能降低当前请求感受到的失效等待时间，但不一定减少搬运整个块的总流量。</p>
+
+<h3 class="relative group">9.3 方案三：写合并（Write Combining）
+    <div id="93-方案三写合并write-combining" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#93-%e6%96%b9%e6%a1%88%e4%b8%89%e5%86%99%e5%90%88%e5%b9%b6write-combining" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>写缓冲将写请求暂存起来，使 CPU 不必每次都等待下一级写入完成；缓冲满时仍可能停顿。在满足数据依赖与顺序要求的前提下，让读 Miss 优先于缓冲中的写请求，也可以减少 CPU 等待读取结果的时间。</p>
+<p>对同一区域的多个写操作，可以在缓冲区内收集并合并，再以更少的下层传输发送。例如对同一缓存行中相邻地址的多次小写入，可能合成较大的一次传输。</p>
+<p><strong>Write Buffer</strong> 侧重缓冲写请求、解耦等待；<strong>Write Combining Buffer</strong> 还会尝试合并写操作。两种能力可以结合，但不能直接当成同一个概念。</p>
+<p>课件以 x86 的 **MTRR（Memory Type Range Register）**说明应用背景：它为不同物理地址区间指定缓存类型，可用 <code>cat /proc/mtrr</code> 查看。x86 定义了 5 种内存类型：</p>
+<table>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>全称</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>UC</strong></td>
+					<td>Uncacheable</td>
+					<td>完全绕过 Cache 子系统</td>
+			</tr>
+			<tr>
+					<td><strong>USWC / WC</strong></td>
+					<td>Uncacheable Speculative Write-Combining</td>
+					<td>不经 Cache，但经过 Write Combining Buffer</td>
+			</tr>
+			<tr>
+					<td><strong>WB</strong></td>
+					<td>Write Back</td>
+					<td>允许写回，即前文的 Write-back</td>
+			</tr>
+			<tr>
+					<td><strong>WT</strong></td>
+					<td>Write Through</td>
+					<td>写直达</td>
+			</tr>
+			<tr>
+					<td><strong>WP</strong></td>
+					<td>Write Protected</td>
+					<td>写保护，普通用户态写入受限</td>
+			</tr>
+	</tbody>
+</table>
+<p>写合并只对 USWC 区间生效。要显式使用这类内存，可用非临时（non-temporal）指令，如 <code>movntdqa</code>（load）与 <code>movntdq</code>（store）。课件第 66 页的示意图中，<code>Mem[100]</code>、<code>Mem[108]</code>、<code>Mem[116]</code>、<code>Mem[124]</code> 落在同一行内被合并成一次传输，而 <code>Mem[400]</code>、<code>Mem[900]</code> 各自占一行。非临时访问的可见性与顺序规则和普通 WB 内存不同，具体约束要按架构手册核对。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="./img/write-combining.png"
+    ></figure>
+
+<h3 class="relative group">9.4 方案四：非阻塞 Cache
+    <div id="94-方案四非阻塞-cache" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#94-%e6%96%b9%e6%a1%88%e5%9b%9b%e9%9d%9e%e9%98%bb%e5%a1%9e-cache" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+
+<h4 class="relative group">9.4.1 Blocking、Hit under Miss 与 Miss under Miss
+    <div id="941-blockinghit-under-miss-与-miss-under-miss" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#941-blockinghit-under-miss-%e4%b8%8e-miss-under-miss" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<ul>
+<li><strong>Blocking Cache</strong>：一个 Miss 未完成时，Cache 对后续请求的服务受到阻塞。</li>
+<li><strong>Hit under Miss</strong>：已有 Miss 正在等待，仍可服务其他命中的访问。</li>
+<li><strong>Miss under Miss</strong>：允许继续发起其他失效请求，同时保留多个尚未完成的 Miss。</li>
+</ul>
+<p>非阻塞 Cache 能与乱序执行配合，让独立访存重叠，增加 <strong>Memory-Level Parallelism（MLP，访存级并行性）</strong>。依赖某次 Load 结果的指令仍然要等待那个结果。</p>
+
+<h4 class="relative group">9.4.2 实现机制：MSHR 跟踪未完成的 Miss
+    <div id="942-实现机制mshr-跟踪未完成的-miss" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#942-%e5%ae%9e%e7%8e%b0%e6%9c%ba%e5%88%b6mshr-%e8%b7%9f%e8%b8%aa%e6%9c%aa%e5%ae%8c%e6%88%90%e7%9a%84-miss" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>**MSHR（Miss Status Holding Register）**保存尚未完成的失效请求信息，通常包括：</p>
+<ul>
+<li>请求的块地址及有效状态。</li>
+<li>等待该块的 Load / Store 请求信息。</li>
+<li>数据返回后交付给谁，以及填入 Cache 所需的状态。</li>
+</ul>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Load A 失效 → 分配 MSHR → 向下层请求块 A
+</span></span><span class="line"><span class="cl">Load B 失效 → 另分配 MSHR → 向下层请求块 B
+</span></span><span class="line"><span class="cl">另一个 Load A → 若设计支持，合并到块 A 的等待请求中
+</span></span><span class="line"><span class="cl">块 A 返回 → 填充缓存行，唤醒等待块 A 的请求，回收 MSHR</span></span></code></pre></div></div>
+<p>MSHR 数量、每项可合并的请求数、下层带宽、请求队列与内存系统都会限制并行度。MSHR 用完后，新 Miss 可能需要等待。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="MHA 与 MSHR 的组织"
+    src="./img/mshr-mha.webp"
+    ><figcaption>每个 Cache bank 配一个 MSHR File，地址进入后与各表项并行比较，从而合并同一块的请求</figcaption></figure>
+
+<h4 class="relative group">9.4.3 性能效果：隐藏等待，不一定减少 Miss
+    <div id="943-性能效果隐藏等待不一定减少-miss" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#943-%e6%80%a7%e8%83%bd%e6%95%88%e6%9e%9c%e9%9a%90%e8%97%8f%e7%ad%89%e5%be%85%e4%b8%8d%e4%b8%80%e5%ae%9a%e5%87%8f%e5%b0%91-miss" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>增加 MSHR、允许多个 Miss 重叠，可以减少 CPU 暴露在外的停顿时间，却不一定改变同一访问序列的失效次数。因此，<strong>Miss Rate 相同的两个设计，也可能有不同的执行时间</strong>。</p>
+<p>这也解释了为什么简单的 AMAT 或“Miss 次数乘固定代价”模型，不能完整描述非阻塞、乱序处理器的全部性能。</p>
+
+<h2 class="relative group">十、Goal 2：降低 Miss Rate
+    <div id="十goal-2降低-miss-rate" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8d%81goal-2%e9%99%8d%e4%bd%8e-miss-rate" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>目标是：<strong>CPU 真正需要数据时，尽量让它已经在 Cache 中。</strong> 一条思路是调整 Cache 组织，减少容量与冲突问题；另一条思路是提前取数据，或调整程序访问顺序，使已有缓存内容得到更多重用。</p>
+
+<h3 class="relative group">优化方向概览：联系 3C Miss
+    <div id="优化方向概览联系-3c-miss" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%bc%98%e5%8c%96%e6%96%b9%e5%90%91%e6%a6%82%e8%a7%88%e8%81%94%e7%b3%bb-3c-miss" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<table>
+	<thead>
+			<tr>
+					<th>优化方法</th>
+					<th>为什么可能减少 Miss</th>
+					<th>主要取舍</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>增大块大小</td>
+					<td>利用空间局部性，一次带回之后可能访问的相邻数据</td>
+					<td>固定容量下行数变少，可能增加冲突、容量压力与传输代价</td>
+			</tr>
+			<tr>
+					<td>增大 Cache 容量</td>
+					<td>保留更多需要重用的块，减少容量失效</td>
+					<td>面积、功耗与 Hit Time 可能增加</td>
+			</tr>
+			<tr>
+					<td>提高相联度</td>
+					<td>给同一组的块更多候选位置，减少冲突失效</td>
+					<td>比较与选择逻辑更复杂</td>
+			</tr>
+			<tr>
+					<td>Victim Cache</td>
+					<td>暂存刚被替换的块，减少冲突造成的往返装入</td>
+					<td>需要额外查询和块交换；不一定降低主 Cache 本身的 Miss Rate</td>
+			</tr>
+			<tr>
+					<td>预取</td>
+					<td>在需求访问前准备数据，减少需求失效或等待</td>
+					<td>可能浪费带宽、污染 Cache</td>
+			</tr>
+			<tr>
+					<td>循环与数据布局优化</td>
+					<td>改善时间、空间局部性，使工作集更适合 Cache</td>
+					<td>必须保持程序语义，并结合实际访问模式</td>
+			</tr>
+	</tbody>
+</table>
+<p>前几种方法联系前文理解，下面重点展开课件中的预取与编译器优化。</p>
+
+<h3 class="relative group">10.1 方案一：硬件预取（Hardware Prefetching）
+    <div id="101-方案一硬件预取hardware-prefetching" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#101-%e6%96%b9%e6%a1%88%e4%b8%80%e7%a1%ac%e4%bb%b6%e9%a2%84%e5%8f%96hardware-prefetching" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>硬件观察历史访问模式，提前请求可能用到的块。例如顺序预取、固定步长预取，或按触发访存的 PC 记录模式。</p>
+<p>真实 CPU 里往往有多个预取器，各管一段。课件按层级列了它们的典型位置：</p>
+<table>
+	<thead>
+			<tr>
+					<th>位置</th>
+					<th>典型预取器</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>L1D</td>
+					<td>PC-localized stride、块内短步长 → 预取下一块</td>
+					<td>离核近，最容易识别模式</td>
+			</tr>
+			<tr>
+					<td>L1I</td>
+					<td>预测未来的 PC</td>
+					<td>按取指流提前送来指令</td>
+			</tr>
+			<tr>
+					<td>L2</td>
+					<td>Stream Buffer、Adjacent-line prefetch</td>
+					<td>顺序流与相邻行都能覆盖</td>
+			</tr>
+			<tr>
+					<td>LLC</td>
+					<td>难做</td>
+					<td>Cache 分 bank 且地址被 hash 打散，模式不好识别</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Stream Buffer</strong> 是一种顺序预取结构：在缓冲区中保存接下来的若干块，需要时取用，并继续向后预取。</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="Stream Buffer 的结构"
+    src="./img/stream-buffer.webp"
+    ><figcaption>FIFO 队列保存 next-N 个块，取走头部后由尾指针继续向后预取</figcaption></figure>
+<p>预取要权衡：</p>
+<ul>
+<li><strong>准确性</strong>：预取的数据之后是否真的使用。</li>
+<li><strong>及时性</strong>：是否在需求请求到来之前完成。</li>
+<li><strong>覆盖程度</strong>：能消除多少原本的需求失效。</li>
+<li><strong>资源代价</strong>：额外带宽、Cache 污染、MSHR 与队列占用。</li>
+</ul>
+<p>预取能把传输提前，但不会凭空消除数据搬运成本。过早预取可能在使用前被驱逐，错误预取还可能拖慢有用请求。</p>
+
+<h3 class="relative group">10.2 方案二：Cache 友好的编译器优化
+    <div id="102-方案二cache-友好的编译器优化" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#102-%e6%96%b9%e6%a1%88%e4%ba%8ccache-%e5%8f%8b%e5%a5%bd%e7%9a%84%e7%bc%96%e8%af%91%e5%99%a8%e4%bc%98%e5%8c%96" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+
+<h4 class="relative group">10.2.1 Loop Interchange：循环交换
+    <div id="1021-loop-interchange循环交换" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1021-loop-interchange%e5%be%aa%e7%8e%af%e4%ba%a4%e6%8d%a2" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>对于 C 语言按行连续存储的二维数组：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* 跨行访问，相邻访问间隔较大 */</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* 按行顺序访问，空间局部性更好 */</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span></span></span></code></pre></div></div>
+<p>循环交换必须保持程序语义，存在跨迭代依赖时不能直接交换。</p>
+
+<h4 class="relative group">10.2.2 Loop Fusion：循环融合
+    <div id="1022-loop-fusion循环融合" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1022-loop-fusion%e5%be%aa%e7%8e%af%e8%9e%8d%e5%90%88" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>若两个循环可安全合并，将对同一数据的使用拉近，改善时间局部性：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* 假设元素非零，且不存在影响融合的别名或其他依赖 */</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* 融合后，刚更新的值可以立即用于求和 */</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+
+<h4 class="relative group">10.2.3 数据布局：合并数组
+    <div id="1023-数据布局合并数组" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1023-%e6%95%b0%e6%8d%ae%e5%b8%83%e5%b1%80%e5%90%88%e5%b9%b6%e6%95%b0%e7%bb%84" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>当 <code>key[i]</code> 与 <code>value[i]</code> 常常一起访问时，可以考虑把两个独立数组合并为结构体数组，使相关字段靠近：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Entry</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Entry</span> <span class="n">entries</span><span class="p">[</span><span class="n">N</span><span class="p">];</span></span></span></code></pre></div></div>
+<p>补充：如果只扫描一个字段，独立数组可能更节省带宽。布局选择取决于访问模式，不能把“合并数组”当成无条件优化。</p>
+
+<h2 class="relative group">十一、Goal 3：降低 Hit Time
+    <div id="十一goal-3降低-hit-time" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8d%81%e4%b8%80goal-3%e9%99%8d%e4%bd%8e-hit-time" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>课件：第 73—75 页。前两章研究怎样减少 Miss 或缩短 Miss 后的等待；这里研究：<strong>数据已经在 Cache 中时，怎样更快地取出来？</strong></p>
+
+<h3 class="relative group">11.1 方案一：虚拟索引（Virtually Indexed Cache）
+    <div id="111-方案一虚拟索引virtually-indexed-cache" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#111-%e6%96%b9%e6%a1%88%e4%b8%80%e8%99%9a%e6%8b%9f%e7%b4%a2%e5%bc%95virtually-indexed-cache" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+
+<h4 class="relative group">11.1.1 先把地址翻译和查 Cache 连起来
+    <div id="1111-先把地址翻译和查-cache-连起来" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1111-%e5%85%88%e6%8a%8a%e5%9c%b0%e5%9d%80%e7%bf%bb%e8%af%91%e5%92%8c%e6%9f%a5-cache-%e8%bf%9e%e8%b5%b7%e6%9d%a5" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>执行 <code>x = *p</code> 时，CPU 得到的是指针 <code>p</code> 中的虚拟地址。先考虑用物理地址查 Cache 的流程：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CPU 给出虚拟地址 VA
+</span></span><span class="line"><span class="cl">    ↓ 查 TLB；未命中时需要查询页表
+</span></span><span class="line"><span class="cl">得到物理地址 PA
+</span></span><span class="line"><span class="cl">    ↓ 用这个地址查 Cache
+</span></span><span class="line"><span class="cl">命中：返回数据；未命中：继续向下一级查询</span></span></code></pre></div></div>
+<p><strong>得到物理地址，不等于已经访问主存。</strong> 它只确定了要找哪份数据，这份数据可能已经有副本保存在 Cache 中。</p>
+<p>两种地址拆分分别服务于不同的步骤：</p>
+<table>
+	<thead>
+			<tr>
+					<th>拆分</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>VA = VPN + VPO</code></td>
+					<td>地址翻译：把虚拟页号 VPN 换成物理页号 PPN，页内偏移保持不变</td>
+			</tr>
+			<tr>
+					<td><code>地址 = Tag + Index + Offset</code></td>
+					<td>查 Cache：Index 选组，Tag 确认身份，Offset 选块内字节</td>
+			</tr>
+	</tbody>
+</table>
+<p>TLB 保存的是<strong>地址映射</strong>，数据 Cache 保存的是<strong>数据内容</strong>，所以 TLB 命中不代表数据 Cache 也命中。</p>
+
+<h4 class="relative group">11.1.2 优化：不等翻译完成，就先选 Cache 组
+    <div id="1112-优化不等翻译完成就先选-cache-组" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1112-%e4%bc%98%e5%8c%96%e4%b8%8d%e7%ad%89%e7%bf%bb%e8%af%91%e5%ae%8c%e6%88%90%e5%b0%b1%e5%85%88%e9%80%89-cache-%e7%bb%84" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>如果地址翻译和 Cache 查询串行进行，即使 Cache 命中，也得先后等待两步。<strong>虚拟索引的想法是：直接用 VA 中的 Index 提前选组。</strong></p>
+<p>以“虚拟索引、物理 Tag”（VIPT）为例：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">                 虚拟地址 VA
+</span></span><span class="line"><span class="cl">                 /        \
+</span></span><span class="line"><span class="cl">           VPN 查 TLB     Index 选 Cache 组
+</span></span><span class="line"><span class="cl">                ↓                ↓
+</span></span><span class="line"><span class="cl">           得到物理页号      读出各路 Tag 和数据
+</span></span><span class="line"><span class="cl">                 \        /
+</span></span><span class="line"><span class="cl">                用物理 Tag 比较
+</span></span><span class="line"><span class="cl">                       ↓
+</span></span><span class="line"><span class="cl">                  确定是否命中</span></span></code></pre></div></div>
+<p>地址翻译仍然要做，但选组和读取候选行可以与它并行，从而缩短命中路径。</p>
+<p><strong>为什么能提前选组？</strong> 例如页大小为 4 KiB，页内偏移是低 12 位；Cache 有 64 组、每块 64 B，则：</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">VA：[ VPN |       页内偏移：12 位       ]
+</span></span><span class="line"><span class="cl">PA：[ PPN | Index：6 位 | Offset：6 位  ]</span></span></code></pre></div></div>
+<p>这里 Index 完全落在页内偏移中，而页内偏移翻译前后不变。因此用 VA 提前选组，和等 PA 出来再选，会选中同一组。<strong>这是一个满足条件的例子，不是所有 Cache 都天然满足。</strong></p>
+
+<h4 class="relative group">11.1.3 为什么又提到进程切换和别名？
+    <div id="1113-为什么又提到进程切换和别名" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1113-%e4%b8%ba%e4%bb%80%e4%b9%88%e5%8f%88%e6%8f%90%e5%88%b0%e8%bf%9b%e7%a8%8b%e5%88%87%e6%8d%a2%e5%92%8c%e5%88%ab%e5%90%8d" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>因为虚拟地址与物理地址不是一一对应的：</p>
+<table>
+	<thead>
+			<tr>
+					<th>问题</th>
+					<th>例子与影响</th>
+					<th>课件提到的处理方向</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>同名：相同 VA，对应不同 PA</strong></td>
+					<td>两个进程都访问 <code>0x1000</code>，却可能是不同数据；若只用虚拟地址认数据，可能混淆</td>
+					<td>清空相关缓存，或加进程标识 PID</td>
+			</tr>
+			<tr>
+					<td><strong>别名：不同 VA，对应相同 PA</strong></td>
+					<td>同一份物理数据可能经不同虚拟地址进入不同组，形成多个副本</td>
+					<td>反别名硬件、Page Coloring、利用页内偏移</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>“用 VA 选组”不等于“用 VA 的 Tag 比较”。</strong> 上面的 VIPT 最后比较物理 Tag；若索引和 Tag 都用虚拟地址，则称为 VIVT。课件把这些相关问题放在一页中讲，不能理解成所有虚拟索引 Cache 都必须在进程切换时清空。</p>
+
+<h3 class="relative group">11.2 方案二：Trace Cache
+    <div id="112-方案二trace-cache" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#112-%e6%96%b9%e6%a1%88%e4%ba%8ctrace-cache" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>普通指令 Cache 按连续地址存放指令，但程序遇到分支后，实际执行路径可能跳到别处。<strong>Trace Cache 把沿一条执行路径的指令组织在一起，方便前端连续取用。</strong></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">实际执行路径：基本块 A → 跳到 C → 跳到 F
+</span></span><span class="line"><span class="cl">Trace 中的组织：[ A 的内容 | C 的内容 | F 的内容 ]</span></span></code></pre></div></div>
+<p>课件中的 Pentium 4 Trace Cache 保存的是解码后的微操作。它主要改善指令供应，不能简单理解为“所有数据 Cache 的命中时间都变短”。</p>
+
+<h2 class="relative group">十二、优化总结：Miss Rate、Miss Penalty 与 Hit Time 的取舍
+    <div id="十二优化总结miss-ratemiss-penalty-与-hit-time-的取舍" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8d%81%e4%ba%8c%e4%bc%98%e5%8c%96%e6%80%bb%e7%bb%93miss-ratemiss-penalty-%e4%b8%8e-hit-time-%e7%9a%84%e5%8f%96%e8%88%8d" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>前面的两个主要目标分别减少“失效后要等多久”和“失效发生多少次”；评估最终收益时，还要把 Hit Time 一起算进去。某项优化改善一项指标，也可能恶化另一项。</p>
+<table>
+	<thead>
+			<tr>
+					<th>优化</th>
+					<th>主要想改善什么</th>
+					<th>可能付出的代价</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>增大块大小</td>
+					<td>利用空间局部性，降低部分需求失效</td>
+					<td>行数减少、污染增加、传输代价变大</td>
+			</tr>
+			<tr>
+					<td>提高相联度</td>
+					<td>降低冲突失效</td>
+					<td>比较与选择逻辑变复杂，Hit Time 可能增加</td>
+			</tr>
+			<tr>
+					<td>增大容量</td>
+					<td>降低容量失效</td>
+					<td>面积、能耗与访问延迟可能增加</td>
+			</tr>
+			<tr>
+					<td>增加下一级 Cache</td>
+					<td>降低上一级失效后的平均代价</td>
+					<td>额外面积与层次管理</td>
+			</tr>
+			<tr>
+					<td>Early Restart / Critical Word First</td>
+					<td>缩短关键字的等待</td>
+					<td>填充控制更复杂</td>
+			</tr>
+			<tr>
+					<td>非阻塞 Cache / MSHR</td>
+					<td>重叠访存，减少暴露的停顿</td>
+					<td>状态跟踪复杂，受带宽与并行资源限制</td>
+			</tr>
+			<tr>
+					<td>预取</td>
+					<td>降低需求请求的失效或等待</td>
+					<td>带宽、污染与请求资源占用</td>
+			</tr>
+			<tr>
+					<td>循环与布局优化</td>
+					<td>改善局部性，减少需求流量</td>
+					<td>必须保持语义，收益依赖访问模式</td>
+			</tr>
+			<tr>
+					<td>简化 L1、路预测、虚拟索引</td>
+					<td>降低 Hit Time</td>
+					<td>可能牺牲容量 / 相联度，或引入预测与地址管理问题</td>
+			</tr>
+			<tr>
+					<td>Victim Cache（牺牲 Cache）</td>
+					<td>减少冲突失效：刚被换出的块先放进一个小型全相联缓冲</td>
+					<td>多一次查找；命中时要搬回主 Cache</td>
+			</tr>
+			<tr>
+					<td>Pseudo-associative（伪相联）</td>
+					<td>先按直接映射查，失败再查备用位置</td>
+					<td>第二次查找要额外时间</td>
+			</tr>
+			<tr>
+					<td>Subblock / Sectored placement</td>
+					<td>只搬块中需要的那一小段，降低一次 miss 的搬运量</td>
+					<td>需要子块有效位等元数据</td>
+			</tr>
+			<tr>
+					<td>读 miss 优先</td>
+					<td>读失效优先于缓冲中的写回，缩短读停顿</td>
+					<td>写回被推迟</td>
+			</tr>
+			<tr>
+					<td>写操作流水化</td>
+					<td>写命中不必占满整个周期</td>
+					<td>需要额外的流水寄存器</td>
+			</tr>
+			<tr>
+					<td>小而简单的 Cache</td>
+					<td>用容量 / 相联度换更短的 Hit Time</td>
+					<td>Miss Rate 变差</td>
+			</tr>
+	</tbody>
+</table>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="./img/summary.png"
+    ></figure>
+<blockquote><p>与已有笔记的联系</p>
+</blockquote><ul>
+<li><a href="/os/study_notes/6-virtual_memory_management/" >操作系统笔记6：虚拟内存管理</a>：TLB、页内偏移、页面置换与 Dirty 位。</li>
+<li><a href="/ics/05-cachelab/" >Cache Lab</a>：通过访问序列与程序局部性观察 Cache 行为。</li>
+<li><a href="/arch/lab1/" >Archlab ChampSim Project 1</a>：把组数、路数、MSHR、预取器、替换策略等配置项与本讲概念对应起来。</li>
+</ul>
+
+          
+          
+          
+        </div>
+        
+        
+  <details class="mt-2 mb-5 overflow-hidden rounded-lg ms-0 ps-5">
+    
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 -ms-5 ps-5 dark:bg-primary-800 dark:text-neutral-100">
+    Computer Architecture::Notes -
+    This article is part of a series.
+  </summary>
+  
+  
+    
+      <div
+        class="py-1 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+        Part 6:
+        This Article
+      </div>
+    
+  
+
+
+  </details>
+
+
+        
+
+        
+
+      </div>
+
+      
+      
+        
+        
+          
+          
+        
+        
+        
+        <script
+          type="text/javascript"
+          src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
+          integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
+          data-oid="views_arch/study_notes/6-cache/index.md"
+          data-oid-likes="likes_arch/study_notes/6-cache/index.md"></script>
+      
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+
+
+      
+        
+          <div class="pt-3">
+            <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+            <div class="pt-3">
+              
+<script src="https://giscus.app/client.js"
+        data-repo="twj-ink/giscus-comments-system"
+        data-repo-id="R_kgDORs0KyA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDORs0KyM4C46yg"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<script>
+  (() => {
+    const themes = {
+      default: 'light',
+      blue: "https://twj-ink.github.io/css/giscus-blowfish-dark.css"
+    };
+    let useSunset = document.body.classList.contains('sunset-page');
+
+    const getActiveTheme = () => {
+      if (useSunset) return themes.default;
+      return document.documentElement.classList.contains('dark')
+        ? themes.blue
+        : themes.default;
+    };
+
+    const applyTheme = () => {
+      const frame = document.querySelector('iframe.giscus-frame');
+      if (!frame?.contentWindow) return false;
+      frame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: getActiveTheme() } } },
+        'https://giscus.app'
+      );
+      return true;
+    };
+
+    window.addEventListener('galeink:background-change', (event) => {
+      useSunset = Boolean(event.detail?.useVideo);
+      applyTheme();
+    });
+
+    const appearanceObserver = new MutationObserver(applyTheme);
+    appearanceObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    const bindFrame = () => {
+      const frame = document.querySelector('iframe.giscus-frame');
+      if (!frame) return false;
+      if (!frame.dataset.galeinkThemeBound) {
+        frame.dataset.galeinkThemeBound = 'true';
+        frame.addEventListener('load', applyTheme);
+      }
+      applyTheme();
+      return true;
+    };
+
+    if (!bindFrame()) {
+      const observer = new MutationObserver(() => {
+        if (!bindFrame()) return;
+        observer.disconnect();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  })();
+</script>
+
+            </div>
+          </div>
+        
+      
+    </footer>
+  </article>
+
+        
+
+
+  
+
+
+
+
+
+
+<div
+  id="scroll-to-top"
+  class="fixed bottom-6 end-6 z-50 transform translate-y-4 opacity-0 duration-200">
+  <a
+    href="#the-top"
+    class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top"
+    title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+      
+      
+        
+          
+          
+      
+      
+      
+      <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400 ">
+        <ul class="flex list-none flex-col sm:flex-row">
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/tags/"
+                title="">
+                
+                Tags
+              </a>
+            </li>
+          
+            <li class=" flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0 ">
+              <a
+                class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center"
+                href="/categories/"
+                title="Categories">
+                
+                Categories
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          Copy, <em>right?</em> :thinking_face:
+      </p>
+    
+
+    
+    
+      <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        
+        
+        Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+      </p>
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js"
+    integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="https://twj-ink.github.io/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+<style>
+  #music-player * { box-sizing: border-box; }
+  #music-player svg { display: block; }
+
+   
+  #music-player input[type=range] {
+    -webkit-appearance: none; appearance: none;
+    height: 4px; border-radius: 999px; cursor: pointer; outline: none;
+    background: linear-gradient(to right, var(--music-fill, #3b82f6) 0%, var(--music-fill, #3b82f6) var(--music-pct, 0%), #d4d4d4 var(--music-pct, 0%), #d4d4d4 100%);
+  }
+  .dark #music-player input[type=range] {
+    background: linear-gradient(to right, var(--music-fill, #3b82f6) 0%, var(--music-fill, #3b82f6) var(--music-pct, 0%), #525252 var(--music-pct, 0%), #525252 100%);
+  }
+  #music-player input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--music-fill, #3b82f6); cursor: pointer; border: none;
+  }
+  #music-player input[type=range]::-moz-range-thumb {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--music-fill, #3b82f6); cursor: pointer; border: none;
+  }
+
+   
+  #music-player .mp-card { border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.08); }
+  #music-player .mp-title { color: #1e293b; }
+  #music-player .mp-time  { color: #64748b; }
+  #music-player .mp-btn   { color: #64748b; }
+  #music-player .mp-vol   { color: #94a3b8; }
+
+   
+  .dark #music-player .mp-card { border-color: rgba(59,130,246,0.3); background: rgba(30,58,138,0.25); }
+  .dark #music-player #disc-badge { background: rgba(59,130,246,0.25); color: rgba(147,197,253,0.9); }
+  .dark #music-player .mp-title { color: #fff; }
+  .dark #music-player .mp-time  { color: rgba(255,255,255,0.7); }
+  .dark #music-player .mp-btn   { color: rgba(255,255,255,0.6); }
+  .dark #music-player .mp-vol   { color: rgba(255,255,255,0.5); }
+
+   
+  @keyframes mp-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  #music-player .mp-mini.playing .mp-spin { animation: mp-spin 3s linear infinite; }
+</style>
+
+<div id="music-player" style="position:fixed; bottom:1rem; left:1rem; z-index:50; font-family:inherit;">
+
+  
+  <div class="mp-mini-wrap" style="display:flex; flex-direction:column; align-items:center;"
+    onmouseenter="document.getElementById('mp-mini-circle').style.transform='scale(1.08)'; document.getElementById('mp-close-btn').style.display='flex';"
+    onmouseleave="document.getElementById('mp-mini-circle').style.transform='scale(1)'; document.getElementById('mp-close-btn').style.display='none';">
+    
+    <div id="mp-close-btn" onclick="closePlayer()"
+      style="display:none; width:20px; height:20px; margin-bottom:4px; border-radius:50%; background:rgba(239,68,68,0.9); color:#fff;
+      align-items:center; justify-content:center; cursor:pointer; font-size:11px; line-height:1;
+      box-shadow:0 2px 6px rgba(0,0,0,0.2);" title="close">✕</div>
+    
+    <div id="mp-mini-circle" class="mp-mini" onclick="expandPlayer()"
+      style="width:44px; height:44px; border-radius:50%; background:rgba(59,130,246,0.9);
+      display:flex; align-items:center; justify-content:center; cursor:pointer;
+      box-shadow:0 4px 12px rgba(59,130,246,0.3); transition: transform .2s;"
+      title="click to expand">
+      <svg class="mp-spin" style="width:22px; height:22px; color:#fff;" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+      </svg>
+    </div>
+  </div>
+
+  
+  <div class="mp-card" style="display:none; width:18rem; border-radius:0.75rem; padding:1rem; box-shadow:0 25px 50px -12px rgba(59,130,246,0.2);">
+    
+    <div style="margin-bottom:0.5rem;">
+      <span id="disc-badge" style="display:inline-block; font-size:0.65rem; font-weight:700; letter-spacing:0.05em;
+        padding:1px 6px; border-radius:3px; background:rgba(59,130,246,0.15); color:var(--music-fill, #3b82f6); margin-bottom:0.25rem;">DISC 1</span>
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <span class="mp-title" style="font-size:0.875rem; font-weight:600; max-width:170px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Select a song</span>
+        <button onclick="minimizePlayer()" class="mp-btn" style="background:none; border:none; cursor:pointer; padding:0; line-height:0;" title="minimize">
+          <svg style="width:18px; height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"/></svg>
+        </button>
+      </div>
+    </div>
+    
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+      <button id="play-btn" onclick="togglePlay()" style="flex-shrink:0; width:2.5rem; height:2.5rem; border-radius:50%;
+        background:var(--music-fill, #3b82f6); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="play/pause">
+        <svg id="play-icon" style="width:20px; height:20px;" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+        <svg id="pause-icon" style="width:20px; height:20px; display:none;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+      </button>
+      <input type="range" id="progress-bar" value="0" min="0" max="100" step="0.1" oninput="seek(this.value)" style="flex:1;" />
+      <span id="time-display" class="mp-time" style="font-size:0.75rem; text-align:right; min-width:4rem;">0:00 / 0:00</span>
+    </div>
+    
+    <div style="display:flex; align-items:center; gap:0.5rem;">
+      <button onclick="prevSong()" class="mp-btn" style="background:none; border:none; cursor:pointer; padding:0; line-height:0;" title="previous">
+        <svg style="width:16px; height:16px;" fill="currentColor" viewBox="0 0 20 20"><path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/></svg>
+      </button>
+      <button onclick="nextSong()" class="mp-btn" style="background:none; border:none; cursor:pointer; padding:0; line-height:0;" title="next">
+        <svg style="width:16px; height:16px;" fill="currentColor" viewBox="0 0 20 20"><path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L9 10.798V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 009 6v2.798L4.555 5.168z"/></svg>
+      </button>
+      <div style="display:flex; align-items:center; gap:0.25rem; margin-left:auto;">
+        <svg class="mp-vol" style="width:14px; height:14px;" fill="currentColor" viewBox="0 0 20 20"><path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/></svg>
+        <input type="range" id="volume-bar" value="70" min="0" max="100" oninput="setVolume(this.value)" style="width:4rem;" />
+      </div>
+    </div>
+    <audio id="audio" preload="metadata"></audio>
+  </div>
+</div>
+
+<script>
+  
+  
+  const musicFiles = [
+    "816ThreeNumbers - True Home, True World (2023 Rework).flac",
+    "Pure Ruby.mp3",
+    "Toby Fox - A CYBER'S WORLD？.flac",
+    "Toby Fox - Field Of Hopes And Dreams.flac",
+    "Toby Fox - Flower Castle.flac",
+    "Toby Fox - Hammer of Justice.flac",
+    "Toby Fox - Petal Dance.flac",
+    "Toby Fox - Sunset of Seven Suns.flac",
+    "Toby Fox - TV WORLD.flac",
+    "Toby Fox - The Third Sanctuary.flac",
+    "Toby Fox Itoki Hana - Dark Sanctuary.flac",
+    "Toby Fox insaneintherainmusic - Garden of Hopes and Dreams.flac",
+    "Toby Fox かめりあ - Flower Man.flac",
+  ];
+  const playlist = musicFiles.map(function(fileName) {
+    return {
+      title: fileName.replace(/\.(mp3|flac)$/i, ""),
+      src: "/music/" + encodeURIComponent(fileName),
+      disc: "Music"
+    };
+  });
+  
+
+  const PRIMARY = '#3b82f6';
+  document.documentElement.style.setProperty('--music-fill', PRIMARY);
+
+  let currentIndex = 0, isPlaying = false, closed = false;
+  const audio = document.getElementById("audio");
+  const playIcon = document.getElementById("play-icon");
+  const pauseIcon = document.getElementById("pause-icon");
+  const progressBar = document.getElementById("progress-bar");
+  const volumeBar = document.getElementById("volume-bar");
+  const timeDisplay = document.getElementById("time-display");
+  const songTitle = document.querySelector(".mp-title");
+  const miniCircle = document.querySelector(".mp-mini");
+  const mpCard = document.querySelector(".mp-card");
+
+  function fmt(t) {
+    var m = Math.floor(t / 60);
+    var s = Math.floor(t % 60).toString().padStart(2, "0");
+    return m + ":" + s;
+  }
+
+  function loadSong(index) {
+    if (index < 0 || index >= playlist.length) return;
+    currentIndex = index;
+    var song = playlist[index];
+    songTitle.textContent = song.title;
+    document.getElementById("disc-badge").textContent = song.disc;
+    if (song.src) { audio.src = song.src; audio.load(); }
+  }
+
+  function togglePlay() {
+    if (!playlist[currentIndex] || !playlist[currentIndex].src) return;
+    isPlaying ? audio.pause() : audio.play().catch(function(){});
+  }
+
+  function nextSong() {
+    loadSong((currentIndex + 1) % playlist.length);
+    audio.play().catch(function(){});
+  }
+
+  function prevSong() {
+    loadSong((currentIndex - 1 + playlist.length) % playlist.length);
+    audio.play().catch(function(){});
+  }
+
+  function seek(val) {
+    if (audio.duration) audio.currentTime = (val / 100) * audio.duration;
+  }
+
+  function setVolume(val) {
+    audio.volume = val / 100;
+    updateRangeBg(volumeBar, val);
+  }
+
+  function updateRangeBg(el, pct) {
+    el.style.setProperty('--music-pct', pct + '%');
+  }
+
+  function minimizePlayer() {
+    mpCard.style.display = 'none';
+    miniCircle.style.display = 'flex';
+  }
+
+  function expandPlayer() {
+    if (closed) return;
+    mpCard.style.display = 'block';
+    miniCircle.style.display = 'none';
+  }
+
+  function closePlayer() {
+    closed = true;
+    audio.pause();
+    mpCard.style.display = 'none';
+    miniCircle.style.display = 'none';
+    document.getElementById('mp-reopen').style.display = 'flex';
+  }
+
+  function reopenPlayer() {
+    closed = false;
+    miniCircle.style.display = 'flex';
+    document.getElementById('mp-reopen').style.display = 'none';
+  }
+
+  audio.addEventListener("play", function() {
+    isPlaying = true;
+    playIcon.style.display = "none";
+    pauseIcon.style.display = "";
+    miniCircle.classList.add("playing");
+  });
+  audio.addEventListener("pause", function() {
+    isPlaying = false;
+    playIcon.style.display = "";
+    pauseIcon.style.display = "none";
+    miniCircle.classList.remove("playing");
+  });
+  audio.addEventListener("timeupdate", function() {
+    if (audio.duration) {
+      var pct = (audio.currentTime / audio.duration) * 100;
+      progressBar.value = pct;
+      updateRangeBg(progressBar, pct);
+      timeDisplay.textContent = fmt(audio.currentTime) + " / " + fmt(audio.duration);
+    }
+  });
+  audio.addEventListener("ended", nextSong);
+
+  
+  function saveState() {
+    var state = {
+      idx: currentIndex, time: audio.currentTime || 0,
+      playing: isPlaying, vol: audio.volume, closed: closed
+    };
+    localStorage.setItem('mp-state', JSON.stringify(state));
+  }
+
+  function restoreState() {
+    try {
+      var raw = localStorage.getItem('mp-state');
+      if (!raw) return false;
+      var s = JSON.parse(raw);
+      if (s.idx < 0 || s.idx >= playlist.length) return false;
+      loadSong(s.idx);
+      audio.volume = s.vol;
+      volumeBar.value = s.vol * 100;
+      updateRangeBg(volumeBar, s.vol * 100);
+      if (s.time > 0) {
+        audio.addEventListener('loadedmetadata', function seekOnce() {
+          audio.currentTime = s.time;
+          audio.removeEventListener('loadedmetadata', seekOnce);
+        });
+      }
+      if (!s.closed && s.playing) {
+        closed = false;
+        expandPlayer();
+        audio.play().catch(function(){});
+      } else if (!s.closed && !s.playing) {
+        closed = false;
+        miniCircle.style.display = 'flex';
+      } else {
+        closed = true;
+        miniCircle.style.display = 'none';
+        document.getElementById('mp-reopen').style.display = 'flex';
+      }
+      return true;
+    } catch(e) { return false; }
+  }
+
+  window.addEventListener('beforeunload', saveState);
+  
+  setInterval(saveState, 5000);
+
+  audio.volume = volumeBar.value / 100;
+  updateRangeBg(volumeBar, volumeBar.value);
+  if (!restoreState()) loadSong(0);
+</script>
+
+
+<div id="mp-reopen" onclick="reopenPlayer()"
+  style="display:none; position:fixed; left:0; bottom:2rem; z-index:50;
+  width:24px; height:48px; border-radius:0 24px 24px 0;
+  background:rgba(59,130,246,0.85); cursor:pointer;
+  box-shadow:2px 0 8px rgba(59,130,246,0.2);"
+  title="reopen">
+  <span style="display:flex; align-items:center; justify-content:center; width:100%; height:100%;">
+  <svg style="width:14px; height:14px; color:#fff; margin-right:4px;" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd"/>
+  </svg>
+  </span>
+</div>
+<button
+  id="background-toggle"
+  class="background-toggle"
+  type="button"
+  aria-pressed="false"
+  aria-label="切换为视频背景"
+  title="切换为视频背景">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 5.5h16v13H4zM4 15l4.5-4.5 3.5 3.5 2.5-2.5L20 17M16.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
+  </svg>
+  <span>切换背景</span>
+</button>
+
+<script>
+  (() => {
+    const storageKey = 'galeink-background';
+    const body = document.body;
+    const background = document.querySelector('.sunset-background');
+    const video = background?.querySelector('video');
+    const source = video?.querySelector('source');
+    const toggle = document.getElementById('background-toggle');
+    if (!background || !video || !source || !toggle) return;
+
+    let videoLoaded = false;
+    let ticking = false;
+
+    const loadVideo = () => {
+      if (videoLoaded) return;
+      source.src = source.dataset.src;
+      video.load();
+      videoLoaded = true;
+    };
+
+    const updateBlur = () => {
+      const progress = Math.min(window.scrollY / 400, 1);
+      background.style.setProperty('--sunset-scroll-blur', `${(progress * 12).toFixed(2)}px`);
+      ticking = false;
+    };
+
+    const requestBlurUpdate = () => {
+      if (ticking || !body.classList.contains('sunset-page')) return;
+      ticking = true;
+      window.requestAnimationFrame(updateBlur);
+    };
+
+    const setBackground = (useVideo, persist = true) => {
+      body.classList.toggle('sunset-page', useVideo);
+      window.dispatchEvent(new CustomEvent('galeink:background-change', {
+        detail: { useVideo }
+      }));
+      toggle.setAttribute('aria-pressed', String(useVideo));
+      toggle.setAttribute('aria-label', useVideo ? '切换为纯色背景' : '切换为视频背景');
+      toggle.title = useVideo ? '切换为纯色背景' : '切换为视频背景';
+
+      if (useVideo) {
+        loadVideo();
+        updateBlur();
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+
+      if (persist) {
+        try {
+          localStorage.setItem(storageKey, useVideo ? 'video' : 'solid');
+        } catch (_) {}
+      }
+    };
+
+    let savedBackground = null;
+    try {
+      savedBackground = localStorage.getItem(storageKey);
+    } catch (_) {}
+
+    const initialBackground = savedBackground || body.dataset.defaultBackground || 'solid';
+    setBackground(initialBackground === 'video', false);
+    toggle.addEventListener('click', () => {
+      setBackground(!body.classList.contains('sunset-page'));
+    });
+    window.addEventListener('scroll', requestBlurUpdate, { passive: true });
+  })();
+</script>
+</body>
+  
+</html>

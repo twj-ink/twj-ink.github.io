@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computer Architecture on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/series/computer-architecture/</link>
+    <description>Recent content in Computer Architecture on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <atom:link href="https://twj-ink.github.io/series/computer-architecture/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>[[NOTES]] 计算机体系结构课堂笔记</title>
+      <link>https://twj-ink.github.io/arch/study_notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/arch/study_notes/</guid>
+      <description>以课堂课件为主线，整理概念、硬件机制、性能分析与计算例题</description>
+      
+    </item>
+    
+  </channel>
+</rss>

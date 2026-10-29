@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computer Architecture::Notes on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/series/computer-architecturenotes/</link>
+    <description>Recent content in Computer Architecture::Notes on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Fri, 30 Oct 2026 02:00:55 +0800</lastBuildDate><atom:link href="https://twj-ink.github.io/series/computer-architecturenotes/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>计算机体系结构笔记6：Cache与存储层次</title>
+      <link>https://twj-ink.github.io/arch/study_notes/6-cache/</link>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/arch/study_notes/6-cache/</guid>
+      <description>从局部性出发，整理Cache的映射、替换与写策略，以及AMAT、多级缓存、MSHR和预取等优化方法</description>
+      
+    </item>
+    
+  </channel>
+</rss>

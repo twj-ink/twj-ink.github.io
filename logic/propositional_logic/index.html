@@ -64,7 +64,7 @@
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="logic">
 		<meta property="article:published_time" content="2026-10-19T00:00:00+00:00">
-		<meta property="article:modified_time" content="2026-10-30T22:12:38+08:00">
+		<meta property="article:modified_time" content="2026-10-30T23:31:55+08:00">
 		<meta property="article:tag" content="Logic">
 
   
@@ -169,8 +169,8 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="/js/main.bundle.min.0e2e7ce1e319db5369cd4badb8265de52c78d08df54617521bdac9c8cd335eea6133a82c83f9cb19baf67b8133335130e7e8ff7cfeaf7171016648dbf5a0578a.js"
-      integrity="sha512-Di584eMZ21NpzUutuCZd5Sx40I31RhdSG9rJyM0zXuphM6gsg/nLGbr2e4EzM1Ew5&#43;j/fP6vcXEBZkjb9aBXig=="
+      src="/js/main.bundle.min.41b4ed12500f57262596d01adec9e6a41dbd58a89603aa5316586f88c7ca8f7d70d2be92b88555194846abd83a458fe5a17b7c6dafcc302367fd37e0c1f4da9b.js"
+      integrity="sha512-QbTtElAPVyYlltAa3snmpB29WKiWA6pTFlhviMfKj31w0r6SuIVVGUhGq9g6RY/loXt8ba/MMCNn/TfgwfTamw=="
       data-copy="Copy"
       data-copied="Copied"></script>
   
@@ -388,12 +388,12 @@
     "dateCreated": "2026-10-19T00:00:00\u002b00:00",
     "datePublished": "2026-10-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-30T22:12:38\u002b08:00",
+    "dateModified": "2026-10-30T23:31:55\u002b08:00",
     
     "keywords": ["logic"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "498"
+    "wordCount": "424"
   }]
   </script>
 
@@ -1271,7 +1271,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-10-30T22:12:38&#43;08:00">Updated: 2026/10/30</time><span class="px-2 text-primary-500">&middot;</span><span>1361 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">7 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-10-30T23:31:55&#43;08:00">Updated: 2026/10/30</time><span class="px-2 text-primary-500">&middot;</span><span>1186 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1494,6 +1494,7 @@
     <li><a href="#推理形式">推理形式</a></li>
     <li><a href="#形式系统-i"><strong>形式系统</strong> I</a></li>
     <li><a href="#命题演算的自然推理形式系统-n">命题演算的自然推理形式系统 N</a></li>
+    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a></li>
   </ul>
 </nav>
   </div>
@@ -1512,6 +1513,7 @@
     <li><a href="#推理形式">推理形式</a></li>
     <li><a href="#形式系统-i"><strong>形式系统</strong> I</a></li>
     <li><a href="#命题演算的自然推理形式系统-n">命题演算的自然推理形式系统 N</a></li>
+    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a></li>
   </ul>
 </nav>
   </div>
@@ -1630,7 +1632,16 @@
         <div class="article-content max-w-prose mb-20">
           
 
-
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="todo">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <path fill="currentColor" d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
+</svg>
+</span></div>
+        <div class="grow">
+          Todo
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>把所有公式写成公式行块，这样latex才能正常解析</p></div></div>
 <h2 class="relative group">命题，联结词，命题形式，真值表
     <div id="命题联结词命题形式真值表" class="anchor"></div>
     
@@ -1666,7 +1677,7 @@ $$
     
 </h2>
 <p>联结词确定了复合命题的构造方式，复合命题建立了真假值的对应方式；这个对应方式形成了一个<strong>真值函数</strong>，那么就意味着联结词确定了一个真值函数；反过来，每一个真值函数也能确定一个真值表，对于每一个指派都有一个在{0,1}内的值，也确定了一个联结词。</p>
-<p>联结词能确定一个真值函数，由联结词和变元构成的命题形式，也能确定一个真值函数。设命题形式$\alpha$所含的命题变元都在$p1, p2, &hellip;, pn$中。如下定义的n元真值函数称为$\alpha$确定的真值函数，记为$f_{\alpha}$:
+<p>联结词能确定一个真值函数，由联结词和变元构成的命题形式，也能确定一个真值函数。设命题形式$\alpha$所含的命题变元都在$p1, p2, ..., pn$中。如下定义的n元真值函数称为$\alpha$确定的真值函数，记为$f_{\alpha}$:
 </p>
 $$
 f_{\alpha}(t1, t2 , … , tn) = \alpha \text{ 关于 } p1,  p2 , … , pn \text{ 在 } \text{指派 } t1, t2 , … , tn \text{ 下的值 }。
@@ -1675,7 +1686,7 @@ $$<p><strong>完全集</strong>：设A一个联结词集合，称A为联结词�
 $$
    \alpha \text{ 在任意指派 } <t1, t2, … , tk> \text{ 下的值即为 }
    f(t1, t2, … , tk)。
-$$<p>例如：${ \neg, \land, \lor, \to }$是联结词的一个完全集，${\neg, \land}$也是联结词的一个完全集。</p>
+$$<p>例如：$\{ \neg, \land, \lor, \to \}$是联结词的一个完全集，$\{\neg, \land\}$也是联结词的一个完全集。</p>
 
 <h2 class="relative group">推理形式
     <div id="推理形式" class="anchor"></div>
@@ -1863,7 +1874,7 @@ $$<p>满足：</p>
 <p>$\Gamma_1,\Gamma_2,\ldots,\Gamma_n$ 为 $N$ 中有限公式集，$\alpha_1,\alpha_2,\ldots,\alpha_n$ 为 $N$ 中公式。</p>
 </li>
 <li>
-<p>每个 $\Gamma_i\vdash\alpha_i$（$1\le i\le n$）都是对 $(*)$ 中它之前的若干个 $\Gamma_j\vdash\alpha_j$（$j&lt;i$）应用 $N$ 的某条推演规则所导出的。</p>
+<p>每个 $\Gamma_i\vdash\alpha_i$（$1\le i\le n$）都是对 $(*)$ 中它之前的若干个 $\Gamma_j\vdash\alpha_j$（$j<i$）应用 $N$ 的某条推演规则所导出的。</p>
 </li>
 </ol>
 <p>则称 $(*)$ 为 $\Gamma_n\vdash\alpha_n$ 在 $N$ 中的一个<strong>形式证明</strong>，$n$ 称为这个形式证明的<strong>长度</strong>。此时也称 $\alpha_n$ 在 $N$ 中可由 $\Gamma_n$ <strong>形式证明</strong>或<strong>形式推出</strong>，记为 $\Gamma_n\vdash_N\alpha_n$ 或 $\Gamma_n\vdash\alpha_n$。</p>
@@ -1894,15 +1905,54 @@ $$<figure><img
     ><figcaption>手写</figcaption></figure>
 <p>两个元定理：</p>
 <ol>
-<li>传递律(Tr)：若$\Gamma \vdash \alpha_1, \alpha_2, &hellip;, \alpha_n, $且$\alpha_1, \alpha_2, &hellip;, \alpha_n \vdash \alpha$，则 $\Gamma \vdash \alpha$。</li>
+<li>传递律(Tr)：若$\Gamma \vdash \alpha_1, \alpha_2, ..., \alpha_n, $且$\alpha_1, \alpha_2, ..., \alpha_n \vdash \alpha$，则 $\Gamma \vdash \alpha$。</li>
 </ol>
-<p>推论：若$\Gamma_1 \vdash \Gamma_2, \Gamma_2 \vdash \Gamma_3, &hellip; \Gamma_{n-1} \vdash \Gamma_n $，则 $\Gamma_1 \vdash \Gamma_n$。</p>
+<p>推论：若$\Gamma_1 \vdash \Gamma_2, \Gamma_2 \vdash \Gamma_3, ... \Gamma_{n-1} \vdash \Gamma_n $，则 $\Gamma_1 \vdash \Gamma_n$。</p>
 <ol start="2">
 <li>设 $\alpha_1,\alpha_2,\alpha_3,\alpha_4$ 都是 $N$ 中公式。若</li>
 </ol>
 $$
 \alpha_1\to\alpha_2\vdash\alpha_3\to\alpha_4,
 $$<p>且 $\alpha_1\vdash\alpha_2$，则 $\alpha_3\vdash\alpha_4$。</p>
+<ul>
+<li>定理：</li>
+</ul>
+<p>对于任意公式 $\alpha,\alpha_1,\alpha_2,\ldots,\alpha_n$，</p>
+$$
+\begin{aligned}
+(1)\quad
+&\alpha_1,\alpha_2,\ldots,\alpha_n \vdash \alpha
+\quad \text{当且仅当} \quad
+\varnothing \vdash
+\alpha_1 \to \bigl(\alpha_2 \to \cdots \to
+(\alpha_{n-1} \to (\alpha_n \to \alpha))\cdots\bigr);
+\\[6pt]
+(2)\quad
+&\alpha_1,\alpha_2,\ldots,\alpha_n \vdash \alpha
+\quad \text{当且仅当} \quad
+\varnothing \vdash
+(\alpha_1 \land \alpha_2 \land \cdots \land \alpha_n) \to \alpha.
+\end{aligned}
+$$<p>这个定理的意义是：</p>
+<p>若 $\varnothing \vdash_N \alpha$，则称 $\alpha$ 为 $N$ 的一个<strong>可证公式</strong>或<strong>内定理</strong>，记为 $\vdash_N \alpha$，在不引起混淆情况下，也简记为 $\vdash \alpha$。</p>
+<p>任何一个有前提的形式推演关系 都可转化为 与之等价的 没有前提的形式推演关系。即：任何一个形式推演关系都可化为一个与之等价的可证式。</p>
+
+<h2 class="relative group">命题演算形式系统 P
+    <div id="命题演算形式系统-p" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%91%bd%e9%a2%98%e6%bc%94%e7%ae%97%e5%bd%a2%e5%bc%8f%e7%b3%bb%e7%bb%9f-p" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>建立P：</p>
+<ul>
+<li>符号库A(N): （1）可数个命题符号p1,p2,&hellip; （2）2个联结词符号 $\neg, \to$ （3）三个辅助符号 $), ($</li>
+<li>公式集F(N): （1）命题符号都是公式；（2）若 $\alpha$ 是公式，则$(\neg \alpha)$也是公式。（3）若$\alpha$是公式，则$(\alpha \to \beta)$也是公式。（4）N的每个公式都是有限次应用（1）（2）（3）得到的。</li>
+<li>公理集是空集。</li>
+<li>推理规则集：</li>
+</ul>
 
           
           

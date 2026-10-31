@@ -64,7 +64,7 @@
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="logic">
 		<meta property="article:published_time" content="2026-10-19T00:00:00+00:00">
-		<meta property="article:modified_time" content="2026-10-30T23:31:55+08:00">
+		<meta property="article:modified_time" content="2026-10-31T23:45:51+08:00">
 		<meta property="article:tag" content="Logic">
 
   
@@ -388,7 +388,7 @@
     "dateCreated": "2026-10-19T00:00:00\u002b00:00",
     "datePublished": "2026-10-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-30T23:31:55\u002b08:00",
+    "dateModified": "2026-10-31T23:45:51\u002b08:00",
     
     "keywords": ["logic"],
     
@@ -1271,7 +1271,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-10-30T23:31:55&#43;08:00">Updated: 2026/10/30</time><span class="px-2 text-primary-500">&middot;</span><span>1186 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-10-31T23:45:51&#43;08:00">Updated: 2026/10/31</time><span class="px-2 text-primary-500">&middot;</span><span>1186 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1684,8 +1684,7 @@ f_{\alpha}(t1, t2 , … , tn) = \alpha \text{ 关于 } p1,  p2 , … , pn \text{
 $$<p><strong>完全集</strong>：设A一个联结词集合，称A为联结词的一个完全集，如果任一个真值函数f都可用A中联结词来表示，即：对任真值函数 f，都存在仅含A中联结词的命题$\alpha$使得：
 </p>
 $$
-   \alpha \text{ 在任意指派 } <t1, t2, … , tk> \text{ 下的值即为 }
-   f(t1, t2, … , tk)。
+\alpha \text{ 在任意指派 } <t1, t2, … , tk> \text{ 下的值即为 } f(t1, t2, … , tk)。
 $$<p>例如：$\{ \neg, \land, \lor, \to \}$是联结词的一个完全集，$\{\neg, \land\}$也是联结词的一个完全集。</p>
 
 <h2 class="relative group">推理形式
@@ -1948,12 +1947,169 @@ $$<p>这个定理的意义是：</p>
 </h2>
 <p>建立P：</p>
 <ul>
-<li>符号库A(N): （1）可数个命题符号p1,p2,&hellip; （2）2个联结词符号 $\neg, \to$ （3）三个辅助符号 $), ($</li>
-<li>公式集F(N): （1）命题符号都是公式；（2）若 $\alpha$ 是公式，则$(\neg \alpha)$也是公式。（3）若$\alpha$是公式，则$(\alpha \to \beta)$也是公式。（4）N的每个公式都是有限次应用（1）（2）（3）得到的。</li>
-<li>公理集是空集。</li>
-<li>推理规则集：</li>
+<li>
+<p>符号库A(N): （1）可数个命题符号p1,p2,&hellip; （2）2个联结词符号 $\neg, \to$ （3）三个辅助符号 $), ($</p>
+</li>
+<li>
+<p>公式集F(N): （1）命题符号都是公式；（2）若 $\alpha$ 是公式，则$(\neg \alpha)$也是公式。（3）若$\alpha$是公式，则$(\alpha \to \beta)$也是公式。（4）N的每个公式都是有限次应用（1）（2）（3）得到的。</p>
+</li>
+<li>
+<p>公理集有三类：
+</p>
+$$
+\begin{aligned}
+\text{(A1)}\quad
+&(\alpha \to (\beta \to \alpha));\\[6pt]
+\text{(A2)}\quad
+&((\alpha \to (\beta \to \gamma)) \to
+((\alpha \to \beta) \to (\alpha \to \gamma)));\\[6pt]
+\text{(A3)}\quad
+&(((\neg \alpha) \to (\neg \beta)) \to (\beta \to \alpha)).
+\end{aligned}
+$$</li>
+<li>
+<p>推理规则集：
+<strong>分离规则</strong>：由 $\alpha, (\alpha \to \beta)$ 可得到 $\beta$，记为 $(\mathrm{M})$。</p>
+</li>
+<li>
+<p>P 的形式推理：</p>
+</li>
 </ul>
-
+<p>对于任意的 $\mathrm{P}$ 中公式序列：</p>
+$$
+\alpha_1,\ \alpha_2,\ \cdots,\ \alpha_n,
+\tag{*}
+$$<p>若对每个 $i\ (1 \le i \le n)$，下列两条件之一成立：</p>
+<p>(1) $\alpha_i$ 是公理；</p>
+<p>(2) $\alpha_i$ 是由序列 $(*)$ 中 $\alpha_i$ 之前的某两个公式 $\alpha_j,\alpha_k$（$1 \le j,k < i$）应用分离规则 $(\mathrm{M})$ 得到的。</p>
+<p>则 $\alpha_n$ 称为 $\mathrm{P}$ 的一个<strong>内定理</strong>，记作 $\vdash_{\mathrm{P}} \alpha_n$ 或 $\vdash \alpha_n$，称 $(*)$ 为 $\alpha_n$ 的一个<strong>证明序列</strong>。</p>
+<ul>
+<li>P 中有前提的推演</li>
+</ul>
+<p>定义：设 $\Sigma$ 是 $P$ 中的一个公式集，称 $P$ 中公式序列</p>
+$$
+\alpha_1,\ \alpha_2,\ \cdots,\ \alpha_n
+\tag{*}
+$$<p>为在前提 $\Sigma$ 下推出 $\alpha_n$ 的一个<strong>证明</strong>，如果对每一个 $\alpha_i\ (1 \le i \le n)$，下列三个条件之一成立：</p>
+<p>(1) $\alpha_i$ 是 $P$ 中一个公理；</p>
+<p>(2) $\alpha_i \in \Sigma$；</p>
+<p>(3) $\alpha_i$ 是由序列 $(*)$ 中它前面的两个公式应用分离规则 $(\mathrm{M})$ 得到的。</p>
+<p>此时，记为 $\Sigma \vdash_P \alpha$ 或 $\Sigma \vdash \alpha$。</p>
+<ul>
+<li><strong>演绎定理</strong></li>
+</ul>
+<blockquote><p>建立了 “内定理” &amp; “有前提的推理” 之间的联系，也使得许多内定理证明得以简化</p>
+</blockquote><p>设 $\Gamma$ 是 $P$ 中的一个公式集，$\alpha,\beta$ 是 $P$ 的两个公式，若 $\Gamma \cup \{\alpha\} \vdash \beta$，则 $\Gamma \vdash \alpha \to \beta$。</p>
+<p>由演绎定理可知：</p>
+$$
+若\{ \alpha_1, \alpha_2, ..., \alpha_n \} \vdash \beta，则 \vdash (\alpha_1 \to (\alpha_2 \to \cdots \to (\alpha_n \to \beta) \cdots )
+$$<ul>
+<li><strong>演绎定理的逆命题</strong></li>
+</ul>
+<p>设 $\Gamma$ 是 $P$ 中的一个公式集，$\alpha,\beta$ 是 $P$ 的两个公式，若 $\Gamma \vdash \alpha \to \beta$，则 $\Gamma \cup \{\alpha\} \vdash \beta$。</p>
+<ul>
+<li>一些直观常用的内定理</li>
+</ul>
+<table>
+	<thead>
+			<tr>
+					<th>名称或用途</th>
+					<th>内定理</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>自反式</td>
+					<td>\(A\to A\)</td>
+			</tr>
+			<tr>
+					<td><strong>矛盾推出任意公式</strong></td>
+					<td>\(\neg A\to(A\to B)\)</td>
+			</tr>
+			<tr>
+					<td><strong>双重否定消去</strong></td>
+					<td>\(\neg\neg A\to A\)</td>
+			</tr>
+			<tr>
+					<td><strong>双重否定引入</strong></td>
+					<td>\(A\to\neg\neg A\)</td>
+			</tr>
+			<tr>
+					<td>逆否式(A3)</td>
+					<td>\((A\to B)\to(\neg B\to\neg A)\)</td>
+			</tr>
+			<tr>
+					<td>蕴含传递</td>
+					<td>\((A\to B)\to((B\to C)\to(A\to C))\)</td>
+			</tr>
+			<tr>
+					<td><strong>归谬式</strong></td>
+					<td>\((\neg A\to A)\to A\)</td>
+			</tr>
+			<tr>
+					<td>否定蕴含，得到前件</td>
+					<td>\(\neg(A\to B)\to A\)</td>
+			</tr>
+			<tr>
+					<td>否定蕴含，得到后件的否定</td>
+					<td>\(\neg(A\to B)\to\neg B\)</td>
+			</tr>
+			<tr>
+					<td>分类讨论</td>
+					<td>\((A\to B)\to((\neg A\to B)\to B)\)</td>
+			</tr>
+	</tbody>
+</table>
+<ul>
+<li>定理</li>
+</ul>
+<p>设 $\Sigma$ 是 $P$ 中公式集，$\alpha_1,\alpha_2,\ldots,\alpha_n$ 为 $P$ 中公式。若 $\Sigma \vdash \alpha_1,\ \Sigma \vdash \alpha_2,\ \ldots,\ \Sigma \vdash \alpha_n$，且 $\alpha_1,\alpha_2,\ldots,\alpha_n \vdash \alpha$，则 $\Sigma \vdash \alpha$。</p>
+<ul>
+<li><strong>理解</strong></li>
+</ul>
+<p>对于A1，用途一般是对一个已证公式添加一个前置公式，就是这种公式：</p>
+<p>$$
+\vdash 某个前置公式 \to 显然的已证公式</p>
+<p>$$</p>
+<p>其中“显然的已证公式”比如A1、A2、A3等。那么证明序列就是利用A1来引进这个“某个前置公式”：</p>
+$$
+\begin{aligned}
+1.\quad & \text{显然的已证公式}
+&& \text{（已知）} \\[6pt]
+2.\quad & \text{显然的已证公式}
+\to (\text{某个前置公式} \to \text{显然的已证公式})
+&& \text{（A1）} \\[6pt]
+3.\quad & \text{某个前置公式} \to \text{显然的已证公式}
+&& \text{（M：1，2）}
+\end{aligned}
+$$<p>这样就完成了添加前置公式，有点类似于N中的引入前提。</p>
+<p>对于A2，在形式上有点像分配律。</p>
+<p>对于A3，可以用来引入否定。</p>
+<p>此外，在P中的证明序列，如果不能用Tr的话，也是可用A1、A2、A3等公理来模版化证明的。比如要求下面在P中的证明序列：</p>
+<p>$$
+A \to B, B \to C \vdash_P A \to C</p>
+<p>$$</p>
+<p>证明序列：</p>
+$$
+\begin{aligned}
+1.\quad & A \to B
+&& \text{（已知）} \\[6pt]
+2.\quad & B \to C
+&& \text{（已知）} \\[6pt]
+\quad & （tip-接下来想要在2中引入A作为前件） \\[6pt]
+3.\quad & (B \to C) \to (A \to (B \to C)) 
+&& \text{（A1）} \\[6pt]
+4.\quad & A \to (B \to C)
+&& \text{（M：2, 3）} \\[6pt]
+\quad & （tip-分配律） \\[6pt]
+5.\quad & (A \to (B \to C)) \to ((A \to B) \to (A \to C))
+&& \text{（A2）} \\[6pt]
+6.\quad & (A \to B) \to (A \to C)
+&& \text{（M：4, 5）} \\[6pt]
+7.\quad & A \to C
+&& \text{（M：1, 6）}
+\end{aligned}
+$$
           
           
           

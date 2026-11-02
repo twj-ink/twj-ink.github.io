@@ -64,7 +64,7 @@
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="logic">
 		<meta property="article:published_time" content="2026-10-19T00:00:00+00:00">
-		<meta property="article:modified_time" content="2026-10-31T23:45:51+08:00">
+		<meta property="article:modified_time" content="2026-11-02T11:38:27+08:00">
 		<meta property="article:tag" content="Logic">
 
   
@@ -388,12 +388,12 @@
     "dateCreated": "2026-10-19T00:00:00\u002b00:00",
     "datePublished": "2026-10-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-31T23:45:51\u002b08:00",
+    "dateModified": "2026-11-02T11:38:27\u002b08:00",
     
     "keywords": ["logic"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "424"
+    "wordCount": "422"
   }]
   </script>
 
@@ -1271,7 +1271,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-10-31T23:45:51&#43;08:00">Updated: 2026/10/31</time><span class="px-2 text-primary-500">&middot;</span><span>1186 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-11-02T11:38:27&#43;08:00">Updated: 2026/11/02</time><span class="px-2 text-primary-500">&middot;</span><span>1165 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1494,7 +1494,25 @@
     <li><a href="#推理形式">推理形式</a></li>
     <li><a href="#形式系统-i"><strong>形式系统</strong> I</a></li>
     <li><a href="#命题演算的自然推理形式系统-n">命题演算的自然推理形式系统 N</a></li>
-    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a></li>
+    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a>
+      <ul>
+        <li><a href="#一些证明">一些证明</a></li>
+        <li><a href="#例题173">例题：17（3）</a></li>
+      </ul>
+    </li>
+    <li><a href="#n-与-p-的等价性">N 与 P 的等价性</a></li>
+    <li><a href="#赋值">赋值</a>
+      <ul>
+        <li><a href="#永真式矛盾式可满足式">永真式、矛盾式、可满足式</a></li>
+        <li><a href="#重言式的替换定理">重言式的替换定理</a></li>
+      </ul>
+    </li>
+    <li><a href="#公式的等值与逻辑蕴含">公式的等值与逻辑蕴含</a>
+      <ul>
+        <li><a href="#基本等值公式">基本等值公式</a></li>
+      </ul>
+    </li>
+    <li><a href="#替换定理与等值演算">替换定理与等值演算</a></li>
   </ul>
 </nav>
   </div>
@@ -1513,7 +1531,25 @@
     <li><a href="#推理形式">推理形式</a></li>
     <li><a href="#形式系统-i"><strong>形式系统</strong> I</a></li>
     <li><a href="#命题演算的自然推理形式系统-n">命题演算的自然推理形式系统 N</a></li>
-    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a></li>
+    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a>
+      <ul>
+        <li><a href="#一些证明">一些证明</a></li>
+        <li><a href="#例题173">例题：17（3）</a></li>
+      </ul>
+    </li>
+    <li><a href="#n-与-p-的等价性">N 与 P 的等价性</a></li>
+    <li><a href="#赋值">赋值</a>
+      <ul>
+        <li><a href="#永真式矛盾式可满足式">永真式、矛盾式、可满足式</a></li>
+        <li><a href="#重言式的替换定理">重言式的替换定理</a></li>
+      </ul>
+    </li>
+    <li><a href="#公式的等值与逻辑蕴含">公式的等值与逻辑蕴含</a>
+      <ul>
+        <li><a href="#基本等值公式">基本等值公式</a></li>
+      </ul>
+    </li>
+    <li><a href="#替换定理与等值演算">替换定理与等值演算</a></li>
   </ul>
 </nav>
   </div>
@@ -1632,16 +1668,7 @@
         <div class="article-content max-w-prose mb-20">
           
 
-<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="todo">
-      <div class="flex items-center gap-2 font-semibold text-inherit">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <path fill="currentColor" d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
-</svg>
-</span></div>
-        <div class="grow">
-          Todo
-        </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>把所有公式写成公式行块，这样latex才能正常解析</p></div></div>
+
 <h2 class="relative group">命题，联结词，命题形式，真值表
     <div id="命题联结词命题形式真值表" class="anchor"></div>
     
@@ -2108,6 +2135,459 @@ $$
 && \text{（M：4, 5）} \\[6pt]
 7.\quad & A \to C
 && \text{（M：1, 6）}
+\end{aligned}
+$$
+<h3 class="relative group">一些证明
+    <div id="一些证明" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80%e4%ba%9b%e8%af%81%e6%98%8e" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>矛盾推出任意公式</li>
+</ul>
+<p>证明：</p>
+$$
+\vdash_P\neg A\to(A\to B).
+$$<p>利用A1和A3，发现只需要一次Tr即可。套用上面的证明模板。</p>
+<p>$$
+\begin{array}{rll}
+\text{①}&amp;
+\neg A\to(\neg B\to\neg A)
+&amp;(\mathrm{A1})\[6pt]</p>
+<p>\text{②}&amp;
+(\neg B\to\neg A)\to(A\to B)
+&amp;(\mathrm{A3})\[6pt]</p>
+<p>\text{③}&amp;
+\bigl((\neg B\to\neg A)\to(A\to B)\bigr)
+\to
+\bigl(\neg A\to((\neg B\to\neg A)\to(A\to B))\bigr)
+&amp;(\mathrm{A1})\[6pt]</p>
+<p>\text{④}&amp;
+\neg A\to((\neg B\to\neg A)\to(A\to B))
+&amp;(\mathrm M)\text{②③}\[6pt]</p>
+<p>\text{⑤}&amp;
+\bigl(\neg A\to((\neg B\to\neg A)\to(A\to B))\bigr)
+\to
+\bigl((\neg A\to(\neg B\to\neg A))
+\to(\neg A\to(A\to B))\bigr)
+&amp;(\mathrm{A2})\[6pt]</p>
+<p>\text{⑥}&amp;
+(\neg A\to(\neg B\to\neg A))
+\to(\neg A\to(A\to B))
+&amp;(\mathrm M)\text{④⑤}\[6pt]</p>
+<p>\text{⑦}&amp;
+\neg A\to(A\to B)
+&amp;(\mathrm M)\text{①⑥}
+\end{array}
+$$</p>
+<p>其中，第②行在 A3 中取 $\varphi=B,\ \psi=A$。</p>
+<p>整个证明没有使用任何前提，因此：</p>
+$$
+\boxed{\vdash_P\neg A\to(A\to B).}
+$$<ul>
+<li>归谬式</li>
+</ul>
+<p>证明：</p>
+$$
+\vdash_P(\neg A\to A)\to A.
+$$<p>记：</p>
+$$
+T=(A\to A),\qquad H=(\neg A\to A).
+$$<p>其中，$T$ 是已证的自反式。先以 $H$ 为临时前提证明 $A$：</p>
+<p>$$
+\begin{array}{rll}
+\text{①}&amp;
+T
+&amp;\text{（已证自反式）}\[6pt]</p>
+<p>\text{②}&amp;
+\neg A\to(A\to\neg T)
+&amp;\text{（由第1个内定理，取 }B=\neg T\text{）}\[6pt]</p>
+<p>\text{③}&amp;
+\bigl(\neg A\to(A\to\neg T)\bigr)
+\to
+\bigl((\neg A\to A)\to(\neg A\to\neg T)\bigr)
+&amp;(\mathrm{A2})\[6pt]</p>
+<p>\text{④}&amp;
+H\to(\neg A\to\neg T)
+&amp;(\mathrm M)\text{②③}\[6pt]</p>
+<p>\text{⑤}&amp;
+H
+&amp;\text{（临时前提）}\[6pt]</p>
+<p>\text{⑥}&amp;
+\neg A\to\neg T
+&amp;(\mathrm M)\text{④⑤}\[6pt]</p>
+<p>\text{⑦}&amp;
+(\neg A\to\neg T)\to(T\to A)
+&amp;(\mathrm{A3})\[6pt]</p>
+<p>\text{⑧}&amp;
+T\to A
+&amp;(\mathrm M)\text{⑥⑦}\[6pt]</p>
+<p>\text{⑨}&amp;
+A
+&amp;(\mathrm M)\text{①⑧}
+\end{array}
+$$</p>
+<p>其中，第⑦行在 A3 中取 $\varphi=A,\ \psi=T$。</p>
+<p>于是：</p>
+$$
+\neg A\to A\vdash_P A.
+$$<p>由演绎定理，撤销临时前提 $H=\neg A\to A$，得到：</p>
+$$
+\boxed{\vdash_P(\neg A\to A)\to A.}
+$$<ul>
+<li>可以引入假设前提，再利用演绎定理撤销</li>
+</ul>
+
+<h3 class="relative group">例题：17（3）
+    <div id="例题173" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%be%8b%e9%a2%98173" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>证明：</p>
+$$
+(\alpha\to\beta)\to\gamma
+\vdash_P
+(\gamma\to\alpha)\to(\alpha'\to\alpha).
+$$<ul>
+<li>证明思路</li>
+</ul>
+<p>目标有两层蕴含，先临时加入前提 $\gamma\to\alpha$ 和 $\alpha'$，把目标变为证明 $\alpha$。</p>
+<p>为证明 $\alpha$，再临时假设 $\neg\alpha$。利用“矛盾推出任意公式”的内定理，可以启动以下推理：</p>
+$$
+\neg\alpha
+\Longrightarrow
+\alpha\to\beta
+\Longrightarrow
+\gamma
+\Longrightarrow
+\alpha.
+$$<p>随后用演绎定理撤销 $\neg\alpha$，得到 $\neg\alpha\to\alpha$；再由归谬式得到 $\alpha$。最后依次撤销前提 $\alpha'$ 和 $\gamma\to\alpha$。</p>
+<ul>
+<li>证明序列</li>
+</ul>
+<p>记：</p>
+$$
+H=((\alpha\to\beta)\to\gamma),\qquad
+K=(\gamma\to\alpha).
+$$<p>先在前提 $H,K,\alpha',\neg\alpha$ 下证明 $\alpha$：</p>
+<p>$$
+\begin{array}{rll}
+\text{①}&amp;
+H
+&amp;\text{（原前提）}\[6pt]</p>
+<p>\text{②}&amp;
+K
+&amp;\text{（临时前提）}\[6pt]</p>
+<p>\text{③}&amp;
+\alpha'
+&amp;\text{（临时前提）}\[6pt]</p>
+<p>\text{④}&amp;
+\neg\alpha
+&amp;\text{（临时前提）}\[6pt]</p>
+<p>\text{⑤}&amp;
+\neg\alpha\to(\alpha\to\beta)
+&amp;\text{（已证内定理）}\[6pt]</p>
+<p>\text{⑥}&amp;
+\alpha\to\beta
+&amp;(\mathrm M)\text{④⑤}\[6pt]</p>
+<p>\text{⑦}&amp;
+\gamma
+&amp;(\mathrm M)\text{⑥①}\[6pt]</p>
+<p>\text{⑧}&amp;
+\alpha
+&amp;(\mathrm M)\text{⑦②}
+\end{array}
+$$</p>
+<p>因此：</p>
+$$
+H,K,\alpha',\neg\alpha\vdash_P\alpha.
+$$<p>由演绎定理，撤销临时前提 $\neg\alpha$，得到：</p>
+$$
+H,K,\alpha'\vdash_P\neg\alpha\to\alpha.
+$$<p>仍在前提 $H,K,\alpha'$ 下，继续证明：</p>
+<p>$$
+\begin{array}{rll}
+\text{①}&amp;
+\neg\alpha\to\alpha
+&amp;\text{（由前段及演绎定理）}\[6pt]</p>
+<p>\text{②}&amp;
+(\neg\alpha\to\alpha)\to\alpha
+&amp;\text{（已证归谬式）}\[6pt]</p>
+<p>\text{③}&amp;
+\alpha
+&amp;(\mathrm M)\text{①②}
+\end{array}
+$$</p>
+<p>于是：</p>
+$$
+H,K,\alpha'\vdash_P\alpha.
+$$<p>由演绎定理，撤销临时前提 $\alpha'$：</p>
+$$
+H,K\vdash_P\alpha'\to\alpha.
+$$<p>再由演绎定理，撤销临时前提 $K=\gamma\to\alpha$：</p>
+$$
+H\vdash_P(\gamma\to\alpha)\to(\alpha'\to\alpha).
+$$<p>即：</p>
+$$
+\boxed{
+(\alpha\to\beta)\to\gamma
+\vdash_P
+(\gamma\to\alpha)\to(\alpha'\to\alpha).
+}
+$$<p>注意：临时前提 $\alpha'$ 在推导 $\alpha$ 时没有被使用，这是允许的。演绎定理仍然可以撤销它，得到 $\alpha'\to\alpha$。</p>
+
+<h2 class="relative group">N 与 P 的等价性
+    <div id="n-与-p-的等价性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#n-%e4%b8%8e-p-%e7%9a%84%e7%ad%89%e4%bb%b7%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<ul>
+<li>定理</li>
+</ul>
+<p>设 $\Sigma,\alpha$ 分别为 $P$ 中公式集与公式，若 $\Sigma \vdash_P \alpha$，则存在 $\Sigma$ 的有限子集 $\Sigma_0 \subseteq \Sigma$，使得 $\Sigma_0 \vdash_P \alpha$。</p>
+<ul>
+<li>引理</li>
+</ul>
+<p>若 $\alpha$ 是 $P$ 中公理，则对 $P$ 中任何有限公式集 $\Sigma$ 都有 $\Sigma \vdash_N \alpha$。</p>
+<ul>
+<li>定理（由P到N的可证性）</li>
+</ul>
+<p>设 $\Sigma,\alpha$ 分别为 $P$ 中有限公式集和公式，若 $\Sigma \vdash_P \alpha$，则 $\Sigma \vdash_N \alpha$。</p>
+<ul>
+<li>定理（由N到P的可证性）</li>
+</ul>
+<p>设 $\Sigma,\alpha$ 分别为 $N$ 中有限公式集和公式，若 $\Sigma \vdash_N \alpha$，则 $\Sigma \vdash_P \alpha$。</p>
+<ul>
+<li>推论</li>
+</ul>
+<p>对 $P$ 或 $N$ 中的公式 $\alpha$，$\vdash_P \alpha$ 当且仅当 $\vdash_N \alpha$。</p>
+
+<h2 class="relative group">赋值
+    <div id="赋值" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e8%b5%8b%e5%80%bc" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>形式推理只检查公式是否为公理、推理是否符合规则；赋值则给公式赋予真假值，用来讨论公式是否永真。</p>
+<ul>
+<li>指派：给每个命题符号指定一个值 $0$ 或 $1$，其中 $0$ 表示假，$1$ 表示真。</li>
+</ul>
+$$
+\sigma:\{p_0,p_1,p_2,\ldots\}\to\{0,1\}.
+$$<ul>
+<li>赋值：根据指派和联结词，递归计算每个公式的值。公式 $\alpha$ 在指派 $\sigma$ 下的值记为 $\alpha^\sigma$。</li>
+</ul>
+$$
+\begin{aligned}
+(p_i)^\sigma&=\sigma(p_i),\\
+(\neg\alpha)^\sigma&=1-\alpha^\sigma,\\
+(\alpha\to\beta)^\sigma&=\max\{1-\alpha^\sigma,\beta^\sigma\}.
+\end{aligned}
+$$<p>因此，蕴含只有在前件真、后件假时才为假。其他联结词在 $P$ 中是简写，其值也与原来的真值表一致：</p>
+$$
+\begin{aligned}
+\alpha\lor\beta&:=\neg\alpha\to\beta,
+& (\alpha\lor\beta)^\sigma&=\max\{\alpha^\sigma,\beta^\sigma\},\\
+\alpha\land\beta&:=\neg(\alpha\to\neg\beta),
+& (\alpha\land\beta)^\sigma&=\min\{\alpha^\sigma,\beta^\sigma\},\\
+\alpha\leftrightarrow\beta&:=(\alpha\to\beta)\land(\beta\to\alpha).
+\end{aligned}
+$$<p>其中，$(\alpha\leftrightarrow\beta)^\sigma=1$ 当且仅当 $\alpha^\sigma=\beta^\sigma$。</p>
+<ul>
+<li>例：若 $\sigma(p_1)=0,\sigma(p_2)=1,\sigma(p_3)=0$，则 $((p_1\lor p_2)\to p_3)^\sigma=0$。</li>
+<li>哑元无关性：公式的值只取决于其中实际出现的命题符号。两个指派只要在这些符号上相同，公式的值就相同。</li>
+</ul>
+
+<h3 class="relative group">永真式、矛盾式、可满足式
+    <div id="永真式矛盾式可满足式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%b0%b8%e7%9c%9f%e5%bc%8f%e7%9f%9b%e7%9b%be%e5%bc%8f%e5%8f%af%e6%bb%a1%e8%b6%b3%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>永真式（重言式）：对任意指派 $\sigma$，都有 $\alpha^\sigma=1$。</li>
+<li>矛盾式（永假式）：对任意指派 $\sigma$，都有 $\alpha^\sigma=0$。</li>
+<li>可满足式：存在指派 $\sigma$，使得 $\alpha^\sigma=1$。永真式也是可满足式；不可满足的公式就是矛盾式。</li>
+</ul>
+<p><strong>$P$ 的公理都是永真式，分离规则保持永真性</strong>：若 $\alpha$ 和 $\alpha\to\beta$ 都是永真式，则 $\beta$ 也是永真式。因此，$P$ 中的内定理都是永真式。</p>
+
+<h3 class="relative group">重言式的替换定理
+    <div id="重言式的替换定理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%87%8d%e8%a8%80%e5%bc%8f%e7%9a%84%e6%9b%bf%e6%8d%a2%e5%ae%9a%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>若 $\alpha$ 是重言式，把其中命题变元 $q_1,\ldots,q_n$ 同时分别替换为任意公式 $\beta_1,\ldots,\beta_n$，所得公式仍为重言式。</p>
+<ul>
+<li>同一个命题变元的所有出现必须统一替换。例如，$p\to p$ 是重言式，只替换其中一个 $p$ 得到 $q\to p$，就不一定永真。</li>
+<li>这里替换的是命题变元，不能任意替换整个子公式。例如，把 $p\to(q\to p)$ 中的子公式 $q\to p$ 任意换成 $q$，得到的 $p\to q$ 不再是重言式。</li>
+</ul>
+
+<h2 class="relative group">公式的等值与逻辑蕴含
+    <div id="公式的等值与逻辑蕴含" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ac%e5%bc%8f%e7%9a%84%e7%ad%89%e5%80%bc%e4%b8%8e%e9%80%bb%e8%be%91%e8%95%b4%e5%90%ab" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<ul>
+<li>等值：若 $\alpha\leftrightarrow\beta$ 是重言式，称 $\alpha$ 与 $\beta$ 逻辑等价，记为 $\alpha\Leftrightarrow\beta$。</li>
+<li>逻辑蕴含：若 $\alpha\to\beta$ 是重言式，称 $\alpha$ 逻辑蕴含 $\beta$，记为 $\alpha\Rightarrow\beta$。</li>
+</ul>
+$$
+\begin{aligned}
+\alpha\Leftrightarrow\beta
+&\quad\text{当且仅当}\quad
+\text{对任意 }\sigma,\ \alpha^\sigma=\beta^\sigma,\\
+\alpha\Rightarrow\beta
+&\quad\text{当且仅当}\quad
+\text{对任意 }\sigma,\ \alpha^\sigma=1\text{ 时 }\beta^\sigma=1.
+\end{aligned}
+$$<p>注意：$\to,\leftrightarrow$ 是公式内部的联结词；$\Rightarrow,\Leftrightarrow$ 是在公式外部描述逻辑蕴含、等值关系的记号。$\vdash_P\alpha$ 则表示形式可证性。</p>
+<p>等值关系具有自反性、对称性和传递性，因此可以连续进行等值变形。</p>
+
+<h3 class="relative group">基本等值公式
+    <div id="基本等值公式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9f%ba%e6%9c%ac%e7%ad%89%e5%80%bc%e5%85%ac%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>交换律、结合律</li>
+</ul>
+$$
+\begin{aligned}
+\alpha\lor\beta&\Leftrightarrow\beta\lor\alpha,\\
+\alpha\land\beta&\Leftrightarrow\beta\land\alpha,\\
+\alpha\leftrightarrow\beta&\Leftrightarrow\beta\leftrightarrow\alpha,\\
+(\alpha\lor\beta)\lor\gamma&\Leftrightarrow\alpha\lor(\beta\lor\gamma),\\
+(\alpha\land\beta)\land\gamma&\Leftrightarrow\alpha\land(\beta\land\gamma),\\
+(\alpha\leftrightarrow\beta)\leftrightarrow\gamma
+&\Leftrightarrow\alpha\leftrightarrow(\beta\leftrightarrow\gamma).
+\end{aligned}
+$$<ul>
+<li>分配律</li>
+</ul>
+$$
+\begin{aligned}
+\alpha\land(\beta\lor\gamma)
+&\Leftrightarrow(\alpha\land\beta)\lor(\alpha\land\gamma),\\
+\alpha\lor(\beta\land\gamma)
+&\Leftrightarrow(\alpha\lor\beta)\land(\alpha\lor\gamma),\\
+\alpha\to(\beta\to\gamma)
+&\Leftrightarrow(\alpha\to\beta)\to(\alpha\to\gamma).
+\end{aligned}
+$$<ul>
+<li>双重否定律、德摩根律</li>
+</ul>
+$$
+\begin{aligned}
+\neg\neg\alpha&\Leftrightarrow\alpha,\\
+\neg(\alpha\lor\beta)&\Leftrightarrow\neg\alpha\land\neg\beta,\\
+\neg(\alpha\land\beta)&\Leftrightarrow\neg\alpha\lor\neg\beta.
+\end{aligned}
+$$<ul>
+<li>幂等律、吸收律</li>
+</ul>
+$$
+\begin{aligned}
+\alpha\lor\alpha&\Leftrightarrow\alpha,
+&\alpha\land\alpha&\Leftrightarrow\alpha,\\
+\alpha\lor(\alpha\land\beta)&\Leftrightarrow\alpha,
+&\alpha\land(\alpha\lor\beta)&\Leftrightarrow\alpha.
+\end{aligned}
+$$<ul>
+<li>蕴含、逆否、归谬及等价的等值式</li>
+</ul>
+$$
+\begin{aligned}
+\alpha\to\beta&\Leftrightarrow\neg\alpha\lor\beta,\\
+\alpha\to\beta&\Leftrightarrow\neg\beta\to\neg\alpha,\\
+(\alpha\to\beta)\land(\alpha\to\neg\beta)&\Leftrightarrow\neg\alpha,\\
+\alpha\leftrightarrow\beta
+&\Leftrightarrow(\alpha\to\beta)\land(\beta\to\alpha),\\
+\alpha\leftrightarrow\beta&\Leftrightarrow(\neg\alpha\leftrightarrow\neg\beta).
+\end{aligned}
+$$<ul>
+<li>零律、同一律、排中律、矛盾律</li>
+</ul>
+$$
+\begin{aligned}
+\alpha\lor1&\Leftrightarrow1,
+&\alpha\land0&\Leftrightarrow0,\\
+\alpha\lor0&\Leftrightarrow\alpha,
+&\alpha\land1&\Leftrightarrow\alpha,\\
+\alpha\lor\neg\alpha&\Leftrightarrow1,
+&\alpha\land\neg\alpha&\Leftrightarrow0.
+\end{aligned}
+$$<p>这里的 $0,1$ 是矛盾式、重言式的代称，不是 $P$ 新增加的公式符号。</p>
+
+<h2 class="relative group">替换定理与等值演算
+    <div id="替换定理与等值演算" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9b%bf%e6%8d%a2%e5%ae%9a%e7%90%86%e4%b8%8e%e7%ad%89%e5%80%bc%e6%bc%94%e7%ae%97" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<ul>
+<li>第一替换定理：若 $\alpha\Leftrightarrow\beta$，对两边的命题变元同时进行相同的统一替换，所得 $\alpha',\beta'$ 仍满足 $\alpha'\Leftrightarrow\beta'$。它保证可以把等值公式当作模板使用。</li>
+</ul>
+<p>例如，在吸收律 $p\land(p\lor q)\Leftrightarrow p$ 中，统一取 $p=(\alpha\to\beta),q=\neg\gamma$，得到：</p>
+$$
+(\alpha\to\beta)\land((\alpha\to\beta)\lor\neg\gamma)
+\Leftrightarrow\alpha\to\beta.
+$$<ul>
+<li>第二替换定理：若 $\alpha\Leftrightarrow\beta$，将公式 $\gamma$ 中某些作为子公式出现的 $\alpha$ 替换为 $\beta$，所得 $\delta$ 与 $\gamma$ 等值。它保证可以在大公式内部替换等值的局部公式。</li>
+</ul>
+<p>例如，由 $\alpha\land(\alpha\lor\beta)\Leftrightarrow\alpha$，可得：</p>
+$$
+\neg(\alpha\land(\alpha\lor\beta))\Leftrightarrow\neg\alpha.
+$$<p><strong>区别</strong>：第一替换定理是对等值式两边的命题变元统一替换；第二替换定理是在已知局部公式等值的条件下，替换大公式中的子公式，可以只替换其中部分出现。</p>
+<ul>
+<li>等值演算：利用基本等值式和替换定理逐步变形，再由等值关系的传递性得到结论。平时直接套公式、替换局部表达式，依据的就是这两个替换定理。</li>
+</ul>
+<p>例：证明 $p\to(q\to r)\Leftrightarrow(p\land q)\to r$。</p>
+$$
+\begin{aligned}
+p\to(q\to r)
+&\Leftrightarrow\neg p\lor(q\to r)
+&&\text{（蕴含等值式、第一替换定理）}\\
+&\Leftrightarrow\neg p\lor(\neg q\lor r)
+&&\text{（蕴含等值式、第二替换定理）}\\
+&\Leftrightarrow(\neg p\lor\neg q)\lor r
+&&\text{（结合律）}\\
+&\Leftrightarrow\neg(p\land q)\lor r
+&&\text{（德摩根律、第二替换定理）}\\
+&\Leftrightarrow(p\land q)\to r
+&&\text{（蕴含等值式、第一替换定理）}.
 \end{aligned}
 $$
           

@@ -64,7 +64,7 @@
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="logic">
 		<meta property="article:published_time" content="2026-10-19T00:00:00+00:00">
-		<meta property="article:modified_time" content="2026-11-02T11:38:27+08:00">
+		<meta property="article:modified_time" content="2026-11-02T14:14:09+08:00">
 		<meta property="article:tag" content="Logic">
 
   
@@ -388,7 +388,7 @@
     "dateCreated": "2026-10-19T00:00:00\u002b00:00",
     "datePublished": "2026-10-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-02T11:38:27\u002b08:00",
+    "dateModified": "2026-11-02T14:14:09\u002b08:00",
     
     "keywords": ["logic"],
     
@@ -1271,7 +1271,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-11-02T11:38:27&#43;08:00">Updated: 2026/11/02</time><span class="px-2 text-primary-500">&middot;</span><span>1165 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-11-02T14:14:09&#43;08:00">Updated: 2026/11/02</time><span class="px-2 text-primary-500">&middot;</span><span>1165 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -2153,38 +2153,37 @@ $$
 $$
 \vdash_P\neg A\to(A\to B).
 $$<p>利用A1和A3，发现只需要一次Tr即可。套用上面的证明模板。</p>
-<p>$$
+$$
 \begin{array}{rll}
-\text{①}&amp;
+\text{①}&
 \neg A\to(\neg B\to\neg A)
-&amp;(\mathrm{A1})\[6pt]</p>
-<p>\text{②}&amp;
+&(\mathrm{A1})\\[6pt]
+\text{②}&
 (\neg B\to\neg A)\to(A\to B)
-&amp;(\mathrm{A3})\[6pt]</p>
-<p>\text{③}&amp;
+&(\mathrm{A3})\\[6pt]
+\text{③}&
 \bigl((\neg B\to\neg A)\to(A\to B)\bigr)
 \to
 \bigl(\neg A\to((\neg B\to\neg A)\to(A\to B))\bigr)
-&amp;(\mathrm{A1})\[6pt]</p>
-<p>\text{④}&amp;
+&(\mathrm{A1})\\[6pt]
+\text{④}&
 \neg A\to((\neg B\to\neg A)\to(A\to B))
-&amp;(\mathrm M)\text{②③}\[6pt]</p>
-<p>\text{⑤}&amp;
+&(\mathrm M)\text{②③}\\[6pt]
+\text{⑤}&
 \bigl(\neg A\to((\neg B\to\neg A)\to(A\to B))\bigr)
 \to
 \bigl((\neg A\to(\neg B\to\neg A))
 \to(\neg A\to(A\to B))\bigr)
-&amp;(\mathrm{A2})\[6pt]</p>
-<p>\text{⑥}&amp;
+&(\mathrm{A2})\\[6pt]
+\text{⑥}&
 (\neg A\to(\neg B\to\neg A))
 \to(\neg A\to(A\to B))
-&amp;(\mathrm M)\text{④⑤}\[6pt]</p>
-<p>\text{⑦}&amp;
+&(\mathrm M)\text{④⑤}\\[6pt]
+\text{⑦}&
 \neg A\to(A\to B)
-&amp;(\mathrm M)\text{①⑥}
+&(\mathrm M)\text{①⑥}
 \end{array}
-$$</p>
-<p>其中，第②行在 A3 中取 $\varphi=B,\ \psi=A$。</p>
+$$<p>其中，第②行在 A3 中取 $\varphi=B,\ \psi=A$。</p>
 <p>整个证明没有使用任何前提，因此：</p>
 $$
 \boxed{\vdash_P\neg A\to(A\to B).}
@@ -2198,40 +2197,39 @@ $$<p>记：</p>
 $$
 T=(A\to A),\qquad H=(\neg A\to A).
 $$<p>其中，$T$ 是已证的自反式。先以 $H$ 为临时前提证明 $A$：</p>
-<p>$$
+$$
 \begin{array}{rll}
-\text{①}&amp;
+\text{①}&
 T
-&amp;\text{（已证自反式）}\[6pt]</p>
-<p>\text{②}&amp;
+&\text{（已证自反式）}\\[6pt]
+\text{②}&
 \neg A\to(A\to\neg T)
-&amp;\text{（由第1个内定理，取 }B=\neg T\text{）}\[6pt]</p>
-<p>\text{③}&amp;
+&\text{（由第1个内定理，取 }B=\neg T\text{）}\\[6pt]
+\text{③}&
 \bigl(\neg A\to(A\to\neg T)\bigr)
 \to
 \bigl((\neg A\to A)\to(\neg A\to\neg T)\bigr)
-&amp;(\mathrm{A2})\[6pt]</p>
-<p>\text{④}&amp;
+&(\mathrm{A2})\\[6pt]
+\text{④}&
 H\to(\neg A\to\neg T)
-&amp;(\mathrm M)\text{②③}\[6pt]</p>
-<p>\text{⑤}&amp;
+&(\mathrm M)\text{②③}\\[6pt]
+\text{⑤}&
 H
-&amp;\text{（临时前提）}\[6pt]</p>
-<p>\text{⑥}&amp;
+&\text{（临时前提）}\\[6pt]
+\text{⑥}&
 \neg A\to\neg T
-&amp;(\mathrm M)\text{④⑤}\[6pt]</p>
-<p>\text{⑦}&amp;
+&(\mathrm M)\text{④⑤}\\[6pt]
+\text{⑦}&
 (\neg A\to\neg T)\to(T\to A)
-&amp;(\mathrm{A3})\[6pt]</p>
-<p>\text{⑧}&amp;
+&(\mathrm{A3})\\[6pt]
+\text{⑧}&
 T\to A
-&amp;(\mathrm M)\text{⑥⑦}\[6pt]</p>
-<p>\text{⑨}&amp;
+&(\mathrm M)\text{⑥⑦}\\[6pt]
+\text{⑨}&
 A
-&amp;(\mathrm M)\text{①⑧}
+&(\mathrm M)\text{①⑧}
 \end{array}
-$$</p>
-<p>其中，第⑦行在 A3 中取 $\varphi=A,\ \psi=T$。</p>
+$$<p>其中，第⑦行在 A3 中取 $\varphi=A,\ \psi=T$。</p>
 <p>于是：</p>
 $$
 \neg A\to A\vdash_P A.
@@ -2278,55 +2276,53 @@ $$
 H=((\alpha\to\beta)\to\gamma),\qquad
 K=(\gamma\to\alpha).
 $$<p>先在前提 $H,K,\alpha',\neg\alpha$ 下证明 $\alpha$：</p>
-<p>$$
+$$
 \begin{array}{rll}
-\text{①}&amp;
+\text{①}&
 H
-&amp;\text{（原前提）}\[6pt]</p>
-<p>\text{②}&amp;
+&\text{（原前提）}\\[6pt]
+\text{②}&
 K
-&amp;\text{（临时前提）}\[6pt]</p>
-<p>\text{③}&amp;
+&\text{（临时前提）}\\[6pt]
+\text{③}&
 \alpha'
-&amp;\text{（临时前提）}\[6pt]</p>
-<p>\text{④}&amp;
+&\text{（临时前提）}\\[6pt]
+\text{④}&
 \neg\alpha
-&amp;\text{（临时前提）}\[6pt]</p>
-<p>\text{⑤}&amp;
+&\text{（临时前提）}\\[6pt]
+\text{⑤}&
 \neg\alpha\to(\alpha\to\beta)
-&amp;\text{（已证内定理）}\[6pt]</p>
-<p>\text{⑥}&amp;
+&\text{（已证内定理）}\\[6pt]
+\text{⑥}&
 \alpha\to\beta
-&amp;(\mathrm M)\text{④⑤}\[6pt]</p>
-<p>\text{⑦}&amp;
+&(\mathrm M)\text{④⑤}\\[6pt]
+\text{⑦}&
 \gamma
-&amp;(\mathrm M)\text{⑥①}\[6pt]</p>
-<p>\text{⑧}&amp;
+&(\mathrm M)\text{⑥①}\\[6pt]
+\text{⑧}&
 \alpha
-&amp;(\mathrm M)\text{⑦②}
+&(\mathrm M)\text{⑦②}
 \end{array}
-$$</p>
-<p>因此：</p>
+$$<p>因此：</p>
 $$
 H,K,\alpha',\neg\alpha\vdash_P\alpha.
 $$<p>由演绎定理，撤销临时前提 $\neg\alpha$，得到：</p>
 $$
 H,K,\alpha'\vdash_P\neg\alpha\to\alpha.
 $$<p>仍在前提 $H,K,\alpha'$ 下，继续证明：</p>
-<p>$$
+$$
 \begin{array}{rll}
-\text{①}&amp;
+\text{①}&
 \neg\alpha\to\alpha
-&amp;\text{（由前段及演绎定理）}\[6pt]</p>
-<p>\text{②}&amp;
+&\text{（由前段及演绎定理）}\\[6pt]
+\text{②}&
 (\neg\alpha\to\alpha)\to\alpha
-&amp;\text{（已证归谬式）}\[6pt]</p>
-<p>\text{③}&amp;
+&\text{（已证归谬式）}\\[6pt]
+\text{③}&
 \alpha
-&amp;(\mathrm M)\text{①②}
+&(\mathrm M)\text{①②}
 \end{array}
-$$</p>
-<p>于是：</p>
+$$<p>于是：</p>
 $$
 H,K,\alpha'\vdash_P\alpha.
 $$<p>由演绎定理，撤销临时前提 $\alpha'$：</p>

@@ -64,7 +64,7 @@
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="logic">
 		<meta property="article:published_time" content="2026-10-19T00:00:00+00:00">
-		<meta property="article:modified_time" content="2026-11-02T14:14:09+08:00">
+		<meta property="article:modified_time" content="2026-11-03T01:07:27+08:00">
 		<meta property="article:tag" content="Logic">
 
   
@@ -388,12 +388,12 @@
     "dateCreated": "2026-10-19T00:00:00\u002b00:00",
     "datePublished": "2026-10-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-02T14:14:09\u002b08:00",
+    "dateModified": "2026-11-03T01:07:27\u002b08:00",
     
     "keywords": ["logic"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "422"
+    "wordCount": "450"
   }]
   </script>
 
@@ -1271,7 +1271,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-11-02T14:14:09&#43;08:00">Updated: 2026/11/02</time><span class="px-2 text-primary-500">&middot;</span><span>1165 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
+      <time datetime="2026-10-19T00:00:00&#43;00:00">2026/10/19</time><span class="px-2 text-primary-500">&middot;</span><time datetime="2026-11-03T01:07:27&#43;08:00">Updated: 2026/11/03</time><span class="px-2 text-primary-500">&middot;</span><span>1203 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">7 mins</span><span class="px-2 text-primary-500">&middot;</span><span>
   
   
     
@@ -1489,30 +1489,140 @@
     class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#命题联结词命题形式真值表">命题，联结词，命题形式，真值表</a></li>
-    <li><a href="#联结词的完全集">联结词的完全集</a></li>
-    <li><a href="#推理形式">推理形式</a></li>
-    <li><a href="#形式系统-i"><strong>形式系统</strong> I</a></li>
-    <li><a href="#命题演算的自然推理形式系统-n">命题演算的自然推理形式系统 N</a></li>
-    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a>
+    <li><a href="#命题逻辑的基础概念">命题逻辑的基础概念</a>
       <ul>
-        <li><a href="#一些证明">一些证明</a></li>
-        <li><a href="#例题173">例题：17（3）</a></li>
+        <li><a href="#命题联结词命题形式与真值表">命题、联结词、命题形式与真值表</a></li>
+        <li><a href="#联结词的完全集">联结词的完全集</a></li>
+        <li><a href="#推理形式与有效性">推理形式与有效性</a></li>
       </ul>
     </li>
-    <li><a href="#n-与-p-的等价性">N 与 P 的等价性</a></li>
+    <li><a href="#形式系统的基本组成">形式系统的基本组成</a></li>
+    <li><a href="#命题演算的自然推理形式系统-n">命题演算的自然推理形式系统 N</a>
+      <ul>
+        <li><a href="#形式语言与公理">形式语言与公理</a></li>
+        <li><a href="#基本推理规则">基本推理规则</a>
+          <ul>
+            <li><a href="#1-前提规则">1. 前提规则</a></li>
+            <li><a href="#2-合取引入律">2. 合取引入律</a></li>
+            <li><a href="#3-合取消去律">3. 合取消去律</a></li>
+            <li><a href="#4-析取引入律">4. 析取引入律</a></li>
+            <li><a href="#5-析取消去律">5. 析取消去律</a></li>
+            <li><a href="#6-蕴含引入律">6. 蕴含引入律</a></li>
+            <li><a href="#7-蕴含消去律分离规则">7. 蕴含消去律（分离规则）</a></li>
+            <li><a href="#8-否定引入律">8. 否定引入律</a></li>
+            <li><a href="#9-否定消去律经典反证法">9. 否定消去律（经典反证法）</a></li>
+            <li><a href="#10-等价引入律">10. 等价引入律</a></li>
+            <li><a href="#11-等价消去律">11. 等价消去律</a></li>
+          </ul>
+        </li>
+        <li><a href="#形式证明的定义">形式证明的定义</a></li>
+        <li><a href="#12-增加前提律">12. 增加前提律</a></li>
+        <li><a href="#元定理">元定理</a></li>
+        <li><a href="#有前提的形式推演与内定理">有前提的形式推演与内定理</a></li>
+      </ul>
+    </li>
+    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a>
+      <ul>
+        <li><a href="#形式语言公理与推理规则">形式语言、公理与推理规则</a></li>
+        <li><a href="#无前提的形式推理与内定理">无前提的形式推理与内定理</a></li>
+        <li><a href="#有前提的推演">有前提的推演</a></li>
+        <li><a href="#演绎定理">演绎定理</a></li>
+        <li><a href="#演绎定理的逆命题">演绎定理的逆命题</a></li>
+        <li><a href="#常用内定理">常用内定理</a></li>
+        <li><a href="#推导的传递性">推导的传递性</a></li>
+        <li><a href="#公理的使用与证明模板">公理的使用与证明模板</a></li>
+        <li><a href="#常用内定理的证明">常用内定理的证明</a>
+          <ul>
+            <li><a href="#矛盾推出任意公式">矛盾推出任意公式</a></li>
+            <li><a href="#归谬式">归谬式</a></li>
+          </ul>
+        </li>
+        <li><a href="#临时假设与演绎定理">临时假设与演绎定理</a>
+          <ul>
+            <li><a href="#例题173">例题：17（3）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#n-与-p-的等价性">N 与 P 的等价性</a>
+      <ul>
+        <li><a href="#可证性的有限性">可证性的有限性</a></li>
+        <li><a href="#p-的公理在-n-中可证">P 的公理在 N 中可证</a></li>
+        <li><a href="#由-p-到-n-的可证性">由 P 到 N 的可证性</a></li>
+        <li><a href="#由-n-到-p-的可证性">由 N 到 P 的可证性</a></li>
+        <li><a href="#n-与-p-的内定理相同">N 与 P 的内定理相同</a></li>
+      </ul>
+    </li>
     <li><a href="#赋值">赋值</a>
       <ul>
+        <li><a href="#指派与公式的赋值">指派与公式的赋值</a></li>
         <li><a href="#永真式矛盾式可满足式">永真式、矛盾式、可满足式</a></li>
+        <li><a href="#公理的永真性与分离规则的保真性">公理的永真性与分离规则的保真性</a></li>
         <li><a href="#重言式的替换定理">重言式的替换定理</a></li>
       </ul>
     </li>
     <li><a href="#公式的等值与逻辑蕴含">公式的等值与逻辑蕴含</a>
       <ul>
-        <li><a href="#基本等值公式">基本等值公式</a></li>
+        <li><a href="#等值与逻辑蕴含的定义">等值与逻辑蕴含的定义</a></li>
+        <li><a href="#基本等值公式">基本等值公式</a>
+          <ul>
+            <li><a href="#交换律结合律">交换律、结合律</a></li>
+            <li><a href="#分配律">分配律</a></li>
+            <li><a href="#双重否定律德摩根律">双重否定律、德摩根律</a></li>
+            <li><a href="#幂等律吸收律">幂等律、吸收律</a></li>
+            <li><a href="#蕴含逆否归谬及等价的等值式">蕴含、逆否、归谬及等价的等值式</a></li>
+            <li><a href="#零律同一律排中律矛盾律">零律、同一律、排中律、矛盾律</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#替换定理与等值演算">替换定理与等值演算</a></li>
+    <li><a href="#替换定理与等值演算">替换定理与等值演算</a>
+      <ul>
+        <li><a href="#第一替换定理统一替换命题变元">第一替换定理：统一替换命题变元</a></li>
+        <li><a href="#第二替换定理替换等值子公式">第二替换定理：替换等值子公式</a></li>
+        <li><a href="#两种替换定理的区别">两种替换定理的区别</a></li>
+        <li><a href="#等值演算">等值演算</a>
+          <ul>
+            <li><a href="#例题蕴含与合取的转换">例题：蕴含与合取的转换</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#析取范式与合取范式">析取范式与合取范式</a>
+      <ul>
+        <li><a href="#文字与简单析合取式">文字与简单析（合）取式</a></li>
+        <li><a href="#析取范式与合取范式的定义">析取范式与合取范式的定义</a></li>
+        <li><a href="#简单析合取式的性质">简单析（合）取式的性质</a></li>
+        <li><a href="#范式的存在性">范式的存在性</a></li>
+      </ul>
+    </li>
+    <li><a href="#范式的求法">范式的求法</a>
+      <ul>
+        <li><a href="#真值表法">真值表法</a></li>
+        <li><a href="#等值演算法">等值演算法</a>
+          <ul>
+            <li><a href="#例题求两种范式">例题：求两种范式</a></li>
+          </ul>
+        </li>
+        <li><a href="#普通范式与主范式">普通范式与主范式</a></li>
+      </ul>
+    </li>
+    <li><a href="#利用范式证明联结词完全集">利用范式证明联结词完全集</a></li>
+    <li><a href="#可靠性和谐性与完备性">可靠性、和谐性与完备性</a>
+      <ul>
+        <li><a href="#语法与语义的联系">语法与语义的联系</a></li>
+        <li><a href="#可靠性">可靠性</a></li>
+        <li><a href="#和谐性">和谐性</a></li>
+        <li><a href="#完备性">完备性</a>
+          <ul>
+            <li><a href="#关键引理把一个指派写成前提">关键引理：把一个指派写成前提</a></li>
+            <li><a href="#完备性证明的主线">完备性证明的主线</a></li>
+          </ul>
+        </li>
+        <li><a href="#结论与可判定性">结论与可判定性</a></li>
+        <li><a href="#有限前提的情形">有限前提的情形</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -1526,30 +1636,140 @@
     class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#命题联结词命题形式真值表">命题，联结词，命题形式，真值表</a></li>
-    <li><a href="#联结词的完全集">联结词的完全集</a></li>
-    <li><a href="#推理形式">推理形式</a></li>
-    <li><a href="#形式系统-i"><strong>形式系统</strong> I</a></li>
-    <li><a href="#命题演算的自然推理形式系统-n">命题演算的自然推理形式系统 N</a></li>
-    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a>
+    <li><a href="#命题逻辑的基础概念">命题逻辑的基础概念</a>
       <ul>
-        <li><a href="#一些证明">一些证明</a></li>
-        <li><a href="#例题173">例题：17（3）</a></li>
+        <li><a href="#命题联结词命题形式与真值表">命题、联结词、命题形式与真值表</a></li>
+        <li><a href="#联结词的完全集">联结词的完全集</a></li>
+        <li><a href="#推理形式与有效性">推理形式与有效性</a></li>
       </ul>
     </li>
-    <li><a href="#n-与-p-的等价性">N 与 P 的等价性</a></li>
+    <li><a href="#形式系统的基本组成">形式系统的基本组成</a></li>
+    <li><a href="#命题演算的自然推理形式系统-n">命题演算的自然推理形式系统 N</a>
+      <ul>
+        <li><a href="#形式语言与公理">形式语言与公理</a></li>
+        <li><a href="#基本推理规则">基本推理规则</a>
+          <ul>
+            <li><a href="#1-前提规则">1. 前提规则</a></li>
+            <li><a href="#2-合取引入律">2. 合取引入律</a></li>
+            <li><a href="#3-合取消去律">3. 合取消去律</a></li>
+            <li><a href="#4-析取引入律">4. 析取引入律</a></li>
+            <li><a href="#5-析取消去律">5. 析取消去律</a></li>
+            <li><a href="#6-蕴含引入律">6. 蕴含引入律</a></li>
+            <li><a href="#7-蕴含消去律分离规则">7. 蕴含消去律（分离规则）</a></li>
+            <li><a href="#8-否定引入律">8. 否定引入律</a></li>
+            <li><a href="#9-否定消去律经典反证法">9. 否定消去律（经典反证法）</a></li>
+            <li><a href="#10-等价引入律">10. 等价引入律</a></li>
+            <li><a href="#11-等价消去律">11. 等价消去律</a></li>
+          </ul>
+        </li>
+        <li><a href="#形式证明的定义">形式证明的定义</a></li>
+        <li><a href="#12-增加前提律">12. 增加前提律</a></li>
+        <li><a href="#元定理">元定理</a></li>
+        <li><a href="#有前提的形式推演与内定理">有前提的形式推演与内定理</a></li>
+      </ul>
+    </li>
+    <li><a href="#命题演算形式系统-p">命题演算形式系统 P</a>
+      <ul>
+        <li><a href="#形式语言公理与推理规则">形式语言、公理与推理规则</a></li>
+        <li><a href="#无前提的形式推理与内定理">无前提的形式推理与内定理</a></li>
+        <li><a href="#有前提的推演">有前提的推演</a></li>
+        <li><a href="#演绎定理">演绎定理</a></li>
+        <li><a href="#演绎定理的逆命题">演绎定理的逆命题</a></li>
+        <li><a href="#常用内定理">常用内定理</a></li>
+        <li><a href="#推导的传递性">推导的传递性</a></li>
+        <li><a href="#公理的使用与证明模板">公理的使用与证明模板</a></li>
+        <li><a href="#常用内定理的证明">常用内定理的证明</a>
+          <ul>
+            <li><a href="#矛盾推出任意公式">矛盾推出任意公式</a></li>
+            <li><a href="#归谬式">归谬式</a></li>
+          </ul>
+        </li>
+        <li><a href="#临时假设与演绎定理">临时假设与演绎定理</a>
+          <ul>
+            <li><a href="#例题173">例题：17（3）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#n-与-p-的等价性">N 与 P 的等价性</a>
+      <ul>
+        <li><a href="#可证性的有限性">可证性的有限性</a></li>
+        <li><a href="#p-的公理在-n-中可证">P 的公理在 N 中可证</a></li>
+        <li><a href="#由-p-到-n-的可证性">由 P 到 N 的可证性</a></li>
+        <li><a href="#由-n-到-p-的可证性">由 N 到 P 的可证性</a></li>
+        <li><a href="#n-与-p-的内定理相同">N 与 P 的内定理相同</a></li>
+      </ul>
+    </li>
     <li><a href="#赋值">赋值</a>
       <ul>
+        <li><a href="#指派与公式的赋值">指派与公式的赋值</a></li>
         <li><a href="#永真式矛盾式可满足式">永真式、矛盾式、可满足式</a></li>
+        <li><a href="#公理的永真性与分离规则的保真性">公理的永真性与分离规则的保真性</a></li>
         <li><a href="#重言式的替换定理">重言式的替换定理</a></li>
       </ul>
     </li>
     <li><a href="#公式的等值与逻辑蕴含">公式的等值与逻辑蕴含</a>
       <ul>
-        <li><a href="#基本等值公式">基本等值公式</a></li>
+        <li><a href="#等值与逻辑蕴含的定义">等值与逻辑蕴含的定义</a></li>
+        <li><a href="#基本等值公式">基本等值公式</a>
+          <ul>
+            <li><a href="#交换律结合律">交换律、结合律</a></li>
+            <li><a href="#分配律">分配律</a></li>
+            <li><a href="#双重否定律德摩根律">双重否定律、德摩根律</a></li>
+            <li><a href="#幂等律吸收律">幂等律、吸收律</a></li>
+            <li><a href="#蕴含逆否归谬及等价的等值式">蕴含、逆否、归谬及等价的等值式</a></li>
+            <li><a href="#零律同一律排中律矛盾律">零律、同一律、排中律、矛盾律</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#替换定理与等值演算">替换定理与等值演算</a></li>
+    <li><a href="#替换定理与等值演算">替换定理与等值演算</a>
+      <ul>
+        <li><a href="#第一替换定理统一替换命题变元">第一替换定理：统一替换命题变元</a></li>
+        <li><a href="#第二替换定理替换等值子公式">第二替换定理：替换等值子公式</a></li>
+        <li><a href="#两种替换定理的区别">两种替换定理的区别</a></li>
+        <li><a href="#等值演算">等值演算</a>
+          <ul>
+            <li><a href="#例题蕴含与合取的转换">例题：蕴含与合取的转换</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#析取范式与合取范式">析取范式与合取范式</a>
+      <ul>
+        <li><a href="#文字与简单析合取式">文字与简单析（合）取式</a></li>
+        <li><a href="#析取范式与合取范式的定义">析取范式与合取范式的定义</a></li>
+        <li><a href="#简单析合取式的性质">简单析（合）取式的性质</a></li>
+        <li><a href="#范式的存在性">范式的存在性</a></li>
+      </ul>
+    </li>
+    <li><a href="#范式的求法">范式的求法</a>
+      <ul>
+        <li><a href="#真值表法">真值表法</a></li>
+        <li><a href="#等值演算法">等值演算法</a>
+          <ul>
+            <li><a href="#例题求两种范式">例题：求两种范式</a></li>
+          </ul>
+        </li>
+        <li><a href="#普通范式与主范式">普通范式与主范式</a></li>
+      </ul>
+    </li>
+    <li><a href="#利用范式证明联结词完全集">利用范式证明联结词完全集</a></li>
+    <li><a href="#可靠性和谐性与完备性">可靠性、和谐性与完备性</a>
+      <ul>
+        <li><a href="#语法与语义的联系">语法与语义的联系</a></li>
+        <li><a href="#可靠性">可靠性</a></li>
+        <li><a href="#和谐性">和谐性</a></li>
+        <li><a href="#完备性">完备性</a>
+          <ul>
+            <li><a href="#关键引理把一个指派写成前提">关键引理：把一个指派写成前提</a></li>
+            <li><a href="#完备性证明的主线">完备性证明的主线</a></li>
+          </ul>
+        </li>
+        <li><a href="#结论与可判定性">结论与可判定性</a></li>
+        <li><a href="#有限前提的情形">有限前提的情形</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -1669,15 +1889,25 @@
           
 
 
-<h2 class="relative group">命题，联结词，命题形式，真值表
-    <div id="命题联结词命题形式真值表" class="anchor"></div>
+<h2 class="relative group">命题逻辑的基础概念
+    <div id="命题逻辑的基础概念" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%91%bd%e9%a2%98%e8%81%94%e7%bb%93%e8%af%8d%e5%91%bd%e9%a2%98%e5%bd%a2%e5%bc%8f%e7%9c%9f%e5%80%bc%e8%a1%a8" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%91%bd%e9%a2%98%e9%80%bb%e8%be%91%e7%9a%84%e5%9f%ba%e7%a1%80%e6%a6%82%e5%bf%b5" aria-label="Anchor">#</a>
     </span>
     
 </h2>
+
+<h3 class="relative group">命题、联结词、命题形式与真值表
+    <div id="命题联结词命题形式与真值表" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%91%bd%e9%a2%98%e8%81%94%e7%bb%93%e8%af%8d%e5%91%bd%e9%a2%98%e5%bd%a2%e5%bc%8f%e4%b8%8e%e7%9c%9f%e5%80%bc%e8%a1%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <ul>
 <li>命题：取值为0或1的符号</li>
 <li>联结词：否定、合取</li>
@@ -1694,7 +1924,7 @@ $$
 <li>与哑元的无关性</li>
 </ul>
 
-<h2 class="relative group">联结词的完全集
+<h3 class="relative group">联结词的完全集
     <div id="联结词的完全集" class="anchor"></div>
     
     <span
@@ -1702,7 +1932,7 @@ $$
         <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e8%81%94%e7%bb%93%e8%af%8d%e7%9a%84%e5%ae%8c%e5%85%a8%e9%9b%86" aria-label="Anchor">#</a>
     </span>
     
-</h2>
+</h3>
 <p>联结词确定了复合命题的构造方式，复合命题建立了真假值的对应方式；这个对应方式形成了一个<strong>真值函数</strong>，那么就意味着联结词确定了一个真值函数；反过来，每一个真值函数也能确定一个真值表，对于每一个指派都有一个在{0,1}内的值，也确定了一个联结词。</p>
 <p>联结词能确定一个真值函数，由联结词和变元构成的命题形式，也能确定一个真值函数。设命题形式$\alpha$所含的命题变元都在$p1, p2, ..., pn$中。如下定义的n元真值函数称为$\alpha$确定的真值函数，记为$f_{\alpha}$:
 </p>
@@ -1714,15 +1944,15 @@ $$
 \alpha \text{ 在任意指派 } <t1, t2, … , tk> \text{ 下的值即为 } f(t1, t2, … , tk)。
 $$<p>例如：$\{ \neg, \land, \lor, \to \}$是联结词的一个完全集，$\{\neg, \land\}$也是联结词的一个完全集。</p>
 
-<h2 class="relative group">推理形式
-    <div id="推理形式" class="anchor"></div>
+<h3 class="relative group">推理形式与有效性
+    <div id="推理形式与有效性" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%8e%a8%e7%90%86%e5%bd%a2%e5%bc%8f" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%8e%a8%e7%90%86%e5%bd%a2%e5%bc%8f%e4%b8%8e%e6%9c%89%e6%95%88%e6%80%a7" aria-label="Anchor">#</a>
     </span>
     
-</h2>
+</h3>
 <p>上面是命题的形式（命题、联结词、命题形式、联结词的完全集），接下来介绍推理的形式。推理是逻辑的研究对象。</p>
 <ul>
 <li>推理形式：一组前提和一个结论，前提和结论都是命题形式。</li>
@@ -1731,12 +1961,12 @@ $$<p>例如：$\{ \neg, \land, \lor, \to \}$是联结词的一个完全集，$\{
 若$\Gamma 推出 \beta$是有效的，则记作$\Gamma \vDash \beta$。</li>
 </ul>
 
-<h2 class="relative group"><strong>形式系统</strong> I
-    <div id="形式系统-i" class="anchor"></div>
+<h2 class="relative group">形式系统的基本组成
+    <div id="形式系统的基本组成" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%bd%a2%e5%bc%8f%e7%b3%bb%e7%bb%9f-i" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%bd%a2%e5%bc%8f%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%84%e6%88%90" aria-label="Anchor">#</a>
     </span>
     
 </h2>
@@ -1758,17 +1988,57 @@ $$<p>例如：$\{ \neg, \land, \lor, \to \}$是联结词的一个完全集，$\{
     </span>
     
 </h2>
+
+<h3 class="relative group">形式语言与公理
+    <div id="形式语言与公理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%bd%a2%e5%bc%8f%e8%af%ad%e8%a8%80%e4%b8%8e%e5%85%ac%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>建立N：</p>
 <ul>
 <li>符号库A(N): （1）可数个命题符号p1,p2,&hellip; （2）5个联结词符号 $\neg, \land, \lor, \to, \leftrightarrow$ （3）三个辅助符号 $), ($</li>
 <li>公式集F(N): （1）命题符号都是公式；（2）若 $\alpha$ 是公式，则$(\neg \alpha)$也是公式。（3）若$\alpha$是公式，则$(\alpha \land \beta),(\alpha \lor \beta),(\alpha \to \beta),(\alpha \leftrightarrow \beta)$也是公式。（4）N的每个公式都是有限次应用（1）（2）（3）得到的。</li>
 <li>公理集是空集。</li>
+</ul>
+
+<h3 class="relative group">基本推理规则
+    <div id="基本推理规则" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%9f%ba%e6%9c%ac%e6%8e%a8%e7%90%86%e8%a7%84%e5%88%99" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
 <li>推理规则集：</li>
 </ul>
-<p><strong>1. 前提规则</strong></p>
+
+<h4 class="relative group">1. 前提规则
+    <div id="1-前提规则" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-%e5%89%8d%e6%8f%90%e8%a7%84%e5%88%99" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \Gamma \cup \{\alpha\} \vdash_N \alpha
-$$<p><strong>2. 合取引入律</strong></p>
+$$
+<h4 class="relative group">2. 合取引入律
+    <div id="2-合取引入律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-%e5%90%88%e5%8f%96%e5%bc%95%e5%85%a5%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \vdash_N \alpha
@@ -1778,7 +2048,16 @@ $$
   \Gamma \vdash_N \alpha \land \beta
 }
 \;(\land+)
-$$<p><strong>3. 合取消去律</strong></p>
+$$
+<h4 class="relative group">3. 合取消去律
+    <div id="3-合取消去律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#3-%e5%90%88%e5%8f%96%e6%b6%88%e5%8e%bb%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \vdash_N \alpha \land \beta
@@ -1793,7 +2072,16 @@ $$
   \Gamma \vdash_N \beta
 }
 \;(\land-)
-$$<p><strong>4. 析取引入律</strong></p>
+$$
+<h4 class="relative group">4. 析取引入律
+    <div id="4-析取引入律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#4-%e6%9e%90%e5%8f%96%e5%bc%95%e5%85%a5%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \vdash_N \alpha
@@ -1808,7 +2096,16 @@ $$
   \Gamma \vdash_N \alpha \lor \beta
 }
 \;(\lor+)
-$$<p><strong>5. 析取消去律</strong></p>
+$$
+<h4 class="relative group">5. 析取消去律
+    <div id="5-析取消去律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#5-%e6%9e%90%e5%8f%96%e6%b6%88%e5%8e%bb%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \cup \{\alpha\} \vdash_N \gamma
@@ -1818,7 +2115,16 @@ $$
   \Gamma \cup \{\alpha \lor \beta\} \vdash_N \gamma
 }
 \;(\lor-)
-$$<p><strong>6. 蕴含引入律</strong></p>
+$$
+<h4 class="relative group">6. 蕴含引入律
+    <div id="6-蕴含引入律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#6-%e8%95%b4%e5%90%ab%e5%bc%95%e5%85%a5%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \cup \{\alpha\} \vdash_N \beta
@@ -1826,7 +2132,16 @@ $$
   \Gamma \vdash_N \alpha \to \beta
 }
 \;(\to+)
-$$<p><strong>7. 蕴含消去律（分离规则）</strong></p>
+$$
+<h4 class="relative group">7. 蕴含消去律（分离规则）
+    <div id="7-蕴含消去律分离规则" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#7-%e8%95%b4%e5%90%ab%e6%b6%88%e5%8e%bb%e5%be%8b%e5%88%86%e7%a6%bb%e8%a7%84%e5%88%99" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \vdash_N \alpha \to \beta
@@ -1836,7 +2151,16 @@ $$
   \Gamma \vdash_N \beta
 }
 \;(\to-)
-$$<p><strong>8. 否定引入律</strong></p>
+$$
+<h4 class="relative group">8. 否定引入律
+    <div id="8-否定引入律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#8-%e5%90%a6%e5%ae%9a%e5%bc%95%e5%85%a5%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \cup \{\alpha\} \vdash_N \beta
@@ -1846,7 +2170,16 @@ $$
   \Gamma \vdash_N \neg\alpha
 }
 \;(\neg+)
-$$<p><strong>9. 否定消去律（经典反证法）</strong></p>
+$$
+<h4 class="relative group">9. 否定消去律（经典反证法）
+    <div id="9-否定消去律经典反证法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#9-%e5%90%a6%e5%ae%9a%e6%b6%88%e5%8e%bb%e5%be%8b%e7%bb%8f%e5%85%b8%e5%8f%8d%e8%af%81%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \cup \{\neg\alpha\} \vdash_N \beta
@@ -1856,7 +2189,16 @@ $$
   \Gamma \vdash_N \alpha
 }
 \;(\neg-)
-$$<p><strong>10. 等价引入律</strong></p>
+$$
+<h4 class="relative group">10. 等价引入律
+    <div id="10-等价引入律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#10-%e7%ad%89%e4%bb%b7%e5%bc%95%e5%85%a5%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \vdash_N \alpha \to \beta
@@ -1866,7 +2208,16 @@ $$
   \Gamma \vdash_N \alpha \leftrightarrow \beta
 }
 \;(\leftrightarrow+)
-$$<p><strong>11. 等价消去律</strong></p>
+$$
+<h4 class="relative group">11. 等价消去律
+    <div id="11-等价消去律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#11-%e7%ad%89%e4%bb%b7%e6%b6%88%e5%8e%bb%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \frac{
   \Gamma \vdash_N \alpha \leftrightarrow \beta
@@ -1885,7 +2236,17 @@ $$$$
   \Gamma \vdash_N \alpha
 }
 \;(\leftrightarrow-)
-$$<ul>
+$$
+<h3 class="relative group">形式证明的定义
+    <div id="形式证明的定义" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%bd%a2%e5%bc%8f%e8%af%81%e6%98%8e%e7%9a%84%e5%ae%9a%e4%b9%89" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
 <li>形式证明：若有限序列</li>
 </ul>
 $$
@@ -1905,7 +2266,16 @@ $$<p>满足：</p>
 </ol>
 <p>则称 $(*)$ 为 $\Gamma_n\vdash\alpha_n$ 在 $N$ 中的一个<strong>形式证明</strong>，$n$ 称为这个形式证明的<strong>长度</strong>。此时也称 $\alpha_n$ 在 $N$ 中可由 $\Gamma_n$ <strong>形式证明</strong>或<strong>形式推出</strong>，记为 $\Gamma_n\vdash_N\alpha_n$ 或 $\Gamma_n\vdash\alpha_n$。</p>
 <p>利用形式证明的定义，和已有的推理规则，可以继续延伸：</p>
-<p><strong>12. 增加前提律</strong></p>
+
+<h3 class="relative group">12. 增加前提律
+    <div id="12-增加前提律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#12-%e5%a2%9e%e5%8a%a0%e5%89%8d%e6%8f%90%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 $$
 \frac{
   \Gamma \vdash_N \alpha
@@ -1929,6 +2299,16 @@ $$<figure><img
     alt=""
     src="../imgs/%e5%a2%9e%e5%8a%a0%e5%89%8d%e6%8f%90%e5%be%8b2.png"
     ><figcaption>手写</figcaption></figure>
+
+<h3 class="relative group">元定理
+    <div id="元定理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%83%e5%ae%9a%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>两个元定理：</p>
 <ol>
 <li>传递律(Tr)：若$\Gamma \vdash \alpha_1, \alpha_2, ..., \alpha_n, $且$\alpha_1, \alpha_2, ..., \alpha_n \vdash \alpha$，则 $\Gamma \vdash \alpha$。</li>
@@ -1940,9 +2320,16 @@ $$<figure><img
 $$
 \alpha_1\to\alpha_2\vdash\alpha_3\to\alpha_4,
 $$<p>且 $\alpha_1\vdash\alpha_2$，则 $\alpha_3\vdash\alpha_4$。</p>
-<ul>
-<li>定理：</li>
-</ul>
+
+<h3 class="relative group">有前提的形式推演与内定理
+    <div id="有前提的形式推演与内定理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9c%89%e5%89%8d%e6%8f%90%e7%9a%84%e5%bd%a2%e5%bc%8f%e6%8e%a8%e6%bc%94%e4%b8%8e%e5%86%85%e5%ae%9a%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>对于任意公式 $\alpha,\alpha_1,\alpha_2,\ldots,\alpha_n$，</p>
 $$
 \begin{aligned}
@@ -1972,17 +2359,22 @@ $$<p>这个定理的意义是：</p>
     </span>
     
 </h2>
+
+<h3 class="relative group">形式语言、公理与推理规则
+    <div id="形式语言公理与推理规则" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%bd%a2%e5%bc%8f%e8%af%ad%e8%a8%80%e5%85%ac%e7%90%86%e4%b8%8e%e6%8e%a8%e7%90%86%e8%a7%84%e5%88%99" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>建立P：</p>
 <ul>
-<li>
-<p>符号库A(N): （1）可数个命题符号p1,p2,&hellip; （2）2个联结词符号 $\neg, \to$ （3）三个辅助符号 $), ($</p>
-</li>
-<li>
-<p>公式集F(N): （1）命题符号都是公式；（2）若 $\alpha$ 是公式，则$(\neg \alpha)$也是公式。（3）若$\alpha$是公式，则$(\alpha \to \beta)$也是公式。（4）N的每个公式都是有限次应用（1）（2）（3）得到的。</p>
-</li>
-<li>
-<p>公理集有三类：
-</p>
+<li>符号库A(N): （1）可数个命题符号p1,p2,&hellip; （2）2个联结词符号 $\neg, \to$ （3）三个辅助符号 $), ($</li>
+<li>公式集F(N): （1）命题符号都是公式；（2）若 $\alpha$ 是公式，则$(\neg \alpha)$也是公式。（3）若$\alpha$是公式，则$(\alpha \to \beta)$也是公式。（4）N的每个公式都是有限次应用（1）（2）（3）得到的。</li>
+<li>公理集有三类：
+
 $$
 \begin{aligned}
 \text{(A1)}\quad
@@ -1994,14 +2386,19 @@ $$
 &(((\neg \alpha) \to (\neg \beta)) \to (\beta \to \alpha)).
 \end{aligned}
 $$</li>
-<li>
-<p>推理规则集：
-<strong>分离规则</strong>：由 $\alpha, (\alpha \to \beta)$ 可得到 $\beta$，记为 $(\mathrm{M})$。</p>
-</li>
-<li>
-<p>P 的形式推理：</p>
-</li>
+<li>推理规则集：
+<strong>分离规则</strong>：由 $\alpha, (\alpha \to \beta)$ 可得到 $\beta$，记为 $(\mathrm{M})$。</li>
 </ul>
+
+<h3 class="relative group">无前提的形式推理与内定理
+    <div id="无前提的形式推理与内定理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%97%a0%e5%89%8d%e6%8f%90%e7%9a%84%e5%bd%a2%e5%bc%8f%e6%8e%a8%e7%90%86%e4%b8%8e%e5%86%85%e5%ae%9a%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>对于任意的 $\mathrm{P}$ 中公式序列：</p>
 $$
 \alpha_1,\ \alpha_2,\ \cdots,\ \alpha_n,
@@ -2010,9 +2407,16 @@ $$<p>若对每个 $i\ (1 \le i \le n)$，下列两条件之一成立：</p>
 <p>(1) $\alpha_i$ 是公理；</p>
 <p>(2) $\alpha_i$ 是由序列 $(*)$ 中 $\alpha_i$ 之前的某两个公式 $\alpha_j,\alpha_k$（$1 \le j,k < i$）应用分离规则 $(\mathrm{M})$ 得到的。</p>
 <p>则 $\alpha_n$ 称为 $\mathrm{P}$ 的一个<strong>内定理</strong>，记作 $\vdash_{\mathrm{P}} \alpha_n$ 或 $\vdash \alpha_n$，称 $(*)$ 为 $\alpha_n$ 的一个<strong>证明序列</strong>。</p>
-<ul>
-<li>P 中有前提的推演</li>
-</ul>
+
+<h3 class="relative group">有前提的推演
+    <div id="有前提的推演" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9c%89%e5%89%8d%e6%8f%90%e7%9a%84%e6%8e%a8%e6%bc%94" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>定义：设 $\Sigma$ 是 $P$ 中的一个公式集，称 $P$ 中公式序列</p>
 $$
 \alpha_1,\ \alpha_2,\ \cdots,\ \alpha_n
@@ -2022,21 +2426,42 @@ $$<p>为在前提 $\Sigma$ 下推出 $\alpha_n$ 的一个<strong>证明</strong>
 <p>(2) $\alpha_i \in \Sigma$；</p>
 <p>(3) $\alpha_i$ 是由序列 $(*)$ 中它前面的两个公式应用分离规则 $(\mathrm{M})$ 得到的。</p>
 <p>此时，记为 $\Sigma \vdash_P \alpha$ 或 $\Sigma \vdash \alpha$。</p>
-<ul>
-<li><strong>演绎定理</strong></li>
-</ul>
+
+<h3 class="relative group">演绎定理
+    <div id="演绎定理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%bc%94%e7%bb%8e%e5%ae%9a%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <blockquote><p>建立了 “内定理” &amp; “有前提的推理” 之间的联系，也使得许多内定理证明得以简化</p>
 </blockquote><p>设 $\Gamma$ 是 $P$ 中的一个公式集，$\alpha,\beta$ 是 $P$ 的两个公式，若 $\Gamma \cup \{\alpha\} \vdash \beta$，则 $\Gamma \vdash \alpha \to \beta$。</p>
 <p>由演绎定理可知：</p>
 $$
 若\{ \alpha_1, \alpha_2, ..., \alpha_n \} \vdash \beta，则 \vdash (\alpha_1 \to (\alpha_2 \to \cdots \to (\alpha_n \to \beta) \cdots )
-$$<ul>
-<li><strong>演绎定理的逆命题</strong></li>
-</ul>
+$$
+<h3 class="relative group">演绎定理的逆命题
+    <div id="演绎定理的逆命题" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%bc%94%e7%bb%8e%e5%ae%9a%e7%90%86%e7%9a%84%e9%80%86%e5%91%bd%e9%a2%98" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>设 $\Gamma$ 是 $P$ 中的一个公式集，$\alpha,\beta$ 是 $P$ 的两个公式，若 $\Gamma \vdash \alpha \to \beta$，则 $\Gamma \cup \{\alpha\} \vdash \beta$。</p>
-<ul>
-<li>一些直观常用的内定理</li>
-</ul>
+
+<h3 class="relative group">常用内定理
+    <div id="常用内定理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%b8%b8%e7%94%a8%e5%86%85%e5%ae%9a%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <table>
 	<thead>
 			<tr>
@@ -2087,13 +2512,27 @@ $$<ul>
 			</tr>
 	</tbody>
 </table>
-<ul>
-<li>定理</li>
-</ul>
+
+<h3 class="relative group">推导的传递性
+    <div id="推导的传递性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%8e%a8%e5%af%bc%e7%9a%84%e4%bc%a0%e9%80%92%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>设 $\Sigma$ 是 $P$ 中公式集，$\alpha_1,\alpha_2,\ldots,\alpha_n$ 为 $P$ 中公式。若 $\Sigma \vdash \alpha_1,\ \Sigma \vdash \alpha_2,\ \ldots,\ \Sigma \vdash \alpha_n$，且 $\alpha_1,\alpha_2,\ldots,\alpha_n \vdash \alpha$，则 $\Sigma \vdash \alpha$。</p>
-<ul>
-<li><strong>理解</strong></li>
-</ul>
+
+<h3 class="relative group">公理的使用与证明模板
+    <div id="公理的使用与证明模板" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ac%e7%90%86%e7%9a%84%e4%bd%bf%e7%94%a8%e4%b8%8e%e8%af%81%e6%98%8e%e6%a8%a1%e6%9d%bf" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>对于A1，用途一般是对一个已证公式添加一个前置公式，就是这种公式：</p>
 <p>$$
 \vdash 某个前置公式 \to 显然的已证公式</p>
@@ -2137,18 +2576,25 @@ $$
 && \text{（M：1, 6）}
 \end{aligned}
 $$
-<h3 class="relative group">一些证明
-    <div id="一些证明" class="anchor"></div>
+<h3 class="relative group">常用内定理的证明
+    <div id="常用内定理的证明" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%80%e4%ba%9b%e8%af%81%e6%98%8e" aria-label="Anchor">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%b8%b8%e7%94%a8%e5%86%85%e5%ae%9a%e7%90%86%e7%9a%84%e8%af%81%e6%98%8e" aria-label="Anchor">#</a>
     </span>
     
 </h3>
-<ul>
-<li>矛盾推出任意公式</li>
-</ul>
+
+<h4 class="relative group">矛盾推出任意公式
+    <div id="矛盾推出任意公式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%9f%9b%e7%9b%be%e6%8e%a8%e5%87%ba%e4%bb%bb%e6%84%8f%e5%85%ac%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 <p>证明：</p>
 $$
 \vdash_P\neg A\to(A\to B).
@@ -2187,9 +2633,16 @@ $$<p>其中，第②行在 A3 中取 $\varphi=B,\ \psi=A$。</p>
 <p>整个证明没有使用任何前提，因此：</p>
 $$
 \boxed{\vdash_P\neg A\to(A\to B).}
-$$<ul>
-<li>归谬式</li>
-</ul>
+$$
+<h4 class="relative group">归谬式
+    <div id="归谬式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%bd%92%e8%b0%ac%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 <p>证明：</p>
 $$
 \vdash_P(\neg A\to A)\to A.
@@ -2236,11 +2689,21 @@ $$
 $$<p>由演绎定理，撤销临时前提 $H=\neg A\to A$，得到：</p>
 $$
 \boxed{\vdash_P(\neg A\to A)\to A.}
-$$<ul>
+$$
+<h3 class="relative group">临时假设与演绎定理
+    <div id="临时假设与演绎定理" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%b4%e6%97%b6%e5%81%87%e8%ae%be%e4%b8%8e%e6%bc%94%e7%bb%8e%e5%ae%9a%e7%90%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
 <li>可以引入假设前提，再利用演绎定理撤销</li>
 </ul>
 
-<h3 class="relative group">例题：17（3）
+<h4 class="relative group">例题：17（3）
     <div id="例题173" class="anchor"></div>
     
     <span
@@ -2248,7 +2711,7 @@ $$<ul>
         <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%be%8b%e9%a2%98173" aria-label="Anchor">#</a>
     </span>
     
-</h3>
+</h4>
 <p>证明：</p>
 $$
 (\alpha\to\beta)\to\gamma
@@ -2349,25 +2812,60 @@ $$<p>注意：临时前提 $\alpha'$ 在推导 $\alpha$ 时没有被使用，这
     </span>
     
 </h2>
-<ul>
-<li>定理</li>
-</ul>
+
+<h3 class="relative group">可证性的有限性
+    <div id="可证性的有限性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8f%af%e8%af%81%e6%80%a7%e7%9a%84%e6%9c%89%e9%99%90%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>设 $\Sigma,\alpha$ 分别为 $P$ 中公式集与公式，若 $\Sigma \vdash_P \alpha$，则存在 $\Sigma$ 的有限子集 $\Sigma_0 \subseteq \Sigma$，使得 $\Sigma_0 \vdash_P \alpha$。</p>
-<ul>
-<li>引理</li>
-</ul>
+
+<h3 class="relative group">P 的公理在 N 中可证
+    <div id="p-的公理在-n-中可证" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#p-%e7%9a%84%e5%85%ac%e7%90%86%e5%9c%a8-n-%e4%b8%ad%e5%8f%af%e8%af%81" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>若 $\alpha$ 是 $P$ 中公理，则对 $P$ 中任何有限公式集 $\Sigma$ 都有 $\Sigma \vdash_N \alpha$。</p>
-<ul>
-<li>定理（由P到N的可证性）</li>
-</ul>
+
+<h3 class="relative group">由 P 到 N 的可证性
+    <div id="由-p-到-n-的可证性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%94%b1-p-%e5%88%b0-n-%e7%9a%84%e5%8f%af%e8%af%81%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>设 $\Sigma,\alpha$ 分别为 $P$ 中有限公式集和公式，若 $\Sigma \vdash_P \alpha$，则 $\Sigma \vdash_N \alpha$。</p>
-<ul>
-<li>定理（由N到P的可证性）</li>
-</ul>
+
+<h3 class="relative group">由 N 到 P 的可证性
+    <div id="由-n-到-p-的可证性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%94%b1-n-%e5%88%b0-p-%e7%9a%84%e5%8f%af%e8%af%81%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>设 $\Sigma,\alpha$ 分别为 $N$ 中有限公式集和公式，若 $\Sigma \vdash_N \alpha$，则 $\Sigma \vdash_P \alpha$。</p>
-<ul>
-<li>推论</li>
-</ul>
+
+<h3 class="relative group">N 与 P 的内定理相同
+    <div id="n-与-p-的内定理相同" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#n-%e4%b8%8e-p-%e7%9a%84%e5%86%85%e5%ae%9a%e7%90%86%e7%9b%b8%e5%90%8c" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p>对 $P$ 或 $N$ 中的公式 $\alpha$，$\vdash_P \alpha$ 当且仅当 $\vdash_N \alpha$。</p>
 
 <h2 class="relative group">赋值
@@ -2380,6 +2878,16 @@ $$<p>注意：临时前提 $\alpha'$ 在推导 $\alpha$ 时没有被使用，这
     
 </h2>
 <p>形式推理只检查公式是否为公理、推理是否符合规则；赋值则给公式赋予真假值，用来讨论公式是否永真。</p>
+
+<h3 class="relative group">指派与公式的赋值
+    <div id="指派与公式的赋值" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%8c%87%e6%b4%be%e4%b8%8e%e5%85%ac%e5%bc%8f%e7%9a%84%e8%b5%8b%e5%80%bc" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <ul>
 <li>指派：给每个命题符号指定一个值 $0$ 或 $1$，其中 $0$ 表示假，$1$ 表示真。</li>
 </ul>
@@ -2423,6 +2931,16 @@ $$<p>其中，$(\alpha\leftrightarrow\beta)^\sigma=1$ 当且仅当 $\alpha^\sigm
 <li>矛盾式（永假式）：对任意指派 $\sigma$，都有 $\alpha^\sigma=0$。</li>
 <li>可满足式：存在指派 $\sigma$，使得 $\alpha^\sigma=1$。永真式也是可满足式；不可满足的公式就是矛盾式。</li>
 </ul>
+
+<h3 class="relative group">公理的永真性与分离规则的保真性
+    <div id="公理的永真性与分离规则的保真性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%ac%e7%90%86%e7%9a%84%e6%b0%b8%e7%9c%9f%e6%80%a7%e4%b8%8e%e5%88%86%e7%a6%bb%e8%a7%84%e5%88%99%e7%9a%84%e4%bf%9d%e7%9c%9f%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <p><strong>$P$ 的公理都是永真式，分离规则保持永真性</strong>：若 $\alpha$ 和 $\alpha\to\beta$ 都是永真式，则 $\beta$ 也是永真式。因此，$P$ 中的内定理都是永真式。</p>
 
 <h3 class="relative group">重言式的替换定理
@@ -2449,6 +2967,16 @@ $$<p>其中，$(\alpha\leftrightarrow\beta)^\sigma=1$ 当且仅当 $\alpha^\sigm
     </span>
     
 </h2>
+
+<h3 class="relative group">等值与逻辑蕴含的定义
+    <div id="等值与逻辑蕴含的定义" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ad%89%e5%80%bc%e4%b8%8e%e9%80%bb%e8%be%91%e8%95%b4%e5%90%ab%e7%9a%84%e5%ae%9a%e4%b9%89" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <ul>
 <li>等值：若 $\alpha\leftrightarrow\beta$ 是重言式，称 $\alpha$ 与 $\beta$ 逻辑等价，记为 $\alpha\Leftrightarrow\beta$。</li>
 <li>逻辑蕴含：若 $\alpha\to\beta$ 是重言式，称 $\alpha$ 逻辑蕴含 $\beta$，记为 $\alpha\Rightarrow\beta$。</li>
@@ -2474,9 +3002,16 @@ $$<p>注意：$\to,\leftrightarrow$ 是公式内部的联结词；$\Rightarrow,\
     </span>
     
 </h3>
-<ul>
-<li>交换律、结合律</li>
-</ul>
+
+<h4 class="relative group">交换律、结合律
+    <div id="交换律结合律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%ba%a4%e6%8d%a2%e5%be%8b%e7%bb%93%e5%90%88%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \begin{aligned}
 \alpha\lor\beta&\Leftrightarrow\beta\lor\alpha,\\
@@ -2487,9 +3022,16 @@ $$
 (\alpha\leftrightarrow\beta)\leftrightarrow\gamma
 &\Leftrightarrow\alpha\leftrightarrow(\beta\leftrightarrow\gamma).
 \end{aligned}
-$$<ul>
-<li>分配律</li>
-</ul>
+$$
+<h4 class="relative group">分配律
+    <div id="分配律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%88%86%e9%85%8d%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \begin{aligned}
 \alpha\land(\beta\lor\gamma)
@@ -2499,18 +3041,32 @@ $$
 \alpha\to(\beta\to\gamma)
 &\Leftrightarrow(\alpha\to\beta)\to(\alpha\to\gamma).
 \end{aligned}
-$$<ul>
-<li>双重否定律、德摩根律</li>
-</ul>
+$$
+<h4 class="relative group">双重否定律、德摩根律
+    <div id="双重否定律德摩根律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8f%8c%e9%87%8d%e5%90%a6%e5%ae%9a%e5%be%8b%e5%be%b7%e6%91%a9%e6%a0%b9%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \begin{aligned}
 \neg\neg\alpha&\Leftrightarrow\alpha,\\
 \neg(\alpha\lor\beta)&\Leftrightarrow\neg\alpha\land\neg\beta,\\
 \neg(\alpha\land\beta)&\Leftrightarrow\neg\alpha\lor\neg\beta.
 \end{aligned}
-$$<ul>
-<li>幂等律、吸收律</li>
-</ul>
+$$
+<h4 class="relative group">幂等律、吸收律
+    <div id="幂等律吸收律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%b9%82%e7%ad%89%e5%be%8b%e5%90%b8%e6%94%b6%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \begin{aligned}
 \alpha\lor\alpha&\Leftrightarrow\alpha,
@@ -2518,9 +3074,16 @@ $$
 \alpha\lor(\alpha\land\beta)&\Leftrightarrow\alpha,
 &\alpha\land(\alpha\lor\beta)&\Leftrightarrow\alpha.
 \end{aligned}
-$$<ul>
-<li>蕴含、逆否、归谬及等价的等值式</li>
-</ul>
+$$
+<h4 class="relative group">蕴含、逆否、归谬及等价的等值式
+    <div id="蕴含逆否归谬及等价的等值式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e8%95%b4%e5%90%ab%e9%80%86%e5%90%a6%e5%bd%92%e8%b0%ac%e5%8f%8a%e7%ad%89%e4%bb%b7%e7%9a%84%e7%ad%89%e5%80%bc%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \begin{aligned}
 \alpha\to\beta&\Leftrightarrow\neg\alpha\lor\beta,\\
@@ -2530,9 +3093,16 @@ $$
 &\Leftrightarrow(\alpha\to\beta)\land(\beta\to\alpha),\\
 \alpha\leftrightarrow\beta&\Leftrightarrow(\neg\alpha\leftrightarrow\neg\beta).
 \end{aligned}
-$$<ul>
-<li>零律、同一律、排中律、矛盾律</li>
-</ul>
+$$
+<h4 class="relative group">零律、同一律、排中律、矛盾律
+    <div id="零律同一律排中律矛盾律" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%9b%b6%e5%be%8b%e5%90%8c%e4%b8%80%e5%be%8b%e6%8e%92%e4%b8%ad%e5%be%8b%e7%9f%9b%e7%9b%be%e5%be%8b" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 $$
 \begin{aligned}
 \alpha\lor1&\Leftrightarrow1,
@@ -2553,6 +3123,16 @@ $$<p>这里的 $0,1$ 是矛盾式、重言式的代称，不是 $P$ 新增加的
     </span>
     
 </h2>
+
+<h3 class="relative group">第一替换定理：统一替换命题变元
+    <div id="第一替换定理统一替换命题变元" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ac%ac%e4%b8%80%e6%9b%bf%e6%8d%a2%e5%ae%9a%e7%90%86%e7%bb%9f%e4%b8%80%e6%9b%bf%e6%8d%a2%e5%91%bd%e9%a2%98%e5%8f%98%e5%85%83" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <ul>
 <li>第一替换定理：若 $\alpha\Leftrightarrow\beta$，对两边的命题变元同时进行相同的统一替换，所得 $\alpha',\beta'$ 仍满足 $\alpha'\Leftrightarrow\beta'$。它保证可以把等值公式当作模板使用。</li>
 </ul>
@@ -2560,16 +3140,56 @@ $$<p>这里的 $0,1$ 是矛盾式、重言式的代称，不是 $P$ 新增加的
 $$
 (\alpha\to\beta)\land((\alpha\to\beta)\lor\neg\gamma)
 \Leftrightarrow\alpha\to\beta.
-$$<ul>
+$$
+<h3 class="relative group">第二替换定理：替换等值子公式
+    <div id="第二替换定理替换等值子公式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ac%ac%e4%ba%8c%e6%9b%bf%e6%8d%a2%e5%ae%9a%e7%90%86%e6%9b%bf%e6%8d%a2%e7%ad%89%e5%80%bc%e5%ad%90%e5%85%ac%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
 <li>第二替换定理：若 $\alpha\Leftrightarrow\beta$，将公式 $\gamma$ 中某些作为子公式出现的 $\alpha$ 替换为 $\beta$，所得 $\delta$ 与 $\gamma$ 等值。它保证可以在大公式内部替换等值的局部公式。</li>
 </ul>
 <p>例如，由 $\alpha\land(\alpha\lor\beta)\Leftrightarrow\alpha$，可得：</p>
 $$
 \neg(\alpha\land(\alpha\lor\beta))\Leftrightarrow\neg\alpha.
-$$<p><strong>区别</strong>：第一替换定理是对等值式两边的命题变元统一替换；第二替换定理是在已知局部公式等值的条件下，替换大公式中的子公式，可以只替换其中部分出现。</p>
+$$
+<h3 class="relative group">两种替换定理的区别
+    <div id="两种替换定理的区别" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%b8%a4%e7%a7%8d%e6%9b%bf%e6%8d%a2%e5%ae%9a%e7%90%86%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>区别</strong>：第一替换定理是对等值式两边的命题变元统一替换；第二替换定理是在已知局部公式等值的条件下，替换大公式中的子公式，可以只替换其中部分出现。</p>
+
+<h3 class="relative group">等值演算
+    <div id="等值演算" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ad%89%e5%80%bc%e6%bc%94%e7%ae%97" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
 <ul>
 <li>等值演算：利用基本等值式和替换定理逐步变形，再由等值关系的传递性得到结论。平时直接套公式、替换局部表达式，依据的就是这两个替换定理。</li>
 </ul>
+
+<h4 class="relative group">例题：蕴含与合取的转换
+    <div id="例题蕴含与合取的转换" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%be%8b%e9%a2%98%e8%95%b4%e5%90%ab%e4%b8%8e%e5%90%88%e5%8f%96%e7%9a%84%e8%bd%ac%e6%8d%a2" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
 <p>例：证明 $p\to(q\to r)\Leftrightarrow(p\land q)\to r$。</p>
 $$
 \begin{aligned}
@@ -2586,6 +3206,413 @@ p\to(q\to r)
 &&\text{（蕴含等值式、第一替换定理）}.
 \end{aligned}
 $$
+<h2 class="relative group">析取范式与合取范式
+    <div id="析取范式与合取范式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9e%90%e5%8f%96%e8%8c%83%e5%bc%8f%e4%b8%8e%e5%90%88%e5%8f%96%e8%8c%83%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>范式是公式在等值意义下的一种标准形式，用来把公式整理成统一的结构。</p>
+
+<h3 class="relative group">文字与简单析（合）取式
+    <div id="文字与简单析合取式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%96%87%e5%ad%97%e4%b8%8e%e7%ae%80%e5%8d%95%e6%9e%90%e5%90%88%e5%8f%96%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>文字：命题变元或命题变元的否定，例如 $p,\neg q$。</li>
+<li>简单合取式：由 $\land$ 联结文字形成的公式，例如 $p\land\neg q\land r$。</li>
+<li>简单析取式：由 $\lor$ 联结文字形成的公式，例如 $p\lor\neg q\lor r$。</li>
+<li>单个文字同时属于简单合取式、简单析取式。$\neg\neg p$、$\neg(p\land q)$ 都不属于这两种形式，虽然可以进一步等值化简。</li>
+</ul>
+
+<h3 class="relative group">析取范式与合取范式的定义
+    <div id="析取范式与合取范式的定义" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9e%90%e5%8f%96%e8%8c%83%e5%bc%8f%e4%b8%8e%e5%90%88%e5%8f%96%e8%8c%83%e5%bc%8f%e7%9a%84%e5%ae%9a%e4%b9%89" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>析取范式（DNF）：若干简单合取式的析取，即“先合取，再析取”。</li>
+</ul>
+$$
+(\ell_{11}\land\cdots\land\ell_{1k_1})
+\lor\cdots\lor
+(\ell_{m1}\land\cdots\land\ell_{mk_m}).
+$$<ul>
+<li>合取范式（CNF）：若干简单析取式的合取，即“先析取，再合取”。</li>
+</ul>
+$$
+(\ell_{11}\lor\cdots\lor\ell_{1k_1})
+\land\cdots\land
+(\ell_{m1}\lor\cdots\lor\ell_{mk_m}).
+$$<p>其中，$\ell_{ij}$ 都是文字。允许某一层只有一项，所以单个简单合取式或简单析取式，都既是析取范式，也是合取范式。</p>
+<p>例如，$(p\land\neg q)\lor r$ 是析取范式；$(p\lor r)\land(\neg q\lor r)$ 是合取范式。</p>
+
+<h3 class="relative group">简单析（合）取式的性质
+    <div id="简单析合取式的性质" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ae%80%e5%8d%95%e6%9e%90%e5%90%88%e5%8f%96%e5%bc%8f%e7%9a%84%e6%80%a7%e8%b4%a8" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>简单析取式是重言式，当且仅当它同时包含某个命题变元及其否定，例如 $p\lor\neg p\lor q$。</li>
+<li>简单合取式是矛盾式，当且仅当它同时包含某个命题变元及其否定，例如 $p\land\neg p\land q$。</li>
+<li>对固定的变元序列 $q_1,\ldots,q_n$，若每个变元都出现，则非矛盾的简单合取式有唯一的成真指派，非永真的简单析取式有唯一的成假指派。若某个变元没有出现，它的值就不受限制，不能保证唯一。</li>
+</ul>
+<p>例如，关于 $(q_1,q_2,q_3)$：</p>
+$$
+\begin{aligned}
+\neg q_1\land q_2\land q_3
+&\quad\text{唯一成真指派为 }(0,1,1),\\
+\neg q_1\lor q_2\lor q_3
+&\quad\text{唯一成假指派为 }(1,0,0).
+\end{aligned}
+$$<p>合取要求各部分同时真，析取只要求某一部分真。因此：</p>
+<table>
+	<thead>
+			<tr>
+					<th>公式结构</th>
+					<th>成真指派集</th>
+					<th>成假指派集</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>$\alpha_1\land\cdots\land\alpha_n$</td>
+					<td>各部分成真指派集的交集</td>
+					<td>各部分成假指派集的并集</td>
+			</tr>
+			<tr>
+					<td>$\alpha_1\lor\cdots\lor\alpha_n$</td>
+					<td>各部分成真指派集的并集</td>
+					<td>各部分成假指派集的交集</td>
+			</tr>
+	</tbody>
+</table>
+
+<h3 class="relative group">范式的存在性
+    <div id="范式的存在性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e8%8c%83%e5%bc%8f%e7%9a%84%e5%ad%98%e5%9c%a8%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>每个命题公式都等值于一个析取范式，也等值于一个合取范式。</strong></p>
+<p>证明思路：为每个成真指派构造一个只在该指派下为真的简单合取式，再把它们析取起来，便能得到与原公式相同的成真指派集。合取范式则可以从成假指派出发构造，也可以先求否定公式的析取范式，再用德摩根律转换。</p>
+
+<h2 class="relative group">范式的求法
+    <div id="范式的求法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e8%8c%83%e5%bc%8f%e7%9a%84%e6%b1%82%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">真值表法
+    <div id="真值表法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%9c%9f%e5%80%bc%e8%a1%a8%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>先固定变元序列，列出公式的真值表。</p>
+<ul>
+<li>求析取范式：选取所有成真行，每行写一个简单合取式；值为 $1$ 的变元直接写，值为 $0$ 的变元加否定；最后把各项用 $\lor$ 联结。</li>
+<li>求合取范式：选取所有成假行，每行写一个简单析取式；值为 $0$ 的变元直接写，值为 $1$ 的变元加否定；最后把各项用 $\land$ 联结。</li>
+</ul>
+<p>例如，对于指派 $(q_1,q_2,q_3)=(1,0,1)$：</p>
+$$
+\begin{aligned}
+\text{对应的简单合取式：}&\quad q_1\land\neg q_2\land q_3,\\
+\text{对应的简单析取式：}&\quad\neg q_1\lor q_2\lor\neg q_3.
+\end{aligned}
+$$<p>前者只在该行取真，后者只在该行取假。记忆：<strong>析取范式找真行，合取范式找假行。</strong></p>
+<p>若没有成真行，公式为矛盾式，可用 $p\land\neg p$ 表示其析取范式；若没有成假行，公式为重言式，可用 $p\lor\neg p$ 表示其合取范式。</p>
+
+<h3 class="relative group">等值演算法
+    <div id="等值演算法" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%ad%89%e5%80%bc%e6%bc%94%e7%ae%97%e6%b3%95" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ol>
+<li>消去 $\to$、$\leftrightarrow$，只保留 $\neg,\land,\lor$。</li>
+<li>用德摩根律将否定内移，并消去双重否定，使否定只作用于命题变元。</li>
+<li>用分配律整理结构：求析取范式时，把 $\land$ 对 $\lor$ 分配；求合取范式时，把 $\lor$ 对 $\land$ 分配。</li>
+<li>用幂等律、吸收律等适当化简。</li>
+</ol>
+
+<h4 class="relative group">例题：求两种范式
+    <div id="例题求两种范式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e4%be%8b%e9%a2%98%e6%b1%82%e4%b8%a4%e7%a7%8d%e8%8c%83%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>求 $\alpha=((\neg p_1)\lor p_2)\to p_3$ 的析取范式与合取范式。</p>
+$$
+\begin{aligned}
+\alpha
+&\Leftrightarrow\neg(\neg p_1\lor p_2)\lor p_3
+&&\text{（蕴含等值式）}\\
+&\Leftrightarrow(\neg\neg p_1\land\neg p_2)\lor p_3
+&&\text{（德摩根律）}\\
+&\Leftrightarrow(p_1\land\neg p_2)\lor p_3
+&&\text{（双重否定律，已是析取范式）}\\
+&\Leftrightarrow(p_1\lor p_3)\land(\neg p_2\lor p_3)
+&&\text{（分配律，已是合取范式）}.
+\end{aligned}
+$$
+<h3 class="relative group">普通范式与主范式
+    <div id="普通范式与主范式" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%99%ae%e9%80%9a%e8%8c%83%e5%bc%8f%e4%b8%8e%e4%b8%bb%e8%8c%83%e5%bc%8f" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>普通范式不唯一。同一个公式可以有不同的析取范式或合取范式，通常希望找到较简洁的形式。</li>
+<li>固定变元集合后，要求每个简单合取项或简单析取项都包含全部变元，每个变元恰出现一次，并删除重复项，就得到主析取范式或主合取范式。它们在忽略项的顺序、括号等书写差异后唯一。</li>
+<li>真值表法逐行构造的，就是对应的主范式：每个成真行对应一个极小项（简单合取项），每个成假行对应一个极大项（简单析取项）。</li>
+<li>对于矛盾式的主析取范式、重言式的主合取范式，通常约定空析取为 $0$、空合取为 $1$。</li>
+</ul>
+
+<h2 class="relative group">利用范式证明联结词完全集
+    <div id="利用范式证明联结词完全集" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%88%a9%e7%94%a8%e8%8c%83%e5%bc%8f%e8%af%81%e6%98%8e%e8%81%94%e7%bb%93%e8%af%8d%e5%ae%8c%e5%85%a8%e9%9b%86" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>只含 $\neg,\land,\lor$ 的公式称为限制性公式。</p>
+<p>任意 $n$ 元真值函数（$n\ge1$）都能由这种公式表示：</p>
+<ul>
+<li>若函数恒为 $0$，用 $p_1\land\neg p_1$ 即可表示。</li>
+<li>否则，列出函数值为 $1$ 的所有指派，为每行构造一个简单合取式，再把它们析取起来。</li>
+</ul>
+<p>因此：</p>
+$$
+\boxed{\{\neg,\land,\lor\}\text{ 是联结词的完全集。}}
+$$<p>这个证明与真值表法求析取范式的构造过程相同。</p>
+
+<h2 class="relative group">可靠性、和谐性与完备性
+    <div id="可靠性和谐性与完备性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8f%af%e9%9d%a0%e6%80%a7%e5%92%8c%e8%b0%90%e6%80%a7%e4%b8%8e%e5%ae%8c%e5%a4%87%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">语法与语义的联系
+    <div id="语法与语义的联系" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e8%af%ad%e6%b3%95%e4%b8%8e%e8%af%ad%e4%b9%89%e7%9a%84%e8%81%94%e7%b3%bb" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<ul>
+<li>语法：研究公式、公理、推理规则和形式证明，核心问题是 $\vdash_P\alpha$ 是否成立。</li>
+<li>语义：通过指派解释公式的真假，核心问题是公式是否永真，记为 $\vDash\alpha$。</li>
+</ul>
+<p>可靠性与完备性讨论的是这两者能否对应；和谐性讨论的是形式系统本身是否会证明出矛盾。</p>
+<table>
+	<thead>
+			<tr>
+					<th>性质</th>
+					<th>表述</th>
+					<th>理解</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>可靠性</td>
+					<td>$\vdash_P\alpha\ \Longrightarrow\ \vDash\alpha$</td>
+					<td>形式上能证明的，语义上一定永真</td>
+			</tr>
+			<tr>
+					<td>完备性（完全性）</td>
+					<td>$\vDash\alpha\ \Longrightarrow\ \vdash_P\alpha$</td>
+					<td>语义上永真的，形式上一定能证明</td>
+			</tr>
+			<tr>
+					<td>和谐性（一致性）</td>
+					<td>不存在 $\alpha$，使 $\vdash_P\alpha$ 与 $\vdash_P\neg\alpha$ 同时成立</td>
+					<td>系统不会同时证明一个公式和它的否定</td>
+			</tr>
+	</tbody>
+</table>
+<p>这些是关于形式系统的元定理，不是 $P$ 内部的公式或推理规则。</p>
+
+<h3 class="relative group">可靠性
+    <div id="可靠性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%8f%af%e9%9d%a0%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>定理：$P$ 的内定理都是重言式。</strong></p>
+$$
+\boxed{\vdash_P\alpha\ \Longrightarrow\ \vDash\alpha.}
+$$<p>证明思路：对证明序列的长度归纳。</p>
+<ol>
+<li>公理都是重言式。</li>
+<li>分离规则保持永真性：若 $\alpha$ 与 $\alpha\to\beta$ 都永真，则 $\beta$ 也永真。</li>
+<li>因此，任何无前提证明序列中的每一行都永真，最后的结论也永真。</li>
+</ol>
+<p>可靠性也给出了判断不可证的一种方法：只要找出使 $\alpha$ 为假的指派，就能断定 $\nvdash_P\alpha$。</p>
+
+<h3 class="relative group">和谐性
+    <div id="和谐性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%92%8c%e8%b0%90%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>定理：$P$ 中不存在公式 $\alpha$，使 $\alpha$ 和 $\neg\alpha$ 都是内定理。</strong></p>
+<p>证明思路：若两者都可证，由可靠性知两者都永真。但对任意指派 $\sigma$，有：</p>
+$$
+(\neg\alpha)^\sigma=1-\alpha^\sigma,
+$$<p>因此两者不可能同时为真，矛盾。所以 $P$ 的可靠性蕴含其和谐性。</p>
+<ul>
+<li>推论：$P$ 中至少有一个公式不是内定理。</li>
+<li>和谐性不要求 $\alpha$ 与 $\neg\alpha$ 中必有一个可证。例如，$p$ 和 $\neg p$ 都不是重言式，由可靠性可知两者都不是内定理。</li>
+</ul>
+
+<h3 class="relative group">完备性
+    <div id="完备性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%ae%8c%e5%a4%87%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p><strong>定理：$P$ 中的每个重言式都是内定理。</strong></p>
+$$
+\boxed{\vDash\alpha\ \Longrightarrow\ \vdash_P\alpha.}
+$$
+<h4 class="relative group">关键引理：把一个指派写成前提
+    <div id="关键引理把一个指派写成前提" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%b3%e9%94%ae%e5%bc%95%e7%90%86%e6%8a%8a%e4%b8%80%e4%b8%aa%e6%8c%87%e6%b4%be%e5%86%99%e6%88%90%e5%89%8d%e6%8f%90" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>设公式 $\beta$ 中的命题变元都在 $v_1,\ldots,v_n$ 中。对于一个指派 $\sigma$，取：</p>
+$$
+\ell_i=
+\begin{cases}
+v_i,&\sigma(v_i)=1,\\
+\neg v_i,&\sigma(v_i)=0.
+\end{cases}
+$$<p>记 $\Delta_\sigma=\{\ell_1,\ldots,\ell_n\}$，即把这个指派规定的真假情况转成文字前提，则：</p>
+$$
+\begin{aligned}
+\beta^\sigma=1&\quad\Longrightarrow\quad\Delta_\sigma\vdash_P\beta,\\
+\beta^\sigma=0&\quad\Longrightarrow\quad\Delta_\sigma\vdash_P\neg\beta.
+\end{aligned}
+$$<p>例如，指派 $\sigma(p)=1,\sigma(q)=0$ 对应前提 $\{p,\neg q\}$。因为 $(p\to q)^\sigma=0$，引理保证 $p,\neg q\vdash_P\neg(p\to q)$。</p>
+<p>引理可对公式结构归纳证明。核心是：在给定指派所对应的前提下，形式推理能重现真值计算的结果。</p>
+
+<h4 class="relative group">完备性证明的主线
+    <div id="完备性证明的主线" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%ae%8c%e5%a4%87%e6%80%a7%e8%af%81%e6%98%8e%e7%9a%84%e4%b8%bb%e7%ba%bf" aria-label="Anchor">#</a>
+    </span>
+    
+</h4>
+<p>若 $\beta$ 是重言式，则对所有指派 $\sigma$，都有 $\Delta_\sigma\vdash_P\beta$。接着把这些指派前提逐个消去。</p>
+<p>消去一个变元 $v$ 时，固定其余文字前提 $\Gamma$，两个分支都能证明 $\beta$：</p>
+$$
+\Gamma,v\vdash_P\beta,
+\qquad
+\Gamma,\neg v\vdash_P\beta.
+$$<p>由演绎定理得到：</p>
+$$
+\Gamma\vdash_P v\to\beta,
+\qquad
+\Gamma\vdash_P\neg v\to\beta.
+$$<p>再使用已证的分类讨论内定理：</p>
+$$
+\vdash_P(v\to\beta)\to((\neg v\to\beta)\to\beta),
+$$<p>连续两次分离便得到 $\Gamma\vdash_P\beta$。这样就消去了关于 $v$ 的假设。对所有变元重复这一过程，最终得到 $\vdash_P\beta$。</p>
+<p><strong>整个证明是在做穷尽的分类讨论：每种指派下都能证明，再合并分支，最终不依赖任何指派前提。</strong></p>
+
+<h3 class="relative group">结论与可判定性
+    <div id="结论与可判定性" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e7%bb%93%e8%ae%ba%e4%b8%8e%e5%8f%af%e5%88%a4%e5%ae%9a%e6%80%a7" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>结合可靠性与完备性：</p>
+$$
+\boxed{\vdash_P\alpha\quad\Longleftrightarrow\quad\vDash\alpha.}
+$$<p>由于 $N$ 与 $P$ 的可证性等价，$N$ 的内定理也恰好是重言式。</p>
+<ul>
+<li>命题演算的内定理问题是可判定的：一个公式只有有限个命题变元，列出全部 $2^n$ 个指派，检查是否永真，就能在有限步内判断它是否可证。</li>
+<li>“完备”不表示每个公式或其否定总有一个可证；它表示所有重言式都可证。比如 $p$ 和 $\neg p$ 都不是永真的。</li>
+<li>证明搜索中暂时没有找到证明，不等于已经证明不可证；反例指派则可以通过可靠性说明不可证。</li>
+</ul>
+
+<h3 class="relative group">有限前提的情形
+    <div id="有限前提的情形" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e6%9c%89%e9%99%90%e5%89%8d%e6%8f%90%e7%9a%84%e6%83%85%e5%bd%a2" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>对于有限前提集 $\Gamma=\{\gamma_1,\ldots,\gamma_n\}$，可靠性与完备性也给出：</p>
+$$
+\boxed{\Gamma\vdash_P\alpha\quad\Longleftrightarrow\quad\Gamma\vDash\alpha.}
+$$<p>其中，$\Gamma\vDash\alpha$ 表示：任意使 $\Gamma$ 中所有前提都为真的指派，也使 $\alpha$ 为真。</p>
+<p>这一结论可以通过演绎定理，将前提逐个移入公式，再对蕴含链使用无前提的可靠性与完备性得到。因此，有限前提的推理有效，当且仅当它在 $P$ 中可证。</p>
+
           
           
           

@@ -12,6 +12,16 @@
     <atom:link href="https://twj-ink.github.io/arch/study_notes/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>计算机体系结构笔记7：讲座分享1</title>
+      <link>https://twj-ink.github.io/arch/study_notes/7-lecture1/</link>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/arch/study_notes/7-lecture1/</guid>
+      <description>突破内存瓶颈的大模型推理优化</description>
+      
+    </item>
+    
+    <item>
       <title>计算机体系结构笔记6：Cache与存储层次</title>
       <link>https://twj-ink.github.io/arch/study_notes/6-cache/</link>
       <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>

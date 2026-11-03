@@ -12,9 +12,39 @@
     <atom:link href="https://twj-ink.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>中华毽</title>
+      <link>https://twj-ink.github.io/tags/%E4%B8%AD%E5%8D%8E%E6%AF%BD/</link>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 +0800</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/tags/%E4%B8%AD%E5%8D%8E%E6%AF%BD/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>学习笔记</title>
+      <link>https://twj-ink.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 +0800</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>踢毽子</title>
+      <link>https://twj-ink.github.io/tags/%E8%B8%A2%E6%AF%BD%E5%AD%90/</link>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 +0800</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/tags/%E8%B8%A2%E6%AF%BD%E5%AD%90/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Arch</title>
       <link>https://twj-ink.github.io/tags/arch/</link>
-      <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/tags/arch/</guid>
       <description></description>
@@ -24,7 +54,7 @@
     <item>
       <title>Cache</title>
       <link>https://twj-ink.github.io/tags/cache/</link>
-      <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/tags/cache/</guid>
       <description></description>
@@ -34,7 +64,7 @@
     <item>
       <title>Memory Hierarchy</title>
       <link>https://twj-ink.github.io/tags/memory-hierarchy/</link>
-      <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
       <author>298731943@qq.com (GaleInk)</author>
       <guid>https://twj-ink.github.io/tags/memory-hierarchy/</guid>
       <description></description>

@@ -3,13 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://twj-ink.github.io/blogs/chinese-jian-duishou/</loc>
-    <lastmod>2026-11-04T02:18:58+08:00</lastmod>
+    <loc>https://twj-ink.github.io/blogs/drive-cd/</loc>
+    <lastmod>2026-11-08T15:58:38+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/arch/</loc>
+    <lastmod>2026-11-08T15:58:38+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/arch/study_notes/7-dram/</loc>
+    <lastmod>2026-11-08T15:58:38+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/chinese-jian-duishou/</loc>
     <lastmod>2026-11-04T02:18:58+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -22,7 +34,7 @@
   </url>
   <url>
     <loc>https://twj-ink.github.io/arch/study_notes/6-cache/</loc>
-    <lastmod>2026-10-30T02:00:55+08:00</lastmod>
+    <lastmod>2026-11-08T15:58:38+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -220,7 +232,7 @@
   </url>
   <url>
     <loc>https://twj-ink.github.io/arch/study_notes/</loc>
-    <lastmod>2026-10-30T02:00:55+08:00</lastmod>
+    <lastmod>2026-11-08T15:58:38+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

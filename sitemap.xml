@@ -3,14 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://twj-ink.github.io/blogs/drive-cd/</loc>
-    <lastmod>2026-11-08T15:58:38+08:00</lastmod>
+    <loc>https://twj-ink.github.io/blogs/vt-video/</loc>
+    <lastmod>2026-11-21T20:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/diary/2026-11-21/</loc>
+    <lastmod>2026-11-21T19:56:50+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/travel-chengdu/</loc>
+    <lastmod>2026-11-21T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/arch/</loc>
-    <lastmod>2026-11-08T15:58:38+08:00</lastmod>
+    <lastmod>2026-11-21T19:56:50+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/arch/study_notes/8-multiprocessor/</loc>
+    <lastmod>2026-11-21T19:56:50+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/blogs/drive-cd/</loc>
+    <lastmod>2026-11-21T19:56:50+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -40,13 +64,13 @@
   </url>
   <url>
     <loc>https://twj-ink.github.io/logic/</loc>
-    <lastmod>2026-11-03T01:07:27+08:00</lastmod>
+    <lastmod>2026-11-21T19:56:50+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://twj-ink.github.io/logic/propositional_logic/</loc>
-    <lastmod>2026-11-03T01:07:27+08:00</lastmod>
+    <lastmod>2026-11-21T19:56:50+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -154,7 +178,7 @@
   </url>
   <url>
     <loc>https://twj-ink.github.io/blogs/claude-and-deepseek/</loc>
-    <lastmod>2026-05-08T00:39:37+08:00</lastmod>
+    <lastmod>2026-11-21T19:56:50+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -335,6 +359,12 @@
   <url>
     <loc>https://twj-ink.github.io/castle/</loc>
     <lastmod>2026-09-15T21:25:56+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://twj-ink.github.io/diary/</loc>
+    <lastmod>2026-11-21T19:56:50+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

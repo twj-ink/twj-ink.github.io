@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Multiprocessor on GaleInk&#39;s blog</title>
+    <link>https://twj-ink.github.io/tags/multiprocessor/</link>
+    <description>Recent content in Multiprocessor on GaleInk&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>298731943@qq.com (GaleInk)</managingEditor>
+    <webMaster>298731943@qq.com (GaleInk)</webMaster>
+    <copyright>Copy, _right?_ :thinking_face:</copyright>
+    <lastBuildDate>Sat, 21 Nov 2026 19:56:50 +0800</lastBuildDate><atom:link href="https://twj-ink.github.io/tags/multiprocessor/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>计算机体系结构笔记8：多处理器与缓存一致性</title>
+      <link>https://twj-ink.github.io/arch/study_notes/8-multiprocessor/</link>
+      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/arch/study_notes/8-multiprocessor/</guid>
+      <description>梳理多处理器的存储组织、SC与TSO内存模型，以及总线监听、MESI状态转换和目录式缓存一致性</description>
+      
+    </item>
+    
+  </channel>
+</rss>

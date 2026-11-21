@@ -12,6 +12,16 @@
     <atom:link href="https://twj-ink.github.io/arch/study_notes/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>计算机体系结构笔记8：多处理器与缓存一致性</title>
+      <link>https://twj-ink.github.io/arch/study_notes/8-multiprocessor/</link>
+      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
+      <author>298731943@qq.com (GaleInk)</author>
+      <guid>https://twj-ink.github.io/arch/study_notes/8-multiprocessor/</guid>
+      <description>梳理多处理器的存储组织、SC与TSO内存模型，以及总线监听、MESI状态转换和目录式缓存一致性</description>
+      
+    </item>
+    
+    <item>
       <title>计算机体系结构笔记7：DRAM组织与访问</title>
       <link>https://twj-ink.github.io/arch/study_notes/7-dram/</link>
       <pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
